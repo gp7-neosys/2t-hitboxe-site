@@ -2570,7 +2570,7 @@ ol {
 	width: 100%;
 	border: none;
 	padding: 14px 0 12px;
-	background: #f36100;
+	background: #CF0000;
 }
 
 /*---------------------
@@ -2593,7 +2593,7 @@ ol {
 
 .contact-widget .cw-text i {
 	font-size: 30px;
-	color: #f36100;
+	color: #CF0000;
 	display: inline-block;
 	height: 65px;
 	width: 65px;
@@ -2708,7 +2708,7 @@ ol {
 	color: #ffffffb3;
 	height: 46px;
 	width: 100%;
-	background: #f36100;
+	background: #CF0000;
 	border: none;
 	padding-left: 20px;
 }
@@ -2764,7 +2764,7 @@ ol {
 }
 
 .text-404 a i {
-	color: #f36100;
+	color: #CF0000;
 	margin-right: 5px;
 }
 
