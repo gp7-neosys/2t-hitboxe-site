@@ -35,7 +35,7 @@
 :root {
 	--bg-primary: black;
 	--bg-secondary: #680000;
-	--btn-primary: rgb(150, 0, 0);
+	--btn-primary: #960000;
 	--btn-secondary: white;
 	--btn-hover: #CF0000;
 	--txt-primary: white;
@@ -180,7 +180,7 @@ ol {
 	font-size: 14px;
 	padding: 17px 30px 16px;
 	color: #ffffff;
-	background: #ff0202;
+	background: #960000;
 	line-height: normal;
 	letter-spacing: 1px;
 	text-transform: uppercase;
@@ -195,7 +195,6 @@ ol {
 
 .primary-btn.btn-normal:hover {
 	background: #f30000;
-	border-color: #f30000;
 }
 
 /* Preloder */
@@ -3265,4 +3264,49 @@ ol {
 	.search-model-form input {
 		font-size: 28px;
 	}
+}
+
+/* PRODUTOS */
+
+        .shop-section { background-color: #0a0a0a; }
+        .product-item { background: #151515; padding: 20px; margin-bottom: 30px; transition: all 0.3s; text-align: center; border: 1px solid transparent; }
+        .product-item:hover { border-color: var(--bg-secondary); transform: translateY(-5px); }
+        .pi-pic { height: 260px; background-size: cover; background-position: center; background-color: #000; position: relative; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid #333;}
+        .pi-pic i { font-size: 50px; color: #333; } /* Ícone placeholder */
+        .pi-pic .tag { position: absolute; top: 10px; left: 10px; background: var(--bg-secondary); color: #fff; padding: 2px 10px; font-size: 12px; font-weight: 700; text-transform: uppercase; }
+        .pi-text h5 { color: #fff; font-family: 'Oswald', sans-serif; font-size: 20px; margin-top: 20px; margin-bottom: 10px; text-transform: uppercase; }
+        .p-price { color: var(--txt-primary); font-size: 24px; font-weight: 700; margin-bottom: 20px; }
+        .primary-btn.btn-comprar { width: 100%; display: block; border-radius: 0; background: var(--btn-primary); color: #fff; border: none; padding: 12px; text-transform: uppercase; font-weight: 700; }
+        .primary-btn.btn-comprar:hover { background: #fff; color: var(--btn-hover); }
+
+/* 1. A linha se torna um container flex que estica os itens */
+.shop-section .row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* 2. Cada coluna ocupa a altura total da linha */
+.shop-section .row > [class*="col-"] {
+    display: flex;
+    margin-bottom: 20px; /* espaçamento entre linhas de cards */
+}
+
+/* 3. O card ocupa 100% da coluna e organiza o conteúdo verticalmente */
+.product-item {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+/* A área de texto cresce para "empurrar" o botão para baixo */
+.pi-text {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+/* O botão fica sempre no final do card, alinhado entre eles */
+.pi-text .primary-btn {
+    margin-top: auto;
 }
