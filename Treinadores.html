@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="zxx">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="Gym Template">
-    <meta name="keywords" content="Gym, unica, creative, html">
+    <meta name="description" content="Template de Academia">
+    <meta name="keywords" content="Academia, fitness, crossfit, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Gym | Template</title>
+    <title>Academia | Nosso Time</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
@@ -22,6 +22,156 @@
     <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
     <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="css/style.css" type="text/css">
+
+    <!-- ESTILOS DO NOVO LAYOUT DE TREINADORES PREMIUM (VERSÃO VERMELHA) -->
+    <style>
+        :root {
+            --cor-destaque: #e50000; /* Vermelho vibrante */
+            --cor-escura: #151515;
+            --cor-mais-escura: #0a0a0a;
+        }
+
+        .team-page {
+            background-color: var(--cor-mais-escura);
+            padding-bottom: 100px;
+        }
+
+        .card-treinador {
+            background: var(--cor-escura);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: all 0.4s ease;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .card-treinador:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(229, 0, 0, 0.2);
+        }
+
+        .foto-treinador-box {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 3/4;
+        }
+
+        .foto-treinador-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease, filter 0.6s ease;
+        }
+
+        .card-treinador:hover .foto-treinador-box img {
+            transform: scale(1.12);
+            filter: grayscale(100%) contrast(120%);
+        }
+
+        /* Efeito Hover "Ver Perfil +" com degradê vermelho */
+        .overlay-clique {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(229, 0, 0, 0.9), transparent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .card-treinador:hover .overlay-clique {
+            opacity: 1;
+        }
+
+        .texto-clique {
+            color: #fff;
+            font-size: 18px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transform: translateY(30px);
+            transition: all 0.4s ease;
+        }
+
+        .card-treinador:hover .texto-clique {
+            transform: translateY(0);
+        }
+
+        .info-treinador {
+            padding: 25px 20px;
+            text-align: center;
+            border-bottom: 4px solid var(--cor-destaque);
+            position: relative;
+            z-index: 2;
+        }
+
+        .info-treinador h4 {
+            color: #ffffff;
+            font-size: 22px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .info-treinador span {
+            color: #aaaaaa;
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Estilos da Janela Flutuante (Modal) */
+        .modal-treinador-dark {
+            background-color: var(--cor-escura);
+            border: 1px solid #333;
+            border-radius: 10px;
+        }
+        .modal-treinador-dark .close {
+            color: #fff;
+            opacity: 0.8;
+            font-size: 30px;
+            text-shadow: none;
+        }
+        .modal-treinador-dark .close:hover {
+            color: var(--cor-destaque);
+            opacity: 1;
+        }
+        .foto-modal {
+            border-bottom: 4px solid var(--cor-destaque);
+            border-radius: 8px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+            width: 100%;
+        }
+
+       /* Botão Agendar Totalmente Quadrado com Hover Suave */
+        .btn-agendar {
+            display: inline-block;
+            padding: 15px 40px;
+            font-size: 18px;
+            font-weight: 700;
+            text-transform: uppercase;
+            border-radius: 0; 
+            background: var(--cor-destaque);
+            color: #fff !important;
+            border: none;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-agendar:hover {
+            background: #ff1a1a; 
+            transform: translateY(-3px); 
+            box-shadow: 0 8px 15px rgba(229, 0, 0, 0.4); 
+            color: #fff;
+        }
+    </style>
 </head>
 
 <body>
@@ -40,23 +190,17 @@
             <i class="fa fa-search"></i>
         </div>
         <nav class="canvas-menu mobile-menu">
-           <ul>
+            <ul>
                 <li><a href="index.html">Início</a></li>
                 <li><a href="sobre.html">Sobre</a></li>
                 <li><a href="Treinos.html">Classes</a></li>
                 <li><a href="servico.html">Serviços</a></li>
-                <li><a href="Treinadores.html">Nosso Time</a></li>
+                <li class="active"><a href="Treinadores.html">Nosso Time</a></li>
                 <li><a href="Contato.html">FAQ</a></li>
                 <li><a href="produtos.html">Produtos</a></li>   
             </ul>
         </nav>
         <div id="mobile-menu-wrap"></div>
-        <div class="canvas-social">
-            <a href="#"><i class="fa fa-facebook"></i></a>
-            <a href="#"><i class="fa fa-twitter"></i></a>
-            <a href="#"><i class="fa fa-youtube-play"></i></a>
-            <a href="#"><i class="fa fa-instagram"></i></a>
-        </div>
     </div>
     <!-- Offcanvas Menu Section End -->
 
@@ -67,33 +211,27 @@
                 <div class="col-lg-3">
                     <div class="logo">
                         <a href="./index.html">
-                            <img src="img/logo.png" alt="">
+                            <img src="img/logo.png" alt="Logo da Academia">
                         </a>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <nav class="nav-menu">
-                     <ul>
-                <li><a href="index.html">Início</a></li>
-                <li><a href="sobre.html">Sobre</a></li>
-                <li><a href="Treinos.html">Classes</a></li>
-                <li><a href="servico.html">Serviços</a></li>
-                <li><a href="Treinadores.html">Nosso Time</a></li>
-                <li><a href="Contato.html">FAQ</a></li>
-                <li><a href="produtos.html">Produtos</a></li>   
-            </ul>
+                        <ul>
+                            <li><a href="index.html">Início</a></li>
+                            <li><a href="sobre.html">Sobre</a></li>
+                            <li><a href="Treinos.html">Classes</a></li>
+                            <li><a href="servico.html">Serviços</a></li>
+                            <li class="active"><a href="Treinadores.html">Nosso Time</a></li>
+                            <li><a href="Contato.html">FAQ</a></li>
+                            <li><a href="produtos.html">Produtos</a></li>   
+                        </ul>
                     </nav>
                 </div>
                 <div class="col-lg-3">
                     <div class="top-option">
                         <div class="to-search search-switch">
                             <i class="fa fa-search"></i>
-                        </div>
-                        <div class="to-social">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-youtube-play"></i></a>
-                            <a href="#"><i class="fa fa-instagram"></i></a>
                         </div>
                     </div>
                 </div>
@@ -111,10 +249,10 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="breadcrumb-text">
-                        <h2>Our Team</h2>
+                        <h2>Nosso Time</h2>
                         <div class="bt-option">
-                            <a href="./index.html">Home</a>
-                            <span>Our team</span>
+                            <a href="./index.html">Início</a>
+                            <span>Nosso Time</span>
                         </div>
                     </div>
                 </div>
@@ -126,105 +264,110 @@
     <!-- Team Section Begin -->
     <section class="team-section team-page spad">
         <div class="container">
-            <div class="row">
+       <div class="row">
                 <div class="col-lg-12">
-                    <div class="team-title">
-                        <div class="section-title">
-                            <span>Our Team</span>
-                            <h2>TRAIN WITH EXPERTS</h2>
+                    <div class="team-title d-flex justify-content-between align-items-end mb-5">
+                        <div class="section-title mb-0">
+                            <span style="color: var(--cor-destaque); font-weight: 700; letter-spacing: 2px;">Conheça a Tropa</span>
+                            <h2 style="font-size: 40px; text-transform: uppercase; margin-bottom: 0;">A Elite da Nossa Academia</h2>
                         </div>
-                        <a href="#" class="primary-btn btn-normal appoinment-btn">appointment</a>
+                        <a href="Contato.html" class="btn-agendar">Agendar Aula</a>
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-4 col-sm-6">
-                    <div class="ts-item set-bg" data-setbg="img/team/team-1.jpg">
-                        <div class="ts_text">
-                            <h4>Athart Rachel</h4>
-                            <span>Gym Trainer</span>
-                            <div class="tt_social">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-youtube-play"></i></a>
-                                <a href="#"><i class="fa fa-instagram"></i></a>
-                                <a href="#"><i class="fa  fa-envelope-o"></i></a>
+                <!-- Treinador 1 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card-treinador" data-toggle="modal" data-target="#modalTreinador1">
+                        <div class="foto-treinador-box">
+                            <img src="img/team/Gustavo.png" alt="Gustavo">
+                            <div class="overlay-clique">
+                                <span class="texto-clique">Ver Perfil +</span>
                             </div>
+                        </div>
+                        <div class="info-treinador">
+                            <h4>Gustavo</h4>
+                            <span>Musculação & Hipertrofia</span>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="ts-item set-bg" data-setbg="img/team/team-2.jpg">
-                        <div class="ts_text">
-                            <h4>Athart Rachel</h4>
-                            <span>Gym Trainer</span>
-                            <div class="tt_social">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-youtube-play"></i></a>
-                                <a href="#"><i class="fa fa-instagram"></i></a>
-                                <a href="#"><i class="fa  fa-envelope-o"></i></a>
+
+                <!-- Treinador 2 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card-treinador" data-toggle="modal" data-target="#modalTreinador2">
+                        <div class="foto-treinador-box">
+                            <img src="img/team/Pedro.png" alt="Pedro Gomes">
+                            <div class="overlay-clique">
+                                <span class="texto-clique">Ver Perfil +</span>
                             </div>
+                        </div>
+                        <div class="info-treinador">
+                            <h4>Pedro</h4>
+                            <span>Crossfit & LPO</span>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="ts-item set-bg" data-setbg="img/team/team-3.jpg">
-                        <div class="ts_text">
-                            <h4>Athart Rachel</h4>
-                            <span>Gym Trainer</span>
-                            <div class="tt_social">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-youtube-play"></i></a>
-                                <a href="#"><i class="fa fa-instagram"></i></a>
-                                <a href="#"><i class="fa  fa-envelope-o"></i></a>
+
+                <!-- Treinador 3 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card-treinador" data-toggle="modal" data-target="#modalTreinador3">
+                        <div class="foto-treinador-box">
+                            <img src="img/team/Eu.png" alt="João">
+                            <div class="overlay-clique">
+                                <span class="texto-clique">Ver Perfil +</span>
                             </div>
+                        </div>
+                        <div class="info-treinador">
+                            <h4>João</h4>
+                            <span>Artes Marciais (MMA)</span>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="ts-item set-bg" data-setbg="img/team/team-4.jpg">
-                        <div class="ts_text">
-                            <h4>Athart Rachel</h4>
-                            <span>Gym Trainer</span>
-                            <div class="tt_social">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-youtube-play"></i></a>
-                                <a href="#"><i class="fa fa-instagram"></i></a>
-                                <a href="#"><i class="fa  fa-envelope-o"></i></a>
+
+                <!-- Treinador 4 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card-treinador" data-toggle="modal" data-target="#modalTreinador4">
+                        <div class="foto-treinador-box">
+                            <img src="img/team/Kaoenderosn.png" alt="Kauenderson">
+                            <div class="overlay-clique">
+                                <span class="texto-clique">Ver Perfil +</span>
                             </div>
+                        </div>
+                        <div class="info-treinador">
+                            <h4>Kauenderson</h4>
+                            <span>Box e Reflexos</span>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="ts-item set-bg" data-setbg="img/team/team-5.jpg">
-                        <div class="ts_text">
-                            <h4>Athart Rachel</h4>
-                            <span>Gym Trainer</span>
-                            <div class="tt_social">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-youtube-play"></i></a>
-                                <a href="#"><i class="fa fa-instagram"></i></a>
-                                <a href="#"><i class="fa  fa-envelope-o"></i></a>
+
+                <!-- Treinador 5 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card-treinador" data-toggle="modal" data-target="#modalTreinador5">
+                        <div class="foto-treinador-box">
+                            <img src="img/team/Juan.png" alt="Juan">
+                            <div class="overlay-clique">
+                                <span class="texto-clique">Ver Perfil +</span>
                             </div>
+                        </div>
+                        <div class="info-treinador">
+                            <h4>Juan</h4>
+                            <span>Personal Fisiologista</span>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="ts-item set-bg" data-setbg="img/team/team-6.jpg">
-                        <div class="ts_text">
-                            <h4>Athart Rachel</h4>
-                            <span>Gym Trainer</span>
-                            <div class="tt_social">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-youtube-play"></i></a>
-                                <a href="#"><i class="fa fa-instagram"></i></a>
-                                <a href="#"><i class="fa  fa-envelope-o"></i></a>
+
+                <!-- Treinador 6 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card-treinador" data-toggle="modal" data-target="#modalTreinador6">
+                        <div class="foto-treinador-box">
+                            <img src="img/team/Luis.png" alt="Luis">
+                            <div class="overlay-clique">
+                                <span class="texto-clique">Ver Perfil +</span>
                             </div>
+                        </div>
+                        <div class="info-treinador">
+                            <h4>Luis</h4>
+                            <span>reflexos e Atividades </span>
                         </div>
                     </div>
                 </div>
@@ -233,6 +376,191 @@
     </section>
     <!-- Team Section End -->
 
+    <!-- ============================================== -->
+    <!-- JANELAS FLUTUANTES (MODAIS) DOS TREINADORES    -->
+    <!-- ============================================== -->
+
+    <!-- Modal Treinador 1 -->
+    <div class="modal fade" id="modalTreinador1" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content modal-treinador-dark">
+                <div class="modal-header border-bottom-0 pb-0">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body pt-0 pb-5 px-sm-5">
+                    <div class="row align-items-center">
+                        <div class="col-md-5 text-center mb-4 mb-md-0">
+                            <img src="img/team/Gustavo.png" alt="Gustavo" class="img-fluid foto-modal">
+                        </div>
+                        <div class="col-md-7">
+                            <h3 style="color: var(--cor-destaque); font-weight: 800; text-transform: uppercase;">Gustavo</h3>
+                            <h5 style="color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px;">Musculação & Hipertrofia</h5>
+                            <p style="color: #ccc; line-height: 1.8;">Com mais de 10 anos de experiência nos ferros, Gustavo é especialista em biomecânica aplicada. Focado na execução perfeita para prevenção de lesões e resultados agressivos de hipertrofia.</p>
+                            <ul class="list-unstyled mt-4" style="color: #aaa; line-height: 2;">
+                                <li><i class="fa fa-check" style="color: var(--cor-destaque); margin-right: 10px;"></i> Pós-graduado em Fisiologia do Exercício</li>
+                                <li><i class="fa fa-check" style="color: var(--cor-destaque); margin-right: 10px;"></i> Especialista em correção postural</li>
+                                <li><i class="fa fa-check" style="color: var(--cor-destaque); margin-right: 10px;"></i> Preparador de atletas amadores</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Treinador 2 -->
+    <div class="modal fade" id="modalTreinador2" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content modal-treinador-dark">
+                <div class="modal-header border-bottom-0 pb-0">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body pt-0 pb-5 px-sm-5">
+                    <div class="row align-items-center">
+                        <div class="col-md-5 text-center mb-4 mb-md-0">
+                            <img src="img/team/Pedro.png" alt="Pedro" class="img-fluid foto-modal">
+                        </div>
+                        <div class="col-md-7">
+                            <h3 style="color: var(--cor-destaque); font-weight: 800; text-transform: uppercase;">Pedro</h3>
+                            <h5 style="color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px;">Crossfit & LPO</h5>
+                            <p style="color: #ccc; line-height: 1.8;">Alta intensidade é o sobrenome do Pedro. Ex-atleta competitiva, ela traz para os treinos a dinâmica dos WODs oficiais. Vai te empurrar além dos seus limites com segurança e precisão.</p>
+                            <ul class="list-unstyled mt-4" style="color: #aaa; line-height: 2;">
+                                <li><i class="fa fa-check" style="color: var(--cor-destaque); margin-right: 10px;"></i> Coach Level 2 Crossfit</li>
+                                <li><i class="fa fa-check" style="color: var(--cor-destaque); margin-right: 10px;"></i> Certificação em Levantamento de Peso (LPO)</li>
+                                <li><i class="fa fa-check" style="color: var(--cor-destaque); margin-right: 10px;"></i> Especialista em emagrecimento extremo</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Treinador 3 -->
+    <div class="modal fade" id="modalTreinador3" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content modal-treinador-dark">
+                <div class="modal-header border-bottom-0 pb-0">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body pt-0 pb-5 px-sm-5">
+                    <div class="row align-items-center">
+                        <div class="col-md-5 text-center mb-4 mb-md-0">
+                            <img src="img/team/Eu.png" alt="João" class="img-fluid foto-modal">
+                        </div>
+                        <div class="col-md-7">
+                            <h3 style="color: var(--cor-destaque); font-weight: 800; text-transform: uppercase;">João</h3>
+                            <h5 style="color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px;">Artes Marciais (MMA)</h5>
+                            <p style="color: #ccc; line-height: 1.8;">Disciplina e técnica. João tem experiência nos tatames e no octógono. Suas aulas misturam Muay Thai e Jiu-Jitsu para criar um cardio absurdo, força explosiva e inteligência emocional.</p>
+                            <ul class="list-unstyled mt-4" style="color: #aaa; line-height: 2;">
+                                <li><i class="fa fa-check" style="color: var(--cor-destaque); margin-right: 10px;"></i> Faixa Preta em Jiu-Jitsu</li>
+                                <li><i class="fa fa-check" style="color: var(--cor-destaque); margin-right: 10px;"></i> Grau Preto em Muay Thai</li>
+                                <li><i class="fa fa-check" style="color: var(--cor-destaque); margin-right: 10px;"></i> Treino focado em resistência e defesa pessoal</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Treinador 4 -->
+    <div class="modal fade" id="modalTreinador4" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content modal-treinador-dark">
+                <div class="modal-header border-bottom-0 pb-0">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body pt-0 pb-5 px-sm-5">
+                    <div class="row align-items-center">
+                        <div class="col-md-5 text-center mb-4 mb-md-0">
+                            <img src="img/team/Kaoenderosn.png" alt="Kauenderson" class="img-fluid foto-modal">
+                        </div>
+                        <div class="col-md-7">
+                            <h3 style="color: var(--cor-destaque); font-weight: 800; text-transform: uppercase;">Kauenderson</h3>
+                            <h5 style="color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px;">Pilates & Core</h5>
+                            <p style="color: #ccc; line-height: 1.8;">Kauenderson transforma a forma como você controla seu próprio corpo. Focada em mobilidade, fortalecimento do core e reabilitação, suas aulas são fundamentais para equilibrar quem treina pesado.</p>
+                            <ul class="list-unstyled mt-4" style="color: #aaa; line-height: 2;">
+                                <li><i class="fa fa-check" style="color: var(--cor-destaque); margin-right: 10px;"></i> Formação Internacional em Pilates Aparelhos</li>
+                                <li><i class="fa fa-check" style="color: var(--cor-destaque); margin-right: 10px;"></i> Especialista em Mobilidade e Alongamento</li>
+                                <li><i class="fa fa-check" style="color: var(--cor-destaque); margin-right: 10px;"></i> Foco em prevenção de dores crônicas</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Treinador 5 -->
+    <div class="modal fade" id="modalTreinador5" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content modal-treinador-dark">
+                <div class="modal-header border-bottom-0 pb-0">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body pt-0 pb-5 px-sm-5">
+                    <div class="row align-items-center">
+                        <div class="col-md-5 text-center mb-4 mb-md-0">
+                            <img src="img/team/Juan.png" alt="Juan" class="img-fluid foto-modal">
+                        </div>
+                        <div class="col-md-7">
+                            <h3 style="color: var(--cor-destaque); font-weight: 800; text-transform: uppercase;">Juan</h3>
+                            <h5 style="color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px;">Personal Fisiologista</h5>
+                            <p style="color: #ccc; line-height: 1.8;">Juan não aplica treinos de gaveta. Ele faz uma análise completa do seu metabolismo e estrutura física para desenhar um projeto 100% focado no seu biotipo e objetivo pessoal.</p>
+                            <ul class="list-unstyled mt-4" style="color: #aaa; line-height: 2;">
+                                <li><i class="fa fa-check" style="color: var(--cor-destaque); margin-right: 10px;"></i> Avaliação Física Avançada</li>
+                                <li><i class="fa fa-check" style="color: var(--cor-destaque); margin-right: 10px;"></i> Mentor de alta performance</li>
+                                <li><i class="fa fa-check" style="color: var(--cor-destaque); margin-right: 10px;"></i> Planejamento de treinos periodizados</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Treinador 6 -->
+    <div class="modal fade" id="modalTreinador6" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content modal-treinador-dark">
+                <div class="modal-header border-bottom-0 pb-0">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body pt-0 pb-5 px-sm-5">
+                    <div class="row align-items-center">
+                        <div class="col-md-5 text-center mb-4 mb-md-0">
+                            <img src="img/team/Luis.png" alt="Luis" class="img-fluid foto-modal">
+                        </div>
+                        <div class="col-md-7">
+                            <h3 style="color: var(--cor-destaque); font-weight: 800; text-transform: uppercase;">Luis</h3>
+                            <h5 style="color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px;">Reflexos e Atividades</h5>
+                            <p style="color: #ccc; line-height: 1.8;">Quem disse que queimar calorias não pode ser divertido? Luiz traz toda a energia da dança para dentro da academia. Suas aulas são uma verdadeira festa, ideais para saúde cardiovascular e alívio do estresse.</p>
+                            <ul class="list-unstyled mt-4" style="color: #aaa; line-height: 2;">
+                                <li><i class="fa fa-check" style="color: var(--cor-destaque); margin-right: 10px;"></i> Instrutora Licenciada Zin™ (Zumba)</li>
+                                <li><i class="fa fa-check" style="color: var(--cor-destaque); margin-right: 10px;"></i> Coreógrafa profissional</li>
+                                <li><i class="fa fa-check" style="color: var(--cor-destaque); margin-right: 10px;"></i> Alta queima calórica com diversão</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- FIM DAS JANELAS FLUTUANTES -->
+
     <!-- Get In Touch Section Begin -->
     <div class="gettouch-section">
         <div class="container">
@@ -240,22 +568,22 @@
                 <div class="col-md-4">
                     <div class="gt-text">
                         <i class="fa fa-map-marker"></i>
-                        <p>333 Middle Winchendon Rd, Rindge,<br/> NH 03461</p>
+                        <p>Rua Exemplo da Silva, 123<br/> São Paulo - SP</p>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="gt-text">
                         <i class="fa fa-mobile"></i>
                         <ul>
-                            <li>125-711-811</li>
-                            <li>125-668-886</li>
+                            <li>(11) 91234-5678</li>
+                            <li>(11) 98765-4321</li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="gt-text email">
                         <i class="fa fa-envelope"></i>
-                        <p>Support.gymcenter@gmail.com</p>
+                        <p>contato@suaacademia.com.br</p>
                     </div>
                 </div>
             </div>
@@ -270,56 +598,55 @@
                 <div class="col-lg-4">
                     <div class="fs-about">
                         <div class="fa-logo">
-                            <a href="#"><img src="img/logo.png" alt=""></a>
+                            <a href="#"><img src="img/logo.png" alt="Logo"></a>
                         </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore dolore magna aliqua endisse ultrices gravida lorem.</p>
+                        <p>Transforme sua vida com saúde e bem-estar. Venha treinar na melhor estrutura da cidade, com profissionais altamente qualificados.</p>
                         <div class="fa-social">
                             <a href="#"><i class="fa fa-facebook"></i></a>
                             <a href="#"><i class="fa fa-twitter"></i></a>
                             <a href="#"><i class="fa fa-youtube-play"></i></a>
                             <a href="#"><i class="fa fa-instagram"></i></a>
-                            <a href="#"><i class="fa  fa-envelope-o"></i></a>
+                            <a href="#"><i class="fa fa-envelope-o"></i></a>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-2 col-md-3 col-sm-6">
                     <div class="fs-widget">
-                        <h4>Useful links</h4>
+                        <h4>Links Úteis</h4>
                         <ul>
-                            <li><a href="#">About</a></li>
+                            <li><a href="sobre.html">Sobre Nós</a></li>
                             <li><a href="#">Blog</a></li>
-                            <li><a href="#">Classes</a></li>
-                            <li><a href="#">Contact</a></li>
+                            <li><a href="Treinos.html">Classes</a></li>
+                            <li><a href="Contato.html">Contato</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-2 col-md-3 col-sm-6">
                     <div class="fs-widget">
-                        <h4>Support</h4>
+                        <h4>Suporte</h4>
                         <ul>
-                            <li><a href="#">Login</a></li>
-                            <li><a href="#">My account</a></li>
-                            <li><a href="#">Subscribe</a></li>
-                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">Área do Aluno</a></li>
+                            <li><a href="#">Minha Conta</a></li>
+                            <li><a href="#">Planos</a></li>
+                            <li><a href="Contato.html">FAQ</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="fs-widget">
-                        <h4>Tips & Guides</h4>
+                        <h4>Dicas & Guias</h4>
                         <div class="fw-recent">
-                            <h6><a href="#">Physical fitness may help prevent depression, anxiety</a></h6>
+                            <h6><a href="#">Como a atividade física previne ansiedade</a></h6>
                             <ul>
-                                <li>3 min read</li>
-                                <li>20 Comment</li>
+                                <li>3 min de leitura</li>
+                                <li>20 Comentários</li>
                             </ul>
                         </div>
                         <div class="fw-recent">
-                            <h6><a href="#">Fitness: The best exercise to lose belly fat and tone up...</a></h6>
+                            <h6><a href="#">Os melhores exercícios para ganho de massa magra</a></h6>
                             <ul>
-                                <li>3 min read</li>
-                                <li>20 Comment</li>
+                                <li>5 min de leitura</li>
+                                <li>15 Comentários</li>
                             </ul>
                         </div>
                     </div>
@@ -328,9 +655,7 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="copyright-text">
-                        <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                        <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> Todos os direitos reservados | Este template é feito com <i class="fa fa-heart" aria-hidden="true"></i> por <a href="https://colorlib.com" target="_blank">Colorlib</a></p>
                     </div>
                 </div>
             </div>
@@ -343,7 +668,7 @@
         <div class="h-100 d-flex align-items-center justify-content-center">
             <div class="search-close-switch">+</div>
             <form class="search-model-form">
-                <input type="text" id="search-input" placeholder="Search here.....">
+                <input type="text" id="search-input" placeholder="Pesquise aqui.....">
             </form>
         </div>
     </div>
@@ -359,7 +684,5 @@
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/main.js"></script>
 
-
 </body>
-
 </html>
