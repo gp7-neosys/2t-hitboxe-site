@@ -396,12 +396,18 @@ ol {
 	top: 0;
 	width: 100%;
 	padding: 0 15px;
-	padding-top: 55px;
+	padding-top: 30px;
 	z-index: 99;
 }
 
 .logo a {
 	display: inline-block;
+}
+
+.logo img {
+	max-width: 140px;
+	height: auto;
+	margin-left: -15px;
 }
 
 .nav-menu {
