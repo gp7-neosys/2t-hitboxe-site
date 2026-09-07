@@ -22,6 +22,126 @@
     <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
     <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="css/style.css" type="text/css">
+    
+    <style>
+        /* Garante que os vídeos de fundo cubram toda a área perfeitamente */
+        .hs-video-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        /* Oculta as setinhas de navegação do carrossel */
+        .hs-slider .owl-nav {
+            display: none !important;
+        }
+
+        /* Estilos adicionados para as bolinhas do carrossel */
+        .hs-slider .owl-dots {
+            position: absolute;
+            bottom: 30px;
+            width: 100%;
+            text-align: center;
+        }
+        .hs-slider .owl-dots button.owl-dot {
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.5) !important;
+            border-radius: 50%;
+            margin: 0 5px;
+            border: none;
+        }
+        /* Bolinha ativa do carrossel ajustada para vermelho puro */
+        .hs-slider .owl-dots button.owl-dot.active {
+            background: #ff0000 !important;
+        }
+
+        /* Ajustes visuais baseados na imagem de referência para a seção de Cards */
+        .choseus-section {
+            background-color: #080808 !important; /* Fundo preto da seção */
+        }
+        .choseus-section .section-title {
+            text-align: center;
+            margin-bottom: 55px;
+        }
+        .choseus-section .section-title span {
+            color: #ff0000 !important;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        .choseus-section .section-title h2 {
+            color: #ffffff;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        
+        .cs-item {
+            background-color: #111111 !important; /* Fundo escuro do card */
+            border-radius: 15px; /* Bordas arredondadas */
+            padding: 40px 20px;
+            text-align: center;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: all 0.3s;
+        }
+        .cs-item:hover {
+            transform: translateY(-5px); /* Efeito hover leve nos cards */
+        }
+        .cs-item span {
+            background-color: #222222 !important; /* Círculo de fundo do ícone */
+            color: #ff0000 !important; /* Cor do ícone vermelho */
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 35px;
+            margin-bottom: 25px;
+        }
+        .cs-item h4 {
+            color: #ffffff !important;
+            font-weight: bold;
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+        .cs-item p {
+            color: #999999 !important; /* Texto descritivo mais claro */
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        /* Efeitos Hover no Rodapé */
+        .footer-section .fs-widget ul li a {
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        .footer-section .fs-widget ul li a:hover {
+            color: #ff0000 !important; /* Fica vermelho */
+            padding-left: 6px; /* Dá um leve deslize para a direita */
+        }
+        
+        .footer-section .fa-social a {
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .footer-section .fa-social a:hover {
+            background-color: #ff0000 !important; /* Ícone ganha fundo vermelho */
+            color: #ffffff !important; /* Cor do ícone fica branca */
+            border-color: #ff0000 !important;
+            transform: translateY(-4px); /* Botão levanta levemente */
+        }
+    </style>
 </head>
 
 <body>
@@ -108,43 +228,69 @@
     <!-- Hero Section Begin -->
     <section class="hero-section">
         <div class="hs-slider owl-carousel">
+            <!-- Vídeo 1 -->
             <div class="hs-item">
-                <video class="hs-video-bg" autoplay muted playsinline>
+                <video class="hs-video-bg" autoplay loop muted playsinline>
+                    <source src="video/Video.mp4" type="video/mp4">
+                </video>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="hi-text" style="text-align: center;">
+                                <span>Cada round</span>
+                                <h1>um <strong>campeão</strong>.</h1>
+                                <a href="#" class="primary-btn" style="border-radius: 50px; display: inline-block;">Iniciar Evolução</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Vídeo 2 -->
+            <div class="hs-item">
+                <video class="hs-video-bg" autoplay loop muted playsinline>
                     <source src="video/videohitboxe.mp4" type="video/mp4">
                 </video>
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-6 offset-lg-6">
-                            <div class="hi-text">
+                        <div class="col-lg-12">
+                            <div class="hi-text" style="text-align: center;">
                                 <span>Cada round</span>
                                 <h1>um <strong>campeão</strong>.</h1>
-                                <a href="#" class="primary-btn">Iniciar Evolução</a>
+                                <a href="#" class="primary-btn" style="border-radius: 50px; display: inline-block;">Iniciar Evolução</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="hs-item set-bg" data-setbg="img/hero/hero-1.jpg">
+            <!-- Vídeo 3 -->
+            <div class="hs-item">
+                <video class="hs-video-bg" autoplay loop muted playsinline>
+                    <source src="video/Video2.mp4" type="video/mp4">
+                </video>
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-6 offset-lg-6">
-                            <div class="hi-text">
-                                <span>Cada round</span>
-                                <h1>um <strong>campeão</strong>.</h1>
-                                <a href="#" class="primary-btn">Iniciar Evolução</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="hs-item set-bg" data-setbg="img/hero/hero-2.jpg">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-6 offset-lg-6">
-                            <div class="hi-text">
+                        <div class="col-lg-12">
+                            <div class="hi-text" style="text-align: center;">
                                 <span>Cada Round</span>
                                 <h1>um <strong>campeão</strong>.</h1>
-                                <a href="#" class="primary-btn">Iniciar Evolução</a>
+                                <a href="#" class="primary-btn" style="border-radius: 50px; display: inline-block;">Iniciar Evolução</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Vídeo 4 -->
+            <div class="hs-item">
+                <video class="hs-video-bg" autoplay loop muted playsinline>
+                    <source src="video/Video4.mp4" type="video/mp4">
+                </video>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="hi-text" style="text-align: center;">
+                                <span>Cada Round</span>
+                                <h1>um <strong>campeão</strong>.</h1>
+                                <a href="#" class="primary-btn" style="border-radius: 50px; display: inline-block;">Iniciar Evolução</a>
                             </div>
                         </div>
                     </div>
@@ -166,32 +312,32 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-3 col-sm-6">
+                <div class="col-lg-3 col-sm-6 mb-4">
                     <div class="cs-item">
                         <span class="flaticon-034-stationary-bike"></span>
-                        <h4>Equipamento Moderno</h4>
+                        <h4>Equipamento<br>Moderno</h4>
                         <p>Somos a academia de boxe com os melhores equipamentos e produtos de qualidade de Presidente Prudente e região.</p>
                     </div>
                 </div>
-                <div class="col-lg-3 col-sm-6">
+                <div class="col-lg-3 col-sm-6 mb-4">
                     <div class="cs-item">
                         <span class="flaticon-033-juice"></span>
                         <h4>Suplementos</h4>
-                        <p>Temos uma linha completa de: Whey Protein, Creatina e pré treino. Visando garantir aos nossos clientes os melhores produtos para garantir a sua melhor performance.</p>
+                        <p>Temos uma linha completa de Whey Protein, Creatina e pré-treino, visando garantir aos nossos clientes os melhores produtos.</p>
                     </div>
                 </div>
-                <div class="col-lg-3 col-sm-6">
+                <div class="col-lg-3 col-sm-6 mb-4">
                     <div class="cs-item">
                         <span class="flaticon-002-dumbell"></span>
-                        <h4>Profissionais especializados</h4>
-                        <p>Temos os melhores profissionais, buscando sempre garantir um treino excelente e com o nível de qualidade de um verdadeiro campeão.</p>
+                        <h4>Profissionais<br>especializados</h4>
+                        <p>Temos profissionais especializados, buscando sempre garantir um treino excelente e com nível de qualidade de um verdadeiro campeão.</p>
                     </div>
                 </div>
-                <div class="col-lg-3 col-sm-6">
+                <div class="col-lg-3 col-sm-6 mb-4">
                     <div class="cs-item">
                         <span class="flaticon-014-heart-beat"></span>
-                        <h4>Sua saude é o foco</h4>
-                        <p>Aqui o nosso foco é garantir aos nossos alunos a melhor qualidadade de vida e saude possível.Garantindo sempre o potencial máximo dos nossos alunos.</p>
+                        <h4>Sua saúde é o foco</h4>
+                        <p>Nosso foco é garantir aos nossos alunos a melhor qualidade de vida e saúde possível, buscando sempre seu potencial máximo.</p>
                     </div>
                 </div>
             </div>
@@ -393,8 +539,24 @@
     <script src="js/main.js"></script>
     <script src="js/carrosselefect.js"></script>
 
-
-
+    <!-- Script adicionado para forçar a exibição das bolinhas e remover as setinhas -->
+    <script>
+        $(window).on('load', function() {
+            setTimeout(function() {
+                var owl = $('.hs-slider');
+                if (owl.length > 0) {
+                    var owlData = owl.data('owl.carousel');
+                    if (owlData) {
+                        owlData.settings.dots = true;
+                        owlData.options.dots = true;
+                        owlData.settings.nav = false; 
+                        owlData.options.nav = false;  
+                        owl.trigger('refresh.owl.carousel');
+                    }
+                }
+            }, 300);
+        });
+    </script>
 </body>
 
 </html>
