@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="zxx">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="Gym Template">
-    <meta name="keywords" content="Gym, unica, creative, html">
+    <meta name="description" content="Sobre a HitBoxe - Centro de Treinamento">
+    <meta name="keywords" content="Boxe, Gym, Academia, Presidente Prudente, HitBoxe">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Gym | Template</title>
+    <title>HitBoxe | Sobre Nós</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
@@ -22,6 +22,435 @@
     <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
     <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="css/style.css" type="text/css">
+
+    <style>
+        /* Estilos Globais da HitBoxe (Padrão Dark/Red) */
+        body { background-color: #0a0a0a; color: #fff; }
+
+        /* --- CABEÇALHO: logo em tamanho médio + efeito ao rolar --- */
+        .header-section {
+            padding: 10px 0;
+            background-color: #0a0a0a;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            overflow: visible;
+            transition: padding .35s ease, background-color .35s ease, box-shadow .35s ease;
+        }
+        .header-section.is-scrolled {
+            padding: 6px 0;
+            background-color: rgba(6,6,6,0.92);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 6px 24px rgba(0,0,0,0.45);
+        }
+        .header-section .container-fluid { padding-left: 40px; padding-right: 40px; }
+        .header-section .row.align-items-center { align-items: center; }
+        .header-section .logo {
+            display: flex;
+            align-items: center;
+        }
+        .header-section .logo img {
+            height: 80px;
+            width: auto;
+            max-width: 220px;
+            object-fit: contain;
+            transition: height .35s ease;
+        }
+        .header-section.is-scrolled .logo img {
+            height: 60px;
+        }
+
+        /* Menu com sublinhado animado */
+        .header-section .nav-menu { display: flex; justify-content: center; }
+        .header-section .nav-menu ul { display: flex; align-items: center; justify-content: center; margin: 0; }
+        .header-section .nav-menu ul li { margin: 0 22px; }
+        .header-section .nav-menu ul li a {
+            position: relative;
+            font-family: 'Oswald', sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            letter-spacing: .5px;
+            color: #e6e6e6;
+            padding-bottom: 8px;
+            transition: color .3s ease;
+        }
+        .header-section .nav-menu ul li a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background-color: #ff0000;
+            transition: width .3s ease;
+        }
+        .header-section .nav-menu ul li a:hover,
+        .header-section .nav-menu ul li.active a {
+            color: #ff0000;
+        }
+        .header-section .nav-menu ul li a:hover::after,
+        .header-section .nav-menu ul li.active a::after {
+            width: 100%;
+        }
+
+        /* Ícones do topo (busca e redes sociais) */
+        .header-section .top-option { display: flex; align-items: center; justify-content: flex-end; gap: 18px; }
+        .header-section .to-search { color: #e6e6e6; cursor: pointer; transition: color .3s ease, transform .3s ease; }
+        .header-section .to-search:hover { color: #ff0000; transform: scale(1.1); }
+        .header-section .to-social { display: flex; gap: 10px; }
+        .header-section .to-social a {
+            width: 34px;
+            height: 34px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 50%;
+            color: #e6e6e6;
+            font-size: 14px;
+            transition: all .3s ease;
+        }
+        .header-section .to-social a:hover {
+            background-color: #ff0000;
+            border-color: #ff0000;
+            color: #fff;
+            transform: translateY(-3px);
+        }
+
+        /* --- Seção Sobre Nós: intro curta --- */
+        .about-text-center {
+            text-align: center;
+            max-width: 780px;
+            margin: 0 auto 30px auto;
+        }
+        .about-text-center .section-title span { color: #ff0000; }
+
+        /* --- NOVA SEÇÃO: Nossa História (foto quadrada + texto) --- */
+        .history-section {
+            position: relative;
+            padding: 30px 0 70px;
+            background-image: url(img/history-bg.jpg);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        .history-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(10,10,10,0.94) 0%, rgba(10,10,10,0.9) 50%, rgba(10,10,10,0.96) 100%);
+            z-index: 1;
+        }
+        .history-section .container {
+            position: relative;
+            z-index: 2;
+        }
+        .history-photo-wrap {
+            position: relative;
+            max-width: 440px;
+            margin: 0 auto;
+        }
+        .history-photo-frame {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            overflow: hidden;
+            background-color: #111;
+        }
+        .history-photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            filter: grayscale(35%) contrast(1.05);
+            transform: scale(1.04);
+            transition: transform .8s cubic-bezier(.22,.61,.36,1), filter .8s ease;
+        }
+        .history-photo-wrap:hover .history-photo-frame img {
+            transform: scale(1.12);
+            filter: grayscale(0%) contrast(1.1);
+        }
+        /* cantos estilo "ringue de boxe" nos vértices da foto */
+        .history-frame-corner {
+            position: absolute;
+            width: 46px;
+            height: 46px;
+            border: 3px solid #ff0000;
+            z-index: 2;
+            transition: width .5s ease, height .5s ease;
+        }
+        .history-frame-corner.tl { top: -3px; left: -3px; border-right: none; border-bottom: none; }
+        .history-frame-corner.br { bottom: -3px; right: -3px; border-left: none; border-top: none; }
+        .history-photo-wrap:hover .history-frame-corner { width: 60px; height: 60px; }
+        .history-badge {
+            position: absolute;
+            bottom: -22px;
+            right: -22px;
+            width: 96px;
+            height: 96px;
+            border-radius: 50%;
+            background-color: #ff0000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 25px rgba(255,0,0,0.35);
+            z-index: 3;
+        }
+        .history-badge .hb-number {
+            font-family: 'Oswald', sans-serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: #fff;
+            line-height: 1;
+        }
+        .history-badge .hb-label {
+            font-size: 11px;
+            color: #fff;
+            margin-top: 4px;
+        }
+        .history-text { padding-left: 10px; }
+        .history-text .section-title { margin-bottom: 20px; text-align: left; }
+        .history-text .section-title span { color: #ff0000; }
+        .history-text p {
+            color: #b8b8b8;
+            font-size: 16px;
+            line-height: 1.85;
+            margin-bottom: 18px;
+        }
+        .history-stats {
+            display: flex;
+            gap: 40px;
+            margin-top: 25px;
+        }
+        .history-stats .hs-item h3 {
+            font-family: 'Oswald', sans-serif;
+            color: #fff;
+            font-size: 30px;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+        .history-stats .hs-item p {
+            color: #888;
+            font-size: 13px;
+            margin-bottom: 0;
+        }
+
+        /* --- Reveal ao rolar a página (um único momento orquestrado por seção) --- */
+        .reveal-left, .reveal-right, .reveal-up {
+            opacity: 0;
+            transition: opacity .9s ease, transform .9s cubic-bezier(.22,.61,.36,1);
+            will-change: transform, opacity;
+        }
+        .reveal-left { transform: translateX(-40px); }
+        .reveal-right { transform: translateX(40px); }
+        .reveal-up { transform: translateY(30px); }
+        .reveal-left.in-view, .reveal-right.in-view, .reveal-up.in-view {
+            opacity: 1;
+            transform: translate(0, 0);
+        }
+
+        /* --- Cards Missão / Visão / Valores --- */
+        .about-cards-section { padding-top: 10px; }
+        .about-card {
+            background-color: #111111;
+            padding: 40px 30px;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.4s ease, border-color 0.4s ease, background-color 0.4s ease;
+            height: 100%;
+            border-bottom: 4px solid transparent;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+        .about-card:hover {
+            transform: translateY(-10px);
+            border-bottom: 4px solid #ff0000;
+            background-color: #151515;
+        }
+        .about-card i {
+            font-size: 55px;
+            color: #ff0000;
+            margin-bottom: 25px;
+            display: inline-block;
+            transition: transform .4s ease;
+        }
+        .about-card:hover i { transform: scale(1.12) rotate(-4deg); }
+        .about-card h4 {
+            color: #ffffff;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+        .about-card p {
+            color: #999999;
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        /* Estilo da Sessão de Vídeo Tour (Tela Cheia) */
+        .gym-tour-section {
+            position: relative;
+            width: 100%;
+            height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            margin-bottom: 50px;
+        }
+        .tour-video-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+        }
+        .gym-tour-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 2;
+        }
+        .tour-content {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+        }
+        .tour-content h2 {
+            font-size: 50px;
+            color: #ffffff;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+        .tour-content span {
+            color: #ff0000;
+            font-size: 20px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        /* Efeitos Hover no Rodapé */
+        .footer-section { position: relative; }
+        .footer-section .fa-logo img {
+            transition: filter .4s ease, transform .4s ease;
+        }
+        .footer-section .fa-logo a:hover img {
+            filter: drop-shadow(0 0 10px rgba(255,0,0,0.55));
+            transform: scale(1.04);
+        }
+        .footer-section .fs-widget h4 {
+            position: relative;
+            padding-bottom: 12px;
+            margin-bottom: 20px;
+        }
+        .footer-section .fs-widget h4::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 30px;
+            height: 2px;
+            background-color: #ff0000;
+            transition: width .35s ease;
+        }
+        .footer-section .fs-widget:hover h4::after { width: 55px; }
+        .footer-section .fs-widget ul li {
+            position: relative;
+            margin-bottom: 4px;
+        }
+        .footer-section .fs-widget ul li a {
+            position: relative;
+            display: inline-block;
+            color: #999;
+            transition: color 0.3s ease, padding-left 0.3s ease;
+        }
+        .footer-section .fs-widget ul li a::before {
+            content: '\f105';
+            font-family: 'FontAwesome';
+            position: absolute;
+            left: -14px;
+            top: 0;
+            opacity: 0;
+            color: #ff0000;
+            transition: opacity .3s ease, left .3s ease;
+        }
+        .footer-section .fs-widget ul li a:hover {
+            color: #ff0000 !important;
+            padding-left: 14px;
+        }
+        .footer-section .fs-widget ul li a:hover::before {
+            opacity: 1;
+            left: 0;
+        }
+        .footer-section .fa-social a {
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .footer-section .fa-social a:hover {
+            background-color: #ff0000 !important;
+            color: #ffffff !important;
+            border-color: #ff0000 !important;
+            transform: translateY(-4px) rotate(360deg);
+        }
+        .footer-section .copyright-text a {
+            transition: color .3s ease;
+        }
+        .footer-section .copyright-text a:hover {
+            color: #ff0000;
+        }
+
+        .breadcrumb-text h2 { text-transform: uppercase; font-weight: 700; }
+        .breadcrumb-text .bt-option span { color: #ff0000; }
+
+        /* Setas do carrossel de depoimentos: sem quadrado/fundo ao redor */
+        .testimonial-section .owl-nav,
+        .testimonial-section .owl-nav button,
+        .testimonial-section .owl-nav button.owl-prev,
+        .testimonial-section .owl-nav button.owl-next,
+        .ts_slider .owl-nav button,
+        .ts_slider .owl-nav button.owl-prev,
+        .ts_slider .owl-nav button.owl-next {
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            outline: none !important;
+            padding: 0 !important;
+            color: #fff !important;
+            font-size: 26px !important;
+        }
+        .testimonial-section .owl-nav button:hover,
+        .ts_slider .owl-nav button:hover {
+            background: transparent !important;
+            color: #ff0000 !important;
+        }
+
+        @media (max-width: 991px) {
+            .history-text { padding-left: 0; margin-top: 40px; }
+            .history-photo-wrap { max-width: 320px; }
+            .history-section { background-attachment: scroll; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .reveal-left, .reveal-right, .reveal-up {
+                opacity: 1 !important;
+                transform: none !important;
+                transition: none !important;
+            }
+            .history-photo-frame img { transition: none; }
+        }
+    </style>
 </head>
 
 <body>
@@ -30,7 +459,7 @@
         <div class="loader"></div>
     </div>
 
- <!-- Offcanvas Menu Section Begin -->
+    <!-- Offcanvas Menu Section Begin -->
     <div class="offcanvas-menu-overlay"></div>
     <div class="offcanvas-menu-wrapper">
         <div class="canvas-close">
@@ -41,12 +470,13 @@
         </div>
         <nav class="canvas-menu mobile-menu">
             <ul>
-                <li><a href="./index.html">Home</a></li>
-                <li><a href="./about-us.html">About Us</a></li>
-                <li><a href="./classes.html">Classes</a></li>
-                <li><a href="./services.html">Services</a></li>
-                <li><a href="./team.html">Our Team</a></li>
-                <li><a href="./contact.html">Contact</a></li>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="sobre.html">Sobre</a></li>
+                <li><a href="Treinos.html">Classes</a></li>
+                <li><a href="servico.html">Serviços</a></li>
+                <li><a href="Treinadores.html">Nosso Time</a></li>
+                <li><a href="Contato.html">FAQ</a></li>
+                <li><a href="produtos.html">Produtos</a></li>
             </ul>
         </nav>
         <div id="mobile-menu-wrap"></div>
@@ -60,27 +490,27 @@
     <!-- Offcanvas Menu Section End -->
 
     <!-- Header Section Begin -->
-    <header class="header-section">
+    <header class="header-section" id="siteHeader">
         <div class="container-fluid">
-            <div class="row">
+            <div class="row align-items-center">
                 <div class="col-lg-3">
                     <div class="logo">
                         <a href="./index.html">
-                            <img src="img/logo.png" alt="">
+                            <img src="img/logo.png" alt="HitBoxe">
                         </a>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <nav class="nav-menu">
-               <ul>
-                <li><a href="index.html">Início</a></li>
-                <li><a href="sobre.html">Sobre</a></li>
-                <li><a href="Treinos.html">Classes</a></li>
-                <li><a href="servico.html">Serviços</a></li>
-                <li><a href="Treinadores.html">Nosso Time</a></li>
-                <li><a href="Contato.html">FAQ</a></li>
-                <li><a href="produtos.html">Produtos</a></li>   
-            </ul>
+                        <ul>
+                            <li><a href="index.html">Início</a></li>
+                            <li class="active"><a href="sobre.html">Sobre</a></li>
+                            <li><a href="Treinos.html">Classes</a></li>
+                            <li><a href="servico.html">Serviços</a></li>
+                            <li><a href="Treinadores.html">Nosso Time</a></li>
+                            <li><a href="Contato.html">FAQ</a></li>
+                            <li><a href="produtos.html">Produtos</a></li>
+                        </ul>
                     </nav>
                 </div>
                 <div class="col-lg-3">
@@ -105,15 +535,15 @@
     <!-- Header End -->
 
     <!-- Breadcrumb Section Begin -->
-    <section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb-bg.jpg">
+    <section class="breadcrumb-section set-bg" data-setbg="img/Teste.jpg">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="breadcrumb-text">
-                        <h2>About us</h2>
+                        <h2>Nossa História</h2>
                         <div class="bt-option">
-                            <a href="./index.html">Home</a>
-                            <span>About</span>
+                            <a href="./index.html">Início</a>
+                            <span>Sobre Nós</span>
                         </div>
                     </div>
                 </div>
@@ -122,174 +552,60 @@
     </section>
     <!-- Breadcrumb Section End -->
 
-    <!-- ChoseUs Section Begin -->
-    <section class="choseus-section spad">
+    <!-- SEÇÃO SOBRE NÓS: Intro curta -->
+    <section class="aboutus-section spad" style="padding-bottom: 0;">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="section-title">
-                        <span>Why chose us?</span>
-                        <h2>PUSH YOUR LIMITS FORWARD</h2>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-3 col-sm-6">
-                    <div class="cs-item">
-                        <span class="flaticon-034-stationary-bike"></span>
-                        <h4>Modern equipment</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            dolore facilisis.</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="cs-item">
-                        <span class="flaticon-033-juice"></span>
-                        <h4>Healthy nutrition plan</h4>
-                        <p>Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel
-                            facilisis.</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="cs-item">
-                        <span class="flaticon-002-dumbell"></span>
-                        <h4>Proffesponal training plan</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            dolore facilisis.</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="cs-item">
-                        <span class="flaticon-014-heart-beat"></span>
-                        <h4>Unique to your needs</h4>
-                        <p>Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel
-                            facilisis.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- ChoseUs Section End -->
-
-    <!-- About US Section Begin -->
-    <section class="aboutus-section">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-6 p-0">
-                    <div class="about-video set-bg" data-setbg="img/about-us.jpg">
-                        <a href="https://www.youtube.com/watch?v=EzKkl64rRbM" class="play-btn video-popup"><i
-                                class="fa fa-caret-right"></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-6 p-0">
-                    <div class="about-text">
+                    <div class="about-text-center reveal-up">
                         <div class="section-title">
-                            <span>About Us</span>
-                            <h2>What we have done</h2>
+                            <span>A HitBoxe</span>
+                            <h2>Nascemos para forjar campeões</h2>
                         </div>
-                        <div class="at-desc">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                                ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo
-                                viverra maecenas accumsan lacus vel facilisis. aliquip ex ea commodo consequat sit amet,
-                                consectetur adipiscing elit, sed do eiusmod tempor.</p>
-                        </div>
-                        <div class="about-bar">
-                            <div class="ab-item">
-                                <p>Body building</p>
-                                <div id="bar1" class="barfiller">
-                                    <span class="fill" data-percentage="80"></span>
-                                    <div class="tipWrap">
-                                        <span class="tip"></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="ab-item">
-                                <p>Training</p>
-                                <div id="bar2" class="barfiller">
-                                    <span class="fill" data-percentage="85"></span>
-                                    <div class="tipWrap">
-                                        <span class="tip"></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="ab-item">
-                                <p>Fitness</p>
-                                <div id="bar3" class="barfiller">
-                                    <span class="fill" data-percentage="75"></span>
-                                    <div class="tipWrap">
-                                        <span class="tip"></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <p style="color: #ccc; font-size: 16px; line-height: 1.8;">Localizada no coração de Presidente Prudente, a HitBoxe não é apenas uma academia, é uma família construída sobre disciplina, suor e superação.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- About US Section End -->
 
-    <!-- Team Section Begin -->
-    <section class="team-section spad">
+    <!-- SEÇÃO: Nossa História (foto + texto) -->
+    <section class="history-section">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="team-title">
+            <div class="row align-items-center">
+                <div class="col-lg-5 col-md-6">
+                    <div class="history-photo-wrap reveal-left">
+                        <div class="history-photo-frame">
+                            <img src="img/Academia.png" alt="Fundação da academia HitBoxe">
+                            <div class="history-frame-corner tl"></div>
+                            <div class="history-frame-corner br"></div>
+                        </div>
+                        <div class="history-badge">
+                            <span class="hb-number">2026</span>
+                            <span class="hb-label">desde</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-7 col-md-6">
+                    <div class="history-text reveal-right">
                         <div class="section-title">
-                            <span>Our Team</span>
-                            <h2>TRAIN WITH EXPERTS</h2>
+                            <span>Nosso Começo</span>
+                            <h2>Do primeiro saco de pancadas ao maior time da região</h2>
                         </div>
-                        <a href="#" class="primary-btn btn-normal appoinment-btn">appointment</a>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="ts-slider owl-carousel">
-                    <div class="col-lg-4">
-                        <div class="ts-item set-bg" data-setbg="img/team/team-1.jpg">
-                            <div class="ts_text">
-                                <h4>Athart Rachel</h4>
-                                <span>Gym Trainer</span>
+                        <p>Tudo começou em uma garagem adaptada, com um único saco de pancadas e a vontade de fazer diferente. O fundador da HitBoxe queria um lugar onde qualquer pessoa pudesse aprender boxe de verdade, sem intimidação e sem fórmulas prontas — só técnica, suor e respeito.</p>
+                        <p>Com o boca a boca de Presidente Prudente, a garagem virou galpão, o galpão virou ringue oficial, e os primeiros alunos se tornaram professores. Hoje seguimos com a mesma essência do primeiro dia: cada faixa, cada luta e cada treino é conquistado, nunca dado.</p>
+                        <div class="history-stats">
+                            <div class="hs-item">
+                                <h3>9+</h3>
+                                <p>anos de estrada</p>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="ts-item set-bg" data-setbg="img/team/team-2.jpg">
-                            <div class="ts_text">
-                                <h4>Athart Rachel</h4>
-                                <span>Gym Trainer</span>
+                            <div class="hs-item">
+                                <h3>1200+</h3>
+                                <p>alunos formados</p>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="ts-item set-bg" data-setbg="img/team/team-3.jpg">
-                            <div class="ts_text">
-                                <h4>Athart Rachel</h4>
-                                <span>Gym Trainer</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="ts-item set-bg" data-setbg="img/team/team-4.jpg">
-                            <div class="ts_text">
-                                <h4>Athart Rachel</h4>
-                                <span>Gym Trainer</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="ts-item set-bg" data-setbg="img/team/team-5.jpg">
-                            <div class="ts_text">
-                                <h4>Athart Rachel</h4>
-                                <span>Gym Trainer</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="ts-item set-bg" data-setbg="img/team/team-6.jpg">
-                            <div class="ts_text">
-                                <h4>Athart Rachel</h4>
-                                <span>Gym Trainer</span>
+                            <div class="hs-item">
+                                <h3>15</h3>
+                                <p>profissionais no time</p>
                             </div>
                         </div>
                     </div>
@@ -297,23 +613,48 @@
             </div>
         </div>
     </section>
-    <!-- Team Section End -->
 
-    <!-- Banner Section Begin -->
-    <section class="banner-section set-bg" data-setbg="img/banner-bg.jpg">
+    <!-- SEÇÃO: Cards Missão / Visão / Valores -->
+    <section class="aboutus-section spad" style="padding-top: 0;">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <div class="bs-text">
-                        <h2>registration now to get more deals</h2>
-                        <div class="bt-tips">Where health, beauty and fitness meet.</div>
-                        <a href="#" class="primary-btn  btn-normal">Appointment</a>
+            <div class="row about-cards-section">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="about-card reveal-up">
+                        <i class="fa fa-bullseye"></i>
+                        <h4>Nossa Missão</h4>
+                        <p>Transformar vidas através do boxe, promovendo saúde física, disciplina mental e autoconfiança em cada aluno que pisa no nosso tatame.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="about-card reveal-up" style="transition-delay:.12s">
+                        <i class="fa fa-eye"></i>
+                        <h4>Nossa Visão</h4>
+                        <p>Ser o maior e mais respeitado centro de treinamento de artes marciais de Presidente Prudente e região, reconhecido pela excelência dos nossos profissionais.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="about-card reveal-up" style="transition-delay:.24s">
+                        <i class="fa fa-diamond"></i>
+                        <h4>Nossos Valores</h4>
+                        <p>Respeito, lealdade, superação e foco. Acreditamos que o verdadeiro campeão é aquele que vence a si mesmo e seus próprios limites todos os dias.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- Banner Section End -->
+
+    <!-- SESSÃO: TOUR DA ACADEMIA EM VÍDEO -->
+    <section class="gym-tour-section">
+        <video class="tour-video-bg" autoplay loop muted playsinline>
+            <source src="video/VideoTour.mp4" type="video/mp4">
+        </video>
+        <div class="gym-tour-overlay"></div>
+        <div class="tour-content container">
+            <span>Infraestrutura de Primeiro Mundo</span>
+            <h2>O Verdadeiro Ringue dos Campeões</h2>
+            <p style="color: #ccc; font-size: 18px; max-width: 600px; margin: 0 auto;">Equipamentos modernos, tatame de alta absorção, ringue oficial e o ambiente perfeito para você focar apenas em bater suas próprias metas.</p>
+        </div>
+    </section>
 
     <!-- Testimonial Section Begin -->
     <section class="testimonial-section spad">
@@ -321,8 +662,8 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title">
-                        <span>Testimonial</span>
-                        <h2>Our cilent say</h2>
+                        <span>Depoimentos</span>
+                        <h2>O que nossos alunos dizem</h2>
                     </div>
                 </div>
             </div>
@@ -331,19 +672,17 @@
                     <div class="row">
                         <div class="col-lg-12 text-center">
                             <div class="ti_pic">
-                                <img src="img/testimonial/testimonial-1.jpg" alt="">
+                                <img src="img/Marcos.png" alt="">
                             </div>
                             <div class="ti_text">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                    incididunt<br /> ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices
-                                    gravida. Risus commodo<br /> viverra maecenas accumsan lacus vel facilisis.</p>
-                                <h5>Marshmello Gomez</h5>
+                                <p>"A energia da HitBoxe é surreal. Os professores são muito atenciosos<br /> e a estrutura da academia faz você querer treinar todos os dias.<br /> Mudou completamente a minha disposição!"</p>
+                                <h5>Marcos Silva</h5>
                                 <div class="tt-rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star" style="color: #ff0000;"></i>
+                                    <i class="fa fa-star" style="color: #ff0000;"></i>
+                                    <i class="fa fa-star" style="color: #ff0000;"></i>
+                                    <i class="fa fa-star" style="color: #ff0000;"></i>
+                                    <i class="fa fa-star" style="color: #ff0000;"></i>
                                 </div>
                             </div>
                         </div>
@@ -356,16 +695,14 @@
                                 <img src="img/testimonial/testimonial-2.jpg" alt="">
                             </div>
                             <div class="ti_text">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                    incididunt<br /> ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices
-                                    gravida. Risus commodo<br /> viverra maecenas accumsan lacus vel facilisis.</p>
-                                <h5>Marshmello Gomez</h5>
+                                <p>"Entrei para perder peso e acabei me apaixonando pelo esporte.<br /> A metodologia de ensino é progressiva e respeita os seus limites,<br /> ao mesmo tempo que te puxa para ser melhor."</p>
+                                <h5>Ana Carolina</h5>
                                 <div class="tt-rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star" style="color: #ff0000;"></i>
+                                    <i class="fa fa-star" style="color: #ff0000;"></i>
+                                    <i class="fa fa-star" style="color: #ff0000;"></i>
+                                    <i class="fa fa-star" style="color: #ff0000;"></i>
+                                    <i class="fa fa-star" style="color: #ff0000;"></i>
                                 </div>
                             </div>
                         </div>
@@ -383,22 +720,22 @@
                 <div class="col-md-4">
                     <div class="gt-text">
                         <i class="fa fa-map-marker"></i>
-                        <p>333 Middle Winchendon Rd, Rindge,<br/> NH 03461</p>
+                        <p>R. José Bongiovani, 700 - Cidade Universitária, Pres. Prudente<br /> SP, 19050-920</p>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="gt-text">
                         <i class="fa fa-mobile"></i>
                         <ul>
-                            <li>125-711-811</li>
-                            <li>125-668-886</li>
+                            <li>(18) 12345-6789</li>
+                            <li>(18) 98765-4321</li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="gt-text email">
                         <i class="fa fa-envelope"></i>
-                        <p>Support.gymcenter@gmail.com</p>
+                        <p>suportehitboxe@gmail.com.br</p>
                     </div>
                 </div>
             </div>
@@ -415,8 +752,6 @@
                         <div class="fa-logo">
                             <a href="#"><img src="img/logo.png" alt=""></a>
                         </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore dolore magna aliqua endisse ultrices gravida lorem.</p>
                         <div class="fa-social">
                             <a href="#"><i class="fa fa-facebook"></i></a>
                             <a href="#"><i class="fa fa-twitter"></i></a>
@@ -428,43 +763,24 @@
                 </div>
                 <div class="col-lg-2 col-md-3 col-sm-6">
                     <div class="fs-widget">
-                        <h4>Useful links</h4>
+                        <h4>Links uteis</h4>
                         <ul>
-                            <li><a href="#">About</a></li>
-                            <li><a href="#">Blog</a></li>
-                            <li><a href="#">Classes</a></li>
-                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">sobre nós</a></li>
+                            <li><a href="#">Nossos planos</a></li>
+                            <li><a href="#">FAQ</a></li>
+                            <li><a href="#">Produtos</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-2 col-md-3 col-sm-6">
                     <div class="fs-widget">
-                        <h4>Support</h4>
+                        <h4>Suporte</h4>
                         <ul>
                             <li><a href="#">Login</a></li>
-                            <li><a href="#">My account</a></li>
-                            <li><a href="#">Subscribe</a></li>
-                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">Minha conta</a></li>
+                            <li><a href="#">junte-se ao time hitboxe</a></li>
+                            <li><a href="#">Contato</a></li>
                         </ul>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="fs-widget">
-                        <h4>Tips & Guides</h4>
-                        <div class="fw-recent">
-                            <h6><a href="#">Physical fitness may help prevent depression, anxiety</a></h6>
-                            <ul>
-                                <li>3 min read</li>
-                                <li>20 Comment</li>
-                            </ul>
-                        </div>
-                        <div class="fw-recent">
-                            <h6><a href="#">Fitness: The best exercise to lose belly fat and tone up...</a></h6>
-                            <ul>
-                                <li>3 min read</li>
-                                <li>20 Comment</li>
-                            </ul>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -472,8 +788,12 @@
                 <div class="col-lg-12 text-center">
                     <div class="copyright-text">
                         <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                            Copyright &copy;
+                            <script>document.write(new Date().getFullYear());</script> All rights reserved | This
+                            template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a
+                                href="https://colorlib.com" target="_blank">Colorlib</a>
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        </p>
                     </div>
                 </div>
             </div>
@@ -502,6 +822,36 @@
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/main.js"></script>
 
+    <!-- Script: header compacto ao rolar + animações de entrada -->
+    <script>
+        (function () {
+            var header = document.getElementById('siteHeader');
+            function onScroll() {
+                if (window.scrollY > 40) {
+                    header.classList.add('is-scrolled');
+                } else {
+                    header.classList.remove('is-scrolled');
+                }
+            }
+            window.addEventListener('scroll', onScroll, { passive: true });
+            onScroll();
+
+            var revealEls = document.querySelectorAll('.reveal-left, .reveal-right, .reveal-up');
+            if ('IntersectionObserver' in window) {
+                var observer = new IntersectionObserver(function (entries) {
+                    entries.forEach(function (entry) {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('in-view');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.2 });
+                revealEls.forEach(function (el) { observer.observe(el); });
+            } else {
+                revealEls.forEach(function (el) { el.classList.add('in-view'); });
+            }
+        })();
+    </script>
 
 </body>
 
