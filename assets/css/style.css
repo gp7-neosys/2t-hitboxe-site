@@ -3378,6 +3378,126 @@ ol {
 	}
 }
 
+/* INÍCIO */
+
+        /* Garante que os vídeos de fundo cubram toda a área perfeitamente */
+        .hs-video-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        /* Oculta as setinhas de navegação do carrossel */
+        .hs-slider .owl-nav {
+            display: none !important;
+        }
+
+        /* Estilos adicionados para as bolinhas do carrossel */
+        .hs-slider .owl-dots {
+            position: absolute;
+            bottom: 30px;
+            width: 100%;
+            text-align: center;
+        }
+        .hs-slider .owl-dots button.owl-dot {
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.5) !important;
+            border-radius: 50%;
+            margin: 0 5px;
+            border: none;
+        }
+        /* Bolinha ativa do carrossel ajustada para vermelho puro */
+        .hs-slider .owl-dots button.owl-dot.active {
+            background: #ff0000 !important;
+        }
+
+        /* Ajustes visuais baseados na imagem de referência para a seção de Cards */
+        .choseus-section {
+            background-color: #080808 !important; /* Fundo preto da seção */
+        }
+        .choseus-section .section-title {
+            text-align: center;
+            margin-bottom: 55px;
+        }
+        .choseus-section .section-title span {
+            color: #ff0000 !important;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        .choseus-section .section-title h2 {
+            color: #ffffff;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        
+        .cs-item {
+            background-color: #111111 !important; /* Fundo escuro do card */
+            border-radius: 15px; /* Bordas arredondadas */
+            padding: 40px 20px;
+            text-align: center;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: all 0.3s;
+        }
+        .cs-item:hover {
+            transform: translateY(-5px); /* Efeito hover leve nos cards */
+        }
+        .cs-item span {
+            background-color: #222222 !important; /* Círculo de fundo do ícone */
+            color: #ff0000 !important; /* Cor do ícone vermelho */
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 35px;
+            margin-bottom: 25px;
+        }
+        .cs-item h4 {
+            color: #ffffff !important;
+            font-weight: bold;
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+        .cs-item p {
+            color: #999999 !important; /* Texto descritivo mais claro */
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        /* Efeitos Hover no Rodapé */
+        .footer-section .fs-widget ul li a {
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        .footer-section .fs-widget ul li a:hover {
+            color: #ff0000 !important; /* Fica vermelho */
+            padding-left: 6px; /* Dá um leve deslize para a direita */
+        }
+        
+        .footer-section .fa-social a {
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .footer-section .fa-social a:hover {
+            background-color: #ff0000 !important; /* Ícone ganha fundo vermelho */
+            color: #ffffff !important; /* Cor do ícone fica branca */
+            border-color: #ff0000 !important;
+            transform: translateY(-4px); /* Botão levanta levemente */
+        }
+
 /* PRODUTOS */
 
         .shop-section { background-color: #0a0a0a; }
