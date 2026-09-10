@@ -1,330 +1,4797 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HitBoxe - Loja Oficial</title>
 
-    <!-- Google Font -->
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>HitBoxe - Produtos</title>
+
+
+    <!-- FONTES -->
+
     <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+
     <link href="https://fonts.googleapis.com/css?family=Oswald:300,400,500,600,700&display=swap" rel="stylesheet">
 
-    <!-- Css Styles -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="css/flaticon.css" type="text/css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="css/barfiller.css" type="text/css">
-    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
-    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="css/style.css" type="text/css">
-    
+
+    <!-- CSS DO PROJETO -->
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/flaticon.css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/barfiller.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+    <link rel="stylesheet" href="css/slicknav.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+
+    <style>
+        /* =====================================================
+           BANNER
+        ===================================================== */
+
+        .produtos-banner {
+
+            position: relative;
+
+            min-height: 280px;
+
+            background-image:
+                url("img/shop/loja.jpg");
+
+            background-size: cover;
+
+            background-position: center;
+
+            background-repeat: no-repeat;
+
+            display: flex;
+
+            align-items: center;
+
+        }
+
+
+        .produtos-banner::before {
+
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: 100%;
+
+            background: rgba(0, 0, 0, 0.58);
+
+        }
+
+
+        .produtos-banner .container {
+
+            position: relative;
+
+            z-index: 2;
+
+        }
+
+
+        .produtos-banner h2 {
+
+            color: #ffffff;
+
+        }
+
+
+        .produtos-banner .bt-option a {
+
+            color: #ff0000;
+
+        }
+
+
+        .produtos-banner .bt-option span {
+
+            color: #ffffff;
+
+        }
+
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        .footer-section .fs-widget ul li a {
+
+            transition: all 0.3s ease;
+
+        }
+
+
+        .footer-section .fs-widget ul li a:hover {
+
+            color: #ff0000 !important;
+
+        }
+
+
+        /* =====================================================
+           CARRINHO HEADER
+        ===================================================== */
+
+        .cart-header {
+
+            position: relative;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            margin-left: 18px;
+
+            cursor: pointer;
+
+            text-decoration: none;
+
+        }
+
+
+        .cart-header i {
+
+            color: #ffffff;
+
+            font-size: 21px;
+
+            transition: 0.3s;
+
+        }
+
+
+        .cart-header:hover i {
+
+            color: #ff0000;
+
+        }
+
+
+        .cart-count {
+
+            position: absolute;
+
+            top: -9px;
+
+            right: -11px;
+
+            min-width: 20px;
+
+            height: 20px;
+
+            padding: 0 5px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background: #ff0000;
+
+            color: #ffffff;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+        }
+
+
+        /* =====================================================
+           PRODUTOS
+        ===================================================== */
+
+        .shop-section {
+
+            background: #080808;
+
+        }
+
+
+        .product-item {
+
+            background: #111111;
+
+            margin-bottom: 30px;
+
+            transition: all 0.3s ease;
+
+        }
+
+
+        .product-item:hover {
+
+            transform: translateY(-5px);
+
+        }
+
+
+        .product-item .pi-pic {
+
+            height: 280px;
+
+            background-position: center;
+
+            background-size: cover;
+
+            position: relative;
+
+        }
+
+
+        .product-item .pi-pic .tag {
+
+            position: absolute;
+
+            top: 15px;
+
+            left: 15px;
+
+            padding: 5px 12px;
+
+            background: #ff0000;
+
+            color: #ffffff;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            text-transform: uppercase;
+
+        }
+
+
+        .product-item .pi-text {
+
+            padding: 20px;
+
+        }
+
+
+        .product-item .pi-text h5 {
+
+            color: #ffffff;
+
+            font-family: 'Muli', sans-serif;
+
+            font-size: 16px;
+
+            font-weight: 700;
+
+            min-height: 45px;
+
+            margin-bottom: 12px;
+
+        }
+
+
+        .product-item .p-price {
+
+            color: #ff0000;
+
+            font-size: 20px;
+
+            font-weight: 800;
+
+            margin-bottom: 15px;
+
+        }
+
+
+        .btn-comprar {
+
+            width: 100%;
+
+            text-align: center;
+
+            border: none;
+
+            cursor: pointer;
+
+        }
+
+
+        /* =====================================================
+           OVERLAY
+        ===================================================== */
+
+        .cart-overlay {
+
+            position: fixed;
+
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: 100%;
+
+            background: rgba(0, 0, 0, 0.78);
+
+            z-index: 9998;
+
+            display: none;
+
+        }
+
+
+        .cart-overlay.active {
+
+            display: block;
+
+        }
+
+
+        /* =====================================================
+           SIDEBAR
+        ===================================================== */
+
+        .cart-sidebar {
+
+            position: fixed;
+
+            top: 0;
+            right: -520px;
+
+            width: 500px;
+
+            max-width: 95%;
+
+            height: 100vh;
+
+            background: #111111;
+
+            z-index: 9999;
+
+            transition: right 0.35s ease;
+
+            display: flex;
+
+            flex-direction: column;
+
+            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+
+        }
+
+
+        .cart-sidebar.active {
+
+            right: 0;
+
+        }
+
+
+        /* =====================================================
+           HEADER SIDEBAR
+        ===================================================== */
+
+        .cart-sidebar-header {
+
+            flex: 0 0 auto;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 22px 25px;
+
+            border-bottom: 1px solid #292929;
+
+            background: #111111;
+
+        }
+
+
+        .cart-sidebar-header h3 {
+
+            color: #ffffff;
+
+            font-family: 'Oswald', sans-serif;
+
+            font-size: 25px;
+
+            margin: 0;
+
+        }
+
+
+        .close-cart {
+
+            border: none;
+
+            background: transparent;
+
+            color: #ffffff;
+
+            font-size: 25px;
+
+            cursor: pointer;
+
+        }
+
+
+        .close-cart:hover {
+
+            color: #ff0000;
+
+        }
+
+
+        /* =====================================================
+           CONTEÚDO
+        ===================================================== */
+
+        .cart-main-content {
+
+            flex: 1;
+
+            min-height: 0;
+
+            overflow-y: auto;
+
+            position: relative;
+
+        }
+
+
+        .cart-products-container {
+
+            display: block;
+
+            padding: 20px 25px;
+
+        }
+
+
+        .cart-products-container.hidden {
+
+            display: none !important;
+
+        }
+
+
+        /* =====================================================
+           CHECKOUT
+        ===================================================== */
+
+        .checkout-container {
+
+            display: none;
+
+            padding: 20px 25px 30px;
+
+        }
+
+
+        .checkout-container.active {
+
+            display: block;
+
+        }
+
+
+        .back-to-cart {
+
+            border: none;
+
+            background: transparent;
+
+            color: #aaaaaa;
+
+            padding: 0;
+
+            margin-bottom: 20px;
+
+            cursor: pointer;
+
+            font-size: 14px;
+
+        }
+
+
+        .back-to-cart:hover {
+
+            color: #ff0000;
+
+        }
+
+
+        .back-to-cart i {
+
+            margin-right: 7px;
+
+        }
+
+
+        .checkout-title {
+
+            color: #ffffff;
+
+            font-family: 'Oswald', sans-serif;
+
+            font-size: 22px;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .checkout-label {
+
+            display: block;
+
+            color: #ffffff;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            margin-bottom: 7px;
+
+        }
+
+
+        .checkout-input {
+
+            width: 100%;
+
+            background: #222222;
+
+            border: 1px solid #3b3b3b;
+
+            color: #ffffff;
+
+            padding: 11px 12px;
+
+            margin-bottom: 15px;
+
+            outline: none;
+
+            border-radius: 0;
+
+        }
+
+
+        .checkout-input:focus {
+
+            border-color: #ff0000;
+
+        }
+
+
+        .checkout-input.erro {
+
+            border-color: #ff0000;
+
+        }
+
+
+        .campo-valido {
+
+            border-color: #333333 !important;
+
+        }
+
+
+        /* =====================================================
+           PAGAMENTO
+        ===================================================== */
+
+        .payment-option {
+
+            display: flex;
+
+            align-items: center;
+
+            background: #1b1b1b;
+
+            border: 1px solid #333333;
+
+            padding: 14px;
+
+            margin-bottom: 10px;
+
+            cursor: pointer;
+
+            color: #ffffff;
+
+            transition: 0.2s;
+
+        }
+
+
+        .payment-option:hover {
+
+            border-color: #ff0000;
+
+        }
+
+
+        .payment-option input {
+
+            margin-right: 10px;
+
+            accent-color: #ff0000;
+
+        }
+
+
+        .payment-option i {
+
+            margin-right: 9px;
+
+            color: #ff0000;
+
+            width: 18px;
+
+            text-align: center;
+
+        }
+
+
+        /* =====================================================
+           ÁREA DINÂMICA PAGAMENTO
+        ===================================================== */
+
+        .payment-details {
+
+            display: none;
+
+            background: #181818;
+
+            border: 1px solid #333333;
+
+            padding: 20px;
+
+            margin-top: 15px;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .payment-details.active {
+
+            display: block;
+
+        }
+
+
+        .payment-details h4 {
+
+            color: #ffffff;
+
+            font-family: 'Oswald', sans-serif;
+
+            font-size: 21px;
+
+            text-align: center;
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .payment-details p {
+
+            color: #999999;
+
+            text-align: center;
+
+            margin-bottom: 15px;
+
+        }
+
+
+        /* =====================================================
+           PIX
+        ===================================================== */
+
+        .pix-qr-wrapper {
+
+            width: 220px;
+
+            height: 220px;
+
+            background: #ffffff;
+
+            margin: 18px auto;
+
+            padding: 10px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+        }
+
+
+        #pixQRCode {
+
+            width: 200px;
+
+            height: 200px;
+
+            background: #ffffff;
+
+        }
+
+
+        .pix-code {
+
+            background: #0c0c0c;
+
+            border: 1px solid #3b3b3b;
+
+            color: #cccccc;
+
+            padding: 12px;
+
+            font-size: 11px;
+
+            line-height: 1.5;
+
+            word-break: break-all;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .copy-pix {
+
+            width: 100%;
+
+            background: transparent;
+
+            border: 1px solid #ff0000;
+
+            color: #ff0000;
+
+            padding: 12px;
+
+            cursor: pointer;
+
+            font-weight: 700;
+
+        }
+
+
+        .copy-pix:hover {
+
+            background: #ff0000;
+
+            color: #ffffff;
+
+        }
+
+
+        /* =====================================================
+           CARTÃO
+        ===================================================== */
+
+        .card-preview {
+
+            background: linear-gradient(135deg, #181818, #292929);
+
+            border: 1px solid #444444;
+
+            border-radius: 12px;
+
+            padding: 20px;
+
+            margin-bottom: 20px;
+
+            min-height: 150px;
+
+        }
+
+
+        .card-brand {
+
+            text-align: right;
+
+            color: #ff0000;
+
+            font-weight: 800;
+
+            font-size: 18px;
+
+        }
+
+
+        .card-number-preview {
+
+            color: #ffffff;
+
+            font-size: 19px;
+
+            letter-spacing: 2px;
+
+            margin-top: 30px;
+
+        }
+
+
+        .card-name-preview {
+
+            color: #cccccc;
+
+            font-size: 11px;
+
+            text-transform: uppercase;
+
+            margin-top: 15px;
+
+        }
+
+
+        .card-fields {
+
+            display: flex;
+
+            gap: 10px;
+
+        }
+
+
+        .card-field {
+
+            flex: 1;
+
+        }
+
+
+        /* =====================================================
+           BOLETO
+        ===================================================== */
+
+        .barcode-box {
+
+            background: #ffffff;
+
+            padding: 18px;
+
+            margin: 20px auto;
+
+            width: 100%;
+
+            text-align: center;
+
+        }
+
+
+        .barcode-lines {
+
+            height: 70px;
+
+            width: 100%;
+
+            background-image:
+
+                repeating-linear-gradient(90deg,
+
+                    #000 0px,
+
+                    #000 2px,
+
+                    #fff 2px,
+
+                    #fff 5px,
+
+                    #000 5px,
+
+                    #000 6px,
+
+                    #fff 6px,
+
+                    #fff 10px);
+
+        }
+
+
+        .boleto-number {
+
+            color: #cccccc;
+
+            background: #0c0c0c;
+
+            border: 1px solid #333333;
+
+            padding: 12px;
+
+            font-size: 12px;
+
+            word-break: break-all;
+
+            text-align: center;
+
+        }
+
+
+        /* =====================================================
+           ITEM CARRINHO
+        ===================================================== */
+
+        .cart-product {
+
+            display: flex;
+
+            align-items: center;
+
+            padding: 15px 0;
+
+            border-bottom: 1px solid #292929;
+
+        }
+
+
+        .cart-product-image {
+
+            width: 75px;
+
+            height: 75px;
+
+            object-fit: cover;
+
+            margin-right: 15px;
+
+        }
+
+
+        .cart-product-info {
+
+            flex: 1;
+
+        }
+
+
+        .cart-product-info h4 {
+
+            color: #ffffff;
+
+            font-size: 14px;
+
+            line-height: 1.4;
+
+            margin: 0 0 7px;
+
+        }
+
+
+        .cart-product-price {
+
+            color: #ff0000;
+
+            font-weight: 700;
+
+            font-size: 15px;
+
+        }
+
+
+        .quantity-control {
+
+            display: flex;
+
+            align-items: center;
+
+            margin-top: 10px;
+
+        }
+
+
+        .quantity-control button {
+
+            width: 27px;
+
+            height: 27px;
+
+            border: 1px solid #444;
+
+            background: #222222;
+
+            color: #ffffff;
+
+            cursor: pointer;
+
+        }
+
+
+        .quantity-control button:hover {
+
+            background: #ff0000;
+
+            border-color: #ff0000;
+
+        }
+
+
+        .quantity-control span {
+
+            width: 35px;
+
+            text-align: center;
+
+            color: #ffffff;
+
+        }
+
+
+        .remove-product {
+
+            border: none;
+
+            background: transparent;
+
+            color: #777777;
+
+            font-size: 17px;
+
+            cursor: pointer;
+
+            margin-left: 10px;
+
+        }
+
+
+        .remove-product:hover {
+
+            color: #ff0000;
+
+        }
+
+
+        /* =====================================================
+           CARRINHO VAZIO
+        ===================================================== */
+
+        .empty-cart {
+
+            text-align: center;
+
+            padding: 70px 20px;
+
+            color: #888888;
+
+        }
+
+
+        .empty-cart i {
+
+            color: #444444;
+
+            font-size: 55px;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .empty-cart h4 {
+
+            color: #ffffff;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        /* =====================================================
+           FOOTER DO CARRINHO
+        ===================================================== */
+
+        .cart-sidebar-footer {
+
+            flex: 0 0 auto;
+
+            padding: 20px 25px;
+
+            border-top: 1px solid #292929;
+
+            background: #0c0c0c;
+
+        }
+
+
+        .cart-line {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            color: #aaaaaa;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .cart-total {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            color: #ffffff;
+
+            font-size: 21px;
+
+            font-weight: 800;
+
+            padding-top: 12px;
+
+            border-top: 1px solid #333333;
+
+        }
+
+
+        .cart-total span:last-child {
+
+            color: #ff0000;
+
+        }
+
+
+        .cart-footer-button {
+
+            width: 100%;
+
+            margin-top: 15px;
+
+            border: none;
+
+            cursor: pointer;
+
+        }
+
+
+        /* =====================================================
+           CONFIRMAÇÃO
+        ===================================================== */
+
+        .order-success {
+
+            display: none;
+
+            text-align: center;
+
+            padding: 45px 20px;
+
+        }
+
+
+        .order-success.active {
+
+            display: block;
+
+        }
+
+
+        .success-icon {
+
+            width: 58px;
+
+            height: 58px;
+
+            border-radius: 50%;
+
+            background: #00c878;
+
+            color: #000000;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 31px;
+
+            margin: 0 auto 25px;
+
+        }
+
+
+        .order-success h2 {
+
+            color: #ffffff;
+
+            font-family: 'Oswald', sans-serif;
+
+            font-size: 28px;
+
+            margin-bottom: 5px;
+
+        }
+
+
+        .order-success p {
+
+            color: #999999;
+
+        }
+
+
+        .order-number {
+
+            color: #ff0000 !important;
+
+            font-size: 20px;
+
+            font-weight: 800;
+
+            margin: 20px 0;
+
+        }
+
+
+        .order-payment {
+
+            color: #bbbbbb;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .order-total {
+
+            color: #ffffff;
+
+            font-size: 17px;
+
+        }
+
+
+        .demo-warning {
+
+            color: #999999;
+
+            font-size: 13px;
+
+            margin-top: 28px;
+
+        }
+
+
+        /* =====================================================
+           RESPONSIVO
+        ===================================================== */
+
+        @media(max-width: 500px) {
+
+            .cart-sidebar {
+
+                width: 100%;
+
+                max-width: 100%;
+
+            }
+
+
+            .produtos-banner {
+
+                min-height: 220px;
+
+            }
+
+
+            .card-fields {
+
+                flex-direction: column;
+
+                gap: 0;
+
+            }
+
+        }
+    </style>
+
 </head>
 
+
 <body>
-    <!-- Page Preloder -->
+
+
+    <!-- =====================================================
+         PRELOADER
+    ===================================================== -->
+
     <div id="preloder">
+
         <div class="loader"></div>
+
     </div>
 
-    <!-- Header Section Begin -->
-    <header class="header-section">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-3">
-                    <div class="logo">
-                        <a href="./index.html">
-                            <h2 style="color: #fff; font-family: 'Oswald', sans-serif; font-weight: 700; margin-top: 10px;">HITBOXE</h2>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <nav class="nav-menu">
-                      <ul>
-                <li><a href="index.html">Início</a></li>
-                <li><a href="sobre.html">Sobre</a></li>
-                <li><a href="Treinos.html">Classes</a></li>
-                <li><a href="servico.html">Serviços</a></li>
-                <li><a href="Treinadores.html">Nosso Time</a></li>
-                <li><a href="Contato.html">FAQ</a></li>
-                <li><a href="produtos.html">Produtos</a></li>   
+
+    <!-- MENU MOBILE -->
+
+    <div class="offcanvas-menu-overlay"></div>
+
+
+    <div class="offcanvas-menu-wrapper">
+
+        <div class="canvas-close">
+
+            <i class="fa fa-close"></i>
+
+        </div>
+
+
+        <nav class="canvas-menu mobile-menu">
+
+            <ul>
+
+                <li>
+                    <a href="index.html">Início</a>
+                </li>
+
+                <li>
+                    <a href="sobre.html">Sobre</a>
+                </li>
+
+                <li>
+                    <a href="Treinos.html">Classes</a>
+                </li>
+
+                <li>
+                    <a href="servico.html">Serviços</a>
+                </li>
+
+                <li>
+                    <a href="Treinadores.html">Nosso Time</a>
+                </li>
+
+                <li>
+                    <a href="Contato.html">FAQ</a>
+                </li>
+
+                <li class="active">
+                    <a href="produtos.html">Produtos</a>
+                </li>
+
             </ul>
-                    </nav>
-                </div>
+
+        </nav>
+
+    </div>
+
+
+    <!-- =====================================================
+         HEADER
+    ===================================================== -->
+
+    <header class="header-section">
+
+        <div class="container-fluid">
+
+            <div class="row">
+
                 <div class="col-lg-3">
+
+                    <div class="logo">
+
+                        <a href="index.html">
+
+                            <img src="img/logo.png" alt="HitBoxe">
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-lg-6">
+
+                    <nav class="nav-menu">
+
+                        <ul>
+
+                            <li>
+                                <a href="index.html">Início</a>
+                            </li>
+
+                            <li>
+                                <a href="sobre.html">Sobre</a>
+                            </li>
+
+                            <li>
+                                <a href="Treinos.html">Classes</a>
+                            </li>
+
+                            <li>
+                                <a href="servico.html">Serviços</a>
+                            </li>
+
+                            <li>
+                                <a href="Treinadores.html">Nosso Time</a>
+                            </li>
+
+                            <li>
+                                <a href="Contato.html">FAQ</a>
+                            </li>
+
+                            <li class="active">
+                                <a href="produtos.html">Produtos</a>
+                            </li>
+
+                        </ul>
+
+                    </nav>
+
+                </div>
+
+
+                <div class="col-lg-3">
+
                     <div class="top-option">
-                        <div class="to-search search-switch">
-                            <i class="fa fa-shopping-cart" style="color: #fff; font-size: 20px;"></i>
+
+                        <div class="to-social">
+
+                            <a href="#">
+                                <i class="fa fa-facebook"></i>
+                            </a>
+
+                            <a href="#">
+                                <i class="fa fa-twitter"></i>
+                            </a>
+
+                            <a href="#">
+                                <i class="fa fa-youtube-play"></i>
+                            </a>
+
+                            <a href="#">
+                                <i class="fa fa-instagram"></i>
+                            </a>
+
                         </div>
+
+
+                        <a href="#" id="openCart" class="cart-header">
+
+                            <i class="fa fa-shopping-cart"></i>
+
+                            <span id="cartCount" class="cart-count">
+
+                                0
+
+                            </span>
+
+                        </a>
+
                     </div>
+
                 </div>
+
             </div>
+
+
             <div class="canvas-open">
+
                 <i class="fa fa-bars"></i>
+
             </div>
+
         </div>
+
     </header>
-    <!-- Header End -->
 
-    <!-- Breadcrumb Section Begin -->
-    <section class="breadcrumb-section set-bg" style="background-color: #111;">
+
+    <!-- =====================================================
+         BANNER
+    ===================================================== -->
+
+    <section class="breadcrumb-section produtos-banner">
+
         <div class="container">
+
             <div class="row">
+
                 <div class="col-lg-12 text-center">
-                    <div class="breadcrumb-text">
-                        <h2>Loja Oficial</h2>
-                        <div class="bt-option">
-                            <a href="./index.html">Início</a>
-                            <span>Loja</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Breadcrumb Section End -->
 
-    <!-- Shop Section Begin -->
-    <section class="shop-section spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="section-title">
-                        <span>Suplementos e Equipamentos</span>
-                        <h2>FORJE SEU ARSENAL</h2>
+                    <div class="breadcrumb-text">
+
+                        <h2>
+                            Loja Oficial
+                        </h2>
+
+                        <div class="bt-option">
+
+                            <a href="index.html">
+                                Início
+                            </a>
+
+                            <span>
+                                Produtos
+                            </span>
+
+                        </div>
+
                     </div>
+
                 </div>
+
             </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         PRODUTOS
+    ===================================================== -->
+
+    <section class="shop-section spad">
+
+        <div class="container">
+
             <div class="row">
-                <!-- Product 1 -->
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="product-item">
-                        <div class="pi-pic set-bg" data-setbg="img/shop/whey.jpg">
-                            <div class="tag">Mais Vendidos</div>
-                        </div>
-                        <div class="pi-text">
-                            <h5>Whey Protein Isolado HitBoxe (2kg)</h5>
-                            <div class="p-price">R$ 149,90</div>
-                            <a href="#" class="primary-btn btn-comprar"><i class="fa fa-shopping-cart"></i> Adicionar</a>
-                        </div>
+
+                <div class="col-lg-12">
+
+                    <div class="section-title">
+
+                        <span>
+                            Suplementos e Equipamentos
+                        </span>
+
+                        <h2>
+                            FORJE SEU ARSENAL
+                        </h2>
+
                     </div>
+
                 </div>
-                <!-- Product 2 -->
+
+            </div>
+
+
+            <div class="row">
+
+
+                <!-- PRODUTO 1 -->
+
                 <div class="col-lg-3 col-md-6 col-sm-6">
+
                     <div class="product-item">
+
+                        <div class="pi-pic set-bg" data-setbg="img/shop/whey.jpg">
+
+                            <div class="tag">
+                                Mais Vendidos
+                            </div>
+
+                        </div>
+
+                        <div class="pi-text">
+
+                            <h5>
+                                Whey Protein Isolado HitBoxe (2kg)
+                            </h5>
+
+                            <div class="p-price">
+                                R$ 149,90
+                            </div>
+
+                            <button class="primary-btn btn-comprar" data-id="1"
+                                data-name="Whey Protein Isolado HitBoxe (2kg)" data-price="149.90"
+                                data-image="img/shop/whey.jpg">
+
+                                <i class="fa fa-shopping-cart"></i>
+                                Adicionar
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PRODUTO 2 -->
+
+                <div class="col-lg-3 col-md-6 col-sm-6">
+
+                    <div class="product-item">
+
                         <div class="pi-pic set-bg" data-setbg="img/shop/creatina.jpg">
                         </div>
+
                         <div class="pi-text">
-                            <h5>Creatina Monohidratada 100% Pura (300g)</h5>
-                            <div class="p-price">R$ 89,90</div>
-                            <a href="#" class="primary-btn btn-comprar"><i class="fa fa-shopping-cart"></i> Adicionar</a>
+
+                            <h5>
+                                Creatina Monohidratada 100% Pura (300g)
+                            </h5>
+
+                            <div class="p-price">
+                                R$ 89,90
+                            </div>
+
+                            <button class="primary-btn btn-comprar" data-id="2"
+                                data-name="Creatina Monohidratada 100% Pura (300g)" data-price="89.90"
+                                data-image="img/shop/creatina.jpg">
+
+                                <i class="fa fa-shopping-cart"></i>
+                                Adicionar
+
+                            </button>
+
                         </div>
+
                     </div>
+
                 </div>
-                <!-- Product 3 -->
+
+
+                <!-- PRODUTO 3 -->
+
                 <div class="col-lg-3 col-md-6 col-sm-6">
+
                     <div class="product-item">
+
                         <div class="pi-pic set-bg" data-setbg="img/shop/luvas.jpg">
-                            <div class="tag">Equipamentos</div>
+
+                            <div class="tag">
+                                Equipamentos
+                            </div>
+
                         </div>
+
                         <div class="pi-text">
-                            <h5>Luvas de Boxe Pro 14oz HitBoxe</h5>
-                            <div class="p-price">R$ 259,90</div>
-                            <a href="#" class="primary-btn btn-comprar"><i class="fa fa-shopping-cart"></i> Adicionar</a>
+
+                            <h5>
+                                Luvas de Boxe Pro 14oz HitBoxe
+                            </h5>
+
+                            <div class="p-price">
+                                R$ 259,90
+                            </div>
+
+                            <button class="primary-btn btn-comprar" data-id="3"
+                                data-name="Luvas de Boxe Pro 14oz HitBoxe" data-price="259.90"
+                                data-image="img/shop/luvas.jpg">
+
+                                <i class="fa fa-shopping-cart"></i>
+                                Adicionar
+
+                            </button>
+
                         </div>
+
                     </div>
+
                 </div>
-                <!-- Product 4 -->
+
+
+                <!-- PRODUTO 4 -->
+
                 <div class="col-lg-3 col-md-6 col-sm-6">
+
                     <div class="product-item">
+
                         <div class="pi-pic set-bg" data-setbg="img/shop/bandagem.jpg">
                         </div>
+
                         <div class="pi-text">
-                            <h5>Bandagem Elástica para boxe (Par)</h5>
-                            <div class="p-price">R$ 35,00</div>
-                            <a href="#" class="primary-btn btn-comprar"><i class="fa fa-shopping-cart"></i> Adicionar</a>
+
+                            <h5>
+                                Bandagem Elástica para boxe (Par)
+                            </h5>
+
+                            <div class="p-price">
+                                R$ 35,00
+                            </div>
+
+                            <button class="primary-btn btn-comprar" data-id="4"
+                                data-name="Bandagem Elástica para boxe (Par)" data-price="35.00"
+                                data-image="img/shop/bandagem.jpg">
+
+                                <i class="fa fa-shopping-cart"></i>
+                                Adicionar
+
+                            </button>
+
                         </div>
+
                     </div>
+
                 </div>
-                <!-- Product 5 -->
+
+
+                <!-- PRODUTO 5 -->
+
                 <div class="col-lg-3 col-md-6 col-sm-6">
+
                     <div class="product-item">
+
                         <div class="pi-pic set-bg" data-setbg="img/shop/camiseta.jpg">
-                            <div class="tag">Vestuário</div>
+
+                            <div class="tag">
+                                Vestuário
+                            </div>
+
                         </div>
+
                         <div class="pi-text">
-                            <h5>Camiseta DryFit HitBoxe</h5>
-                            <div class="p-price">R$ 69,90</div>
-                            <a href="#" class="primary-btn btn-comprar"><i class="fa fa-shopping-cart"></i> Adicionar</a>
+
+                            <h5>
+                                Camiseta DryFit HitBoxe
+                            </h5>
+
+                            <div class="p-price">
+                                R$ 69,90
+                            </div>
+
+                            <button class="primary-btn btn-comprar" data-id="5" data-name="Camiseta DryFit HitBoxe"
+                                data-price="69.90" data-image="img/shop/camiseta.jpg">
+
+                                <i class="fa fa-shopping-cart"></i>
+                                Adicionar
+
+                            </button>
+
                         </div>
+
                     </div>
+
                 </div>
-                <!-- Product 6 -->
+
+
+                <!-- PRODUTO 6 -->
+
                 <div class="col-lg-3 col-md-6 col-sm-6">
+
                     <div class="product-item">
+
                         <div class="pi-pic set-bg" data-setbg="img/shop/pretreino.jpg">
                         </div>
+
                         <div class="pi-text">
-                            <h5>Pré-Treino Nocaute (300g)</h5>
-                            <div class="p-price">R$ 119,90</div>
-                            <a href="#" class="primary-btn btn-comprar"><i class="fa fa-shopping-cart"></i> Adicionar</a>
+
+                            <h5>
+                                Pré-Treino Nocaute (300g)
+                            </h5>
+
+                            <div class="p-price">
+                                R$ 119,90
+                            </div>
+
+                            <button class="primary-btn btn-comprar" data-id="6" data-name="Pré-Treino Nocaute (300g)"
+                                data-price="119.90" data-image="img/shop/pretreino.jpg">
+
+                                <i class="fa fa-shopping-cart"></i>
+                                Adicionar
+
+                            </button>
+
                         </div>
+
                     </div>
+
                 </div>
-                 <!-- Product 7 -->
+
+
+                <!-- PRODUTO 7 -->
+
                 <div class="col-lg-3 col-md-6 col-sm-6">
+
                     <div class="product-item">
+
                         <div class="pi-pic set-bg" data-setbg="img/shop/corda.jpg">
-                            <div class="tag">Equipamentos</div>
+
+                            <div class="tag">
+                                Equipamentos
+                            </div>
+
                         </div>
+
                         <div class="pi-text">
-                            <h5>Corda de Pular Profissional</h5>
-                            <div class="p-price">R$ 45,90</div>
-                            <a href="#" class="primary-btn btn-comprar"><i class="fa fa-shopping-cart"></i> Adicionar</a>
+
+                            <h5>
+                                Corda de Pular Profissional
+                            </h5>
+
+                            <div class="p-price">
+                                R$ 45,90
+                            </div>
+
+                            <button class="primary-btn btn-comprar" data-id="7" data-name="Corda de Pular Profissional"
+                                data-price="45.90" data-image="img/shop/corda.jpg">
+
+                                <i class="fa fa-shopping-cart"></i>
+                                Adicionar
+
+                            </button>
+
                         </div>
+
                     </div>
+
                 </div>
-                 <!-- Product 8 -->
+
+
+                <!-- PRODUTO 8 -->
+
                 <div class="col-lg-3 col-md-6 col-sm-6">
+
                     <div class="product-item">
+
                         <div class="pi-pic set-bg" data-setbg="img/shop/bolsa.jpg">
                         </div>
+
                         <div class="pi-text">
-                            <h5>Bolsa HitBoxe</h5>
-                            <div class="p-price">R$ 162,90</div>
-                            <a href="#" class="primary-btn btn-comprar"><i class="fa fa-shopping-cart"></i> Adicionar</a>
+
+                            <h5>
+                                Bolsa HitBoxe
+                            </h5>
+
+                            <div class="p-price">
+                                R$ 162,90
+                            </div>
+
+                            <button class="primary-btn btn-comprar" data-id="8" data-name="Bolsa HitBoxe"
+                                data-price="162.90" data-image="img/shop/bolsa.jpg">
+
+                                <i class="fa fa-shopping-cart"></i>
+                                Adicionar
+
+                            </button>
+
                         </div>
+
                     </div>
+
                 </div>
-                <!-- Product 9 -->
+
+
+                <!-- PRODUTO 9 -->
+
                 <div class="col-lg-3 col-md-6 col-sm-6">
+
                     <div class="product-item">
+
                         <div class="pi-pic set-bg" data-setbg="img/shop/capacete.jpg">
-                            <div class="tag">Mais Vendidos</div>
+
+                            <div class="tag">
+                                Mais Vendidos
+                            </div>
+
                         </div>
+
                         <div class="pi-text">
-                            <h5>Capacete de Boxe para Sparring</h5>
-                            <div class="p-price">R$ 149,90</div>
-                            <a href="#" class="primary-btn btn-comprar"><i class="fa fa-shopping-cart"></i> Adicionar</a>
+
+                            <h5>
+                                Capacete de Boxe para Sparring
+                            </h5>
+
+                            <div class="p-price">
+                                R$ 149,90
+                            </div>
+
+                            <button class="primary-btn btn-comprar" data-id="9"
+                                data-name="Capacete de Boxe para Sparring" data-price="149.90"
+                                data-image="img/shop/capacete.jpg">
+
+                                <i class="fa fa-shopping-cart"></i>
+                                Adicionar
+
+                            </button>
+
                         </div>
+
                     </div>
+
                 </div>
-                <!-- Product 10 -->
+
+
+                <!-- PRODUTO 10 -->
+
                 <div class="col-lg-3 col-md-6 col-sm-6">
+
                     <div class="product-item">
+
                         <div class="pi-pic set-bg" data-setbg="img/shop/cinta.jpg">
                         </div>
+
                         <div class="pi-text">
-                            <h5>Cinturão De Musculação</h5>
-                            <div class="p-price">R$ 129,90</div>
-                            <a href="#" class="primary-btn btn-comprar"><i class="fa fa-shopping-cart"></i> Adicionar</a>
+
+                            <h5>
+                                Cinturão De Musculação
+                            </h5>
+
+                            <div class="p-price">
+                                R$ 129,90
+                            </div>
+
+                            <button class="primary-btn btn-comprar" data-id="10" data-name="Cinturão De Musculação"
+                                data-price="129.90" data-image="img/shop/cinta.jpg">
+
+                                <i class="fa fa-shopping-cart"></i>
+                                Adicionar
+
+                            </button>
+
                         </div>
+
                     </div>
+
                 </div>
-                <!-- Product 11 -->
+
+
+                <!-- PRODUTO 11 -->
+
                 <div class="col-lg-3 col-md-6 col-sm-6">
+
                     <div class="product-item">
+
                         <div class="pi-pic set-bg" data-setbg="img/shop/energetico.jpg">
-                            <div class="tag">Novo!</div>
+
+                            <div class="tag">
+                                Novo!
+                            </div>
+
                         </div>
+
                         <div class="pi-text">
-                            <h5>Energético HitBoxe Energy com 355ml</h5>
-                            <div class="p-price">R$ 11,90</div>
-                            <a href="#" class="primary-btn btn-comprar"><i class="fa fa-shopping-cart"></i> Adicionar</a>
+
+                            <h5>
+                                Energético HitBoxe Energy com 355ml
+                            </h5>
+
+                            <div class="p-price">
+                                R$ 11,90
+                            </div>
+
+                            <button class="primary-btn btn-comprar" data-id="11"
+                                data-name="Energético HitBoxe Energy com 355ml" data-price="11.90"
+                                data-image="img/shop/energetico.jpg">
+
+                                <i class="fa fa-shopping-cart"></i>
+                                Adicionar
+
+                            </button>
+
                         </div>
+
                     </div>
+
                 </div>
-                <!-- Product 12 -->
+
+
+                <!-- PRODUTO 12 -->
+
                 <div class="col-lg-3 col-md-6 col-sm-6">
+
                     <div class="product-item">
+
                         <div class="pi-pic set-bg" data-setbg="img/shop/kickshields.jpg">
                         </div>
+
                         <div class="pi-text">
-                            <h5>Escudo de Chute Kick Shield</h5>
-                            <div class="p-price">R$ 67,99</div>
-                            <a href="#" class="primary-btn btn-comprar"><i class="fa fa-shopping-cart"></i> Adicionar</a>
+
+                            <h5>
+                                Escudo de Chute Kick Shield
+                            </h5>
+
+                            <div class="p-price">
+                                R$ 67,99
+                            </div>
+
+                            <button class="primary-btn btn-comprar" data-id="12" data-name="Escudo de Chute Kick Shield"
+                                data-price="67.99" data-image="img/shop/kickshields.jpg">
+
+                                <i class="fa fa-shopping-cart"></i>
+                                Adicionar
+
+                            </button>
+
                         </div>
+
                     </div>
+
                 </div>
-                <!-- Product 13 -->
+
+
+                <!-- PRODUTO 13 -->
+
                 <div class="col-lg-3 col-md-6 col-sm-6">
+
                     <div class="product-item">
+
                         <div class="pi-pic set-bg" data-setbg="img/shop/saco.jpg">
-                            <div class="tag">Equipamentos</div>
+
+                            <div class="tag">
+                                Equipamentos
+                            </div>
+
                         </div>
+
                         <div class="pi-text">
-                            <h5>Saco de Pancada Profissional 120x100</h5>
-                            <div class="p-price">R$ 104,90</div>
-                            <a href="#" class="primary-btn btn-comprar"><i class="fa fa-shopping-cart"></i> Adicionar</a>
+
+                            <h5>
+                                Saco de Pancada Profissional 120x100
+                            </h5>
+
+                            <div class="p-price">
+                                R$ 104,90
+                            </div>
+
+                            <button class="primary-btn btn-comprar" data-id="13"
+                                data-name="Saco de Pancada Profissional 120x100" data-price="104.90"
+                                data-image="img/shop/saco.jpg">
+
+                                <i class="fa fa-shopping-cart"></i>
+                                Adicionar
+
+                            </button>
+
                         </div>
+
                     </div>
+
                 </div>
-                <!-- Product 14 -->
+
+
+                <!-- PRODUTO 14 -->
+
                 <div class="col-lg-3 col-md-6 col-sm-6">
+
                     <div class="product-item">
+
                         <div class="pi-pic set-bg" data-setbg="img/shop/shorts.jpg">
                         </div>
+
                         <div class="pi-text">
-                            <h5>Shorts de luta</h5>
-                            <div class="p-price">R$ 64,90</div>
-                            <a href="#" class="primary-btn btn-comprar"><i class="fa fa-shopping-cart"></i> Adicionar</a>
+
+                            <h5>
+                                Shorts de luta
+                            </h5>
+
+                            <div class="p-price">
+                                R$ 64,90
+                            </div>
+
+                            <button class="primary-btn btn-comprar" data-id="14" data-name="Shorts de luta"
+                                data-price="64.90" data-image="img/shop/shorts.jpg">
+
+                                <i class="fa fa-shopping-cart"></i>
+                                Adicionar
+
+                            </button>
+
                         </div>
+
                     </div>
+
                 </div>
-                 <!-- Product 15 -->
+
+
+                <!-- PRODUTO 15 -->
+
                 <div class="col-lg-3 col-md-6 col-sm-6">
+
                     <div class="product-item">
+
                         <div class="pi-pic set-bg" data-setbg="img/shop/garrafa-termica.jpg">
-                            <div class="tag">Equipamentos</div>
+
+                            <div class="tag">
+                                Equipamentos
+                            </div>
+
                         </div>
+
                         <div class="pi-text">
-                            <h5>Garrafa Termica HitBoxe 750ml</h5>
-                            <div class="p-price">R$ 58,98</div>
-                            <a href="#" class="primary-btn btn-comprar"><i class="fa fa-shopping-cart"></i> Adicionar</a>
+
+                            <h5>
+                                Garrafa Termica HitBoxe 750ml
+                            </h5>
+
+                            <div class="p-price">
+                                R$ 58,98
+                            </div>
+
+                            <button class="primary-btn btn-comprar" data-id="15"
+                                data-name="Garrafa Termica HitBoxe 750ml" data-price="58.98"
+                                data-image="img/shop/garrafa-termica.jpg">
+
+                                <i class="fa fa-shopping-cart"></i>
+                                Adicionar
+
+                            </button>
+
                         </div>
+
                     </div>
+
                 </div>
-                 <!-- Product 16 -->
+
+
+                <!-- PRODUTO 16 -->
+
                 <div class="col-lg-3 col-md-6 col-sm-6">
+
                     <div class="product-item">
+
                         <div class="pi-pic set-bg" data-setbg="img/shop/squeeze.jpg">
                         </div>
+
                         <div class="pi-text">
-                            <h5>Squeeze HitBoxe 1 Litro</h5>
-                            <div class="p-price">R$ 29,90</div>
-                            <a href="#" class="primary-btn btn-comprar"><i class="fa fa-shopping-cart"></i> Adicionar</a>
+
+                            <h5>
+                                Squeeze HitBoxe 1 Litro
+                            </h5>
+
+                            <div class="p-price">
+                                R$ 29,90
+                            </div>
+
+                            <button class="primary-btn btn-comprar" data-id="16" data-name="Squeeze HitBoxe 1 Litro"
+                                data-price="29.90" data-image="img/shop/squeeze.jpg">
+
+                                <i class="fa fa-shopping-cart"></i>
+                                Adicionar
+
+                            </button>
+
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Shop Section End -->
 
-    <!-- Footer Section Begin -->
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         FOOTER
+    ===================================================== -->
+
     <section class="footer-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <div class="copyright-text">
-                        <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> HitBoxe - Projeto Integrado FIPP Unoeste</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Footer Section End -->
 
-    <!-- Js Plugins -->
+        <div class="container">
+
+            <div class="row">
+
+                <div class="col-lg-4">
+
+                    <div class="fs-about">
+
+                        <div class="fa-logo">
+
+                            <a href="index.html">
+
+                                <img src="img/logo.png" alt="HitBoxe">
+
+                            </a>
+
+                        </div>
+
+
+                        <div class="fa-social">
+
+                            <a href="#">
+                                <i class="fa fa-facebook"></i>
+                            </a>
+
+                            <a href="#">
+                                <i class="fa fa-twitter"></i>
+                            </a>
+
+                            <a href="#">
+                                <i class="fa fa-youtube-play"></i>
+                            </a>
+
+                            <a href="#">
+                                <i class="fa fa-instagram"></i>
+                            </a>
+
+                            <a href="#">
+                                <i class="fa fa-envelope-o"></i>
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-lg-2">
+
+                    <div class="fs-widget">
+
+                        <h4>
+                            Links úteis
+                        </h4>
+
+                        <ul>
+
+                            <li>
+                                <a href="sobre.html">
+                                    Sobre nós
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="index.html">
+                                    Nossos planos
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="Contato.html">
+                                    FAQ
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="produtos.html">
+                                    Produtos
+                                </a>
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-lg-2">
+
+                    <div class="fs-widget">
+
+                        <h4>
+                            Suporte
+                        </h4>
+
+                        <ul>
+
+                            <li>
+                                <a href="#">
+                                    Login
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="#">
+                                    Minha conta
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="Contato.html">
+                                    Contato
+                                </a>
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="row">
+
+                <div class="col-lg-12 text-center">
+
+                    <div class="copyright-text">
+
+                        <p>
+
+                            Copyright &copy;
+
+                            <script>
+                                document.write(
+                                    new Date().getFullYear()
+                                );
+                            </script>
+
+                            HitBoxe - Projeto Integrado FIPP Unoeste
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         OVERLAY
+    ===================================================== -->
+
+    <div id="cartOverlay" class="cart-overlay">
+    </div>
+
+
+    <!-- =====================================================
+         SIDEBAR
+    ===================================================== -->
+
+    <aside id="cartSidebar" class="cart-sidebar">
+
+
+        <!-- HEADER -->
+
+        <div class="cart-sidebar-header">
+
+            <h3 id="cartTitle">
+                Meu Carrinho
+            </h3>
+
+            <button id="closeCart" class="close-cart">
+
+                <i class="fa fa-times"></i>
+
+            </button>
+
+        </div>
+
+
+        <!-- =================================================
+             CONTEÚDO ROLÁVEL
+        ================================================== -->
+
+        <div class="cart-main-content">
+
+
+            <!-- =================================================
+                 CARRINHO
+            ================================================== -->
+
+            <div id="cartProductsContainer" class="cart-products-container">
+
+                <div id="cartItems"></div>
+
+            </div>
+
+
+            <!-- =================================================
+                 CHECKOUT
+            ================================================== -->
+
+            <div id="checkoutContainer" class="checkout-container">
+
+
+                <!-- VOLTAR -->
+
+                <button id="backToCart" class="back-to-cart">
+
+                    <i class="fa fa-arrow-left"></i>
+
+                    Voltar ao carrinho
+
+                </button>
+
+
+                <h3 class="checkout-title">
+                    Endereço de entrega
+                </h3>
+
+
+                <!-- NOME -->
+
+                <label class="checkout-label">
+                    Nome completo *
+                </label>
+
+                <input id="nome" class="checkout-input" type="text" placeholder="Digite seu nome">
+
+
+                <!-- CPF -->
+
+                <label class="checkout-label">
+                    CPF *
+                </label>
+
+                <input id="cpf" class="checkout-input" type="text" maxlength="14" inputmode="numeric"
+                    placeholder="000.000.000-00">
+
+
+                <!-- CEP -->
+
+                <label class="checkout-label">
+                    CEP *
+                </label>
+
+                <input id="cep" class="checkout-input" type="text" maxlength="9" inputmode="numeric"
+                    placeholder="00000-000">
+
+
+                <!-- RUA -->
+
+                <label class="checkout-label">
+                    Rua *
+                </label>
+
+                <input id="rua" class="checkout-input" type="text" placeholder="Nome da rua">
+
+
+                <!-- NÚMERO -->
+
+                <label class="checkout-label">
+                    Número *
+                </label>
+
+                <input id="numero" class="checkout-input" type="text" placeholder="Número">
+
+
+                <!-- COMPLEMENTO -->
+
+                <label class="checkout-label">
+                    Complemento
+                </label>
+
+                <input id="complemento" class="checkout-input" type="text" placeholder="Apartamento, bloco, casa...">
+
+
+                <!-- CIDADE -->
+
+                <label class="checkout-label">
+                    Cidade *
+                </label>
+
+                <input id="cidade" class="checkout-input" type="text" placeholder="Cidade">
+
+
+                <!-- ESTADO -->
+
+                <label class="checkout-label">
+                    Estado *
+                </label>
+
+                <select id="estado" class="checkout-input">
+
+                    <option value="">
+                        Selecione
+                    </option>
+
+                    <option value="AC">Acre</option>
+                    <option value="AL">Alagoas</option>
+                    <option value="AP">Amapá</option>
+                    <option value="AM">Amazonas</option>
+                    <option value="BA">Bahia</option>
+                    <option value="CE">Ceará</option>
+                    <option value="DF">Distrito Federal</option>
+                    <option value="ES">Espírito Santo</option>
+                    <option value="GO">Goiás</option>
+                    <option value="MA">Maranhão</option>
+                    <option value="MT">Mato Grosso</option>
+                    <option value="MS">Mato Grosso do Sul</option>
+                    <option value="MG">Minas Gerais</option>
+                    <option value="PA">Pará</option>
+                    <option value="PB">Paraíba</option>
+                    <option value="PR">Paraná</option>
+                    <option value="PE">Pernambuco</option>
+                    <option value="PI">Piauí</option>
+                    <option value="RJ">Rio de Janeiro</option>
+                    <option value="RN">Rio Grande do Norte</option>
+                    <option value="RS">Rio Grande do Sul</option>
+                    <option value="RO">Rondônia</option>
+                    <option value="RR">Roraima</option>
+                    <option value="SC">Santa Catarina</option>
+                    <option value="SP">São Paulo</option>
+                    <option value="SE">Sergipe</option>
+                    <option value="TO">Tocantins</option>
+
+                </select>
+
+
+                <!-- REFERÊNCIA -->
+
+                <label class="checkout-label">
+                    Ponto de referência
+                </label>
+
+                <input id="referencia" class="checkout-input" type="text" placeholder="Opcional">
+
+
+                <!-- =================================================
+                     PAGAMENTO
+                ================================================== -->
+
+                <h3 class="checkout-title" style="margin-top:20px;">
+
+                    Método de pagamento
+
+                </h3>
+
+
+                <!-- PIX -->
+
+                <label class="payment-option">
+
+                    <input type="radio" name="pagamento" value="Pix" checked>
+
+                    <i class="fa fa-qrcode"></i>
+
+                    Pix
+
+                </label>
+
+
+                <!-- CARTÃO -->
+
+                <label class="payment-option">
+
+                    <input type="radio" name="pagamento" value="Cartão de crédito">
+
+                    <i class="fa fa-credit-card"></i>
+
+                    Cartão de crédito
+
+                </label>
+
+
+                <!-- BOLETO -->
+
+                <label class="payment-option">
+
+                    <input type="radio" name="pagamento" value="Boleto">
+
+                    <i class="fa fa-barcode"></i>
+
+                    Boleto bancário
+
+                </label>
+
+
+                <!-- =================================================
+                     PIX DETALHES
+                ================================================== -->
+
+                <div id="pixDetails" class="payment-details active">
+
+                    <h4>
+                        Pagamento via Pix
+                    </h4>
+
+                    <p>
+                        QR Code fictício para demonstração.
+                    </p>
+
+
+                    <div class="pix-qr-wrapper">
+
+                        <canvas id="pixQRCode" width="200" height="200">
+                        </canvas>
+
+                    </div>
+
+
+                    <p>
+                        Escaneie o QR Code para simular o pagamento.
+                    </p>
+
+
+                    <div id="pixCode" class="pix-code">
+
+                    </div>
+
+
+                    <button type="button" id="copyPix" class="copy-pix">
+
+                        <i class="fa fa-copy"></i>
+
+                        Copiar código Pix
+
+                    </button>
+
+                </div>
+
+
+                <!-- =================================================
+                     CARTÃO DETALHES
+                ================================================== -->
+
+                <div id="cardDetails" class="payment-details">
+
+                    <h4>
+                        Pagamento com cartão
+                    </h4>
+
+                    <p>
+                        Dados fictícios para demonstração.
+                    </p>
+
+
+                    <div class="card-preview">
+
+                        <div id="cardBrand" class="card-brand">
+
+                            CARD
+
+                        </div>
+
+
+                        <div id="cardNumberPreview" class="card-number-preview">
+
+                            •••• •••• •••• ••••
+
+                        </div>
+
+
+                        <div id="cardNamePreview" class="card-name-preview">
+
+                            NOME DO TITULAR
+
+                        </div>
+
+                    </div>
+
+
+                    <label class="checkout-label">
+                        Número do cartão *
+                    </label>
+
+                    <input id="numeroCartao" class="checkout-input" type="text" maxlength="19" inputmode="numeric"
+                        placeholder="0000 0000 0000 0000">
+
+
+                    <label class="checkout-label">
+                        Nome no cartão *
+                    </label>
+
+                    <input id="nomeCartao" class="checkout-input" type="text" placeholder="NOME COMPLETO">
+
+
+                    <div class="card-fields">
+
+                        <div class="card-field">
+
+                            <label class="checkout-label">
+                                Validade *
+                            </label>
+
+                            <input id="validade" class="checkout-input" type="text" maxlength="5" inputmode="numeric"
+                                placeholder="MM/AA">
+
+                        </div>
+
+
+                        <div class="card-field">
+
+                            <label class="checkout-label">
+                                CVV *
+                            </label>
+
+                            <input id="cvv" class="checkout-input" type="text" maxlength="4" inputmode="numeric"
+                                placeholder="123">
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     BOLETO DETALHES
+                ================================================== -->
+
+                <div id="boletoDetails" class="payment-details">
+
+                    <h4>
+                        Pagamento via boleto
+                    </h4>
+
+                    <p>
+                        Boleto fictício para demonstração.
+                    </p>
+
+
+                    <div class="barcode-box">
+
+                        <div id="barcodeLines" class="barcode-lines">
+                        </div>
+
+                    </div>
+
+
+                    <div id="boletoNumber" class="boleto-number">
+
+                    </div>
+
+
+                    <button type="button" id="copyBoleto" class="copy-pix" style="margin-top:10px;">
+
+                        <i class="fa fa-copy"></i>
+
+                        Copiar código do boleto
+
+                    </button>
+
+                </div>
+
+
+                <!-- CONFIRMAÇÃO -->
+
+                <div id="orderSuccess" class="order-success">
+
+                    <div class="success-icon">
+
+                        <i class="fa fa-check"></i>
+
+                    </div>
+
+
+                    <h2>
+                        Pedido confirmado!
+                    </h2>
+
+
+                    <p>
+                        Seu pedido foi registrado com sucesso.
+                    </p>
+
+
+                    <p id="orderNumber" class="order-number">
+
+                    </p>
+
+
+                    <p id="orderPayment" class="order-payment">
+
+                    </p>
+
+
+                    <p id="orderTotal" class="order-total">
+
+                    </p>
+
+
+                    <p class="demo-warning">
+
+                        Esta é uma demonstração.
+                        Nenhum pagamento real foi realizado.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             RODAPÉ
+        ================================================== -->
+
+        <div id="cartFooter" class="cart-sidebar-footer">
+
+
+            <div class="cart-line">
+
+                <span>
+                    Subtotal
+                </span>
+
+                <span id="cartSubtotal">
+                    R$ 0,00
+                </span>
+
+            </div>
+
+
+            <div class="cart-line">
+
+                <span>
+                    Frete
+                </span>
+
+                <span id="cartFrete">
+                    R$ 0,00
+                </span>
+
+            </div>
+
+
+            <div class="cart-total">
+
+                <span>
+                    Total
+                </span>
+
+                <span id="cartTotal">
+                    R$ 0,00
+                </span>
+
+            </div>
+
+
+            <button id="checkoutButton" class="primary-btn cart-footer-button">
+
+                Continuar para pagamento
+
+            </button>
+
+
+            <button id="finalizarButton" class="primary-btn cart-footer-button" style="display:none;">
+
+                CONFIRMAR PEDIDO
+
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =====================================================
+         SCRIPTS DO TEMPLATE
+    ===================================================== -->
+
     <script src="js/jquery-3.3.1.min.js"></script>
+
     <script src="js/bootstrap.min.js"></script>
+
     <script src="js/jquery.magnific-popup.min.js"></script>
+
     <script src="js/masonry.pkgd.min.js"></script>
+
     <script src="js/jquery.barfiller.js"></script>
+
     <script src="js/jquery.slicknav.js"></script>
+
     <script src="js/owl.carousel.min.js"></script>
+
     <script src="js/main.js"></script>
+
+
+    <!-- =====================================================
+         SISTEMA COMPLETO DA LOJA
+    ===================================================== -->
+
+    <script>
+
+        /* =====================================================
+           CONFIGURAÇÃO
+        ===================================================== */
+
+        const CHAVE_CARRINHO = "hitboxeCarrinho";
+
+
+        const cartSidebar =
+            document.getElementById("cartSidebar");
+
+
+        const cartOverlay =
+            document.getElementById("cartOverlay");
+
+
+        const cartItems =
+            document.getElementById("cartItems");
+
+
+        const cartCount =
+            document.getElementById("cartCount");
+
+
+        const cartSubtotal =
+            document.getElementById("cartSubtotal");
+
+
+        const cartFrete =
+            document.getElementById("cartFrete");
+
+
+        const cartTotal =
+            document.getElementById("cartTotal");
+
+
+        const checkoutButton =
+            document.getElementById("checkoutButton");
+
+
+        const finalizarButton =
+            document.getElementById("finalizarButton");
+
+
+        const cartProductsContainer =
+            document.getElementById(
+                "cartProductsContainer"
+            );
+
+
+        const checkoutContainer =
+            document.getElementById(
+                "checkoutContainer"
+            );
+
+
+        const cartTitle =
+            document.getElementById(
+                "cartTitle"
+            );
+
+
+        const cartFooter =
+            document.getElementById(
+                "cartFooter"
+            );
+
+
+        /* =====================================================
+           CARRINHO
+        ===================================================== */
+
+        function obterCarrinho() {
+
+            try {
+
+                return JSON.parse(
+                    localStorage.getItem(
+                        CHAVE_CARRINHO
+                    )
+                ) || [];
+
+            } catch (erro) {
+
+                return [];
+
+            }
+
+        }
+
+
+        function salvarCarrinho(carrinho) {
+
+            localStorage.setItem(
+
+                CHAVE_CARRINHO,
+
+                JSON.stringify(carrinho)
+
+            );
+
+        }
+
+
+        function formatarPreco(valor) {
+
+            return Number(valor).toLocaleString(
+
+                "pt-BR",
+
+                {
+
+                    style: "currency",
+
+                    currency: "BRL"
+
+                }
+
+            );
+
+        }
+
+
+        function atualizarContador() {
+
+            const carrinho =
+                obterCarrinho();
+
+
+            let quantidade = 0;
+
+
+            carrinho.forEach(produto => {
+
+                quantidade +=
+                    Number(produto.quantidade);
+
+            });
+
+
+            cartCount.textContent =
+                quantidade;
+
+        }
+
+
+        function calcularValores() {
+
+            const carrinho =
+                obterCarrinho();
+
+
+            let subtotal = 0;
+
+
+            carrinho.forEach(produto => {
+
+                subtotal +=
+
+                    Number(produto.preco) *
+
+                    Number(produto.quantidade);
+
+            });
+
+
+            let frete = 0;
+
+
+            if (
+                subtotal > 0 &&
+                subtotal < 200
+            ) {
+
+                frete = 19.90;
+
+            }
+
+
+            return {
+
+                subtotal,
+
+                frete,
+
+                total:
+                    subtotal + frete
+
+            };
+
+        }
+
+
+        function atualizarResumo() {
+
+            const valores =
+                calcularValores();
+
+
+            cartSubtotal.textContent =
+                formatarPreco(
+                    valores.subtotal
+                );
+
+
+            if (
+                valores.frete === 0 &&
+                valores.subtotal > 0
+            ) {
+
+                cartFrete.textContent =
+                    "Grátis";
+
+            } else {
+
+                cartFrete.textContent =
+                    formatarPreco(
+                        valores.frete
+                    );
+
+            }
+
+
+            cartTotal.textContent =
+                formatarPreco(
+                    valores.total
+                );
+
+        }
+
+
+        /* =====================================================
+           RENDERIZAR CARRINHO
+        ===================================================== */
+
+        function renderizarCarrinho() {
+
+            const carrinho =
+                obterCarrinho();
+
+
+            cartItems.innerHTML = "";
+
+
+            if (carrinho.length === 0) {
+
+                cartItems.innerHTML = `
+
+                    <div class="empty-cart">
+
+                        <i class="fa fa-shopping-cart"></i>
+
+                        <h4>
+                            Seu carrinho está vazio
+                        </h4>
+
+                        <p>
+                            Adicione algum produto
+                            para começar sua compra.
+                        </p>
+
+                    </div>
+
+                `;
+
+
+                checkoutButton.style.display =
+                    "none";
+
+
+                atualizarResumo();
+
+                return;
+
+            }
+
+
+            checkoutButton.style.display =
+                "block";
+
+
+            carrinho.forEach(produto => {
+
+                const item =
+                    document.createElement("div");
+
+
+                item.className =
+                    "cart-product";
+
+
+                item.innerHTML = `
+
+                    <img
+                        src="${produto.imagem}"
+                        class="cart-product-image"
+                        alt="${produto.nome}"
+                    >
+
+
+                    <div class="cart-product-info">
+
+                        <h4>
+                            ${produto.nome}
+                        </h4>
+
+
+                        <span class="cart-product-price">
+
+                            ${formatarPreco(
+                    produto.preco
+                )}
+
+                        </span>
+
+
+                        <div class="quantity-control">
+
+                            <button
+                                type="button"
+                                onclick="alterarQuantidade('${produto.id}', -1)">
+
+                                -
+
+                            </button>
+
+
+                            <span>
+
+                                ${produto.quantidade}
+
+                            </span>
+
+
+                            <button
+                                type="button"
+                                onclick="alterarQuantidade('${produto.id}', 1)">
+
+                                +
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="remove-product"
+                        onclick="removerProduto('${produto.id}')">
+
+                        <i class="fa fa-trash"></i>
+
+                    </button>
+
+                `;
+
+
+                cartItems.appendChild(item);
+
+            });
+
+
+            atualizarResumo();
+
+        }
+
+
+        /* =====================================================
+           ADICIONAR PRODUTO
+        ===================================================== */
+
+        document
+            .querySelectorAll(".btn-comprar")
+            .forEach(botao => {
+
+                botao.addEventListener(
+                    "click",
+                    function () {
+
+                        const produto = {
+
+                            id:
+                                this.dataset.id,
+
+                            nome:
+                                this.dataset.name,
+
+                            preco:
+                                parseFloat(
+                                    this.dataset.price
+                                ),
+
+                            imagem:
+                                this.dataset.image,
+
+                            quantidade: 1
+
+                        };
+
+
+                        let carrinho =
+                            obterCarrinho();
+
+
+                        const existente =
+                            carrinho.find(
+                                item =>
+                                    item.id ===
+                                    produto.id
+                            );
+
+
+                        if (existente) {
+
+                            existente.quantidade++;
+
+                        } else {
+
+                            carrinho.push(
+                                produto
+                            );
+
+                        }
+
+
+                        salvarCarrinho(
+                            carrinho
+                        );
+
+
+                        atualizarContador();
+
+                        renderizarCarrinho();
+
+
+                        const textoOriginal =
+                            this.innerHTML;
+
+
+                        this.innerHTML =
+                            '<i class="fa fa-check"></i> Adicionado';
+
+
+                        setTimeout(() => {
+
+                            this.innerHTML =
+                                textoOriginal;
+
+                        }, 1000);
+
+                    }
+                );
+
+            });
+
+
+        /* =====================================================
+           QUANTIDADE
+        ===================================================== */
+
+        function alterarQuantidade(id, valor) {
+
+            let carrinho =
+                obterCarrinho();
+
+
+            const produto =
+                carrinho.find(
+                    item =>
+                        item.id === id
+                );
+
+
+            if (!produto) {
+
+                return;
+
+            }
+
+
+            produto.quantidade += valor;
+
+
+            if (produto.quantidade <= 0) {
+
+                carrinho =
+                    carrinho.filter(
+                        item =>
+                            item.id !== id
+                    );
+
+            }
+
+
+            salvarCarrinho(carrinho);
+
+            renderizarCarrinho();
+
+            atualizarContador();
+
+        }
+
+
+        /* =====================================================
+           REMOVER
+        ===================================================== */
+
+        function removerProduto(id) {
+
+            let carrinho =
+                obterCarrinho();
+
+
+            carrinho =
+                carrinho.filter(
+                    item =>
+                        item.id !== id
+                );
+
+
+            salvarCarrinho(carrinho);
+
+            renderizarCarrinho();
+
+            atualizarContador();
+
+        }
+
+
+        /* =====================================================
+           ABRIR CARRINHO
+        ===================================================== */
+
+        document
+            .getElementById("openCart")
+            .addEventListener(
+                "click",
+                function (event) {
+
+                    event.preventDefault();
+
+                    abrirCarrinho();
+
+                }
+            );
+
+
+        function abrirCarrinho() {
+
+            cartSidebar.classList.add("active");
+
+            cartOverlay.classList.add("active");
+
+            document.body.style.overflow =
+                "hidden";
+
+        }
+
+
+        /* =====================================================
+           FECHAR
+        ===================================================== */
+
+        document
+            .getElementById("closeCart")
+            .addEventListener(
+                "click",
+                fecharCarrinho
+            );
+
+
+        cartOverlay.addEventListener(
+            "click",
+            fecharCarrinho
+        );
+
+
+        function fecharCarrinho() {
+
+            cartSidebar.classList.remove("active");
+
+            cartOverlay.classList.remove("active");
+
+            document.body.style.overflow = "";
+
+        }
+
+
+        /* =====================================================
+           ABRIR CHECKOUT
+        ===================================================== */
+
+        checkoutButton.addEventListener(
+            "click",
+            function () {
+
+                const carrinho =
+                    obterCarrinho();
+
+
+                if (!carrinho.length) {
+
+                    return;
+
+                }
+
+
+                cartProductsContainer.classList.add(
+                    "hidden"
+                );
+
+
+                checkoutContainer.classList.add(
+                    "active"
+                );
+
+
+                cartTitle.textContent =
+                    "Finalizar Pedido";
+
+
+                checkoutButton.style.display =
+                    "none";
+
+
+                finalizarButton.style.display =
+                    "block";
+
+
+                checkoutContainer.scrollTop = 0;
+
+
+                atualizarPagamento();
+
+            }
+        );
+
+
+        /* =====================================================
+           VOLTAR AO CARRINHO
+        ===================================================== */
+
+        document
+            .getElementById("backToCart")
+            .addEventListener(
+                "click",
+                voltarCarrinho
+            );
+
+
+        function voltarCarrinho() {
+
+            checkoutContainer.classList.remove(
+                "active"
+            );
+
+
+            cartProductsContainer.classList.remove(
+                "hidden"
+            );
+
+
+            cartTitle.textContent =
+                "Meu Carrinho";
+
+
+            checkoutButton.style.display =
+                "block";
+
+
+            finalizarButton.style.display =
+                "none";
+
+
+            checkoutContainer.scrollTop = 0;
+
+
+            renderizarCarrinho();
+
+        }
+
+
+        /* =====================================================
+           MÁSCARA CPF
+        ===================================================== */
+
+        const campoCPF =
+            document.getElementById("cpf");
+
+
+        campoCPF.addEventListener(
+            "input",
+            function () {
+
+                let valor =
+                    this.value.replace(/\D/g, "");
+
+
+                valor =
+                    valor.substring(0, 11);
+
+
+                if (valor.length > 9) {
+
+                    valor =
+                        valor.replace(
+                            /(\d{3})(\d{3})(\d{3})(\d{1,2})/,
+                            "$1.$2.$3-$4"
+                        );
+
+                } else if (valor.length > 6) {
+
+                    valor =
+                        valor.replace(
+                            /(\d{3})(\d{3})(\d{1,3})/,
+                            "$1.$2.$3"
+                        );
+
+                } else if (valor.length > 3) {
+
+                    valor =
+                        valor.replace(
+                            /(\d{3})(\d{1,3})/,
+                            "$1.$2"
+                        );
+
+                }
+
+
+                this.value = valor;
+
+            }
+        );
+
+
+        /* =====================================================
+           MÁSCARA CEP
+        ===================================================== */
+
+        const campoCEP =
+            document.getElementById("cep");
+
+
+        campoCEP.addEventListener(
+            "input",
+            function () {
+
+                let valor =
+                    this.value.replace(/\D/g, "");
+
+
+                valor =
+                    valor.substring(0, 8);
+
+
+                if (valor.length > 5) {
+
+                    valor =
+                        valor.replace(
+                            /(\d{5})(\d{1,3})/,
+                            "$1-$2"
+                        );
+
+                }
+
+
+                this.value = valor;
+
+            }
+        );
+
+
+        /* =====================================================
+           VALIDAR CPF
+        ===================================================== */
+
+        function validarCPF(cpf) {
+
+            cpf =
+                cpf.replace(/\D/g, "");
+
+
+            if (cpf.length !== 11) {
+
+                return false;
+
+            }
+
+
+            if (/^(\d)\1{10}$/.test(cpf)) {
+
+                return false;
+
+            }
+
+
+            let soma = 0;
+
+
+            for (
+                let i = 0;
+                i < 9;
+                i++
+            ) {
+
+                soma +=
+                    parseInt(cpf.charAt(i)) *
+                    (10 - i);
+
+            }
+
+
+            let resto =
+                (soma * 10) % 11;
+
+
+            if (resto === 10) {
+
+                resto = 0;
+
+            }
+
+
+            if (
+                resto !==
+                parseInt(cpf.charAt(9))
+            ) {
+
+                return false;
+
+            }
+
+
+            soma = 0;
+
+
+            for (
+                let i = 0;
+                i < 10;
+                i++
+            ) {
+
+                soma +=
+                    parseInt(cpf.charAt(i)) *
+                    (11 - i);
+
+            }
+
+
+            resto =
+                (soma * 10) % 11;
+
+
+            if (resto === 10) {
+
+                resto = 0;
+
+            }
+
+
+            return (
+                resto ===
+                parseInt(cpf.charAt(10))
+            );
+
+        }
+
+
+        function validarCEP(cep) {
+
+            cep =
+                cep.replace(/\D/g, "");
+
+
+            return /^\d{8}$/.test(cep);
+
+        }
+
+
+        /* =====================================================
+           PAGAMENTO
+        ===================================================== */
+
+        const pixDetails =
+            document.getElementById(
+                "pixDetails"
+            );
+
+
+        const cardDetails =
+            document.getElementById(
+                "cardDetails"
+            );
+
+
+        const boletoDetails =
+            document.getElementById(
+                "boletoDetails"
+            );
+
+
+        document
+            .querySelectorAll(
+                'input[name="pagamento"]'
+            )
+            .forEach(radio => {
+
+                radio.addEventListener(
+                    "change",
+                    atualizarPagamento
+                );
+
+            });
+
+
+        function atualizarPagamento() {
+
+            const selecionado =
+                document.querySelector(
+                    'input[name="pagamento"]:checked'
+                );
+
+
+            if (!selecionado) {
+
+                return;
+
+            }
+
+
+            pixDetails.classList.remove(
+                "active"
+            );
+
+
+            cardDetails.classList.remove(
+                "active"
+            );
+
+
+            boletoDetails.classList.remove(
+                "active"
+            );
+
+
+            if (
+                selecionado.value ===
+                "Pix"
+            ) {
+
+                pixDetails.classList.add(
+                    "active"
+                );
+
+                gerarPix();
+
+            }
+
+
+            if (
+                selecionado.value ===
+                "Cartão de crédito"
+            ) {
+
+                cardDetails.classList.add(
+                    "active"
+                );
+
+            }
+
+
+            if (
+                selecionado.value ===
+                "Boleto"
+            ) {
+
+                boletoDetails.classList.add(
+                    "active"
+                );
+
+                gerarBoleto();
+
+            }
+
+        }
+
+
+        /* =====================================================
+           GERAR CÓDIGO PIX FICTÍCIO
+        ===================================================== */
+
+        function gerarPix() {
+
+            const valores =
+                calcularValores();
+
+
+            const codigoPix =
+                "00020126580014BR.GOV.BCB.PIX" +
+                "0136hitboxe.demonstracao." +
+                Date.now() +
+                "5204000053039865406" +
+                valores.total.toFixed(2).replace(".", "") +
+                "5802BR5910HITBOXE6009SAO PAULO62070503***6304DEMO";
+
+
+            document.getElementById(
+                "pixCode"
+            ).textContent =
+                codigoPix;
+
+
+            desenharQRCodeFake(
+                codigoPix
+            );
+
+        }
+
+
+        /* =====================================================
+           QR CODE VISUAL
+           
+           QR fictício desenhado em canvas.
+           Não representa um pagamento real.
+        ===================================================== */
+
+        function desenharQRCodeFake(texto) {
+
+            const canvas =
+                document.getElementById(
+                    "pixQRCode"
+                );
+
+
+            const ctx =
+                canvas.getContext("2d");
+
+
+            const tamanho = 200;
+
+
+            ctx.clearRect(
+                0,
+                0,
+                tamanho,
+                tamanho
+            );
+
+
+            ctx.fillStyle =
+                "#ffffff";
+
+
+            ctx.fillRect(
+                0,
+                0,
+                tamanho,
+                tamanho
+            );
+
+
+            const tamanhoGrade = 25;
+
+
+            const celula =
+                tamanho / tamanhoGrade;
+
+
+            /*
+             * Gera matriz determinística
+             * baseada no texto.
+             */
+
+            let hash = 0;
+
+
+            for (
+                let i = 0;
+                i < texto.length;
+                i++
+            ) {
+
+                hash =
+                    (
+                        (
+                            hash << 5
+                        ) -
+                        hash +
+                        texto.charCodeAt(i)
+                    ) |
+                    0;
+
+            }
+
+
+            function pseudo() {
+
+                hash =
+                    (
+                        hash * 1664525 +
+                        1013904223
+                    ) >>> 0;
+
+                return hash / 4294967296;
+
+            }
+
+
+            const matriz = [];
+
+
+            for (
+                let y = 0;
+                y < tamanhoGrade;
+                y++
+            ) {
+
+                matriz[y] = [];
+
+
+                for (
+                    let x = 0;
+                    x < tamanhoGrade;
+                    x++
+                ) {
+
+                    matriz[y][x] =
+                        pseudo() > 0.52;
+
+                }
+
+            }
+
+
+            /*
+             * Marcadores dos três cantos.
+             */
+
+            function marcador(
+                x,
+                y
+            ) {
+
+                for (
+                    let yy = 0;
+                    yy < 7;
+                    yy++
+                ) {
+
+                    for (
+                        let xx = 0;
+                        xx < 7;
+                        xx++
+                    ) {
+
+                        const borda =
+                            xx === 0 ||
+                            yy === 0 ||
+                            xx === 6 ||
+                            yy === 6;
+
+
+                        const centro =
+                            xx >= 2 &&
+                            xx <= 4 &&
+                            yy >= 2 &&
+                            yy <= 4;
+
+
+                        matriz[y + yy][x + xx] =
+                            borda || centro;
+
+                    }
+
+                }
+
+            }
+
+
+            marcador(1, 1);
+
+            marcador(17, 1);
+
+            marcador(1, 17);
+
+
+            ctx.fillStyle =
+                "#000000";
+
+
+            for (
+                let y = 0;
+                y < tamanhoGrade;
+                y++
+            ) {
+
+                for (
+                    let x = 0;
+                    x < tamanhoGrade;
+                    x++
+                ) {
+
+                    if (matriz[y][x]) {
+
+                        ctx.fillRect(
+
+                            Math.floor(
+                                x * celula
+                            ),
+
+                            Math.floor(
+                                y * celula
+                            ),
+
+                            Math.ceil(
+                                celula
+                            ),
+
+                            Math.ceil(
+                                celula
+                            )
+
+                        );
+
+                    }
+
+                }
+
+            }
+
+        }
+
+
+        /* =====================================================
+           COPIAR PIX
+        ===================================================== */
+
+        document
+            .getElementById("copyPix")
+            .addEventListener(
+                "click",
+                function () {
+
+                    const codigo =
+                        document.getElementById(
+                            "pixCode"
+                        ).textContent;
+
+
+                    copiarTexto(
+                        codigo,
+                        this,
+                        "Código Pix copiado!"
+                    );
+
+                }
+            );
+
+
+        /* =====================================================
+           GERAR BOLETO
+        ===================================================== */
+
+        function gerarBoleto() {
+
+            const valores =
+                calcularValores();
+
+
+            const valor =
+                valores.total
+                    .toFixed(2)
+                    .replace(".", "");
+
+
+            const codigo =
+                "23790.12345 67890.123456 " +
+                "78901.234567 8 " +
+                valor +
+                "00000000000000";
+
+
+            document.getElementById(
+                "boletoNumber"
+            ).textContent =
+                codigo;
+
+        }
+
+
+        document
+            .getElementById("copyBoleto")
+            .addEventListener(
+                "click",
+                function () {
+
+                    const codigo =
+                        document.getElementById(
+                            "boletoNumber"
+                        ).textContent;
+
+
+                    copiarTexto(
+                        codigo,
+                        this,
+                        "Código do boleto copiado!"
+                    );
+
+                }
+            );
+
+
+        /* =====================================================
+           COPIAR TEXTO
+        ===================================================== */
+
+        function copiarTexto(
+            texto,
+            botao,
+            mensagem
+        ) {
+
+            if (
+                navigator.clipboard &&
+                navigator.clipboard.writeText
+            ) {
+
+                navigator.clipboard
+                    .writeText(texto)
+                    .then(() => {
+
+                        const original =
+                            botao.innerHTML;
+
+
+                        botao.innerHTML =
+                            '<i class="fa fa-check"></i> ' +
+                            mensagem;
+
+
+                        setTimeout(() => {
+
+                            botao.innerHTML =
+                                original;
+
+                        }, 1500);
+
+                    });
+
+            } else {
+
+                const area =
+                    document.createElement(
+                        "textarea"
+                    );
+
+
+                area.value = texto;
+
+                document.body.appendChild(
+                    area
+                );
+
+                area.select();
+
+                document.execCommand(
+                    "copy"
+                );
+
+                area.remove();
+
+
+                alert(mensagem);
+
+            }
+
+        }
+
+
+        /* =====================================================
+           CARTÃO
+        ===================================================== */
+
+        const numeroCartao =
+            document.getElementById(
+                "numeroCartao"
+            );
+
+
+        const nomeCartao =
+            document.getElementById(
+                "nomeCartao"
+            );
+
+
+        const validade =
+            document.getElementById(
+                "validade"
+            );
+
+
+        const cvv =
+            document.getElementById(
+                "cvv"
+            );
+
+
+        numeroCartao.addEventListener(
+            "input",
+            function () {
+
+                let valor =
+                    this.value
+                        .replace(/\D/g, "")
+                        .substring(0, 16);
+
+
+                valor =
+                    valor.replace(
+                        /(\d{4})(?=\d)/g,
+                        "$1 "
+                    );
+
+
+                this.value =
+                    valor;
+
+
+                document.getElementById(
+                    "cardNumberPreview"
+                ).textContent =
+                    valor ||
+                    "•••• •••• •••• ••••";
+
+
+                detectarBandeira(
+                    this.value
+                );
+
+            }
+        );
+
+
+        nomeCartao.addEventListener(
+            "input",
+            function () {
+
+                document.getElementById(
+                    "cardNamePreview"
+                ).textContent =
+                    this.value
+                        .toUpperCase() ||
+                    "NOME DO TITULAR";
+
+            }
+        );
+
+
+        validade.addEventListener(
+            "input",
+            function () {
+
+                let valor =
+                    this.value
+                        .replace(/\D/g, "")
+                        .substring(0, 4);
+
+
+                if (valor.length >= 3) {
+
+                    valor =
+                        valor.substring(0, 2) +
+                        "/" +
+                        valor.substring(2);
+
+                }
+
+
+                this.value =
+                    valor;
+
+            }
+        );
+
+
+        cvv.addEventListener(
+            "input",
+            function () {
+
+                this.value =
+                    this.value
+                        .replace(/\D/g, "")
+                        .substring(0, 4);
+
+            }
+        );
+
+
+        function detectarBandeira(numero) {
+
+            const n =
+                numero.replace(/\D/g, "");
+
+
+            let bandeira =
+                "CARD";
+
+
+            if (/^4/.test(n)) {
+
+                bandeira =
+                    "VISA";
+
+            } else if (
+                /^(5[1-5]|2[2-7])/.test(n)
+            ) {
+
+                bandeira =
+                    "MASTERCARD";
+
+            } else if (
+                /^3[47]/.test(n)
+            ) {
+
+                bandeira =
+                    "AMEX";
+
+            } else if (
+                /^6/.test(n)
+            ) {
+
+                bandeira =
+                    "ELO";
+
+            }
+
+
+            document.getElementById(
+                "cardBrand"
+            ).textContent =
+                bandeira;
+
+        }
+
+
+        /* =====================================================
+           VALIDAÇÃO DE CAMPOS
+        ===================================================== */
+
+        function validarCampo(
+            elemento,
+            condicao
+        ) {
+
+            if (condicao) {
+
+                elemento.classList.remove(
+                    "erro"
+                );
+
+                elemento.classList.add(
+                    "campo-valido"
+                );
+
+                return true;
+
+            }
+
+
+            elemento.classList.add(
+                "erro"
+            );
+
+            elemento.classList.remove(
+                "campo-valido"
+            );
+
+            return false;
+
+        }
+
+
+        /* =====================================================
+           FINALIZAR PEDIDO
+        ===================================================== */
+
+        finalizarButton.addEventListener(
+            "click",
+            function () {
+
+                const camposObrigatorios = [
+
+                    "nome",
+
+                    "cpf",
+
+                    "cep",
+
+                    "rua",
+
+                    "numero",
+
+                    "cidade",
+
+                    "estado"
+
+                ];
+
+
+                let tudoValido = true;
+
+
+                for (
+                    const campoId
+                    of camposObrigatorios
+                ) {
+
+                    const campo =
+                        document.getElementById(
+                            campoId
+                        );
+
+
+                    const preenchido =
+                        campo.value.trim()
+                            .length > 0;
+
+
+                    if (
+                        !validarCampo(
+                            campo,
+                            preenchido
+                        )
+                    ) {
+
+                        tudoValido = false;
+
+                    }
+
+                }
+
+
+                const cpfValido =
+                    validarCPF(
+                        campoCPF.value
+                    );
+
+
+                if (
+                    !validarCampo(
+                        campoCPF,
+                        cpfValido
+                    )
+                ) {
+
+                    tudoValido = false;
+
+                }
+
+
+                const cepValido =
+                    validarCEP(
+                        campoCEP.value
+                    );
+
+
+                if (
+                    !validarCampo(
+                        campoCEP,
+                        cepValido
+                    )
+                ) {
+
+                    tudoValido = false;
+
+                }
+
+
+                const pagamento =
+                    document.querySelector(
+                        'input[name="pagamento"]:checked'
+                    );
+
+
+                if (!pagamento) {
+
+                    alert(
+                        "Selecione uma forma de pagamento."
+                    );
+
+                    return;
+
+                }
+
+
+                /* =============================================
+                   VALIDAR CARTÃO
+                ============================================= */
+
+                if (
+                    pagamento.value ===
+                    "Cartão de crédito"
+                ) {
+
+                    const numero =
+                        numeroCartao.value
+                            .replace(/\D/g, "");
+
+
+                    if (numero.length !== 16) {
+
+                        alert(
+                            "Digite um número de cartão válido com 16 dígitos."
+                        );
+
+                        numeroCartao.focus();
+
+                        return;
+
+                    }
+
+
+                    if (
+                        nomeCartao.value.trim()
+                            .length < 3
+                    ) {
+
+                        alert(
+                            "Digite o nome presente no cartão."
+                        );
+
+                        nomeCartao.focus();
+
+                        return;
+
+                    }
+
+
+                    if (
+                        !/^\d{2}\/\d{2}$/.test(
+                            validade.value
+                        )
+                    ) {
+
+                        alert(
+                            "Digite a validade no formato MM/AA."
+                        );
+
+                        validade.focus();
+
+                        return;
+
+                    }
+
+
+                    if (
+                        !/^\d{3,4}$/.test(
+                            cvv.value
+                        )
+                    ) {
+
+                        alert(
+                            "Digite um CVV válido."
+                        );
+
+                        cvv.focus();
+
+                        return;
+
+                    }
+
+                }
+
+
+                if (!tudoValido) {
+
+                    alert(
+                        "Verifique os campos destacados em vermelho."
+                    );
+
+                    return;
+
+                }
+
+
+                const carrinho =
+                    obterCarrinho();
+
+
+                if (!carrinho.length) {
+
+                    alert(
+                        "Seu carrinho está vazio."
+                    );
+
+                    voltarCarrinho();
+
+                    return;
+
+                }
+
+
+                const valores =
+                    calcularValores();
+
+
+                /* =============================================
+                   NÚMERO DO PEDIDO
+                ============================================= */
+
+                const numeroPedido =
+                    "HB-" +
+                    Math.floor(
+                        100000 +
+                        Math.random() *
+                        900000
+                    );
+
+
+                /* =============================================
+                   MOSTRAR CONFIRMAÇÃO
+                ============================================= */
+
+                document.getElementById(
+                    "orderNumber"
+                ).textContent =
+                    "Pedido #" +
+                    numeroPedido;
+
+
+                document.getElementById(
+                    "orderPayment"
+                ).innerHTML =
+                    "Forma de pagamento: <strong>" +
+                    pagamento.value +
+                    "</strong>";
+
+
+                document.getElementById(
+                    "orderTotal"
+                ).innerHTML =
+                    "Total: <strong style='color:#ff0000;'>" +
+                    formatarPreco(
+                        valores.total
+                    ) +
+                    "</strong>";
+
+
+                /*
+                 * Esconde checkout.
+                 */
+
+                checkoutContainer
+                    .querySelectorAll(
+                        ".checkout-title, .checkout-label, .checkout-input, .payment-option, .payment-details, .back-to-cart"
+                    )
+                    .forEach(elemento => {
+
+                        elemento.style.display =
+                            "none";
+
+                    });
+
+
+                document.getElementById(
+                    "orderSuccess"
+                ).classList.add(
+                    "active"
+                );
+
+
+                /*
+                 * Não precisa mais do botão
+                 * de confirmação.
+                 */
+
+                finalizarButton.style.display =
+                    "none";
+
+
+                /*
+                 * Limpa carrinho.
+                 */
+
+                localStorage.removeItem(
+                    CHAVE_CARRINHO
+                );
+
+
+                atualizarContador();
+
+            }
+        );
+
+
+        /* =====================================================
+           INICIALIZAÇÃO
+        ===================================================== */
+
+        atualizarContador();
+
+        renderizarCarrinho();
+
+        atualizarPagamento();
+
+    </script>
+
 </body>
+
 </html>

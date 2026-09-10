@@ -27,97 +27,6 @@
         /* Estilos Globais da HitBoxe (Padrão Dark/Red) */
         body { background-color: #0a0a0a; color: #fff; }
 
-        /* --- CABEÇALHO: logo em tamanho médio + efeito ao rolar --- */
-        .header-section {
-            padding: 10px 0;
-            background-color: #0a0a0a;
-            border-bottom: 1px solid rgba(255,255,255,0.06);
-            position: sticky;
-            top: 0;
-            z-index: 999;
-            overflow: visible;
-            transition: padding .35s ease, background-color .35s ease, box-shadow .35s ease;
-        }
-        .header-section.is-scrolled {
-            padding: 6px 0;
-            background-color: rgba(6,6,6,0.92);
-            backdrop-filter: blur(8px);
-            box-shadow: 0 6px 24px rgba(0,0,0,0.45);
-        }
-        .header-section .container-fluid { padding-left: 40px; padding-right: 40px; }
-        .header-section .row.align-items-center { align-items: center; }
-        .header-section .logo {
-            display: flex;
-            align-items: center;
-        }
-        .header-section .logo img {
-            height: 80px;
-            width: auto;
-            max-width: 220px;
-            object-fit: contain;
-            transition: height .35s ease;
-        }
-        .header-section.is-scrolled .logo img {
-            height: 60px;
-        }
-
-        /* Menu com sublinhado animado */
-        .header-section .nav-menu { display: flex; justify-content: center; }
-        .header-section .nav-menu ul { display: flex; align-items: center; justify-content: center; margin: 0; }
-        .header-section .nav-menu ul li { margin: 0 22px; }
-        .header-section .nav-menu ul li a {
-            position: relative;
-            font-family: 'Oswald', sans-serif;
-            font-size: 18px;
-            font-weight: 600;
-            letter-spacing: .5px;
-            color: #e6e6e6;
-            padding-bottom: 8px;
-            transition: color .3s ease;
-        }
-        .header-section .nav-menu ul li a::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 0;
-            height: 2px;
-            background-color: #ff0000;
-            transition: width .3s ease;
-        }
-        .header-section .nav-menu ul li a:hover,
-        .header-section .nav-menu ul li.active a {
-            color: #ff0000;
-        }
-        .header-section .nav-menu ul li a:hover::after,
-        .header-section .nav-menu ul li.active a::after {
-            width: 100%;
-        }
-
-        /* Ícones do topo (busca e redes sociais) */
-        .header-section .top-option { display: flex; align-items: center; justify-content: flex-end; gap: 18px; }
-        .header-section .to-search { color: #e6e6e6; cursor: pointer; transition: color .3s ease, transform .3s ease; }
-        .header-section .to-search:hover { color: #ff0000; transform: scale(1.1); }
-        .header-section .to-social { display: flex; gap: 10px; }
-        .header-section .to-social a {
-            width: 34px;
-            height: 34px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid rgba(255,255,255,0.15);
-            border-radius: 50%;
-            color: #e6e6e6;
-            font-size: 14px;
-            transition: all .3s ease;
-        }
-        .header-section .to-social a:hover {
-            background-color: #ff0000;
-            border-color: #ff0000;
-            color: #fff;
-            transform: translateY(-3px);
-        }
-
         /* --- Seção Sobre Nós: intro curta --- */
         .about-text-center {
             text-align: center;
@@ -490,9 +399,9 @@
     <!-- Offcanvas Menu Section End -->
 
     <!-- Header Section Begin -->
-    <header class="header-section" id="siteHeader">
+    <header class="header-section">
         <div class="container-fluid">
-            <div class="row align-items-center">
+            <div class="row">
                 <div class="col-lg-3">
                     <div class="logo">
                         <a href="./index.html">
@@ -646,7 +555,7 @@
     <!-- SESSÃO: TOUR DA ACADEMIA EM VÍDEO -->
     <section class="gym-tour-section">
         <video class="tour-video-bg" autoplay loop muted playsinline>
-            <source src="video/VideoTour.mp4" type="video/mp4">
+            <source src="video/VideoSobre.mp4" type="video/mp4">
         </video>
         <div class="gym-tour-overlay"></div>
         <div class="tour-content container">
@@ -822,21 +731,11 @@
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/main.js"></script>
 
-    <!-- Script: header compacto ao rolar + animações de entrada -->
+    <!-- Script: animações de entrada -->
     <script>
         (function () {
-            var header = document.getElementById('siteHeader');
-            function onScroll() {
-                if (window.scrollY > 40) {
-                    header.classList.add('is-scrolled');
-                } else {
-                    header.classList.remove('is-scrolled');
-                }
-            }
-            window.addEventListener('scroll', onScroll, { passive: true });
-            onScroll();
-
             var revealEls = document.querySelectorAll('.reveal-left, .reveal-right, .reveal-up');
+
             if ('IntersectionObserver' in window) {
                 var observer = new IntersectionObserver(function (entries) {
                     entries.forEach(function (entry) {
@@ -846,9 +745,14 @@
                         }
                     });
                 }, { threshold: 0.2 });
-                revealEls.forEach(function (el) { observer.observe(el); });
+
+                revealEls.forEach(function (el) {
+                    observer.observe(el);
+                });
             } else {
-                revealEls.forEach(function (el) { el.classList.add('in-view'); });
+                revealEls.forEach(function (el) {
+                    el.classList.add('in-view');
+                });
             }
         })();
     </script>
