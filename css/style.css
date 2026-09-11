@@ -799,7 +799,7 @@ ol {
 -----------------------*/
 
 .banner-section {
-	height: 550px;
+	height: 800px;
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
@@ -3298,6 +3298,8 @@ ol {
 		width: 750px;
 	}
 	.hs-slider .hs-item {
+		aspect-ratio: auto; /* neutraliza o aspect-ratio:16/9 herdado da regra genérica .hs-item */
+		overflow: visible; /* impede que o conteúdo (botão) seja cortado */
 		height: auto;
 		padding: 250px 0 150px;
 	}

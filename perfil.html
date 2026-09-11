@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Hitbox | Meu Perfil</title>
+    <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Oswald:300,400,500,600,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/perfil.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <main class="profile-page">
+        <div class="profile-container">
+            <header class="profile-top">
+                <div class="profile-identity">
+                    <div class="profile-photo-wrap"><img id="profilePhoto" class="profile-photo" alt="Foto do perfil">
+                        <div id="profileFallback" class="profile-photo-fallback"><i class="fa fa-user"></i></div><label
+                            class="photo-edit" for="photoInput"><i class="fa fa-camera"></i></label><input
+                            id="photoInput" type="file" accept="image/*">
+                    </div>
+                    <div><span class="profile-kicker">Área exclusiva</span>
+                        <h1 id="profileName"></h1>
+                        <p id="profileRole"></p>
+                    </div>
+                </div>
+                <button class="logout" id="logout"><i class="fa fa-sign-out"></i> SAIR</button>
+            </header>
+            <section id="studentDashboard" class="dashboard">
+                <div class="membership-hero">
+                    <div><span>Seu plano</span>
+                        <h2 id="studentPlan">Plano</h2>
+                        <p>Seu acesso à Hitbox está sendo acompanhado por este painel.</p>
+                    </div>
+                    <div class="membership-count"><small>Plano válido por</small><strong
+                            id="daysLeft">0</strong><span>DIAS RESTANTES</span></div>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat"><i class="fa fa-calendar"></i><span>Próximo treino</span><strong
+                            id="studentNext">--</strong></div>
+                    <div class="stat"><i class="fa fa-clock-o"></i><span>Horário</span><strong>18:00</strong></div>
+                    <div class="stat"><i class="fa fa-bolt"></i><span>Modalidade</span><strong
+                            id="studentModalidade">Boxe</strong></div>
+                    <div class="stat"><i class="fa fa-check-circle"></i><span>Status</span><strong class="green"
+                            id="studentStatus">ATIVO</strong></div>
+                </div>
+                <div class="dashboard-grid">
+                    <section class="dashboard-card">
+                        <div class="card-head"><i class="fa fa-user"></i>
+                            <h2>Meus dados</h2>
+                        </div>
+                        <div class="info-grid">
+                            <div><span>Nome completo</span><strong id="studentFullName"></strong></div>
+                            <div><span>E-mail</span><strong id="studentEmail"></strong></div>
+                            <div><span>Telefone</span><strong id="studentPhone"></strong></div>
+                            <div><span>CPF</span><strong id="studentCpf"></strong></div>
+                            <div><span>Plano</span><strong id="studentPlanData"></strong></div>
+                            <div><span>Pagamento</span><strong id="studentPayment"></strong></div>
+                        </div>
+                    </section>
+                    <section class="dashboard-card">
+                        <div class="card-head"><i class="fa fa-bullseye"></i>
+                            <h2>Minha meta</h2>
+                        </div>
+                        <div class="goal-box"><label for="studentGoal">Objetivo</label><input id="studentGoal"
+                                type="text"><label for="studentProgress">Progresso</label>
+                            <div class="progress-line">
+                                <div id="studentProgressBar"></div>
+                            </div><input id="studentProgress" type="range" min="0" max="100" value="35"><strong
+                                id="studentProgressValue">35%</strong><button id="saveGoal"
+                                class="red-button">SALVAR</button>
+                        </div>
+                    </section>
+                </div>
+                <section class="dashboard-card full">
+                    <div class="card-head"><i class="fa fa-calendar"></i>
+                        <h2>Meu calendário de treinos</h2><span class="calendar-month">SEMANA ATUAL</span>
+                    </div>
+                    <div class="calendar-scroll">
+                        <table class="calendar">
+                            <thead>
+                                <tr>
+                                    <th>HORÁRIO</th>
+                                    <th>SEG</th>
+                                    <th>TER</th>
+                                    <th>QUA</th>
+                                    <th>QUI</th>
+                                    <th>SEX</th>
+                                    <th>SÁB</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>07:00</td>
+                                    <td></td>
+                                    <td class="training">BOXE</td>
+                                    <td></td>
+                                    <td class="training">BOXE</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>18:00</td>
+                                    <td class="training">BOXE</td>
+                                    <td></td>
+                                    <td class="training">BOXE</td>
+                                    <td></td>
+                                    <td class="training">BOXE</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>19:00</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td class="training">BOXE</td>
+                                    <td></td>
+                                    <td class="training">BOXE</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </section>
+            <section id="adminDashboard" class="dashboard" style="display:none">
+                <div class="admin-hero">
+                    <div><span>Painel administrativo</span>
+                        <h2>Gestão da Hitbox</h2>
+                        <p>Acompanhe alunos, vendas, faturamento e desempenho da academia.</p>
+                    </div>
+                    <div class="admin-badge"><i class="fa fa-shield"></i> ADMIN</div>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat"><i class="fa fa-users"></i><span>Alunos ativos</span><strong
+                            id="adminStudents">0</strong></div>
+                    <div class="stat"><i class="fa fa-shopping-bag"></i><span>Produtos vendidos</span><strong
+                            id="adminProducts">42</strong></div>
+                    <div class="stat"><i class="fa fa-money"></i><span>Faturamento do mês</span><strong
+                            id="adminRevenue">R$ 8.450</strong></div>
+                    <div class="stat"><i class="fa fa-line-chart"></i><span>Desempenho</span><strong
+                            id="adminPerformance">+18%</strong></div>
+                </div>
+                <div class="admin-grid">
+                    <section class="dashboard-card chart-card">
+                        <div class="card-head"><i class="fa fa-bar-chart"></i>
+                            <h2>Desempenho mensal</h2>
+                        </div>
+                        <div class="chart-wrap"><canvas id="performanceChart"></canvas></div>
+                    </section>
+                    <section class="dashboard-card">
+                        <div class="card-head"><i class="fa fa-shopping-cart"></i>
+                            <h2>Resumo de vendas</h2>
+                        </div>
+                        <div class="sales-list">
+                            <div><span>Luvas</span><strong>18 unidades</strong></div>
+                            <div><span>Camisetas</span><strong>13 unidades</strong></div>
+                            <div><span>Bandagens</span><strong>11 unidades</strong></div>
+                            <div><span>Total no mês</span><strong>R$ 3.280</strong></div>
+                        </div>
+                    </section>
+                </div>
+                <div class="dashboard-grid">
+                    <section class="dashboard-card">
+                        <div class="card-head"><i class="fa fa-calendar"></i>
+                            <h2>Treinos de hoje</h2>
+                        </div>
+                        <div class="training-list">
+                            <div><b>17:00</b><span>Boxe Iniciante</span><em>12 alunos</em></div>
+                            <div><b>18:00</b><span>Boxe Intermediário</span><em>15 alunos</em></div>
+                            <div><b>19:00</b><span>Boxe Avançado</span><em>9 alunos</em></div>
+                        </div>
+                    </section>
+                    <section class="dashboard-card">
+                        <div class="card-head"><i class="fa fa-users"></i>
+                            <h2>Alunos cadastrados</h2>
+                        </div>
+                        <div id="adminStudentList" class="student-list"></div>
+                    </section>
+                </div>
+                <section class="dashboard-card full">
+                    <div class="card-head"><i class="fa fa-calendar"></i>
+                        <h2>Agenda semanal</h2><span class="calendar-month">AGENDA</span>
+                    </div>
+                    <div class="calendar-scroll">
+                        <table class="calendar">
+                            <thead>
+                                <tr>
+                                    <th>HORÁRIO</th>
+                                    <th>SEG</th>
+                                    <th>TER</th>
+                                    <th>QUA</th>
+                                    <th>QUI</th>
+                                    <th>SEX</th>
+                                    <th>SÁB</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>17:00</td>
+                                    <td class="training">INICIANTE</td>
+                                    <td></td>
+                                    <td class="training">INICIANTE</td>
+                                    <td></td>
+                                    <td class="training">INICIANTE</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>18:00</td>
+                                    <td></td>
+                                    <td class="training">INTERMEDIÁRIO</td>
+                                    <td></td>
+                                    <td class="training">INTERMEDIÁRIO</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>19:00</td>
+                                    <td class="training">AVANÇADO</td>
+                                    <td></td>
+                                    <td class="training">AVANÇADO</td>
+                                    <td></td>
+                                    <td class="training">AVANÇADO</td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </section>
+        </div>
+    </main>
+    <script src="js/perfil.js"></script>
+</body>
+
+</html>

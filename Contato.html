@@ -1,284 +1,1123 @@
 <!DOCTYPE html>
-<html lang="zxx">
+<html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="description" content="Gym Template">
-    <meta name="keywords" content="Gym, unica, creative, html">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Gym | Template</title>
 
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Oswald:300,400,500,600,700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
 
-    <!-- Css Styles -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="css/flaticon.css" type="text/css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="css/barfiller.css" type="text/css">
-    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
-    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="css/style.css" type="text/css">
+<meta name="description" content="Hitbox">
+
+<meta name="keywords" content="Hitbox, boxe, academia">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<title>Hitbox | Contato</title>
+
+<link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css?family=Oswald:300,400,500,600,700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/bootstrap.min.css">
+
+<link rel="stylesheet" href="css/font-awesome.min.css">
+
+<link rel="stylesheet" href="css/flaticon.css">
+
+<link rel="stylesheet" href="css/owl.carousel.min.css">
+
+<link rel="stylesheet" href="css/barfiller.css">
+
+<link rel="stylesheet" href="css/magnific-popup.css">
+
+<link rel="stylesheet" href="css/slicknav.min.css">
+
+<link rel="stylesheet" href="css/style.css">
+
+<link rel="stylesheet" href="css/acesso.css">
+<style>
+.password-field { position: relative; width: 100%; }
+.password-field input { padding-right: 48px !important; }
+.password-toggle { position: absolute; top: 50%; right: 0; transform: translateY(-50%); width: 45px; height: 45px; border: 0; background: transparent; color: #777; cursor: pointer; font-size: 15px; }
+.password-toggle:hover { color: #e30613; }
+#paymentDetails { display: none; grid-column: 1 / -1; margin: 0 0 20px; }
+.payment-box { background: #181818; border: 1px solid #303030; padding: 20px; }
+.payment-title { color: #e30613; font-size: 12px; font-weight: 800; letter-spacing: .6px; margin-bottom: 18px; }
+.payment-title i { margin-right: 7px; }
+.pix-content { display: flex; align-items: center; gap: 25px; }
+.fake-qrcode { width: 145px; height: 145px; background: #fff; padding: 10px; flex-shrink: 0; }
+.qr-pattern { width: 100%; height: 100%; display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; }
+.qr-pattern span { display: block; background: #111; }
+.qr-pattern span:nth-child(2), .qr-pattern span:nth-child(5), .qr-pattern span:nth-child(7) { background: #fff; }
+.payment-info strong { display: block; color: #fff; font-size: 14px; margin-bottom: 7px; }
+.payment-info p { color: #888; font-size: 12px; line-height: 1.6; margin-bottom: 12px; }
+.pix-code { background: #101010; border: 1px solid #333; color: #aaa; padding: 10px; font-size: 10px; word-break: break-all; }
+.boleto-content p { color: #999; font-size: 12px; margin-bottom: 15px; }
+.barcode { height: 70px; display: flex; align-items: stretch; justify-content: center; gap: 3px; background: #fff; padding: 8px; margin-bottom: 12px; }
+.barcode span { display: block; background: #111; width: 3px; }
+.barcode span:nth-child(2n) { width: 1px; }
+.barcode span:nth-child(3n) { width: 5px; }
+.boleto-content strong { display: block; color: #aaa; font-size: 10px; word-break: break-all; }
+.card-payment-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.payment-input.full { grid-column: 1 / -1; }
+.payment-input label { display: block; color: #fff; font-size: 12px; font-weight: 600; margin-bottom: 7px; }
+.payment-input input { width: 100%; height: 43px; padding: 0 12px; background: #101010; border: 1px solid #333; color: #fff; outline: none; font-size: 12px; }
+.payment-input input:focus { border-color: #e30613; }
+.auth-success { text-align: center; padding: 20px 5px 5px; }
+.auth-success-logo { margin-bottom: 25px; }
+.auth-success-logo img { width: 155px; max-width: 70%; }
+.auth-success-icon { width: 76px; height: 76px; margin: 0 auto 22px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: #28a745; color: #fff; font-size: 38px; }
+.auth-success h2 { color: #fff; font-size: 24px; line-height: 1.3; margin: 0 0 10px; }
+.auth-success p { color: #999; font-size: 14px; margin: 0 0 25px; }
+@media (max-width: 600px) { .pix-content { flex-direction: column; align-items: flex-start; } .card-payment-grid { grid-template-columns: 1fr; } .payment-input.full { grid-column: auto; } }
+</style>
+
+
 </head>
 
 <body>
-    <!-- Page Preloder -->
-    <div id="preloder">
-        <div class="loader"></div>
+
+<div id="preloder">
+
+    <div class="loader"></div>
+
+</div>
+
+<div class="offcanvas-menu-overlay"></div>
+
+<div class="offcanvas-menu-wrapper">
+
+    <div class="canvas-close">
+        <i class="fa fa-close"></i>
     </div>
 
-    <!-- Offcanvas Menu Section Begin -->
-    <div class="offcanvas-menu-overlay"></div>
-    <div class="offcanvas-menu-wrapper">
-        <div class="canvas-close">
-            <i class="fa fa-close"></i>
-        </div>
-        <div class="canvas-search search-switch">
-            <i class="fa fa-search"></i>
-        </div>
-        <nav class="canvas-menu mobile-menu">
-          <ul>
-                <li><a href="index.html">Início</a></li>
-                <li><a href="sobre.html">Sobre</a></li>
-                <li><a href="servico.html">Serviços</a></li>
-                <li><a href="Treinadores.html">Nosso Time</a></li>
-                <li><a href="Contato.html">FAQ</a></li>
-                <li><a href="produtos.html">Produtos</a></li>   
-            </ul>
-        </nav>
-        <div id="mobile-menu-wrap"></div>
-        <div class="canvas-social">
-            <a href="#"><i class="fa fa-facebook"></i></a>
-            <a href="#"><i class="fa fa-twitter"></i></a>
-            <a href="#"><i class="fa fa-youtube-play"></i></a>
-            <a href="#"><i class="fa fa-instagram"></i></a>
-        </div>
+    <div class="canvas-search search-switch">
+        <i class="fa fa-search"></i>
     </div>
-    <!-- Offcanvas Menu Section End -->
 
-    <!-- Header Section Begin -->
-    <header class="header-section">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-3">
-                    <div class="logo">
-                        <a href="./index.html">
-                            <img src="img/logo.png" alt="">
+    <nav class="canvas-menu mobile-menu">
+
+        <ul>
+
+            <li>
+                <a href="index.html">Início</a>
+            </li>
+
+            <li>
+                <a href="sobre.html">Sobre</a>
+            </li>
+
+            <li>
+                <a href="Treinos.html">Classes</a>
+            </li>
+
+            <li>
+                <a href="servico.html">Serviços</a>
+            </li>
+
+            <li>
+                <a href="Treinadores.html">Nosso Time</a>
+            </li>
+
+            <li>
+                <a href="Contato.html">FAQ</a>
+            </li>
+
+            <li>
+                <a href="produtos.html">Produtos</a>
+            </li>
+
+        </ul>
+
+    </nav>
+
+    <div id="mobile-menu-wrap"></div>
+
+    <div class="canvas-social">
+
+        <a href="#">
+            <i class="fa fa-facebook"></i>
+        </a>
+
+        <a href="#">
+            <i class="fa fa-twitter"></i>
+        </a>
+
+        <a href="#">
+            <i class="fa fa-youtube-play"></i>
+        </a>
+
+        <a href="#">
+            <i class="fa fa-instagram"></i>
+        </a>
+
+    </div>
+
+</div>
+
+<header class="header-section">
+
+    <div class="container-fluid">
+
+        <div class="row">
+
+            <div class="col-lg-3">
+
+                <div class="logo">
+
+                    <a href="./index.html">
+
+                        <img src="img/logo.png" alt="Hitbox">
+
+                    </a>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-6">
+
+                <nav class="nav-menu">
+
+                    <ul>
+
+                        <li>
+                            <a href="index.html">Início</a>
+                        </li>
+
+                        <li>
+                            <a href="sobre.html">Sobre</a>
+                        </li>
+
+                        <li>
+                            <a href="Treinos.html">Classes</a>
+                        </li>
+
+                        <li>
+                            <a href="servico.html">Serviços</a>
+                        </li>
+
+                        <li>
+                            <a href="Treinadores.html">Nosso Time</a>
+                        </li>
+
+                        <li>
+                            <a href="Contato.html">FAQ</a>
+                        </li>
+
+                        <li>
+                            <a href="produtos.html">Produtos</a>
+                        </li>
+
+                    </ul>
+
+                </nav>
+
+            </div>
+
+            <div class="col-lg-3">
+
+                <div class="top-option">
+
+                    <div class="to-search search-switch">
+
+                        <i class="fa fa-search"></i>
+
+                    </div>
+
+                    <div id="loginArea" class="login-area">
+
+                        <a href="#" id="loginOpen">
+
+                            <i class="fa fa-user"></i>
+
+                            <span>ENTRAR</span>
+
                         </a>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <nav class="nav-menu">
-                      <ul>
-                <li><a href="index.html">Início</a></li>
-                <li><a href="sobre.html">Sobre</a></li>
-                <li><a href="servico.html">Serviços</a></li>
-                <li><a href="Treinadores.html">Nosso Time</a></li>
-                <li><a href="Contato.html">FAQ</a></li>
-                <li><a href="produtos.html">Produtos</a></li>   
-            </ul>
-                    </nav>
-                </div>
-                <div class="col-lg-3">
-                    <div class="top-option">
-                        <div class="to-search search-switch">
-                            <i class="fa fa-search"></i>
-                        </div>
-                        <div class="to-social">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-youtube-play"></i></a>
-                            <a href="#"><i class="fa fa-instagram"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="canvas-open">
-                <i class="fa fa-bars"></i>
-            </div>
-        </div>
-    </header>
-    <!-- Header End -->
 
-    <!-- Breadcrumb Section Begin -->
-    <section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb-bg.jpg">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <div class="breadcrumb-text">
-                        <h2>Entre em contato conosco</h2>
-                        <div class="bt-option">
-                            <a href="./index.html">início</a>
-                            <span>FAQ</span>
-                        </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Breadcrumb Section End -->
 
-    <!-- Contact Section Begin -->
-    <section class="contact-section spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="section-title contact-title">
-                        <span>Nosso Contato</span>
-                        <h2>Nossas informações</h2>
-                    </div>
-                    <div class="contact-widget">
-                        <div class="cw-text">
-                            <i class="fa fa-map-marker"></i>
-                            <p>R. José Bongiovani, 700 - Cidade Universitária, Pres. Prudente<br /> SP, 19050-920</p>
-                        </div>
-                        <div class="cw-text">
-                            <i class="fa fa-mobile"></i>
-                            <ul>
-                                <li>(18) 12345-6789</li>
-                                <li>(18) 98765-4321</li>
-                            </ul>
-                        </div>
-                        <div class="cw-text email">
-                            <i class="fa fa-envelope"></i>
-                            <p>suportehitboxe@gmail.com.br</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="leave-comment">
-                        <form action="#">
-                            <input type="text" placeholder="Nome">
-                            <input type="text" placeholder="Email">
-                            <textarea placeholder="Comentario"></textarea>
-                            <button type="submit">Envie</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <div class="map">
-                <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3695.8218297380386!2d-51.4027149!3d-22.132767899999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9493f45b18f82b4f%3A0xc61c929c186b7d81!2sFIPP!5e0!3m2!1spt-BR!2sbr!4v1787965420365!5m2!1spt-BR!2sbr"
-                    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-                    referrerpolicy="strict-origin-when-cross-origin"></iframe>
-            </div>
-        </div>
-    </section>
-    <!-- Contact Section End -->
+                    <div id="profileArea" class="profile-area">
 
-    <!-- Get In Touch Section Begin -->
-    <div class="gettouch-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="gt-text">
+                        <a href="perfil.html">
+
+                            <i class="fa fa-user"></i>
+
+                            <span>MEU PERFIL</span>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="canvas-open">
+
+            <i class="fa fa-bars"></i>
+
+        </div>
+
+    </div>
+
+</header>
+
+<section class="breadcrumb-section set-bg"
+         data-setbg="img/breadcrumb-bg.jpg">
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-lg-12 text-center">
+
+                <div class="breadcrumb-text">
+
+                    <h2>Entre em contato conosco</h2>
+
+                    <div class="bt-option">
+
+                        <a href="./index.html">
+                            início
+                        </a>
+
+                        <span>FAQ</span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="contact-section spad">
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-lg-6">
+
+                <div class="section-title contact-title">
+
+                    <span>Nosso Contato</span>
+
+                    <h2>Nossas informações</h2>
+
+                </div>
+
+                <div class="contact-widget">
+
+                    <div class="cw-text">
+
                         <i class="fa fa-map-marker"></i>
-                        <p>R. José Bongiovani, 700 - Cidade Universitária, Pres. Prudente<br /> SP, 19050-920</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="gt-text">
-                        <i class="fa fa-mobile"></i>
-                        <ul>
-                            <li>(18) 12345-6789</li>
-                            <li>(18) 98765-4321</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="gt-text email">
-                        <i class="fa fa-envelope"></i>
-                        <p>suportehitboxe@gmail.com.br</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Get In Touch Section End -->
 
-    <!-- Footer Section Begin -->
-    <section class="footer-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4">
-                    <div class="fs-about">
-                        <div class="fa-logo">
-                            <a href="#"><img src="img/logo.png" alt=""></a>
-                        </div>
-                        <div class="fa-social">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-youtube-play"></i></a>
-                            <a href="#"><i class="fa fa-instagram"></i></a>
-                            <a href="#"><i class="fa  fa-envelope-o"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-6">
-                    <div class="fs-widget">
-                        <h4>Links uteis</h4>
-                        <ul>
-                            <li><a href="#">sobre nós</a></li>
-                            <li><a href="#">Nossos planos</a></li>
-                            <li><a href="#">FAQ</a></li>
-                            <li><a href="#">Produtos</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-6">
-                    <div class="fs-widget">
-                        <h4>Suporte</h4>
-                        <ul>
-                            <li><a href="#">Login</a></li>
-                            <li><a href="#">Minha conta</a></li>
-                            <li><a href="#">junte-se ao time hitboxe</a></li>
-                            <li><a href="#">Contato</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <div class="copyright-text">
-                        <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                            Copyright &copy;
-                            <script>document.write(new Date().getFullYear());</script> All rights reserved | This
-                            template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a
-                                href="https://colorlib.com" target="_blank">Colorlib</a>
-                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        <p>
+                            R. José Bongiovani, 700 -
+                            Cidade Universitária,
+                            Pres. Prudente<br>
+                            SP, 19050-920
                         </p>
+
                     </div>
+
+                    <div class="cw-text">
+
+                        <i class="fa fa-mobile"></i>
+
+                        <ul>
+
+                            <li>
+                                (18) 12345-6789
+                            </li>
+
+                            <li>
+                                (18) 98765-4321
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+                    <div class="cw-text email">
+
+                        <i class="fa fa-envelope"></i>
+
+                        <p>
+                            suportehitboxe@gmail.com.br
+                        </p>
+
+                    </div>
+
                 </div>
+
             </div>
-        </div>
-    </section>
-    <!-- Footer Section End -->
 
-    <!-- Search model Begin -->
-    <div class="search-model">
-        <div class="h-100 d-flex align-items-center justify-content-center">
-            <div class="search-close-switch">+</div>
-            <form class="search-model-form">
-                <input type="text" id="search-input" placeholder="Search here.....">
-            </form>
+            <div class="col-lg-6">
+
+                <div class="leave-comment">
+
+                    <form action="#">
+
+                        <input
+                            type="text"
+                            placeholder="Nome">
+
+                        <input
+                            type="text"
+                            placeholder="Email">
+
+                        <textarea
+                            placeholder="Comentario"></textarea>
+
+                        <button type="submit">
+                            Envie
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
         </div>
+
+        <div class="map">
+
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3695.8218297380386!2d-51.4027149!3d-22.132767899999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9493f45b18f82b4f%3A0xc61c929c186b7d81!2sFIPP!5e0!3m2!1spt-BR!2sbr!4v1787965420365!5m2!1spt-BR!2sbr"
+                width="600"
+                height="450"
+                style="border:0;"
+                allowfullscreen=""
+                loading="lazy">
+            </iframe>
+
+        </div>
+
     </div>
-    <!-- Search model end -->
 
-    <!-- Js Plugins -->
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.magnific-popup.min.js"></script>
-    <script src="js/masonry.pkgd.min.js"></script>
-    <script src="js/jquery.barfiller.js"></script>
-    <script src="js/jquery.slicknav.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/main.js"></script>
+</section>
+
+<div class="gettouch-section">
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-4">
+
+                <div class="gt-text">
+
+                    <i class="fa fa-map-marker"></i>
+
+                    <p>
+                        R. José Bongiovani, 700 -
+                        Cidade Universitária,
+                        Pres. Prudente<br>
+                        SP, 19050-920
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-4">
+
+                <div class="gt-text">
+
+                    <i class="fa fa-mobile"></i>
+
+                    <ul>
+
+                        <li>
+                            (18) 12345-6789
+                        </li>
+
+                        <li>
+                            (18) 98765-4321
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-4">
+
+                <div class="gt-text email">
+
+                    <i class="fa fa-envelope"></i>
+
+                    <p>
+                        suportehitboxe@gmail.com.br
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<section class="footer-section">
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-lg-4">
+
+                <div class="fs-about">
+
+                    <div class="fa-logo">
+
+                        <a href="#">
+
+                            <img src="img/logo.png" alt="Hitbox">
+
+                        </a>
+
+                    </div>
+
+                    <div class="fa-social">
+
+                        <a href="#">
+                            <i class="fa fa-facebook"></i>
+                        </a>
+
+                        <a href="#">
+                            <i class="fa fa-twitter"></i>
+                        </a>
+
+                        <a href="#">
+                            <i class="fa fa-youtube-play"></i>
+                        </a>
+
+                        <a href="#">
+                            <i class="fa fa-instagram"></i>
+                        </a>
+
+                        <a href="#">
+                            <i class="fa fa-envelope-o"></i>
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-2 col-md-3 col-sm-6">
+
+                <div class="fs-widget">
+
+                    <h4>Links uteis</h4>
+
+                    <ul>
+
+                        <li>
+                            <a href="sobre.html">
+                                sobre nós
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="Treinos.html">
+                                Nossos treinos
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="Contato.html">
+                                FAQ
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="produtos.html">
+                                Produtos
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-2 col-md-3 col-sm-6">
+
+                <div class="fs-widget">
+
+                    <h4>Suporte</h4>
+
+                    <ul>
+
+                        <li>
+                            <a href="#" id="footerLogin">
+                                Login
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="perfil.html">
+                                Minha conta
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#" id="footerCadastro">
+                                junte-se ao time hitboxe
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="Contato.html">
+                                Contato
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-lg-12 text-center">
+
+                <div class="copyright-text">
+
+                    <p>
+                        Copyright &copy;
+                        <script>
+                            document.write(new Date().getFullYear());
+                        </script>
+                        All rights reserved
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<div id="authModal" class="auth-modal">
+
+    <div class="auth-box">
+
+        <button
+            type="button"
+            class="auth-close"
+            id="authClose">
+
+            <i class="fa fa-close"></i>
+
+        </button>
+
+        <div class="auth-logo">
+
+            <img
+                src="img/logo.png"
+                alt="Hitbox">
+
+        </div>
+
+        <div class="auth-tabs">
+
+            <button
+                type="button"
+                id="tabLogin"
+                class="auth-tab active">
+
+                Entrar
+
+            </button>
+
+            <button
+                type="button"
+                id="tabCadastro"
+                class="auth-tab">
+
+                Criar conta
+
+            </button>
+
+        </div>
+
+        <div
+            id="loginPanel"
+            class="auth-panel active">
+
+            <div class="auth-heading">
+
+                <span>
+                    Área do aluno e administrador
+                </span>
+
+                <h2>
+                    Entrar
+                </h2>
+
+            </div>
+
+            <form id="loginForm">
+
+                <div class="auth-field">
+
+                    <label>
+                        E-mail
+                    </label>
+
+                    <input
+                        id="loginEmail"
+                        type="email"
+                        autocomplete="email"
+                        required>
+
+                    <small></small>
+
+                </div>
+
+                <div class="auth-field">
+
+                    <label>
+                        Senha
+                    </label>
+
+                    <div class="password-field">
+
+                        <input
+                            id="loginSenha"
+                            type="password"
+                            autocomplete="current-password"
+                            required>
+
+                        <button
+                            type="button"
+                            id="toggleLoginSenha"
+                            class="password-toggle"
+                            aria-label="Mostrar senha">
+
+                            <i class="fa fa-eye"></i>
+
+                        </button>
+
+                    </div>
+
+                    <small></small>
+
+                </div>
+
+                <button
+                    class="auth-submit"
+                    type="submit">
+
+                    ENTRAR
+
+                </button>
+
+                <div
+                    id="loginMessage"
+                    class="auth-message">
+                </div>
+
+            </form>
 
 
+
+        </div>
+
+        <div
+            id="cadastroPanel"
+            class="auth-panel">
+
+            <div class="auth-heading">
+
+                <span>
+                    Crie seu acesso
+                </span>
+
+                <h2>
+                    Cadastro
+                </h2>
+
+            </div>
+
+            <form
+                id="cadastroForm"
+                novalidate>
+
+                <div class="auth-grid">
+
+                    <div class="auth-field">
+
+                        <label>
+                            Nome
+                        </label>
+
+                        <input
+                            id="cadNome"
+                            type="text">
+
+                        <small></small>
+
+                    </div>
+
+                    <div class="auth-field">
+
+                        <label>
+                            Sobrenome
+                        </label>
+
+                        <input
+                            id="cadSobrenome"
+                            type="text">
+
+                        <small></small>
+
+                    </div>
+
+                    <div class="auth-field">
+
+                        <label>
+                            CPF
+                        </label>
+
+                        <input
+                            id="cadCpf"
+                            type="text"
+                            maxlength="14">
+
+                        <small></small>
+
+                    </div>
+
+                    <div class="auth-field">
+
+                        <label>
+                            Data de nascimento
+                        </label>
+
+                        <input
+                            id="cadNascimento"
+                            type="date">
+
+                        <small></small>
+
+                    </div>
+
+                    <div class="auth-field">
+
+                        <label>
+                            Telefone
+                        </label>
+
+                        <input
+                            id="cadTelefone"
+                            type="text"
+                            maxlength="15">
+
+                        <small></small>
+
+                    </div>
+
+                    <div class="auth-field">
+
+                        <label>
+                            E-mail
+                        </label>
+
+                        <input
+                            id="cadEmail"
+                            type="email">
+
+                        <small></small>
+
+                    </div>
+
+                    <div class="auth-field">
+
+                        <label>
+                            Senha
+                        </label>
+
+                        <input
+                            id="cadSenha"
+                            type="password">
+
+                        <small></small>
+
+                    </div>
+
+                    <div class="auth-field">
+
+                        <label>
+                            Confirmar senha
+                        </label>
+
+                        <input
+                            id="cadConfirmarSenha"
+                            type="password">
+
+                        <small></small>
+
+                    </div>
+
+                    <div class="auth-field">
+
+                        <label>
+                            CEP
+                        </label>
+
+                        <input
+                            id="cadCep"
+                            type="text"
+                            maxlength="9">
+
+                        <small></small>
+
+                    </div>
+
+                    <div class="auth-field">
+
+                        <label>
+                            Rua
+                        </label>
+
+                        <input
+                            id="cadRua"
+                            type="text">
+
+                        <small></small>
+
+                    </div>
+
+                    <div class="auth-field">
+
+                        <label>
+                            Número
+                        </label>
+
+                        <input
+                            id="cadNumero"
+                            type="text">
+
+                        <small></small>
+
+                    </div>
+
+                    <div class="auth-field">
+
+                        <label>
+                            Cidade
+                        </label>
+
+                        <input
+                            id="cadCidade"
+                            type="text">
+
+                        <small></small>
+
+                    </div>
+
+                    <div class="auth-field">
+
+                        <label>
+                            Estado
+                        </label>
+
+                        <select id="cadEstado">
+
+                            <option value="">
+                                Selecione
+                            </option>
+
+                            <option>AC</option>
+                            <option>AL</option>
+                            <option>AP</option>
+                            <option>AM</option>
+                            <option>BA</option>
+                            <option>CE</option>
+                            <option>DF</option>
+                            <option>ES</option>
+                            <option>GO</option>
+                            <option>MA</option>
+                            <option>MT</option>
+                            <option>MS</option>
+                            <option>MG</option>
+                            <option>PA</option>
+                            <option>PB</option>
+                            <option>PR</option>
+                            <option>PE</option>
+                            <option>PI</option>
+                            <option>RJ</option>
+                            <option>RN</option>
+                            <option>RS</option>
+                            <option>RO</option>
+                            <option>RR</option>
+                            <option>SC</option>
+                            <option>SP</option>
+                            <option>SE</option>
+                            <option>TO</option>
+
+                        </select>
+
+                        <small></small>
+
+                    </div>
+
+                    <div class="auth-field">
+
+                        <label>
+                            Plano
+                        </label>
+
+                        <select id="cadPlano" required>
+
+                            <option value="">
+                                Selecione
+                            </option>
+
+                            <option value="Plano Round">
+                                Plano Round
+                            </option>
+
+                            <option value="Plano Nocaute">
+                                Plano Nocaute
+                            </option>
+
+                            <option value="Plano Campeão">
+                                Plano Campeão
+                            </option>
+
+                        </select>
+
+                        <small></small>
+
+                    </div>
+
+                    <div class="auth-field">
+
+                        <label>
+                            Forma de pagamento
+                        </label>
+
+                        <select id="cadPagamento" required>
+
+                            <option value="">
+                                Selecione
+                            </option>
+
+                            <option value="PIX">
+                                PIX
+                            </option>
+
+                            <option value="Boleto">
+                                Boleto
+                            </option>
+
+                            <option value="Cartão de crédito">
+                                Cartão de crédito
+                            </option>
+
+                            <option value="Cartão de débito">
+                                Cartão de débito
+                            </option>
+
+                        </select>
+
+                        <small></small>
+
+                    </div>
+
+                    <div id="paymentDetails"></div>
+                </div>
+
+                <button
+                    class="auth-submit"
+                    type="submit">
+
+                    CRIAR CONTA
+
+                </button>
+
+                <div
+                    id="cadastroMessage"
+                    class="auth-message">
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="search-model">
+
+    <div class="h-100 d-flex align-items-center justify-content-center">
+
+        <div class="search-close-switch">
+            +
+        </div>
+
+        <form class="search-model-form">
+
+            <input
+                type="text"
+                id="search-input"
+                placeholder="Search here.....">
+
+        </form>
+
+    </div>
+
+</div>
+
+<script src="js/jquery-3.3.1.min.js"></script>
+
+<script src="js/bootstrap.min.js"></script>
+
+<script src="js/jquery.magnific-popup.min.js"></script>
+
+<script src="js/masonry.pkgd.min.js"></script>
+
+<script src="js/jquery.barfiller.js"></script>
+
+<script src="js/jquery.slicknav.js"></script>
+
+<script src="js/owl.carousel.min.js"></script>
+
+<script src="js/main.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+
+<script src="js/acesso.js"></script>
+
+<script src="js/acesso.js"></script>
 
 </body>
 

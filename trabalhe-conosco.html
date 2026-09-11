@@ -1,0 +1,721 @@
+<!doctype html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="description" content="HitBoxe - Treinamento personalizado de boxe" />
+        <meta name="keywords" content="HitBoxe, boxe, academia, treinamento, Presidente Prudente" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>HitBoxe - Treinamento personalizado de boxe</title>
+        <!-- =====================================================
+             GOOGLE FONTS
+        ====================================================== -->
+        <link
+            href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            href="https://fonts.googleapis.com/css?family=Oswald:300,400,500,600,700&display=swap"
+            rel="stylesheet"
+        />
+        <!-- =====================================================
+             CSS
+        ====================================================== -->
+        <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
+        <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css" />
+        <link rel="stylesheet" href="css/flaticon.css" type="text/css" />
+        <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css" />
+        <link rel="stylesheet" href="css/barfiller.css" type="text/css" />
+        <link rel="stylesheet" href="css/magnific-popup.css" type="text/css" />
+        <link rel="stylesheet" href="css/slicknav.min.css" type="text/css" />
+        <link rel="stylesheet" href="css/style.css" type="text/css" />
+        <!-- =====================================================
+             ESTILOS PERSONALIZADOS
+        ====================================================== -->
+        <style>
+            /* =================================================
+               HITBOXE - LOADER
+            ================================================= */
+            #hitboxe-loader {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                background: #050505;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 999999;
+                opacity: 1;
+                visibility: visible;
+                transition:
+                    opacity 1s ease,
+                    visibility 1s ease;
+            }
+            /* Loader desaparecendo */
+            #hitboxe-loader.loader-hidden {
+                opacity: 0;
+                visibility: hidden;
+                pointer-events: none;
+            }
+            /* =================================================
+               CONTEÚDO DO LOADER
+            ================================================= */
+            .loader-content {
+                width: 100%;
+                max-width: 360px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+            }
+            /* =================================================
+               LOGO
+            ================================================= */
+            .loader-logo {
+                width: 240px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                animation: loaderLogoEntrada 1.3s ease forwards;
+            }
+            .loader-logo img {
+                width: 240px;
+                max-width: 100%;
+                height: auto;
+                display: block;
+            }
+            /* =================================================
+               BARRA DE CARREGAMENTO
+            ================================================= */
+            .loader-progress {
+                width: 260px;
+                height: 4px;
+                margin-top: 30px;
+                background: #242424;
+                border-radius: 10px;
+                overflow: hidden;
+            }
+            /* Parte vermelha da barra */
+            .loader-progress-bar {
+                width: 0%;
+                height: 100%;
+                background: #ff0000;
+                border-radius: 10px;
+                box-shadow: 0 0 8px rgba(255, 0, 0, 0.8);
+                transition: width 0.2s ease;
+            }
+            /* =================================================
+               ANIMAÇÃO DA LOGO
+            ================================================= */
+            @keyframes loaderLogoEntrada {
+                0% {
+                    opacity: 0;
+                    transform: scale(0.75);
+                }
+                60% {
+                    opacity: 1;
+                    transform: scale(1.05);
+                }
+                100% {
+                    opacity: 1;
+                    transform: scale(1);
+                }
+            }
+            /* =================================================
+               RESPONSIVIDADE DO LOADER
+            ================================================= */
+            @media (max-width: 576px) {
+                .loader-content {
+                    max-width: 280px;
+                }
+                .loader-logo {
+                    width: 190px;
+                }
+                .loader-logo img {
+                    width: 190px;
+                }
+                .loader-progress {
+                    width: 210px;
+                }
+            }
+            /* =================================================
+               VÍDEO DE FUNDO
+            ================================================= */
+            .hs-video-bg {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                z-index: -1;
+            }
+            /* =================================================
+               CARROSSEL
+            ================================================= */
+            .hs-slider .owl-nav {
+                display: none !important;
+            }
+            .hs-slider .owl-dots {
+                position: absolute;
+                bottom: 30px;
+                width: 100%;
+                text-align: center;
+            }
+            .hs-slider .owl-dots button.owl-dot {
+                width: 12px;
+                height: 12px;
+                background: rgba(255, 255, 255, 0.5) !important;
+                border-radius: 50%;
+                margin: 0 5px;
+                border: none;
+            }
+            .hs-slider .owl-dots button.owl-dot.active {
+                background: #ff0000 !important;
+            }
+            /* =================================================
+               SEÇÃO ESCOLHA HITBOXE
+            ================================================= */
+            .choseus-section {
+                background-color: #080808 !important;
+            }
+            .choseus-section .section-title {
+                text-align: center;
+                margin-bottom: 55px;
+            }
+            .choseus-section .section-title span {
+                color: #ff0000 !important;
+                font-weight: 700;
+                letter-spacing: 2px;
+                text-transform: uppercase;
+            }
+            .choseus-section .section-title h2 {
+                color: #ffffff;
+                font-weight: 700;
+                text-transform: uppercase;
+            }
+            /* =================================================
+               CARDS
+            ================================================= */
+            .cs-item {
+                background-color: #111111 !important;
+                border-radius: 15px;
+                padding: 40px 20px;
+                text-align: center;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                transition: all 0.3s;
+            }
+            .cs-item:hover {
+                transform: translateY(-5px);
+            }
+            .cs-item span {
+                background-color: #222222 !important;
+                color: #ff0000 !important;
+                width: 80px;
+                height: 80px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 50%;
+                font-size: 35px;
+                margin-bottom: 25px;
+            }
+            .cs-item h4 {
+                color: #ffffff !important;
+                font-weight: bold;
+                font-size: 20px;
+                margin-bottom: 15px;
+            }
+            .cs-item p {
+                color: #999999 !important;
+                font-size: 14px;
+                line-height: 1.6;
+                margin-bottom: 0;
+            }
+            /* =================================================
+               HOVER DO RODAPÉ
+            ================================================= */
+            .footer-section .fs-widget ul li a {
+                transition: all 0.3s ease;
+                display: inline-block;
+            }
+            .footer-section .fs-widget ul li a:hover {
+                color: #ff0000 !important;
+                padding-left: 6px;
+            }
+            /* =================================================
+               REDES SOCIAIS DO RODAPÉ
+            ================================================= */
+            .footer-section .fa-social a {
+                transition: all 0.3s ease;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .footer-section .fa-social a:hover {
+                background-color: #ff0000 !important;
+                color: #ffffff !important;
+                border-color: #ff0000 !important;
+                transform: translateY(-4px);
+            }
+        </style>
+    </head>
+    <body>
+        <!-- =====================================================
+             HITBOXE - LOADER
+        ====================================================== -->
+        <div id="hitboxe-loader">
+            <div class="loader-content">
+                <!-- LOGO CENTRAL -->
+                <div class="loader-logo">
+                    <img src="img/logo.png" alt="HitBoxe" />
+                </div>
+                <!-- BARRA DE CARREGAMENTO -->
+                <div class="loader-progress">
+                    <div class="loader-progress-bar"></div>
+                </div>
+            </div>
+        </div>
+        <!-- =====================================================
+             OFFCANVAS MENU
+        ====================================================== -->
+        <div class="offcanvas-menu-overlay"></div>
+        <div class="offcanvas-menu-wrapper">
+            <div class="canvas-close">
+                <i class="fa fa-close"></i>
+            </div>
+            <div class="canvas-search search-switch">
+                <i class="fa fa-search"></i>
+            </div>
+            <nav class="canvas-menu mobile-menu">
+                <ul>
+                    <li>
+                        <a href="index.html"> Início </a>
+                    </li>
+                    <li>
+                        <a href="sobre.html"> Sobre </a>
+                    </li>
+                    <li>
+                        <a href="servico.html"> Serviços </a>
+                    </li>
+                    <li>
+                        <a href="Treinadores.html"> Nosso Time </a>
+                    </li>
+                    <li>
+                        <a href="Contato.html"> FAQ </a>
+                    </li>
+                    <li>
+                        <a href="produtos.html"> Produtos </a>
+                    </li>
+                </ul>
+            </nav>
+            <div id="mobile-menu-wrap"></div>
+            <div class="canvas-social">
+                <a href="#">
+                    <i class="fa fa-facebook"></i>
+                </a>
+                <a href="#">
+                    <i class="fa fa-twitter"></i>
+                </a>
+                <a href="#">
+                    <i class="fa fa-youtube-play"></i>
+                </a>
+                <a href="#">
+                    <i class="fa fa-instagram"></i>
+                </a>
+            </div>
+        </div>
+        <!-- =====================================================
+             HEADER
+        ====================================================== -->
+        <header class="header-section">
+            <div class="container-fluid">
+                <div class="row">
+                    <!-- LOGO -->
+                    <div class="col-lg-3">
+                        <div class="logo">
+                            <a href="index.html">
+                                <img src="img/logo.png" alt="HitBoxe" />
+                            </a>
+                        </div>
+                    </div>
+                    <!-- MENU -->
+                    <div class="col-lg-6">
+                        <nav class="nav-menu">
+                            <ul>
+                                <li>
+                                    <a href="index.html"> Início </a>
+                                </li>
+                                <li>
+                                    <a href="sobre.html"> Sobre </a>
+                                </li>
+                                <li>
+                                    <a href="servico.html"> Serviços </a>
+                                </li>
+                                <li>
+                                    <a href="Treinadores.html"> Nosso Time </a>
+                                </li>
+                                <li>
+                                    <a href="Contato.html"> FAQ </a>
+                                </li>
+                                <li>
+                                    <a href="produtos.html"> Produtos </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <!-- REDES SOCIAIS -->
+                    <div class="col-lg-3">
+                        <div class="top-option">
+                            <div class="to-sesearch-switch">
+                                <i class="fa fa-search"></i>
+                            </div>
+                            <div class="to-social">
+                                <a href="#">
+                                    <i class="fa fa-facebook"></i>
+                                </a>
+                                <a href="#">
+                                    <i class="fa fa-twitter"></i>
+                                </a>
+                                <a href="#">
+                                    <i class="fa fa-youtube-play"></i>
+                                </a>
+                                <a href="#">
+                                    <i class="fa fa-instagram"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- MENU MOBILE -->
+                <div class="canvas-open">
+                    <i class="fa fa-bars"></i>
+                </div>
+            </div>
+        </header>
+        <!-- =====================================================
+             BANNER
+        ====================================================== -->
+        <section class="banner-section set-bg" data-setbg="img/trabalhe-conosco.jpg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <div class="bs-text">
+                            <h2 id="tit">Trabalhe conosco</h2>
+                            <div id="subtit">
+                                Faça parte da turma
+                            </div>
+                            <a href="#" id="btnjunte-se"> Junte-se ao time HitBoxe </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- =====================================================
+             CONTATO
+        ====================================================== -->
+        <div class="gettouch-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="gt-text">
+                            <i class="fa fa-map-marker"></i>
+                            <p>
+                                R. José Bongiovani, 700 - Cidade Universitária, Pres. Prudente
+                                <br />
+                                SP, 19050-920
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="gt-text">
+                            <i class="fa fa-mobile"></i>
+                            <ul>
+                                <li>(18) 12345-6789</li>
+                                <li>(18) 98765-4321</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="gt-text email">
+                            <i class="fa fa-envelope"></i>
+                            <p>suportehitboxe@gmail.com.br</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- =====================================================
+             FOOTER
+        ====================================================== -->
+        <section class="footer-section">
+            <div class="container">
+                <div class="row">
+                    <!-- LOGO + REDES -->
+                    <div class="col-lg-4">
+                        <div class="fs-about">
+                            <div class="fa-logo">
+                                <a href="index.html">
+                                    <img src="img/logo.png" alt="HitBoxe" />
+                                </a>
+                            </div>
+                            <div class="fa-social">
+                                <a href="#">
+                                    <i class="fa fa-facebook"></i>
+                                </a>
+                                <a href="#">
+                                    <i class="fa fa-twitter"></i>
+                                </a>
+                                <a href="#">
+                                    <i class="fa fa-youtube-play"></i>
+                                </a>
+                                <a href="#">
+                                    <i class="fa fa-instagram"></i>
+                                </a>
+                                <a href="#">
+                                    <i class="fa fa-envelope-o"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- LINKS -->
+                    <div class="col-lg-2 col-md-3 col-sm-6">
+                        <div class="fs-widget">
+                            <h4>Links uteis</h4>
+                            <ul>
+                                <li>
+                                    <a href="sobre.html"> Sobre nós </a>
+                                </li>
+                                <li>
+                                    <a href="#"> Nossos planos </a>
+                                </li>
+                                <li>
+                                    <a href="Contato.html"> FAQ </a>
+                                </li>
+                                <li>
+                                    <a href="produtos.html"> Produtos </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- SUPORTE -->
+                    <div class="col-lg-2 col-md-3 col-sm-6">
+                        <div class="fs-widget">
+                            <h4>Suporte</h4>
+                            <ul>
+                                <li>
+                                    <a href="#"> Login </a>
+                                </li>
+                                <li>
+                                    <a href="#"> Minha conta </a>
+                                </li>
+                                <li>
+                                    <a href="#"> Junte-se ao time Hitboxe </a>
+                                </li>
+                                <li>
+                                    <a href="Contato.html"> Contato </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- COPYRIGHT -->
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <div class="copyright-text">
+                            <p>
+                                Copyright &copy;
+                                <script>
+                                    document.write(new Date().getFullYear());
+                                </script>
+                                All rights reserved | This template is made with
+                                <i class="fa fa-heart" aria-hidden="true"> </i>
+                                by
+                                <a href="https://colorlib.com" target="_blank"> Colorlib </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- =====================================================
+             SEARCH
+        ====================================================== -->
+        <div class="search-model">
+            <div class="h-100 d-flex align-items-center justify-content-center">
+                <div class="search-close-switch">+</div>
+                <form class="search-model-form">
+                    <input type="text" id="search-input" placeholder="Search here....." />
+                </form>
+            </div>
+        </div>
+        <!-- =====================================================
+             JAVASCRIPT
+        ====================================================== -->
+        <script src="js/jquery-3.3.1.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/jquery.magnific-popup.min.js"></script>
+        <script src="js/masonry.pkgd.min.js"></script>
+        <script src="js/jquery.barfiller.js"></script>
+        <script src="js/jquery.slicknav.js"></script>
+        <script src="js/owl.carousel.min.js"></script>
+        <script src="js/main.js"></script>
+        <script src="js/carrosselefect.js"></script>
+        <!-- =====================================================
+             LOADER + CARROSSEL
+        ====================================================== -->
+        <script>
+            (function () {
+                /* =================================================
+                   ELEMENTOS
+                ================================================= */
+                const loader = document.getElementById("hitboxe-loader");
+                const progressBar = document.querySelector(".loader-progress-bar");
+                if (!loader || !progressBar) {
+                    return;
+                }
+                /* =================================================
+                   VARIÁVEIS
+                ================================================= */
+                let progress = 0;
+                /* =================================================
+                   CARREGAMENTO DA PÁGINA
+                ================================================= */
+                const progressInterval = setInterval(function () {
+                    /*
+                     * A barra vai lentamente até 90%.
+                     */
+                    if (progress < 90) {
+                        progress += 1;
+                        progressBar.style.width = progress + "%";
+                    }
+                }, 100);
+                /* =================================================
+                   PÁGINA TOTALMENTE CARREGADA
+                ================================================= */
+                window.addEventListener("load", function () {
+                    clearInterval(progressInterval);
+                    /*
+                     * Pequeno tempo antes
+                     * de completar a barra.
+                     */
+                    setTimeout(function () {
+                        progress = 100;
+                        progressBar.style.width = "100%";
+                        /*
+                         * Mantém 100% na tela
+                         * para o usuário visualizar.
+                         */
+                        setTimeout(function () {
+                            loader.classList.add("loader-hidden");
+                        }, 1200);
+                    }, 500);
+                });
+                /* =================================================
+                   LOADER AO TROCAR DE PÁGINA
+                ================================================= */
+                document.addEventListener("click", function (event) {
+                    const link = event.target.closest("a");
+                    if (!link) {
+                        return;
+                    }
+                    const href = link.getAttribute("href");
+                    if (!href) {
+                        return;
+                    }
+                    /*
+                     * Não faz loader para #.
+                     */
+                    if (href === "#") {
+                        return;
+                    }
+                    /*
+                     * Links externos não recebem
+                     * o loader de troca de página.
+                     */
+                    if (
+                        href.startsWith("http://") ||
+                        href.startsWith("https://") ||
+                        href.startsWith("//") ||
+                        href.startsWith("mailto:") ||
+                        href.startsWith("tel:")
+                    ) {
+                        return;
+                    }
+                    /*
+                     * Não interfere em abrir
+                     * link em nova aba.
+                     */
+                    if (
+                        link.target === "_blank" ||
+                        event.ctrlKey ||
+                        event.shiftKey ||
+                        event.metaKey ||
+                        event.button !== 0
+                    ) {
+                        return;
+                    }
+                    /*
+                     * Impede a troca imediata.
+                     */
+                    event.preventDefault();
+                    /*
+                     * Mostra o loader.
+                     */
+                    loader.classList.remove("loader-hidden");
+                    /*
+                     * Reinicia barra.
+                     */
+                    progress = 0;
+                    progressBar.style.width = "0%";
+                    /*
+                     * Carregamento visual
+                     * da troca de página.
+                     */
+                    let pageProgress = 0;
+                    const pageInterval = setInterval(function () {
+                        pageProgress += 2;
+                        if (pageProgress >= 100) {
+                            pageProgress = 100;
+                            progressBar.style.width = "100%";
+                            clearInterval(pageInterval);
+                            /*
+                             * Segura a tela
+                             * antes da navegação.
+                             */
+                            setTimeout(function () {
+                                window.location.href = href;
+                            }, 700);
+                        } else {
+                            progressBar.style.width = pageProgress + "%";
+                        }
+                    }, 40);
+                });
+            })();
+            /* =====================================================
+               CARROSSEL
+            ====================================================== */
+            $(window).on("load", function () {
+                setTimeout(function () {
+                    var owl = $(".hs-slider");
+                    if (owl.length > 0) {
+                        var owlData = owl.data("owl.carousel");
+                        if (owlData) {
+                            owlData.settings.dots = true;
+                            owlData.options.dots = true;
+                            owlData.settings.nav = false;
+                            owlData.options.nav = false;
+                            owl.trigger("refresh.owl.carousel");
+                        }
+                    }
+                }, 300);
+            });
+        </script>
+    </body>
+</html>

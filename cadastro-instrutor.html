@@ -1,0 +1,798 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trabalhe Conosco — Cadastro de Instrutor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#10151c;
+    --bg-alt:#141b23;
+    --surface:#1a222c;
+    --surface-2:#212b37;
+    --border:#2a3441;
+    --text:#edf0f3;
+    --muted:#8b95a3;
+    --accent:#f32121;
+    --accent-strong:#f50909;
+    --accent-ink:#241a08;
+    --success:#5c9d7c;
+    --success-ink:#0d1a13;
+    --danger:#e9351d;
+    --radius-s:4px;
+    --radius-m:10px;
+    --font-display:'Barlow Condensed', sans-serif;
+    --font-body:'Work Sans', sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--font-body);
+    line-height:1.5;
+    min-height:100vh;
+  }
+  h1,h2,h3{font-family:var(--font-display);font-weight:600;margin:0;letter-spacing:.2px;}
+  p{margin:0;}
+  .muted{color:var(--muted);}
+  button{font-family:var(--font-body);}
+  a{color:var(--accent-strong);}
+
+  /* ---------- layout ---------- */
+  .page{display:flex;min-height:100vh;}
+  .rail{
+    width:290px;
+    flex-shrink:0;
+    background:var(--bg-alt);
+    border-right:1px solid var(--border);
+    padding:36px 22px;
+    position:sticky;
+    top:0;
+    height:100vh;
+    overflow-y:auto;
+  }
+  .rail-brand{
+    font-family:var(--font-display);
+    font-size:22px;
+    font-weight:700;
+    margin-bottom:4px;
+  }
+  .rail-brand span{color:var(--accent);}
+  .rail-sub{font-size:13px;color:var(--muted);margin-bottom:28px;display:block;}
+  .rail-list{list-style:none;margin:0;padding:0;}
+  .rail-item{
+    display:flex;
+    gap:12px;
+    align-items:flex-start;
+    position:relative;
+    padding:9px 8px;
+    border-radius:var(--radius-s);
+    cursor:default;
+  }
+  .rail-item.enabled{cursor:pointer;}
+  .rail-item.enabled:hover{background:var(--surface);}
+  .rail-item:not(:last-child)::before{
+    content:"";
+    position:absolute;
+    left:21px;
+    top:34px;
+    width:1px;
+    height:calc(100% - 6px);
+    background:var(--border);
+  }
+  .rail-num{
+    flex-shrink:0;
+    width:28px;
+    height:28px;
+    border-radius:50%;
+    border:1px solid var(--border);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:var(--font-display);
+    font-weight:600;
+    font-size:14px;
+    color:var(--muted);
+    background:var(--bg-alt);
+    z-index:1;
+  }
+  .rail-item.current .rail-num{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);}
+  .rail-item.done .rail-num{background:var(--success);border-color:var(--success);color:var(--success-ink);}
+  .rail-title{font-size:14px;color:var(--muted);padding-top:4px;}
+  .rail-item.current .rail-title{color:var(--text);font-weight:600;}
+  .rail-item.done .rail-title{color:var(--text);}
+
+  .top-progress{display:none;}
+
+  .panel{flex:1;display:flex;justify-content:center;padding:56px 24px 40px;}
+  .panel-inner{width:100%;max-width:620px;}
+  .step-head{margin-bottom:28px;}
+  .step-index{display:block;font-size:13px;color:var(--accent);font-weight:600;margin-bottom:6px;}
+  .step-head h1{font-size:32px;}
+  .step-head p{margin-top:8px;font-size:15px;}
+
+  .field{margin-bottom:20px;}
+  .field label{display:block;font-size:13.5px;color:var(--muted);margin-bottom:7px;}
+  .field .hint{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="date"],
+  input[type="number"],
+  input[type="url"],
+  select,
+  textarea{
+    width:100%;
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius-s);
+    padding:11px 13px;
+    color:var(--text);
+    font-family:var(--font-body);
+    font-size:15px;
+  }
+  textarea{resize:vertical;min-height:96px;}
+  input::placeholder,textarea::placeholder{color:#5c6774;}
+  input:focus,select:focus,textarea:focus{
+    outline:none;border-color:var(--accent);
+    box-shadow:0 0 0 3px rgba(227,169,74,.16);
+  }
+  select{appearance:none;background-image:linear-gradient(45deg, transparent 50%, var(--muted) 50%),linear-gradient(135deg, var(--muted) 50%, transparent 50%);background-position:calc(100% - 20px) center, calc(100% - 15px) center;background-size:5px 5px,5px 5px;background-repeat:no-repeat;padding-right:36px;}
+
+  .row-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .row-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;}
+
+  .field.has-error input,
+  .field.has-error select,
+  .field.has-error textarea{border-color:var(--danger);}
+  .field .error-msg{display:none;color:var(--danger);font-size:12.5px;margin-top:6px;}
+  .field.has-error .error-msg{display:block;}
+
+  .check-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  .check-option{
+    display:flex;align-items:center;gap:10px;
+    background:var(--surface);border:1px solid var(--border);
+    border-radius:var(--radius-s);padding:11px 13px;font-size:14.5px;
+    cursor:pointer;
+  }
+  .check-option input{accent-color:var(--accent);width:16px;height:16px;flex-shrink:0;}
+  .step-error{display:none;background:rgba(225,96,79,.1);border:1px solid var(--danger);color:#f3b3ab;padding:11px 13px;border-radius:var(--radius-s);font-size:13.5px;margin-bottom:18px;}
+  .step-error.show{display:block;}
+
+  .upload-box{
+    border:1px dashed var(--border);border-radius:var(--radius-m);
+    padding:22px;text-align:center;background:var(--surface);
+  }
+  .upload-box input[type=file]{display:none;}
+  .upload-btn{
+    display:inline-block;padding:9px 18px;border-radius:var(--radius-s);
+    background:var(--surface-2);border:1px solid var(--border);
+    font-size:14px;cursor:pointer;
+  }
+  .file-name{margin-top:10px;font-size:13px;color:var(--accent-strong);}
+  .photo-preview{
+    width:96px;height:96px;border-radius:50%;background:var(--surface-2);
+    background-size:cover;background-position:center;margin:0 auto 14px;
+    border:1px solid var(--border);
+  }
+
+  .nav-buttons{display:flex;justify-content:space-between;margin-top:32px;}
+  .btn{
+    padding:12px 26px;border-radius:var(--radius-s);font-size:14.5px;
+    font-weight:600;cursor:pointer;border:1px solid transparent;
+  }
+  .btn-ghost{background:transparent;border-color:var(--border);color:var(--text);}
+  .btn-ghost:hover{background:var(--surface);}
+  .btn-primary{background:var(--accent);color:var(--accent-ink);}
+  .btn-primary:hover{background:var(--accent-strong);}
+  .btn-primary:disabled{opacity:.5;cursor:not-allowed;}
+  .btn[hidden]{visibility:hidden;}
+
+  .summary-block{margin-bottom:22px;}
+  .summary-block h3{font-size:15px;color:var(--accent-strong);margin-bottom:10px;}
+  .summary-row{display:flex;justify-content:space-between;gap:16px;padding:8px 0;border-bottom:1px solid var(--border);font-size:14px;}
+  .summary-row .k{color:var(--muted);}
+  .summary-row .v{text-align:right;max-width:60%;}
+  .edit-link{font-size:12.5px;margin-left:8px;cursor:pointer;}
+
+  .terms{display:flex;gap:10px;align-items:flex-start;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-s);padding:14px;font-size:13.5px;}
+  .terms input{margin-top:3px;accent-color:var(--accent);}
+
+  .success-screen{
+    position:fixed;inset:0;background:var(--bg);z-index:50;
+    display:flex;align-items:center;justify-content:center;flex-direction:column;
+    text-align:center;padding:24px;
+  }
+  .success-screen.hidden{display:none;}
+  .success-icon{width:66px;height:66px;border-radius:50%;background:var(--success);display:flex;align-items:center;justify-content:center;margin-bottom:22px;}
+  .success-screen h1{font-size:30px;margin-bottom:10px;}
+  .success-screen p{max-width:420px;color:var(--muted);margin-bottom:26px;}
+
+  @media (max-width:860px){
+    .rail{display:none;}
+    .top-progress{
+      display:block;position:sticky;top:0;z-index:5;
+      background:var(--bg-alt);border-bottom:1px solid var(--border);
+      padding:14px 20px;
+    }
+    .top-progress .tp-label{font-size:13px;color:var(--muted);margin-bottom:8px;display:flex;justify-content:space-between;}
+    .top-progress .tp-track{height:4px;background:var(--surface-2);border-radius:2px;overflow:hidden;}
+    .top-progress .tp-fill{height:100%;background:var(--accent);width:0%;transition:width .25s ease;}
+    .panel{padding:28px 18px 90px;}
+    .row-2,.row-3{grid-template-columns:1fr;}
+    .check-grid{grid-template-columns:1fr;}
+    .step-head h1{font-size:26px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+  <aside class="rail" id="rail" aria-label="Etapas do formulário"></aside>
+
+  <div style="flex:1;display:flex;flex-direction:column;">
+    <div class="top-progress" id="topProgress">
+      <div class="tp-label"><span id="tpText">Etapa 1 de 15</span><span id="tpTitle"></span></div>
+      <div class="tp-track"><div class="tp-fill" id="tpFill"></div></div>
+    </div>
+
+    <main class="panel">
+      <div class="panel-inner">
+        <div class="step-head">
+          <span class="step-index" id="stepIndex"></span>
+          <h1 id="stepTitle"></h1>
+          <p class="muted" id="stepSubtitle"></p>
+        </div>
+
+        <div class="step-error" id="stepError"></div>
+
+        <form id="stepForm" novalidate>
+          <div id="stepContent"></div>
+        </form>
+
+        <div class="nav-buttons">
+          <button type="button" class="btn btn-ghost" id="btnBack">Voltar</button>
+          <button type="button" class="btn btn-primary" id="btnNext">Avançar</button>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<div class="success-screen hidden" id="successScreen">
+  <div class="success-icon">
+    <svg width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M4 12.5L9.5 18L20 6" stroke="#0d1a13" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </div>
+  <h1>Cadastro enviado</h1>
+  <p>Recebemos seu interesse em fazer parte do time de instrutores. Nossa equipe de recrutamento vai analisar seu perfil e entrar em contato pelo e-mail ou telefone informado.</p>
+  <button type="button" class="btn btn-primary" id="btnRestart">Enviar outro cadastro</button>
+</div>
+
+<script>
+(function(){
+
+  var UFS = ["AC","AL","AP","AM","BA","CE","DF","ES","GO","MA","MT","MS","MG","PA","PB","PR","PE","PI","RJ","RN","RS","RO","RR","SC","SP","SE","TO"];
+
+  var formData = {
+    nome:"", nascimento:"", cpf:"", genero:"",
+    telefone:"", email:"", cidade:"", estado:"",
+    fotoNome:"", fotoPreview:"",
+    graduacao:"", instituicao:"", anoConclusao:"", posGraduacao:"",
+    cref:"", crefSituacao:"", crefEstado:"",
+    certificacoes:[], certificacoesOutras:"",
+    anosExperiencia:"", academiasAnteriores:"", cargoRecente:"",
+    modalidades:[],
+    diasDisponiveis:[], turnos:[],
+    tipoContrato:"", cargaHoraria:"", pretensaoSalarial:"",
+    bio:"", motivacao:"",
+    instagram:"", linkedin:"", portfolio:"", videoLink:"",
+    curriculoNome:"", crefDocNome:"", diplomaNome:"",
+    declaracao:false
+  };
+
+  function ufOptions(selected){
+    return UFS.map(function(uf){
+      return '<option value="'+uf+'"'+(selected===uf?' selected':'')+'>'+uf+'</option>';
+    }).join('');
+  }
+
+  function opt(value,label,selected){
+    return '<option value="'+value+'"'+(selected===value?' selected':'')+'>'+label+'</option>';
+  }
+
+  function checkGroup(name, options, checkedList){
+    return '<div class="check-grid">' + options.map(function(o){
+      var checked = checkedList.indexOf(o) !== -1;
+      return '<label class="check-option"><input type="checkbox" name="'+name+'" value="'+o+'" data-group="array"'+(checked?' checked':'')+'>'+o+'</label>';
+    }).join('') + '</div>';
+  }
+
+  var CERT_OPTIONS = ["Personal Trainer","Instrutor de Musculação","Instrutor de Pilates","Instrutor de Yoga","Especialista em CrossFit","Treinamento Funcional","Primeiros Socorros / RCP","Nutrição Esportiva (básico)"];
+  var MODALIDADE_OPTIONS = ["Musculação","Treinamento Funcional","CrossFit","Pilates","Yoga","Spinning / Bike Indoor","Natação","Lutas (Muay Thai / Boxe)","Ginástica / Dança","Treinamento para Idosos / Reabilitação"];
+  var DIAS_OPTIONS = ["Segunda","Terça","Quarta","Quinta","Sexta","Sábado","Domingo"];
+  var TURNO_OPTIONS = ["Manhã","Tarde","Noite"];
+
+  var steps = [
+    {
+      title:"Bem-vindo(a)",
+      subtitle:"Vamos conhecer você em algumas etapas rápidas antes de você se juntar ao nosso time de instrutores.",
+      required:[],
+      render:function(){
+        return '' +
+          '<div class="field">' +
+            '<p>Este formulário leva cerca de 8 a 10 minutos. Você poderá voltar e revisar qualquer etapa antes de enviar.</p>' +
+            '<p class="hint">Tenha em mãos: dados do seu CREF, currículo em PDF e certificados relevantes.</p>' +
+          '</div>';
+      }
+    },
+    {
+      title:"Dados pessoais",
+      subtitle:"Informações básicas para identificação.",
+      required:["nome","nascimento","cpf","genero"],
+      render:function(){
+        return '' +
+          '<div class="field" data-field="nome"><label>Nome completo</label>' +
+            '<input type="text" name="nome" placeholder="Seu nome completo">' +
+            '<span class="error-msg">Informe seu nome completo.</span></div>' +
+          '<div class="row-2">' +
+            '<div class="field" data-field="nascimento"><label>Data de nascimento</label>' +
+              '<input type="date" name="nascimento"><span class="error-msg">Informe sua data de nascimento.</span></div>' +
+            '<div class="field" data-field="cpf"><label>CPF</label>' +
+              '<input type="text" name="cpf" placeholder="000.000.000-00"><span class="error-msg">Informe seu CPF.</span></div>' +
+          '</div>' +
+          '<div class="field" data-field="genero"><label>Gênero</label>' +
+            '<select name="genero">' +
+              '<option value="">Selecione</option>' +
+              opt("Feminino","Feminino",formData.genero) +
+              opt("Masculino","Masculino",formData.genero) +
+              opt("Outro","Outro",formData.genero) +
+              opt("Prefiro não informar","Prefiro não informar",formData.genero) +
+            '</select><span class="error-msg">Selecione uma opção.</span></div>';
+      }
+    },
+    {
+      title:"Contato",
+      subtitle:"Como podemos falar com você.",
+      required:["telefone","email","cidade","estado"],
+      render:function(){
+        return '' +
+          '<div class="row-2">' +
+            '<div class="field" data-field="telefone"><label>Telefone / WhatsApp</label>' +
+              '<input type="tel" name="telefone" placeholder="(00) 00000-0000"><span class="error-msg">Informe um telefone.</span></div>' +
+            '<div class="field" data-field="email"><label>E-mail</label>' +
+              '<input type="email" name="email" placeholder="voce@email.com"><span class="error-msg">Informe um e-mail válido.</span></div>' +
+          '</div>' +
+          '<div class="row-2">' +
+            '<div class="field" data-field="cidade"><label>Cidade</label>' +
+              '<input type="text" name="cidade" placeholder="Sua cidade"><span class="error-msg">Informe sua cidade.</span></div>' +
+            '<div class="field" data-field="estado"><label>Estado</label>' +
+              '<select name="estado"><option value="">UF</option>'+ufOptions(formData.estado)+'</select><span class="error-msg">Selecione um estado.</span></div>' +
+          '</div>';
+      }
+    },
+    {
+      title:"Foto de perfil",
+      subtitle:"Uma foto ajuda a equipe a te conhecer melhor (opcional).",
+      required:[],
+      render:function(){
+        return '' +
+          '<div class="upload-box">' +
+            '<div class="photo-preview" id="photoPreview" style="'+(formData.fotoPreview?('background-image:url('+formData.fotoPreview+')'):'')+'"></div>' +
+            '<label class="upload-btn">Escolher foto<input type="file" accept="image/*" id="photoInput" name="foto" data-preview="fotoPreview"></label>' +
+            '<div class="file-name" id="fotoInputName">'+(formData.fotoNome?('Arquivo selecionado: '+formData.fotoNome):'')+'</div>' +
+          '</div>';
+      }
+    },
+    {
+      title:"Formação acadêmica",
+      subtitle:"Sua trajetória de estudos na área.",
+      required:["graduacao","instituicao","anoConclusao"],
+      render:function(){
+        return '' +
+          '<div class="field" data-field="graduacao"><label>Curso de graduação</label>' +
+            '<input type="text" name="graduacao" placeholder="Ex: Educação Física — Licenciatura / Bacharelado"><span class="error-msg">Informe seu curso.</span></div>' +
+          '<div class="row-2">' +
+            '<div class="field" data-field="instituicao"><label>Instituição de ensino</label>' +
+              '<input type="text" name="instituicao" placeholder="Nome da instituição"><span class="error-msg">Informe a instituição.</span></div>' +
+            '<div class="field" data-field="anoConclusao"><label>Ano de conclusão</label>' +
+              '<input type="number" name="anoConclusao" placeholder="Ex: 2022" min="1970" max="2035"><span class="error-msg">Informe o ano de conclusão.</span></div>' +
+          '</div>' +
+          '<div class="field"><label>Pós-graduação (opcional)</label>' +
+            '<input type="text" name="posGraduacao" placeholder="Ex: Fisiologia do Exercício"></div>';
+      }
+    },
+    {
+      title:"Registro profissional",
+      subtitle:"Dados do seu CREF.",
+      required:["cref","crefSituacao","crefEstado"],
+      render:function(){
+        return '' +
+          '<div class="row-2">' +
+            '<div class="field" data-field="cref"><label>Número do CREF</label>' +
+              '<input type="text" name="cref" placeholder="000000-G/UF"><span class="error-msg">Informe o número do CREF.</span></div>' +
+            '<div class="field" data-field="crefEstado"><label>Estado do registro</label>' +
+              '<select name="crefEstado"><option value="">UF</option>'+ufOptions(formData.crefEstado)+'</select><span class="error-msg">Selecione o estado.</span></div>' +
+          '</div>' +
+          '<div class="field" data-field="crefSituacao"><label>Situação do registro</label>' +
+            '<select name="crefSituacao">' +
+              '<option value="">Selecione</option>' +
+              opt("Ativo","Ativo",formData.crefSituacao) +
+              opt("Em regularização","Em regularização",formData.crefSituacao) +
+              opt("Estagiário (registro provisório)","Estagiário (registro provisório)",formData.crefSituacao) +
+            '</select><span class="error-msg">Selecione a situação do registro.</span></div>';
+      }
+    },
+    {
+      title:"Certificações",
+      subtitle:"Cursos e especializações que você possui.",
+      required:[],
+      customValidate:function(){
+        return formData.certificacoes.length===0 ? "Selecione ao menos uma certificação." : null;
+      },
+      render:function(){
+        return '' +
+          '<div class="field">' + checkGroup("certificacoes", CERT_OPTIONS, formData.certificacoes) + '</div>' +
+          '<div class="field"><label>Outras certificações (opcional)</label>' +
+            '<input type="text" name="certificacoesOutras" placeholder="Cite outras certificações relevantes"></div>';
+      }
+    },
+    {
+      title:"Experiência profissional",
+      subtitle:"Sua trajetória como instrutor(a).",
+      required:["anosExperiencia","cargoRecente"],
+      render:function(){
+        return '' +
+          '<div class="row-2">' +
+            '<div class="field" data-field="anosExperiencia"><label>Anos de experiência</label>' +
+              '<select name="anosExperiencia">' +
+                '<option value="">Selecione</option>' +
+                opt("Menos de 1 ano","Menos de 1 ano",formData.anosExperiencia) +
+                opt("1 a 3 anos","1 a 3 anos",formData.anosExperiencia) +
+                opt("3 a 5 anos","3 a 5 anos",formData.anosExperiencia) +
+                opt("5 a 10 anos","5 a 10 anos",formData.anosExperiencia) +
+                opt("Mais de 10 anos","Mais de 10 anos",formData.anosExperiencia) +
+              '</select><span class="error-msg">Selecione sua experiência.</span></div>' +
+            '<div class="field" data-field="cargoRecente"><label>Cargo mais recente</label>' +
+              '<input type="text" name="cargoRecente" placeholder="Ex: Instrutor de musculação"><span class="error-msg">Informe seu cargo mais recente.</span></div>' +
+          '</div>' +
+          '<div class="field"><label>Academias / empresas anteriores (opcional)</label>' +
+            '<textarea name="academiasAnteriores" placeholder="Liste os locais onde já atuou"></textarea></div>';
+      }
+    },
+    {
+      title:"Modalidades de interesse",
+      subtitle:"Em quais modalidades você gostaria de atuar aqui.",
+      required:[],
+      customValidate:function(){
+        return formData.modalidades.length===0 ? "Selecione ao menos uma modalidade." : null;
+      },
+      render:function(){
+        return '<div class="field">' + checkGroup("modalidades", MODALIDADE_OPTIONS, formData.modalidades) + '</div>';
+      }
+    },
+    {
+      title:"Disponibilidade",
+      subtitle:"Dias e turnos em que você pode trabalhar.",
+      required:[],
+      customValidate:function(){
+        if(formData.diasDisponiveis.length===0) return "Selecione ao menos um dia disponível.";
+        if(formData.turnos.length===0) return "Selecione ao menos um turno.";
+        return null;
+      },
+      render:function(){
+        return '' +
+          '<div class="field"><label>Dias disponíveis</label>' + checkGroup("diasDisponiveis", DIAS_OPTIONS, formData.diasDisponiveis) + '</div>' +
+          '<div class="field"><label>Turnos</label>' + checkGroup("turnos", TURNO_OPTIONS, formData.turnos) + '</div>';
+      }
+    },
+    {
+      title:"Contrato e carga horária",
+      subtitle:"Suas preferências de vínculo.",
+      required:["tipoContrato","cargaHoraria"],
+      render:function(){
+        return '' +
+          '<div class="row-2">' +
+            '<div class="field" data-field="tipoContrato"><label>Tipo de contrato desejado</label>' +
+              '<select name="tipoContrato">' +
+                '<option value="">Selecione</option>' +
+                opt("CLT","CLT",formData.tipoContrato) +
+                opt("PJ","PJ",formData.tipoContrato) +
+                opt("Horista","Horista",formData.tipoContrato) +
+                opt("Freelancer / Diarista","Freelancer / Diarista",formData.tipoContrato) +
+              '</select><span class="error-msg">Selecione um tipo de contrato.</span></div>' +
+            '<div class="field" data-field="cargaHoraria"><label>Carga horária pretendida</label>' +
+              '<select name="cargaHoraria">' +
+                '<option value="">Selecione</option>' +
+                opt("Até 10h/semana","Até 10h/semana",formData.cargaHoraria) +
+                opt("20h/semana","20h/semana",formData.cargaHoraria) +
+                opt("30h/semana","30h/semana",formData.cargaHoraria) +
+                opt("40h/semana","40h/semana",formData.cargaHoraria) +
+                opt("A combinar","A combinar",formData.cargaHoraria) +
+              '</select><span class="error-msg">Selecione uma carga horária.</span></div>' +
+          '</div>' +
+          '<div class="field"><label>Pretensão salarial (opcional)</label>' +
+            '<input type="text" name="pretensaoSalarial" placeholder="Ex: R$ 1.800 ou a combinar"></div>';
+      }
+    },
+    {
+      title:"Sobre você",
+      subtitle:"Conte um pouco mais sobre sua trajetória e motivação.",
+      required:["bio","motivacao"],
+      render:function(){
+        return '' +
+          '<div class="field" data-field="bio"><label>Apresentação pessoal</label>' +
+            '<textarea name="bio" placeholder="Fale um pouco sobre você e sua forma de trabalhar como instrutor(a)"></textarea>' +
+            '<span class="error-msg">Escreva uma breve apresentação.</span></div>' +
+          '<div class="field" data-field="motivacao"><label>Por que quer trabalhar conosco?</label>' +
+            '<textarea name="motivacao" placeholder="Conte sua motivação para se juntar à nossa equipe"></textarea>' +
+            '<span class="error-msg">Conte sua motivação.</span></div>';
+      }
+    },
+    {
+      title:"Redes e portfólio",
+      subtitle:"Links para conhecermos mais do seu trabalho (opcional).",
+      required:[],
+      render:function(){
+        return '' +
+          '<div class="row-2">' +
+            '<div class="field"><label>Instagram</label><input type="text" name="instagram" placeholder="@seuusuario"></div>' +
+            '<div class="field"><label>LinkedIn</label><input type="url" name="linkedin" placeholder="https://linkedin.com/in/..."></div>' +
+          '</div>' +
+          '<div class="row-2">' +
+            '<div class="field"><label>Site / portfólio</label><input type="url" name="portfolio" placeholder="https://..."></div>' +
+            '<div class="field"><label>Vídeo demonstrativo</label><input type="url" name="videoLink" placeholder="Link do YouTube/Drive"></div>' +
+          '</div>';
+      }
+    },
+    {
+      title:"Documentos",
+      subtitle:"Envie os arquivos necessários para análise.",
+      required:[],
+      customValidate:function(){
+        return !formData.curriculoNome ? "Envie seu currículo em PDF para continuar." : null;
+      },
+      render:function(){
+        return '' +
+          '<div class="field"><label>Currículo (PDF)</label>' +
+            '<div class="upload-box"><label class="upload-btn">Escolher arquivo<input type="file" accept=".pdf" id="curriculoInput" name="curriculo" data-name-target="curriculoNome"></label>' +
+            '<div class="file-name" id="curriculoInputName">'+(formData.curriculoNome?('Arquivo selecionado: '+formData.curriculoNome):'')+'</div></div></div>' +
+          '<div class="field"><label>Certificado do CREF</label>' +
+            '<div class="upload-box"><label class="upload-btn">Escolher arquivo<input type="file" accept=".pdf,image/*" id="crefDocInput" name="crefDoc" data-name-target="crefDocNome"></label>' +
+            '<div class="file-name" id="crefDocInputName">'+(formData.crefDocNome?('Arquivo selecionado: '+formData.crefDocNome):'')+'</div></div></div>' +
+          '<div class="field"><label>Diploma / certificado de curso (opcional)</label>' +
+            '<div class="upload-box"><label class="upload-btn">Escolher arquivo<input type="file" accept=".pdf,image/*" id="diplomaInput" name="diploma" data-name-target="diplomaNome"></label>' +
+            '<div class="file-name" id="diplomaInputName">'+(formData.diplomaNome?('Arquivo selecionado: '+formData.diplomaNome):'')+'</div></div></div>';
+      }
+    },
+    {
+      title:"Revisão e envio",
+      subtitle:"Confira suas informações antes de enviar.",
+      required:[],
+      customValidate:function(){
+        return !formData.declaracao ? "Confirme a declaração para enviar o formulário." : null;
+      },
+      render:function(){
+        function row(k,v,stepIdx){
+          return '<div class="summary-row"><span class="k">'+k+'</span><span class="v">'+(v && v.length ? v : '<span class="muted">Não informado</span>')+'<span class="edit-link" data-goto="'+stepIdx+'">Editar</span></span></div>';
+        }
+        return '' +
+          '<div class="summary-block"><h3>Dados pessoais</h3>' +
+            row("Nome",formData.nome,1) + row("Nascimento",formData.nascimento,1) + row("CPF",formData.cpf,1) + row("Gênero",formData.genero,1) +
+          '</div>' +
+          '<div class="summary-block"><h3>Contato</h3>' +
+            row("Telefone",formData.telefone,2) + row("E-mail",formData.email,2) + row("Cidade/UF",[formData.cidade,formData.estado].filter(Boolean).join(" / "),2) +
+          '</div>' +
+          '<div class="summary-block"><h3>Formação e CREF</h3>' +
+            row("Curso",formData.graduacao,4) + row("Instituição",formData.instituicao,4) + row("CREF",formData.cref+(formData.crefEstado?(" / "+formData.crefEstado):""),5) +
+          '</div>' +
+          '<div class="summary-block"><h3>Atuação</h3>' +
+            row("Certificações",formData.certificacoes.join(", "),6) + row("Modalidades",formData.modalidades.join(", "),8) + row("Experiência",formData.anosExperiencia,7) +
+          '</div>' +
+          '<div class="summary-block"><h3>Disponibilidade e contrato</h3>' +
+            row("Dias",formData.diasDisponiveis.join(", "),9) + row("Turnos",formData.turnos.join(", "),9) + row("Contrato",formData.tipoContrato,10) +
+          '</div>' +
+          '<div class="summary-block"><h3>Documentos</h3>' +
+            row("Currículo",formData.curriculoNome,13) + row("Certificado CREF",formData.crefDocNome,13) +
+          '</div>' +
+          '<div class="terms"><input type="checkbox" name="declaracao" id="declaracao"'+(formData.declaracao?' checked':'')+'>' +
+          '<label for="declaracao">Declaro que as informações fornecidas neste formulário são verdadeiras e autorizo o uso dos meus dados para fins de recrutamento e seleção.</label></div>';
+      }
+    }
+  ];
+
+  var currentStep = 0;
+  var furthestReached = 0;
+
+  var rail = document.getElementById('rail');
+  var stepIndexEl = document.getElementById('stepIndex');
+  var stepTitleEl = document.getElementById('stepTitle');
+  var stepSubtitleEl = document.getElementById('stepSubtitle');
+  var stepContentEl = document.getElementById('stepContent');
+  var stepErrorEl = document.getElementById('stepError');
+  var btnBack = document.getElementById('btnBack');
+  var btnNext = document.getElementById('btnNext');
+  var tpText = document.getElementById('tpText');
+  var tpTitle = document.getElementById('tpTitle');
+  var tpFill = document.getElementById('tpFill');
+
+  function buildRail(){
+    var html = '<div class="rail-brand">Trabalhe <span>Conosco</span></div><span class="rail-sub">Cadastro de instrutor</span><ul class="rail-list">';
+    steps.forEach(function(s, i){
+      var cls = 'rail-item';
+      var enabled = i <= furthestReached;
+      if(enabled) cls += ' enabled';
+      if(i === currentStep) cls += ' current';
+      else if(i < currentStep) cls += ' done';
+      var num = (i < currentStep) ? '&#10003;' : (i+1);
+      html += '<li class="'+cls+'" data-step="'+i+'"><span class="rail-num">'+num+'</span><span class="rail-title">'+s.title+'</span></li>';
+    });
+    html += '</ul>';
+    rail.innerHTML = html;
+    rail.querySelectorAll('.rail-item.enabled').forEach(function(el){
+      el.addEventListener('click', function(){
+        goToStep(parseInt(el.getAttribute('data-step'),10));
+      });
+    });
+  }
+
+  function restoreValues(container){
+    container.querySelectorAll('input,select,textarea').forEach(function(el){
+      var name = el.name;
+      if(!name) return;
+      if(el.type === 'checkbox'){
+        if(el.dataset.group === 'array'){
+          var arr = formData[name] || [];
+          el.checked = arr.indexOf(el.value) !== -1;
+        } else {
+          el.checked = !!formData[name];
+        }
+      } else if(el.type === 'file'){
+        // cannot restore file input value programmatically
+      } else {
+        el.value = formData[name] || '';
+      }
+    });
+  }
+
+  function bindEvents(){
+    stepContentEl.addEventListener('input', function(e){
+      var el = e.target;
+      var name = el.name;
+      if(!name) return;
+      if(el.type === 'checkbox'){
+        if(el.dataset.group === 'array'){
+          var arr = (formData[name] || []).slice();
+          if(el.checked){ if(arr.indexOf(el.value) === -1) arr.push(el.value); }
+          else { arr = arr.filter(function(v){ return v !== el.value; }); }
+          formData[name] = arr;
+        } else {
+          formData[name] = el.checked;
+        }
+      } else if(el.type === 'file'){
+        var file = el.files && el.files[0];
+        if(file){
+          var nameTargetAttr = el.dataset.nameTarget;
+          if(nameTargetAttr){ formData[nameTargetAttr] = file.name; }
+          if(el.id === 'photoInput'){ formData.fotoNome = file.name; }
+          var nameLabel = document.getElementById(el.id + 'Name');
+          if(nameLabel){ nameLabel.textContent = 'Arquivo selecionado: ' + file.name; }
+          if(el.dataset.preview){
+            var reader = new FileReader();
+            reader.onload = function(ev){
+              formData.fotoPreview = ev.target.result;
+              var preview = document.getElementById(el.dataset.preview);
+              if(preview){ preview.style.backgroundImage = 'url(' + ev.target.result + ')'; }
+            };
+            reader.readAsDataURL(file);
+          }
+        }
+      } else {
+        formData[name] = el.value;
+        var wrap = el.closest('[data-field]');
+        if(wrap) wrap.classList.remove('has-error');
+      }
+    });
+
+    stepContentEl.addEventListener('click', function(e){
+      var editLink = e.target.closest('[data-goto]');
+      if(editLink){
+        goToStep(parseInt(editLink.getAttribute('data-goto'),10));
+      }
+    });
+  }
+
+  function clearErrors(){
+    stepContentEl.querySelectorAll('.has-error').forEach(function(el){ el.classList.remove('has-error'); });
+    stepErrorEl.classList.remove('show');
+    stepErrorEl.textContent = '';
+  }
+
+  function validateStep(step){
+    var valid = true;
+    var firstInvalid = null;
+    (step.required || []).forEach(function(name){
+      var val = formData[name];
+      var isEmpty = Array.isArray(val) ? val.length === 0 : (!val || String(val).trim() === '');
+      var wrap = stepContentEl.querySelector('[data-field="'+name+'"]');
+      if(isEmpty){
+        valid = false;
+        if(wrap){ wrap.classList.add('has-error'); if(!firstInvalid) firstInvalid = wrap; }
+      }
+    });
+    if(step.customValidate){
+      var err = step.customValidate();
+      if(err){
+        valid = false;
+        stepErrorEl.textContent = err;
+        stepErrorEl.classList.add('show');
+      }
+    }
+    if(firstInvalid){ firstInvalid.scrollIntoView({behavior:'smooth', block:'center'}); }
+    return valid;
+  }
+
+  function renderStep(){
+    var step = steps[currentStep];
+    stepIndexEl.textContent = 'Etapa ' + (currentStep+1) + ' de ' + steps.length;
+    stepTitleEl.textContent = step.title;
+    stepSubtitleEl.textContent = step.subtitle;
+    stepContentEl.innerHTML = step.render();
+    clearErrors();
+    restoreValues(stepContentEl);
+
+    btnBack.hidden = currentStep === 0;
+    btnNext.textContent = currentStep === steps.length - 1 ? 'Enviar cadastro' : 'Avançar';
+
+    tpText.textContent = 'Etapa ' + (currentStep+1) + ' de ' + steps.length;
+    tpTitle.textContent = step.title;
+    tpFill.style.width = ((currentStep) / (steps.length - 1) * 100) + '%';
+
+    buildRail();
+    window.scrollTo({top:0, behavior:'instant' in window ? 'instant' : 'auto'});
+  }
+
+  function goToStep(index){
+    if(index > furthestReached) return;
+    currentStep = index;
+    renderStep();
+  }
+
+  btnNext.addEventListener('click', function(){
+    var step = steps[currentStep];
+    if(!validateStep(step)) return;
+
+    if(currentStep === steps.length - 1){
+      submitForm();
+      return;
+    }
+    currentStep++;
+    if(currentStep > furthestReached) furthestReached = currentStep;
+    renderStep();
+  });
+
+  btnBack.addEventListener('click', function(){
+    if(currentStep === 0) return;
+    currentStep--;
+    renderStep();
+  });
+
+  function submitForm(){
+    document.querySelector('.page').style.display = 'none';
+    document.getElementById('successScreen').classList.remove('hidden');
+  }
+
+  document.getElementById('btnRestart').addEventListener('click', function(){
+    window.location.reload();
+  });
+
+  bindEvents();
+  renderStep();
+
+})();
+</script>
+</body>
+</html>
