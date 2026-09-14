@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Enviar Candidatura - HitBoxe</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-0: #100b0b;
+            --bg-1: #1b1414;
+            --bg-2: #241a1a;
+            --line: #35272a;
+            --line-soft: #2a1e20;
+            --red: #ed0712;
+            --red-dark: #c90009;
+            --gold: #ed0712;
+            --gold-soft: #ff4d55;
+            --cream: #f4ede2;
+            --muted: #a3948d;
+        }
+
+        html,
+        body {
+            width: 100%;
+            min-height: 100%;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: 'Inter', Arial, Helvetica, sans-serif;
+            color: var(--cream);
+            background:
+                linear-gradient(
+                    rgba(12, 8, 8, 0.85),
+                    rgba(8, 5, 5, 0.95)
+                ),
+                url("img/FundoForm.png") center center / cover fixed no-repeat;
+        }
+
+        .page {
+            width: 100%;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* subtle grain so the black doesn't sit flat */
+        .page::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            opacity: 0.05;
+            mix-blend-mode: overlay;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            z-index: 1;
+        }
+
+        .top-header {
+            width: 100%;
+            height: 84px;
+            background: rgba(6, 4, 4, 0.97);
+            border-bottom: 1px solid var(--line);
+            box-shadow: 0 1px 0 rgba(226, 20, 34, 0.55);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .top-header img {
+            width: 180px;
+            height: 76px;
+            object-fit: contain;
+            display: block;
+        }
+
+        .content {
+            width: 100%;
+            min-height: calc(100vh - 84px);
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 44px 20px 60px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .form-container {
+            width: 100%;
+            max-width: 860px;
+            position: relative;
+            background: linear-gradient(180deg, var(--bg-1) 0%, var(--bg-0) 100%);
+            border: 1px solid var(--line);
+            border-radius: 3px;
+            padding: 40px 44px 32px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+            overflow: hidden;
+        }
+
+        /* corner tag, like a fight-card poster stamp */
+        .corner-tag {
+            position: absolute;
+            top: 22px;
+            right: -46px;
+            width: 190px;
+            transform: rotate(40deg);
+            background: var(--red);
+            color: var(--cream);
+            text-align: center;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            padding: 5px 0;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+        }
+
+        .heading {
+            width: 100%;
+            max-width: 520px;
+            margin-bottom: 32px;
+        }
+
+        .small-title {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            color: var(--gold-soft);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.4px;
+            margin-bottom: 14px;
+            padding: 5px 12px 5px 4px;
+        }
+
+        .small-title i {
+            color: var(--red);
+            font-size: 13px;
+        }
+
+        .heading h1 {
+            font-family: 'Anton', 'Inter', sans-serif;
+            font-weight: 400;
+            color: var(--cream);
+            font-size: 42px;
+            line-height: 0.98;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+        }
+
+        .heading .rule {
+            width: 54px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--red), #1a0000);
+            margin-bottom: 16px;
+            border-radius: 2px;
+        }
+
+        .heading p {
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.6;
+            max-width: 440px;
+        }
+
+        .fields {
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px 18px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .field {
+            width: 100%;
+        }
+
+        .field.full {
+            grid-column: 1 / -1;
+        }
+
+        .field label {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            width: 100%;
+            margin-bottom: 8px;
+            color: var(--cream);
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .field label i {
+            color: var(--gold);
+            font-size: 12px;
+            width: 14px;
+            text-align: center;
+        }
+
+        .field input,
+        .field select,
+        .field textarea {
+            width: 100%;
+            background: var(--bg-2);
+            color: var(--cream);
+            border: 1px solid var(--line);
+            border-radius: 4px;
+            outline: none;
+            font-family: 'Inter', Arial, sans-serif;
+            font-size: 13.5px;
+            transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+        }
+
+        .field input,
+        .field select {
+            height: 42px;
+            padding: 0 12px;
+        }
+
+        .field textarea {
+            height: 120px;
+            min-height: 120px;
+            padding: 12px;
+            resize: vertical;
+            line-height: 1.55;
+        }
+
+        .field input::placeholder,
+        .field textarea::placeholder {
+            color: #6c6260;
+        }
+
+        .field input:focus,
+        .field select:focus,
+        .field textarea:focus {
+            border-color: var(--gold);
+            background: #271c1c;
+            box-shadow: 0 0 0 3px rgba(201, 154, 63, 0.14);
+        }
+
+        .field select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23c99a3f' stroke-width='1.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+            padding-right: 32px;
+        }
+
+        .field select option {
+            background: var(--bg-2);
+            color: var(--cream);
+        }
+
+        .upload-area {
+            width: 100%;
+            min-height: 46px;
+            display: flex;
+            align-items: stretch;
+            background: var(--bg-2);
+            border: 1px solid var(--line);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .upload-area:hover {
+            border-color: #4a3538;
+        }
+
+        .upload-input {
+            display: none !important;
+        }
+
+        .upload-button {
+            flex-shrink: 0;
+            width: 168px;
+            min-width: 168px;
+            height: auto;
+            margin: 0 !important;
+            padding: 0 14px !important;
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: var(--red) !important;
+            color: var(--cream) !important;
+            border: 0 !important;
+            border-radius: 0 !important;
+            cursor: pointer;
+            font-size: 11px !important;
+            font-weight: 700 !important;
+            letter-spacing: 0.3px;
+            transition: background 0.2s;
+        }
+
+        .upload-button:hover {
+            background: var(--red-dark) !important;
+        }
+
+        .upload-button i {
+            color: var(--cream) !important;
+            font-size: 14px;
+            margin: 0 !important;
+        }
+
+        .selected-file {
+            flex: 1 1 auto;
+            min-width: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0 14px;
+            background: var(--bg-2);
+        }
+
+        .selected-file-icon {
+            flex-shrink: 0;
+            color: var(--gold);
+            font-size: 18px;
+        }
+
+        .selected-file-name {
+            min-width: 0;
+            width: 100%;
+            color: #6c6260;
+            font-size: 12.5px;
+            line-height: 1.3;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .selected-file-name.active {
+            color: var(--cream);
+        }
+
+        .file-info {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 8px;
+            color: #6c6260;
+            font-size: 11px;
+        }
+
+        .file-info span:last-child {
+            color: var(--muted);
+        }
+
+        .error-message {
+            display: none;
+            width: 100%;
+            margin-top: 16px;
+            padding: 11px 13px;
+            background: rgba(226, 20, 34, 0.09);
+            border: 1px solid rgba(226, 20, 34, 0.4);
+            border-left: 3px solid var(--red);
+            border-radius: 3px;
+            color: #ff8a8f;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        .submit-button {
+            width: 100%;
+            height: 48px;
+            margin-top: 24px;
+            border: 0;
+            border-radius: 4px;
+            background: linear-gradient(180deg, var(--red) 0%, var(--red-dark) 100%);
+            color: var(--cream);
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.4px;
+            transition: filter 0.2s, box-shadow 0.2s, transform 0.05s;
+        }
+
+        .submit-button:hover {
+            filter: brightness(1.08);
+            box-shadow: 0 10px 26px rgba(226, 20, 34, 0.25);
+        }
+
+        .submit-button:active {
+            transform: translateY(1px);
+        }
+
+        .submit-button i {
+            margin-right: 8px;
+            font-size: 13px;
+        }
+
+        .back-button {
+            width: fit-content;
+            height: 36px;
+            margin: 18px auto 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
+            padding: 0 16px;
+            border: 1px solid var(--line);
+            border-radius: 4px;
+            background: transparent;
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.2px;
+            transition: 0.2s;
+        }
+
+        .back-button:hover {
+            background: var(--cream);
+            color: #171010;
+            border-color: var(--cream);
+        }
+
+        .success-screen {
+            display: none;
+            width: 100%;
+            text-align: center;
+            padding: 12px 0 6px;
+            animation: rise 0.45s ease both;
+        }
+
+        @keyframes rise {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .success-logo {
+            width: 190px;
+            height: 85px;
+            object-fit: contain;
+            margin-bottom: 18px;
+        }
+
+        .success-icon {
+            width: 74px;
+            height: 74px;
+            margin: 0 auto 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(140deg, var(--red), #180404);
+            border-radius: 50%;
+            box-shadow: 0 10px 30px rgba(237, 7, 18, 0.3);
+        }
+
+        .success-icon i {
+            color: var(--cream);
+            font-size: 34px;
+        }
+
+        .success-screen h2 {
+            font-family: 'Anton', 'Inter', sans-serif;
+            font-weight: 400;
+            color: var(--cream);
+            font-size: 27px;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .success-screen p {
+            max-width: 500px;
+            margin: 0 auto;
+            color: var(--muted);
+            font-size: 13.5px;
+            line-height: 1.7;
+        }
+
+        .success-back {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            min-width: 240px;
+            height: 44px;
+            margin-top: 25px;
+            padding: 0 20px;
+            background: var(--red);
+            color: var(--cream);
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+            transition: background 0.2s;
+        }
+
+        .success-back:hover {
+            background: var(--red-dark);
+        }
+
+        @media (max-width: 760px) {
+
+            .top-header {
+                height: 76px;
+            }
+
+            .top-header img {
+                width: 165px;
+                height: 70px;
+            }
+
+            .content {
+                min-height: calc(100vh - 76px);
+                padding: 28px 12px 40px;
+            }
+
+            .form-container {
+                padding: 32px 24px 26px;
+            }
+
+            .corner-tag {
+                top: 18px;
+                right: -50px;
+                width: 175px;
+                font-size: 9px;
+            }
+
+            .fields {
+                grid-template-columns: 1fr;
+                gap: 18px;
+            }
+
+            .field.full {
+                grid-column: auto;
+            }
+
+            .heading h1 {
+                font-size: 32px;
+            }
+
+            .upload-area {
+                flex-direction: column;
+            }
+
+            .upload-button {
+                width: 100%;
+                min-width: 100%;
+                height: 46px;
+                min-height: 46px;
+            }
+
+            .selected-file {
+                min-height: 50px;
+                height: 50px;
+            }
+        }
+
+        @media (max-width: 450px) {
+
+            .top-header {
+                height: 70px;
+            }
+
+            .top-header img {
+                width: 150px;
+                height: 64px;
+            }
+
+            .content {
+                padding: 18px 8px 28px;
+            }
+
+            .form-container {
+                padding: 26px 16px 22px;
+            }
+
+            .corner-tag {
+                display: none;
+            }
+
+            .heading {
+                margin-bottom: 26px;
+            }
+
+            .heading h1 {
+                font-size: 26px;
+            }
+
+            .heading p {
+                font-size: 12px;
+            }
+
+            .small-title {
+                font-size: 10px;
+            }
+
+            .file-info {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 3px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="page">
+
+        <header class="top-header">
+            <img src="img/logo.png" alt="HitBoxe">
+        </header>
+
+        <main class="content">
+
+            <section class="form-container">
+
+                <span class="corner-tag">VAGAS ABERTAS</span>
+
+                <div id="formContent">
+
+                    <div class="heading">
+
+                        <span class="small-title">
+                            <i class="fa fa-dot-circle-o"></i>
+                            Faça parte da equipe
+                        </span>
+
+                        <h1>
+                            Envie sua candidatura
+                        </h1>
+
+                        <div class="rule"></div>
+
+                        <p>
+                            Preencha seus dados e envie seu currículo para fazer parte da equipe HitBoxe.
+                        </p>
+
+                    </div>
+
+                    <form id="candidaturaForm">
+
+                        <div class="fields">
+
+                            <div class="field">
+
+                                <label for="nome">
+                                    <i class="fa fa-user"></i>
+                                    Nome completo
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="nome"
+                                    name="nome"
+                                    placeholder="Digite seu nome completo"
+                                    autocomplete="name"
+                                    required
+                                >
+
+                            </div>
+
+                            <div class="field">
+
+                                <label for="email">
+                                    <i class="fa fa-envelope"></i>
+                                    E-mail
+                                </label>
+
+                                <input
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    placeholder="Digite seu e-mail"
+                                    autocomplete="email"
+                                    required
+                                >
+
+                            </div>
+
+                            <div class="field">
+
+                                <label for="telefone">
+                                    <i class="fa fa-phone"></i>
+                                    Telefone
+                                </label>
+
+                                <input
+                                    type="tel"
+                                    id="telefone"
+                                    name="telefone"
+                                    placeholder="(00) 00000-0000"
+                                    autocomplete="tel"
+                                    required
+                                >
+
+                            </div>
+
+                            <div class="field">
+
+                                <label for="area">
+                                    <i class="fa fa-briefcase"></i>
+                                    Área de interesse
+                                </label>
+
+                                <select
+                                    id="area"
+                                    name="area"
+                                    required
+                                >
+
+                                    <option value="">
+                                        Selecione uma opção
+                                    </option>
+
+                                    <option value="Instrutor de Boxe">
+                                        Instrutor de Boxe
+                                    </option>
+
+                                    <option value="Instrutora de Boxe">
+                                        Instrutora de Boxe
+                                    </option>
+
+                                    <option value="Auxiliar de Treinamento">
+                                        Auxiliar de Treinamento
+                                    </option>
+
+                                    <option value="Administrativo">
+                                        Administrativo
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                            <div class="field full">
+
+                                <label for="apresentacao">
+                                    <i class="fa fa-commenting"></i>
+                                    Breve apresentação
+                                </label>
+
+                                <textarea
+                                    id="apresentacao"
+                                    name="apresentacao"
+                                    placeholder="Conte um pouco sobre você, sua experiência e por que deseja fazer parte da HitBoxe."
+                                    required
+                                ></textarea>
+
+                            </div>
+
+                            <div class="field full">
+
+                                <label for="curriculo">
+                                    <i class="fa fa-file-text"></i>
+                                    Currículo
+                                </label>
+
+                                <div class="upload-area">
+
+                                    <input
+                                        type="file"
+                                        id="curriculo"
+                                        name="curriculo"
+                                        class="upload-input"
+                                        accept=".pdf,.doc,.docx"
+                                        required
+                                    >
+
+                                    <label
+                                        for="curriculo"
+                                        class="upload-button"
+                                    >
+                                        <i class="fa fa-folder-open"></i>
+                                        Escolher arquivo
+                                    </label>
+
+                                    <div class="selected-file">
+
+                                        <i
+                                            id="selectedFileIcon"
+                                            class="fa fa-file-o selected-file-icon"
+                                        ></i>
+
+                                        <span
+                                            id="fileName"
+                                            class="selected-file-name"
+                                        >
+                                            Nenhum arquivo selecionado
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="file-info">
+
+                                    <span>
+                                        Formatos aceitos: PDF, DOC ou DOCX
+                                    </span>
+
+                                    <span>
+                                        Tamanho máximo: 10 MB
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div
+                            id="errorMessage"
+                            class="error-message"
+                        ></div>
+
+                        <button
+                            type="submit"
+                            class="submit-button"
+                        >
+                            <i class="fa fa-paper-plane"></i>
+                            Enviar candidatura
+                        </button>
+
+                    </form>
+
+                    <a
+                        href="trabalhe-conosco.html"
+                        class="back-button"
+                    >
+                        <i class="fa fa-arrow-left"></i>
+                        Voltar
+                    </a>
+
+                </div>
+
+                <div
+                    id="successScreen"
+                    class="success-screen"
+                >
+
+                    <img
+                        src="img/logo.png"
+                        alt="HitBoxe"
+                        class="success-logo"
+                    >
+
+                    <div class="success-icon">
+                        <i class="fa fa-check"></i>
+                    </div>
+
+                    <h2>
+                        Registro enviado com sucesso!
+                    </h2>
+
+                    <p>
+                        Sua candidatura foi registrada e será analisada pela equipe HitBoxe.
+                        Caso seu perfil seja selecionado, entraremos em contato através dos dados informados.
+                    </p>
+
+                    <a
+                        href="trabalhe-conosco.html"
+                        class="success-back"
+                    >
+                        Voltar para trabalhe conosco
+                    </a>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <script>
+
+        const candidaturaForm =
+            document.getElementById("candidaturaForm");
+
+        const curriculo =
+            document.getElementById("curriculo");
+
+        const fileName =
+            document.getElementById("fileName");
+
+        const selectedFileIcon =
+            document.getElementById("selectedFileIcon");
+
+        const errorMessage =
+            document.getElementById("errorMessage");
+
+        const formContent =
+            document.getElementById("formContent");
+
+        const successScreen =
+            document.getElementById("successScreen");
+
+
+        function limparArquivo() {
+
+            curriculo.value = "";
+
+            fileName.textContent =
+                "Nenhum arquivo selecionado";
+
+            fileName.classList.remove("active");
+
+            selectedFileIcon.className =
+                "fa fa-file-o selected-file-icon";
+        }
+
+
+        function mostrarErro(mensagem) {
+
+            errorMessage.textContent =
+                mensagem;
+
+            errorMessage.style.display =
+                "block";
+        }
+
+
+        function esconderErro() {
+
+            errorMessage.textContent =
+                "";
+
+            errorMessage.style.display =
+                "none";
+        }
+
+
+        curriculo.addEventListener(
+            "change",
+            function () {
+
+                esconderErro();
+
+                if (
+                    !this.files ||
+                    this.files.length === 0
+                ) {
+
+                    limparArquivo();
+
+                    return;
+                }
+
+                const arquivo =
+                    this.files[0];
+
+                const nome =
+                    arquivo.name;
+
+                const extensao =
+                    nome
+                        .split(".")
+                        .pop()
+                        .toLowerCase();
+
+                const formatosPermitidos = [
+                    "pdf",
+                    "doc",
+                    "docx"
+                ];
+
+
+                if (
+                    !formatosPermitidos.includes(
+                        extensao
+                    )
+                ) {
+
+                    limparArquivo();
+
+                    mostrarErro(
+                        "Selecione um currículo em PDF, DOC ou DOCX."
+                    );
+
+                    return;
+                }
+
+
+                if (
+                    arquivo.size >
+                    10 * 1024 * 1024
+                ) {
+
+                    limparArquivo();
+
+                    mostrarErro(
+                        "O currículo não pode ultrapassar 10 MB."
+                    );
+
+                    return;
+                }
+
+
+                fileName.textContent =
+                    nome;
+
+                fileName.classList.add("active");
+
+
+                if (extensao === "pdf") {
+
+                    selectedFileIcon.className =
+                        "fa fa-file-pdf-o selected-file-icon";
+
+                } else {
+
+                    selectedFileIcon.className =
+                        "fa fa-file-word-o selected-file-icon";
+
+                }
+
+            }
+        );
+
+
+        candidaturaForm.addEventListener(
+            "submit",
+            function (event) {
+
+                event.preventDefault();
+
+                esconderErro();
+
+
+                const nome =
+                    document
+                        .getElementById("nome")
+                        .value
+                        .trim();
+
+
+                const email =
+                    document
+                        .getElementById("email")
+                        .value
+                        .trim();
+
+
+                const telefone =
+                    document
+                        .getElementById("telefone")
+                        .value
+                        .trim();
+
+
+                const area =
+                    document
+                        .getElementById("area")
+                        .value;
+
+
+                const apresentacao =
+                    document
+                        .getElementById("apresentacao")
+                        .value
+                        .trim();
+
+
+                if (
+                    !nome ||
+                    !email ||
+                    !telefone ||
+                    !area ||
+                    !apresentacao
+                ) {
+
+                    mostrarErro(
+                        "Preencha todos os campos obrigatórios."
+                    );
+
+                    return;
+                }
+
+
+                if (
+                    !curriculo.files ||
+                    curriculo.files.length === 0
+                ) {
+
+                    mostrarErro(
+                        "Selecione seu currículo antes de enviar."
+                    );
+
+                    return;
+                }
+
+
+                const arquivo =
+                    curriculo.files[0];
+
+
+                const extensao =
+                    arquivo.name
+                        .split(".")
+                        .pop()
+                        .toLowerCase();
+
+
+                if (
+                    ![
+                        "pdf",
+                        "doc",
+                        "docx"
+                    ].includes(extensao)
+                ) {
+
+                    mostrarErro(
+                        "O currículo deve estar em PDF, DOC ou DOCX."
+                    );
+
+                    return;
+                }
+
+
+                if (
+                    arquivo.size >
+                    10 * 1024 * 1024
+                ) {
+
+                    mostrarErro(
+                        "O currículo não pode ultrapassar 10 MB."
+                    );
+
+                    return;
+                }
+
+
+                let candidaturas = [];
+
+
+                try {
+
+                    candidaturas =
+                        JSON.parse(
+                            localStorage.getItem(
+                                "hitboxCandidaturas"
+                            )
+                        ) || [];
+
+                } catch (erro) {
+
+                    candidaturas = [];
+
+                }
+
+
+                const novaCandidatura = {
+
+                    id:
+                        Date.now(),
+
+                    nome:
+                        nome,
+
+                    email:
+                        email,
+
+                    telefone:
+                        telefone,
+
+                    area:
+                        area,
+
+                    mensagem:
+                        apresentacao,
+
+                    curriculoNome:
+                        arquivo.name,
+
+                    curriculoTipo:
+                        arquivo.type ||
+                        "application/octet-stream",
+
+                    curriculoTamanho:
+                        arquivo.size,
+
+                    data:
+                        new Date().toISOString(),
+
+                    status:
+                        "Pendente"
+
+                };
+
+
+                candidaturas.push(
+                    novaCandidatura
+                );
+
+
+                try {
+
+                    localStorage.setItem(
+                        "hitboxCandidaturas",
+                        JSON.stringify(
+                            candidaturas
+                        )
+                    );
+
+                } catch (erro) {
+
+                    mostrarErro(
+                        "Não foi possível registrar a candidatura neste navegador."
+                    );
+
+                    return;
+                }
+
+
+                formContent.style.display =
+                    "none";
+
+                successScreen.style.display =
+                    "block";
+
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+
+            }
+        );
+
+    </script>
+
+</body>
+</html>

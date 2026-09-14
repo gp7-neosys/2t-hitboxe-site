@@ -1,239 +1,1711 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>Hitbox | Meu Perfil</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HitBoxe | Meu Perfil</title>
+
     <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Oswald:300,400,500,600,700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/perfil.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #080808;
+            color: #fff;
+            font-family: Muli, Arial, sans-serif;
+        }
+
+        button,
+        input,
+        select,
+        textarea {
+            font-family: inherit;
+        }
+
+        .profile-page {
+            min-height: 100vh;
+            padding: 35px 20px 60px;
+            background: linear-gradient(180deg, #101010, #070707);
+        }
+
+        .profile-container {
+            max-width: 1250px;
+            margin: auto;
+        }
+
+        .profile-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 25px;
+            margin-bottom: 25px;
+            border-bottom: 1px solid #292929;
+        }
+
+        .profile-identity {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .profile-photo-wrap {
+            width: 84px;
+            height: 84px;
+            border-radius: 50%;
+            position: relative;
+            background: #181818;
+            border: 2px solid #e30613;
+        }
+
+        .profile-photo,
+        .profile-photo-fallback {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .profile-photo {
+            display: none;
+        }
+
+        .profile-photo-fallback {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #777;
+            font-size: 30px;
+        }
+
+        .photo-edit {
+            position: absolute;
+            right: -5px;
+            bottom: -5px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #e30613;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .profile-photo-wrap input {
+            display: none;
+        }
+
+        .profile-kicker {
+            display: block;
+            color: #e30613;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 800;
+        }
+
+        .profile-top h1 {
+            margin: 4px 0;
+            font-family: Oswald, sans-serif;
+            font-size: 30px;
+            text-transform: uppercase;
+        }
+
+        .profile-top p {
+            margin: 0;
+            color: #888;
+            font-size: 12px;
+        }
+
+        .logout {
+            border: 0;
+            background: #e30613;
+            color: #fff;
+            padding: 12px 20px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .logout:hover,
+        .red-button:hover,
+        .outline-button:hover {
+            background: #fff;
+            color: #e30613;
+        }
+
+        .admin-hero,
+        .membership-hero {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #171717;
+            border: 1px solid #292929;
+            padding: 28px 30px;
+            margin-bottom: 18px;
+        }
+
+        .admin-hero span,
+        .membership-hero span {
+            color: #e30613;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 800;
+        }
+
+        .admin-hero h2,
+        .membership-hero h2 {
+            margin: 5px 0;
+            font-family: Oswald, sans-serif;
+            font-size: 34px;
+            text-transform: uppercase;
+        }
+
+        .admin-hero p,
+        .membership-hero p {
+            margin: 0;
+            color: #888;
+            font-size: 13px;
+        }
+
+        .admin-badge {
+            border: 1px solid #e30613;
+            padding: 12px 18px;
+            font-weight: 800;
+            font-size: 12px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 18px;
+        }
+
+        .stat {
+            background: #151515;
+            border: 1px solid #292929;
+            padding: 20px;
+        }
+
+        .stat i {
+            color: #e30613;
+            font-size: 18px;
+            margin-bottom: 12px;
+        }
+
+        .stat span {
+            display: block;
+            color: #777;
+            font-size: 10px;
+            text-transform: uppercase;
+            margin-top: 10px;
+        }
+
+        .stat strong {
+            display: block;
+            font-family: Oswald, sans-serif;
+            font-size: 25px;
+            margin-top: 5px;
+        }
+
+        .admin-actions {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 18px;
+        }
+
+        .action-button {
+            min-height: 85px;
+            border: 1px solid #303030;
+            background: #151515;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 20px;
+            cursor: pointer;
+            text-align: left;
+            transition: .25s;
+        }
+
+        .action-button:hover {
+            border-color: #e30613;
+            transform: translateY(-2px);
+        }
+
+        .action-button i {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #261012;
+            color: #e30613;
+            font-size: 18px;
+        }
+
+        .action-button strong {
+            display: block;
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+
+        .action-button small {
+            display: block;
+            color: #777;
+            margin-top: 5px;
+            font-size: 11px;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+            margin-bottom: 18px;
+        }
+
+        .dashboard-card {
+            background: #151515;
+            border: 1px solid #292929;
+            padding: 24px;
+        }
+
+        .dashboard-card.full {
+            margin-bottom: 18px;
+        }
+
+        .card-head {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid #292929;
+            padding-bottom: 14px;
+            margin-bottom: 20px;
+        }
+
+        .card-head i {
+            color: #e30613;
+        }
+
+        .card-head h2 {
+            margin: 0;
+            font-family: Oswald, sans-serif;
+            font-size: 19px;
+            text-transform: uppercase;
+        }
+
+        .chart-wrap {
+            height: 270px;
+        }
+
+        .sales-list > div,
+        .training-list > div,
+        .student-list > div,
+        .instructor-list > div {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            padding: 14px 0;
+            border-bottom: 1px solid #282828;
+            font-size: 12px;
+        }
+
+        .sales-list > div:last-child,
+        .training-list > div:last-child,
+        .student-list > div:last-child,
+        .instructor-list > div:last-child {
+            border-bottom: 0;
+        }
+
+        .sales-list span,
+        .training-list span,
+        .student-list span,
+        .instructor-list span {
+            color: #aaa;
+        }
+
+        .sales-list strong {
+            color: #fff;
+        }
+
+        .training-list b {
+            color: #e30613;
+        }
+
+        .training-list em {
+            color: #777;
+            font-style: normal;
+        }
+
+        .student-status,
+        .status-aprovado {
+            color: #22c55e !important;
+            font-size: 10px;
+            font-weight: 800;
+        }
+
+        .empty-state {
+            color: #777;
+            font-size: 12px;
+            padding: 10px 0;
+        }
+
+        .candidate-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .candidate {
+            background: #111;
+            border: 1px solid #292929;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .candidate:hover {
+            border-color: #e30613;
+        }
+
+        .candidate-main {
+            min-width: 0;
+        }
+
+        .candidate-main strong {
+            display: block;
+            font-size: 14px;
+            color: #fff;
+        }
+
+        .candidate-main span {
+            display: block;
+            color: #888;
+            font-size: 11px;
+            margin-top: 4px;
+        }
+
+        .candidate-status {
+            padding: 6px 9px;
+            border: 1px solid #d99700;
+            color: #d99700;
+            font-size: 9px;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+
+        .candidate-status.aprovado {
+            border-color: #22c55e;
+            color: #22c55e;
+        }
+
+        .candidate-status.recusado {
+            border-color: #777;
+            color: #777;
+        }
+
+        .candidate-status.analise {
+            border-color: #e30613;
+            color: #e30613;
+        }
+
+        .calendar-scroll {
+            overflow-x: auto;
+        }
+
+        .calendar {
+            width: 100%;
+            min-width: 700px;
+            border-collapse: collapse;
+        }
+
+        .calendar th,
+        .calendar td {
+            border: 1px solid #292929;
+            padding: 13px;
+            text-align: center;
+            font-size: 11px;
+        }
+
+        .calendar th {
+            color: #777;
+        }
+
+        .calendar .training {
+            background: #2a1011;
+            color: #e30613;
+            font-weight: 800;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: rgba(0, 0, 0, .82);
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-box {
+            width: 100%;
+            max-width: 700px;
+            max-height: 90vh;
+            overflow-y: auto;
+            background: #111;
+            border: 1px solid #333;
+            padding: 30px;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            right: 15px;
+            top: 15px;
+            width: 35px;
+            height: 35px;
+            border: 0;
+            background: transparent;
+            color: #fff;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .modal-close:hover {
+            color: #e30613;
+        }
+
+        .modal-title {
+            margin-bottom: 25px;
+            padding-right: 40px;
+        }
+
+        .modal-title span {
+            color: #e30613;
+            font-size: 11px;
+            text-transform: uppercase;
+            font-weight: 800;
+        }
+
+        .modal-title h2 {
+            margin: 5px 0 0;
+            font-family: Oswald, sans-serif;
+            text-transform: uppercase;
+            font-size: 28px;
+        }
+
+        .candidate-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .candidate-info div {
+            background: #181818;
+            border: 1px solid #292929;
+            padding: 14px;
+        }
+
+        .candidate-info .full {
+            grid-column: 1 / -1;
+        }
+
+        .candidate-info small {
+            display: block;
+            color: #777;
+            font-size: 9px;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+
+        .candidate-info strong,
+        .candidate-info p {
+            color: #fff;
+            font-size: 13px;
+            margin: 0;
+            line-height: 1.6;
+            word-break: break-word;
+        }
+
+        .curriculo-box {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .curriculo-box i {
+            color: #e30613;
+            font-size: 25px;
+        }
+
+        .modal-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .modal-button {
+            border: 0;
+            padding: 14px;
+            cursor: pointer;
+            font-weight: 800;
+            text-transform: uppercase;
+            transition: .2s;
+        }
+
+        .approve {
+            background: #22c55e;
+            color: #fff;
+        }
+
+        .approve:hover {
+            background: #fff;
+            color: #22c55e;
+        }
+
+        .reject {
+            background: #292929;
+            color: #fff;
+        }
+
+        .reject:hover {
+            background: #e30613;
+        }
+
+        .red-button,
+        .outline-button {
+            border: 0;
+            padding: 12px 18px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .red-button {
+            background: #e30613;
+            color: #fff;
+        }
+
+        .outline-button {
+            background: transparent;
+            border: 1px solid #444;
+            color: #fff;
+        }
+
+        .membership-count {
+            text-align: center;
+            border-left: 1px solid #333;
+            padding-left: 35px;
+        }
+
+        .membership-count small,
+        .membership-count span {
+            display: block;
+            color: #888;
+            font-size: 10px;
+            text-transform: uppercase;
+        }
+
+        .membership-count strong {
+            color: #e30613;
+            font-family: Oswald, sans-serif;
+            font-size: 48px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .info-grid span {
+            display: block;
+            color: #777;
+            font-size: 10px;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .info-grid strong {
+            font-size: 13px;
+            word-break: break-word;
+        }
+
+        .goal-box label {
+            display: block;
+            color: #777;
+            font-size: 10px;
+            text-transform: uppercase;
+            margin: 10px 0 6px;
+        }
+
+        .goal-box input[type=text] {
+            width: 100%;
+            height: 42px;
+            background: #202020;
+            border: 1px solid #333;
+            color: #fff;
+            padding: 0 12px;
+        }
+
+        .goal-box input[type=range] {
+            width: 100%;
+            accent-color: #e30613;
+        }
+
+        .progress-line {
+            height: 7px;
+            background: #2b2b2b;
+            margin: 8px 0;
+        }
+
+        .progress-line div {
+            height: 100%;
+            background: #e30613;
+        }
+
+        #studentDashboard {
+            display: none;
+        }
+
+        #adminDashboard {
+            display: none;
+        }
+
+        @media(max-width:850px) {
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .dashboard-grid,
+            .admin-actions {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media(max-width:600px) {
+            .profile-page {
+                padding: 20px 12px 40px;
+            }
+
+            .profile-top {
+                align-items: flex-start;
+            }
+
+            .profile-photo-wrap {
+                width: 68px;
+                height: 68px;
+            }
+
+            .profile-top h1 {
+                font-size: 23px;
+            }
+
+            .logout {
+                padding: 9px 12px;
+                font-size: 11px;
+            }
+
+            .admin-hero,
+            .membership-hero {
+                padding: 20px;
+                gap: 15px;
+            }
+
+            .admin-hero h2,
+            .membership-hero h2 {
+                font-size: 27px;
+            }
+
+            .membership-count {
+                padding-left: 15px;
+            }
+
+            .membership-count strong {
+                font-size: 36px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+
+            .dashboard-card {
+                padding: 18px;
+            }
+
+            .candidate-info {
+                grid-template-columns: 1fr;
+            }
+
+            .candidate-info .full {
+                grid-column: auto;
+            }
+
+            .modal-box {
+                padding: 22px;
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <main class="profile-page">
-        <div class="profile-container">
-            <header class="profile-top">
-                <div class="profile-identity">
-                    <div class="profile-photo-wrap"><img id="profilePhoto" class="profile-photo" alt="Foto do perfil">
-                        <div id="profileFallback" class="profile-photo-fallback"><i class="fa fa-user"></i></div><label
-                            class="photo-edit" for="photoInput"><i class="fa fa-camera"></i></label><input
-                            id="photoInput" type="file" accept="image/*">
-                    </div>
-                    <div><span class="profile-kicker">Área exclusiva</span>
-                        <h1 id="profileName"></h1>
-                        <p id="profileRole"></p>
-                    </div>
-                </div>
-                <button class="logout" id="logout"><i class="fa fa-sign-out"></i> SAIR</button>
-            </header>
-            <section id="studentDashboard" class="dashboard">
-                <div class="membership-hero">
-                    <div><span>Seu plano</span>
-                        <h2 id="studentPlan">Plano</h2>
-                        <p>Seu acesso à Hitbox está sendo acompanhado por este painel.</p>
-                    </div>
-                    <div class="membership-count"><small>Plano válido por</small><strong
-                            id="daysLeft">0</strong><span>DIAS RESTANTES</span></div>
-                </div>
-                <div class="stats-grid">
-                    <div class="stat"><i class="fa fa-calendar"></i><span>Próximo treino</span><strong
-                            id="studentNext">--</strong></div>
-                    <div class="stat"><i class="fa fa-clock-o"></i><span>Horário</span><strong>18:00</strong></div>
-                    <div class="stat"><i class="fa fa-bolt"></i><span>Modalidade</span><strong
-                            id="studentModalidade">Boxe</strong></div>
-                    <div class="stat"><i class="fa fa-check-circle"></i><span>Status</span><strong class="green"
-                            id="studentStatus">ATIVO</strong></div>
-                </div>
-                <div class="dashboard-grid">
-                    <section class="dashboard-card">
-                        <div class="card-head"><i class="fa fa-user"></i>
-                            <h2>Meus dados</h2>
-                        </div>
-                        <div class="info-grid">
-                            <div><span>Nome completo</span><strong id="studentFullName"></strong></div>
-                            <div><span>E-mail</span><strong id="studentEmail"></strong></div>
-                            <div><span>Telefone</span><strong id="studentPhone"></strong></div>
-                            <div><span>CPF</span><strong id="studentCpf"></strong></div>
-                            <div><span>Plano</span><strong id="studentPlanData"></strong></div>
-                            <div><span>Pagamento</span><strong id="studentPayment"></strong></div>
-                        </div>
-                    </section>
-                    <section class="dashboard-card">
-                        <div class="card-head"><i class="fa fa-bullseye"></i>
-                            <h2>Minha meta</h2>
-                        </div>
-                        <div class="goal-box"><label for="studentGoal">Objetivo</label><input id="studentGoal"
-                                type="text"><label for="studentProgress">Progresso</label>
-                            <div class="progress-line">
-                                <div id="studentProgressBar"></div>
-                            </div><input id="studentProgress" type="range" min="0" max="100" value="35"><strong
-                                id="studentProgressValue">35%</strong><button id="saveGoal"
-                                class="red-button">SALVAR</button>
-                        </div>
-                    </section>
-                </div>
-                <section class="dashboard-card full">
-                    <div class="card-head"><i class="fa fa-calendar"></i>
-                        <h2>Meu calendário de treinos</h2><span class="calendar-month">SEMANA ATUAL</span>
-                    </div>
-                    <div class="calendar-scroll">
-                        <table class="calendar">
-                            <thead>
-                                <tr>
-                                    <th>HORÁRIO</th>
-                                    <th>SEG</th>
-                                    <th>TER</th>
-                                    <th>QUA</th>
-                                    <th>QUI</th>
-                                    <th>SEX</th>
-                                    <th>SÁB</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>07:00</td>
-                                    <td></td>
-                                    <td class="training">BOXE</td>
-                                    <td></td>
-                                    <td class="training">BOXE</td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>18:00</td>
-                                    <td class="training">BOXE</td>
-                                    <td></td>
-                                    <td class="training">BOXE</td>
-                                    <td></td>
-                                    <td class="training">BOXE</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>19:00</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td class="training">BOXE</td>
-                                    <td></td>
-                                    <td class="training">BOXE</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </section>
-            </section>
-            <section id="adminDashboard" class="dashboard" style="display:none">
-                <div class="admin-hero">
-                    <div><span>Painel administrativo</span>
-                        <h2>Gestão da Hitbox</h2>
-                        <p>Acompanhe alunos, vendas, faturamento e desempenho da academia.</p>
-                    </div>
-                    <div class="admin-badge"><i class="fa fa-shield"></i> ADMIN</div>
-                </div>
-                <div class="stats-grid">
-                    <div class="stat"><i class="fa fa-users"></i><span>Alunos ativos</span><strong
-                            id="adminStudents">0</strong></div>
-                    <div class="stat"><i class="fa fa-shopping-bag"></i><span>Produtos vendidos</span><strong
-                            id="adminProducts">42</strong></div>
-                    <div class="stat"><i class="fa fa-money"></i><span>Faturamento do mês</span><strong
-                            id="adminRevenue">R$ 8.450</strong></div>
-                    <div class="stat"><i class="fa fa-line-chart"></i><span>Desempenho</span><strong
-                            id="adminPerformance">+18%</strong></div>
-                </div>
-                <div class="admin-grid">
-                    <section class="dashboard-card chart-card">
-                        <div class="card-head"><i class="fa fa-bar-chart"></i>
-                            <h2>Desempenho mensal</h2>
-                        </div>
-                        <div class="chart-wrap"><canvas id="performanceChart"></canvas></div>
-                    </section>
-                    <section class="dashboard-card">
-                        <div class="card-head"><i class="fa fa-shopping-cart"></i>
-                            <h2>Resumo de vendas</h2>
-                        </div>
-                        <div class="sales-list">
-                            <div><span>Luvas</span><strong>18 unidades</strong></div>
-                            <div><span>Camisetas</span><strong>13 unidades</strong></div>
-                            <div><span>Bandagens</span><strong>11 unidades</strong></div>
-                            <div><span>Total no mês</span><strong>R$ 3.280</strong></div>
-                        </div>
-                    </section>
-                </div>
-                <div class="dashboard-grid">
-                    <section class="dashboard-card">
-                        <div class="card-head"><i class="fa fa-calendar"></i>
-                            <h2>Treinos de hoje</h2>
-                        </div>
-                        <div class="training-list">
-                            <div><b>17:00</b><span>Boxe Iniciante</span><em>12 alunos</em></div>
-                            <div><b>18:00</b><span>Boxe Intermediário</span><em>15 alunos</em></div>
-                            <div><b>19:00</b><span>Boxe Avançado</span><em>9 alunos</em></div>
-                        </div>
-                    </section>
-                    <section class="dashboard-card">
-                        <div class="card-head"><i class="fa fa-users"></i>
-                            <h2>Alunos cadastrados</h2>
-                        </div>
-                        <div id="adminStudentList" class="student-list"></div>
-                    </section>
-                </div>
-                <section class="dashboard-card full">
-                    <div class="card-head"><i class="fa fa-calendar"></i>
-                        <h2>Agenda semanal</h2><span class="calendar-month">AGENDA</span>
-                    </div>
-                    <div class="calendar-scroll">
-                        <table class="calendar">
-                            <thead>
-                                <tr>
-                                    <th>HORÁRIO</th>
-                                    <th>SEG</th>
-                                    <th>TER</th>
-                                    <th>QUA</th>
-                                    <th>QUI</th>
-                                    <th>SEX</th>
-                                    <th>SÁB</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>17:00</td>
-                                    <td class="training">INICIANTE</td>
-                                    <td></td>
-                                    <td class="training">INICIANTE</td>
-                                    <td></td>
-                                    <td class="training">INICIANTE</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>18:00</td>
-                                    <td></td>
-                                    <td class="training">INTERMEDIÁRIO</td>
-                                    <td></td>
-                                    <td class="training">INTERMEDIÁRIO</td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>19:00</td>
-                                    <td class="training">AVANÇADO</td>
-                                    <td></td>
-                                    <td class="training">AVANÇADO</td>
-                                    <td></td>
-                                    <td class="training">AVANÇADO</td>
-                                    <td></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </section>
-            </section>
-        </div>
-    </main>
-    <script src="js/perfil.js"></script>
-</body>
 
+<main class="profile-page">
+    <div class="profile-container">
+
+        <header class="profile-top">
+            <div class="profile-identity">
+                <div class="profile-photo-wrap">
+                    <img id="profilePhoto" class="profile-photo" alt="Foto">
+                    <div id="profileFallback" class="profile-photo-fallback">
+                        <i class="fa fa-user"></i>
+                    </div>
+
+                    <label class="photo-edit" for="photoInput">
+                        <i class="fa fa-camera"></i>
+                    </label>
+
+                    <input id="photoInput" type="file" accept="image/*">
+                </div>
+
+                <div>
+                    <span class="profile-kicker">Área exclusiva</span>
+                    <h1 id="profileName"></h1>
+                    <p id="profileRole"></p>
+                </div>
+            </div>
+
+            <button class="logout" id="logout">
+                <i class="fa fa-sign-out"></i> SAIR
+            </button>
+        </header>
+
+        <section id="adminDashboard">
+
+            <div class="admin-hero">
+                <div>
+                    <span>Painel administrativo</span>
+                    <h2>Gestão da HitBoxe</h2>
+                    <p>Gerencie alunos, instrutores e candidaturas da academia.</p>
+                </div>
+
+                <div class="admin-badge">
+                    <i class="fa fa-shield"></i> ADMIN
+                </div>
+            </div>
+
+            <div class="stats-grid">
+
+                <div class="stat">
+                    <i class="fa fa-users"></i>
+                    <span>Alunos ativos</span>
+                    <strong id="adminStudents">0</strong>
+                </div>
+
+                <div class="stat">
+                    <i class="fa fa-user"></i>
+                    <span>Instrutores</span>
+                    <strong id="adminInstructors">0</strong>
+                </div>
+
+                <div class="stat">
+                    <i class="fa fa-file-text"></i>
+                    <span>Candidaturas pendentes</span>
+                    <strong id="adminCandidates">0</strong>
+                </div>
+
+                <div class="stat">
+                    <i class="fa fa-line-chart"></i>
+                    <span>Desempenho</span>
+                    <strong>+18%</strong>
+                </div>
+
+            </div>
+
+            <div class="admin-actions">
+
+                <button class="action-button" id="openInstructor">
+                    <i class="fa fa-user-plus"></i>
+                    <div>
+                        <strong>Cadastrar instrutor</strong>
+                        <small>Adicionar um novo profissional à equipe</small>
+                    </div>
+                </button>
+
+                <button class="action-button" id="openCandidates">
+                    <i class="fa fa-file-text-o"></i>
+                    <div>
+                        <strong>Ver candidaturas</strong>
+                        <small><span id="candidateActionText">Nenhuma pendente</span></small>
+                    </div>
+                </button>
+
+            </div>
+
+            <div class="dashboard-grid">
+
+                <section class="dashboard-card">
+                    <div class="card-head">
+                        <i class="fa fa-bar-chart"></i>
+                        <h2>Desempenho mensal</h2>
+                    </div>
+
+                    <div class="chart-wrap">
+                        <canvas id="performanceChart"></canvas>
+                    </div>
+                </section>
+
+                <section class="dashboard-card">
+                    <div class="card-head">
+                        <i class="fa fa-shopping-cart"></i>
+                        <h2>Resumo de vendas</h2>
+                    </div>
+
+                    <div class="sales-list">
+                        <div>
+                            <span>Luvas</span>
+                            <strong>18 unidades</strong>
+                        </div>
+
+                        <div>
+                            <span>Camisetas</span>
+                            <strong>13 unidades</strong>
+                        </div>
+
+                        <div>
+                            <span>Bandagens</span>
+                            <strong>11 unidades</strong>
+                        </div>
+
+                        <div>
+                            <span>Total no mês</span>
+                            <strong>R$ 3.280</strong>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+
+            <div class="dashboard-grid">
+
+                <section class="dashboard-card">
+                    <div class="card-head">
+                        <i class="fa fa-users"></i>
+                        <h2>Instrutores da equipe</h2>
+                    </div>
+
+                    <div id="adminInstructorList" class="instructor-list"></div>
+                </section>
+
+                <section class="dashboard-card">
+                    <div class="card-head">
+                        <i class="fa fa-file-text"></i>
+                        <h2>Candidaturas recentes</h2>
+                    </div>
+
+                    <div id="candidateList" class="candidate-list"></div>
+                </section>
+
+            </div>
+
+            <section class="dashboard-card full">
+                <div class="card-head">
+                    <i class="fa fa-users"></i>
+                    <h2>Alunos cadastrados</h2>
+                </div>
+
+                <div id="adminStudentList" class="student-list"></div>
+            </section>
+
+            <section class="dashboard-card full">
+                <div class="card-head">
+                    <i class="fa fa-calendar"></i>
+                    <h2>Agenda semanal</h2>
+                </div>
+
+                <div class="calendar-scroll">
+                    <table class="calendar">
+                        <thead>
+                        <tr>
+                            <th>HORÁRIO</th>
+                            <th>SEG</th>
+                            <th>TER</th>
+                            <th>QUA</th>
+                            <th>QUI</th>
+                            <th>SEX</th>
+                            <th>SÁB</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <tr>
+                            <td>17:00</td>
+                            <td class="training">INICIANTE</td>
+                            <td></td>
+                            <td class="training">INICIANTE</td>
+                            <td></td>
+                            <td class="training">INICIANTE</td>
+                            <td></td>
+                        </tr>
+
+                        <tr>
+                            <td>18:00</td>
+                            <td></td>
+                            <td class="training">INTERMEDIÁRIO</td>
+                            <td></td>
+                            <td class="training">INTERMEDIÁRIO</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+
+                        <tr>
+                            <td>19:00</td>
+                            <td class="training">AVANÇADO</td>
+                            <td></td>
+                            <td class="training">AVANÇADO</td>
+                            <td></td>
+                            <td class="training">AVANÇADO</td>
+                            <td></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+        </section>
+
+        <section id="studentDashboard">
+
+            <div class="membership-hero">
+                <div>
+                    <span>Seu plano</span>
+                    <h2 id="studentPlan">Plano</h2>
+                    <p>Seu acesso à HitBoxe está sendo acompanhado por este painel.</p>
+                </div>
+
+                <div class="membership-count">
+                    <small>Plano válido por</small>
+                    <strong id="daysLeft">0</strong>
+                    <span>DIAS RESTANTES</span>
+                </div>
+            </div>
+
+            <div class="stats-grid">
+
+                <div class="stat">
+                    <i class="fa fa-calendar"></i>
+                    <span>Próximo treino</span>
+                    <strong>Hoje</strong>
+                </div>
+
+                <div class="stat">
+                    <i class="fa fa-clock-o"></i>
+                    <span>Horário</span>
+                    <strong>18:00</strong>
+                </div>
+
+                <div class="stat">
+                    <i class="fa fa-bolt"></i>
+                    <span>Modalidade</span>
+                    <strong>Boxe</strong>
+                </div>
+
+                <div class="stat">
+                    <i class="fa fa-check-circle"></i>
+                    <span>Status</span>
+                    <strong style="color:#22c55e">ATIVO</strong>
+                </div>
+
+            </div>
+
+            <div class="dashboard-grid">
+
+                <section class="dashboard-card">
+                    <div class="card-head">
+                        <i class="fa fa-user"></i>
+                        <h2>Meus dados</h2>
+                    </div>
+
+                    <div class="info-grid">
+                        <div>
+                            <span>Nome completo</span>
+                            <strong id="studentFullName"></strong>
+                        </div>
+
+                        <div>
+                            <span>E-mail</span>
+                            <strong id="studentEmail"></strong>
+                        </div>
+
+                        <div>
+                            <span>Telefone</span>
+                            <strong id="studentPhone"></strong>
+                        </div>
+
+                        <div>
+                            <span>CPF</span>
+                            <strong id="studentCpf"></strong>
+                        </div>
+
+                        <div>
+                            <span>Plano</span>
+                            <strong id="studentPlanData"></strong>
+                        </div>
+
+                        <div>
+                            <span>Pagamento</span>
+                            <strong id="studentPayment"></strong>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="dashboard-card">
+                    <div class="card-head">
+                        <i class="fa fa-bullseye"></i>
+                        <h2>Minha meta</h2>
+                    </div>
+
+                    <div class="goal-box">
+                        <label>Objetivo</label>
+                        <input id="studentGoal" type="text">
+
+                        <label>Progresso</label>
+
+                        <div class="progress-line">
+                            <div id="studentProgressBar"></div>
+                        </div>
+
+                        <input id="studentProgress" type="range" min="0" max="100" value="35">
+
+                        <strong id="studentProgressValue">35%</strong>
+
+                        <button id="saveGoal" class="red-button">
+                            SALVAR
+                        </button>
+                    </div>
+                </section>
+
+            </div>
+
+            <section class="dashboard-card">
+                <div class="card-head">
+                    <i class="fa fa-calendar"></i>
+                    <h2>Meu calendário de treinos</h2>
+                </div>
+
+                <div class="calendar-scroll">
+                    <table class="calendar">
+                        <thead>
+                        <tr>
+                            <th>HORÁRIO</th>
+                            <th>SEG</th>
+                            <th>TER</th>
+                            <th>QUA</th>
+                            <th>QUI</th>
+                            <th>SEX</th>
+                            <th>SÁB</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <tr>
+                            <td>07:00</td>
+                            <td></td>
+                            <td class="training">BOXE</td>
+                            <td></td>
+                            <td class="training">BOXE</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+
+                        <tr>
+                            <td>18:00</td>
+                            <td class="training">BOXE</td>
+                            <td></td>
+                            <td class="training">BOXE</td>
+                            <td></td>
+                            <td class="training">BOXE</td>
+                            <td></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+        </section>
+
+    </div>
+</main>
+
+<div class="modal" id="candidateModal">
+    <div class="modal-box">
+
+        <button class="modal-close" id="candidateModalClose">
+            <i class="fa fa-times"></i>
+        </button>
+
+        <div class="modal-title">
+            <span>Detalhes da candidatura</span>
+            <h2 id="candidateModalName">Candidato</h2>
+        </div>
+
+        <div class="candidate-info">
+
+            <div>
+                <small>Nome completo</small>
+                <strong id="detailName"></strong>
+            </div>
+
+            <div>
+                <small>Área</small>
+                <strong id="detailArea"></strong>
+            </div>
+
+            <div>
+                <small>E-mail</small>
+                <strong id="detailEmail"></strong>
+            </div>
+
+            <div>
+                <small>Telefone</small>
+                <strong id="detailPhone"></strong>
+            </div>
+
+            <div>
+                <small>Data da candidatura</small>
+                <strong id="detailDate"></strong>
+            </div>
+
+            <div>
+                <small>Status</small>
+                <strong id="detailStatus"></strong>
+            </div>
+
+            <div class="full">
+                <small>Apresentação</small>
+                <p id="detailMessage"></p>
+            </div>
+
+            <div class="full">
+                <small>Currículo</small>
+
+                <div class="curriculo-box">
+                    <i class="fa fa-file-pdf-o"></i>
+                    <strong id="detailCurriculo"></strong>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="modal-actions" id="candidateActions">
+            <button class="modal-button approve" id="approveCandidate">
+                <i class="fa fa-check"></i> APROVAR
+            </button>
+
+            <button class="modal-button reject" id="rejectCandidate">
+                <i class="fa fa-times"></i> RECUSAR
+            </button>
+        </div>
+
+    </div>
+</div>
+
+<script>
+(function () {
+
+    const SESSION_KEY = "hitboxSessao";
+    const USERS_KEY = "hitboxUsuarios";
+    const CANDIDATES_KEY = "hitboxCandidaturas";
+
+    const session = JSON.parse(localStorage.getItem(SESSION_KEY) || "null");
+
+    if (!session) {
+        window.location.href = "Contato.html";
+        return;
+    }
+
+    const getUsers = () => JSON.parse(localStorage.getItem(USERS_KEY) || "[]");
+
+    const getCandidates = () => JSON.parse(localStorage.getItem(CANDIDATES_KEY) || "[]");
+
+    const saveCandidates = list => {
+        localStorage.setItem(CANDIDATES_KEY, JSON.stringify(list));
+    };
+
+    const profileName = document.getElementById("profileName");
+    const profileRole = document.getElementById("profileRole");
+
+    const profilePhoto = document.getElementById("profilePhoto");
+    const profileFallback = document.getElementById("profileFallback");
+
+    const studentDashboard = document.getElementById("studentDashboard");
+    const adminDashboard = document.getElementById("adminDashboard");
+
+    function setPhoto(src) {
+        if (src) {
+            profilePhoto.src = src;
+            profilePhoto.style.display = "block";
+            profileFallback.style.display = "none";
+        } else {
+            profilePhoto.removeAttribute("src");
+            profilePhoto.style.display = "none";
+            profileFallback.style.display = "flex";
+        }
+    }
+
+    profileName.textContent = session.tipo === "admin"
+        ? "Administrador Hitbox"
+        : (session.nome || "Usuário");
+
+    profileRole.textContent = session.tipo === "admin"
+        ? "ADMINISTRADOR"
+        : String(session.tipo || "USUÁRIO").toUpperCase();
+
+    let currentCandidateId = null;
+
+    function renderAdmin() {
+
+        studentDashboard.style.display = "none";
+        adminDashboard.style.display = "block";
+
+        const users = getUsers();
+
+        const students = users.filter(u => u.tipo === "aluno");
+        const instructors = users.filter(u => u.tipo === "instrutor");
+
+        document.getElementById("adminStudents").textContent = students.length;
+        document.getElementById("adminInstructors").textContent = instructors.length;
+
+        const instructorList = document.getElementById("adminInstructorList");
+
+        if (!instructors.length) {
+            instructorList.innerHTML = '<div class="empty-state">Nenhum instrutor cadastrado.</div>';
+        } else {
+            instructorList.innerHTML = instructors.map(u => `
+                <div>
+                    <span>
+                        ${u.nome || ""} ${u.sobrenome || ""}
+                    </span>
+                    <span class="student-status">
+                        INSTRUTOR
+                    </span>
+                </div>
+            `).join("");
+        }
+
+        const studentList = document.getElementById("adminStudentList");
+
+        if (!students.length) {
+            studentList.innerHTML = '<div class="empty-state">Nenhum aluno cadastrado ainda.</div>';
+        } else {
+            studentList.innerHTML = students.map(u => `
+                <div>
+                    <span>${u.nome || ""} ${u.sobrenome || ""}</span>
+                    <span class="student-status">ATIVO</span>
+                </div>
+            `).join("");
+        }
+
+        renderCandidates();
+
+        const chart = document.getElementById("performanceChart");
+
+        if (chart && window.Chart) {
+            new Chart(chart, {
+                type: "line",
+                data: {
+                    labels: ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set"],
+                    datasets: [{
+                        label: "Desempenho",
+                        data: [62, 67, 65, 74, 71, 79, 76, 86, 91],
+                        borderWidth: 3,
+                        tension: .35,
+                        fill: false
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            labels: {
+                                color: "#aaa"
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            ticks: {
+                                color: "#777"
+                            },
+                            grid: {
+                                color: "#292929"
+                            }
+                        },
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            ticks: {
+                                color: "#777"
+                            },
+                            grid: {
+                                color: "#292929"
+                            }
+                        }
+                    }
+                }
+            });
+        }
+    }
+
+    function renderCandidates() {
+
+        const candidates = getCandidates();
+
+        const pending = candidates.filter(c => c.status === "Pendente");
+
+        document.getElementById("adminCandidates").textContent = pending.length;
+
+        document.getElementById("candidateActionText").textContent =
+            pending.length
+                ? pending.length + " candidatura(s) pendente(s)"
+                : "Nenhuma pendente";
+
+        const list = document.getElementById("candidateList");
+
+        if (!candidates.length) {
+            list.innerHTML = '<div class="empty-state">Nenhuma candidatura recebida ainda.</div>';
+            return;
+        }
+
+        const ordered = [...candidates].sort((a, b) => {
+            if (a.status === "Pendente" && b.status !== "Pendente") return -1;
+            if (a.status !== "Pendente" && b.status === "Pendente") return 1;
+            return 0;
+        });
+
+        list.innerHTML = ordered.slice(0, 8).map(c => {
+
+            let statusClass = "";
+
+            if (c.status === "Aprovado") statusClass = "aprovado";
+            if (c.status === "Recusado") statusClass = "recusado";
+            if (c.status === "Em análise") statusClass = "analise";
+
+            return `
+                <div class="candidate" data-id="${c.id}">
+                    <div class="candidate-main">
+                        <strong>${c.nome || "Candidato"}</strong>
+                        <span>${c.area || "Área não informada"}</span>
+                    </div>
+
+                    <span class="candidate-status ${statusClass}">
+                        ${c.status || "Pendente"}
+                    </span>
+                </div>
+            `;
+        }).join("");
+
+        list.querySelectorAll(".candidate").forEach(item => {
+            item.addEventListener("click", function () {
+                openCandidate(this.dataset.id);
+            });
+        });
+    }
+
+    function openCandidate(id) {
+
+        const candidates = getCandidates();
+
+        const candidate = candidates.find(c => String(c.id) === String(id));
+
+        if (!candidate) return;
+
+        currentCandidateId = candidate.id;
+
+        document.getElementById("candidateModalName").textContent = candidate.nome || "Candidato";
+        document.getElementById("detailName").textContent = candidate.nome || "Não informado";
+        document.getElementById("detailArea").textContent = candidate.area || "Não informado";
+        document.getElementById("detailEmail").textContent = candidate.email || "Não informado";
+        document.getElementById("detailPhone").textContent = candidate.telefone || "Não informado";
+        document.getElementById("detailDate").textContent = candidate.data || "Não informado";
+        document.getElementById("detailStatus").textContent = candidate.status || "Pendente";
+        document.getElementById("detailMessage").textContent = candidate.mensagem || "Não informado";
+        document.getElementById("detailCurriculo").textContent = candidate.curriculo || "Currículo não informado";
+
+        const actions = document.getElementById("candidateActions");
+
+        if (candidate.status === "Pendente" || candidate.status === "Em análise") {
+            actions.style.display = "grid";
+        } else {
+            actions.style.display = "none";
+        }
+
+        document.getElementById("candidateModal").classList.add("show");
+    }
+
+    function closeCandidate() {
+        document.getElementById("candidateModal").classList.remove("show");
+        currentCandidateId = null;
+    }
+
+    document.getElementById("candidateModalClose").addEventListener("click", closeCandidate);
+
+    document.getElementById("candidateModal").addEventListener("click", function (event) {
+        if (event.target === this) {
+            closeCandidate();
+        }
+    });
+
+    document.getElementById("openCandidates").addEventListener("click", function () {
+
+        const candidates = getCandidates();
+        const pending = candidates.find(c => c.status === "Pendente");
+
+        if (pending) {
+            openCandidate(pending.id);
+        } else if (candidates.length) {
+            openCandidate(candidates[0].id);
+        } else {
+            alert("Ainda não existem candidaturas recebidas.");
+        }
+    });
+
+    document.getElementById("approveCandidate").addEventListener("click", function () {
+
+        if (!currentCandidateId) return;
+
+        const candidates = getCandidates();
+
+        const index = candidates.findIndex(c =>
+            String(c.id) === String(currentCandidateId)
+        );
+
+        if (index < 0) return;
+
+        candidates[index].status = "Aprovado";
+
+        saveCandidates(candidates);
+
+        closeCandidate();
+        renderCandidates();
+
+        alert("Candidatura aprovada com sucesso.");
+    });
+
+    document.getElementById("rejectCandidate").addEventListener("click", function () {
+
+        if (!currentCandidateId) return;
+
+        const candidates = getCandidates();
+
+        const index = candidates.findIndex(c =>
+            String(c.id) === String(currentCandidateId)
+        );
+
+        if (index < 0) return;
+
+        candidates[index].status = "Recusado";
+
+        saveCandidates(candidates);
+
+        closeCandidate();
+        renderCandidates();
+
+        alert("Candidatura recusada.");
+    });
+
+    document.getElementById("openInstructor").addEventListener("click", function () {
+        window.location.href = "cadastro-instrutor.html";
+    });
+
+    document.getElementById("logout").addEventListener("click", function () {
+        localStorage.removeItem(SESSION_KEY);
+        window.location.href = "index.html";
+    });
+
+    document.getElementById("photoInput").addEventListener("change", function (event) {
+
+        const file = event.target.files[0];
+
+        if (!file) return;
+
+        const reader = new FileReader();
+
+        reader.onload = function () {
+
+            if (session.tipo === "admin") {
+                localStorage.setItem("hitboxAdminFoto", reader.result);
+            }
+
+            setPhoto(reader.result);
+        };
+
+        reader.readAsDataURL(file);
+    });
+
+    if (session.tipo === "admin") {
+
+        setPhoto(localStorage.getItem("hitboxAdminFoto") || "");
+
+        renderAdmin();
+
+    } else {
+
+        const users = getUsers();
+
+        const user = users.find(u =>
+            u.email &&
+            session.email &&
+            u.email.toLowerCase() === session.email.toLowerCase()
+        );
+
+        if (!user) {
+            localStorage.removeItem(SESSION_KEY);
+            window.location.href = "Contato.html";
+            return;
+        }
+
+        studentDashboard.style.display = "block";
+        adminDashboard.style.display = "none";
+
+        setPhoto(user.foto || "");
+
+        profileName.textContent =
+            ((user.nome || "") + " " + (user.sobrenome || "")).trim();
+
+        profileRole.textContent =
+            String(user.tipo || "ALUNO").toUpperCase();
+
+        document.getElementById("studentFullName").textContent =
+            ((user.nome || "") + " " + (user.sobrenome || "")).trim();
+
+        document.getElementById("studentEmail").textContent =
+            user.email || "Não informado";
+
+        document.getElementById("studentPhone").textContent =
+            user.telefone || "Não informado";
+
+        document.getElementById("studentCpf").textContent =
+            user.cpf || "Não informado";
+
+        document.getElementById("studentPlan").textContent =
+            user.plano || "Plano não informado";
+
+        document.getElementById("studentPlanData").textContent =
+            user.plano || "Plano não informado";
+
+        document.getElementById("studentPayment").textContent =
+            user.pagamento || "Não informado";
+
+        document.getElementById("studentGoal").value =
+            user.meta || "Melhorar condicionamento";
+
+        let progress = Number(user.progresso ?? 35);
+
+        progress = Math.max(0, Math.min(100, progress));
+
+        document.getElementById("studentProgress").value = progress;
+        document.getElementById("studentProgressBar").style.width = progress + "%";
+        document.getElementById("studentProgressValue").textContent = progress + "%";
+
+        const end = new Date(user.vencimento || Date.now());
+
+        const days = Math.max(
+            0,
+            Math.ceil((end - new Date()) / 86400000)
+        );
+
+        document.getElementById("daysLeft").textContent = days;
+
+        document.getElementById("photoInput").addEventListener("change", function (event) {
+
+            const file = event.target.files[0];
+
+            if (!file) return;
+
+            const reader = new FileReader();
+
+            reader.onload = function () {
+
+                user.foto = reader.result;
+
+                const all = getUsers();
+
+                const index = all.findIndex(u => u.id === user.id);
+
+                if (index >= 0) {
+                    all[index] = user;
+                    localStorage.setItem(USERS_KEY, JSON.stringify(all));
+                }
+
+                setPhoto(reader.result);
+            };
+
+            reader.readAsDataURL(file);
+        });
+
+        document.getElementById("studentProgress").addEventListener("input", function () {
+
+            document.getElementById("studentProgressValue").textContent =
+                this.value + "%";
+
+            document.getElementById("studentProgressBar").style.width =
+                this.value + "%";
+        });
+
+        document.getElementById("saveGoal").addEventListener("click", function () {
+
+            user.meta =
+                document.getElementById("studentGoal").value.trim() ||
+                "Melhorar condicionamento";
+
+            user.progresso =
+                Number(document.getElementById("studentProgress").value);
+
+            const all = getUsers();
+
+            const index = all.findIndex(u => u.id === user.id);
+
+            if (index >= 0) {
+                all[index] = user;
+                localStorage.setItem(USERS_KEY, JSON.stringify(all));
+            }
+
+            this.textContent = "SALVO";
+
+            setTimeout(() => {
+                this.textContent = "SALVAR";
+            }, 1200);
+        });
+    }
+
+})();
+</script>
+
+</body>
 </html>
