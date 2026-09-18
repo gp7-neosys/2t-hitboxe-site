@@ -28,7 +28,7 @@
     });
 
     //Canvas Menu
-    $(".canvas-open").on('click', function () {
+$(document).on('click', '.canvas-open', function() {
         $(".offcanvas-menu-wrapper").addClass("show-offcanvas-menu-wrapper");
         $(".offcanvas-menu-overlay").addClass("active");
     });
