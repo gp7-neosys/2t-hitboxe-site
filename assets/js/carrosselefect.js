@@ -36,3 +36,20 @@ $(document).ready(function () {
         }
     });
 });
+
+// Script adicionado para forçar a exibição das bolinhas e remover as setinhas
+$(window).on('load', function () {
+    setTimeout(function () {
+        var owl = $('.hs-slider');
+        if (owl.length > 0) {
+            var owlData = owl.data('owl.carousel');
+            if (owlData) {
+                owlData.settings.dots = true;
+                owlData.options.dots = true;
+                owlData.settings.nav = false;
+                owlData.options.nav = false;
+                owl.trigger('refresh.owl.carousel');
+            }
+        }
+    }, 300);
+});
