@@ -96,6 +96,8 @@
 
 html,
 body {
+	background-color: #0a0a0a;
+    color: #fff;
 	height: 100%;
 	font-family: "Muli", sans-serif;
 	-webkit-font-smoothing: antialiased;
@@ -1344,6 +1346,96 @@ ol {
 .copyright-text i {
 	color: #f30000;
 }
+
+/* Efeitos Hover no Rodapé */
+        .footer-section {
+            position: relative;
+        }
+
+        .footer-section .fa-logo img {
+            transition: filter .4s ease, transform .4s ease;
+        }
+
+        .footer-section .fa-logo a:hover img {
+            filter: drop-shadow(0 0 10px rgba(255, 0, 0, 0.55));
+            transform: scale(1.04);
+        }
+
+        .footer-section .fs-widget h4 {
+            position: relative;
+            padding-bottom: 12px;
+            margin-bottom: 20px;
+        }
+
+        .footer-section .fs-widget h4::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 30px;
+            height: 2px;
+            background-color: #ff0000;
+            transition: width .35s ease;
+        }
+
+        .footer-section .fs-widget:hover h4::after {
+            width: 55px;
+        }
+
+        .footer-section .fs-widget ul li {
+            position: relative;
+            margin-bottom: 4px;
+        }
+
+        .footer-section .fs-widget ul li a {
+            position: relative;
+            display: inline-block;
+            color: #999;
+            transition: color 0.3s ease, padding-left 0.3s ease;
+        }
+
+        .footer-section .fs-widget ul li a::before {
+            content: '\f105';
+            font-family: 'FontAwesome';
+            position: absolute;
+            left: -14px;
+            top: 0;
+            opacity: 0;
+            color: #ff0000;
+            transition: opacity .3s ease, left .3s ease;
+        }
+
+        .footer-section .fs-widget ul li a:hover {
+            color: #ff0000 !important;
+            padding-left: 14px;
+        }
+
+        .footer-section .fs-widget ul li a:hover::before {
+            opacity: 1;
+            left: 0;
+        }
+
+        .footer-section .fa-social a {
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .footer-section .fa-social a:hover {
+            background-color: #ff0000 !important;
+            color: #ffffff !important;
+            border-color: #ff0000 !important;
+            transform: translateY(-4px) rotate(360deg);
+        }
+
+        .footer-section .copyright-text a {
+            transition: color .3s ease;
+        }
+
+        .footer-section .copyright-text a:hover {
+            color: #ff0000;
+        }
 
 /* ----------------------------------- Other Pages Styles ----------------------------------- */
 
