@@ -346,6 +346,128 @@ ol {
 	}
 }
 
+/* =================================================
+               HITBOXE - LOADER
+            ================================================= */
+#hitboxe-loader {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	background: #050505;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 999999;
+	opacity: 1;
+	visibility: visible;
+	transition:
+		opacity 1s ease,
+		visibility 1s ease;
+}
+
+/* Loader desaparecendo */
+#hitboxe-loader.loader-hidden {
+	opacity: 0;
+	visibility: hidden;
+	pointer-events: none;
+}
+
+/* =================================================
+               CONTEÚDO DO LOADER
+            ================================================= */
+.loader-content {
+	width: 100%;
+	max-width: 360px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+}
+
+/* =================================================
+               LOGO
+            ================================================= */
+.loader-logo {
+	width: 240px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	animation: loaderLogoEntrada 1.3s ease forwards;
+}
+
+.loader-logo img {
+	width: 240px;
+	max-width: 100%;
+	height: auto;
+	display: block;
+}
+
+/* =================================================
+               BARRA DE CARREGAMENTO
+            ================================================= */
+.loader-progress {
+	width: 260px;
+	height: 4px;
+	margin-top: 30px;
+	background: #242424;
+	border-radius: 10px;
+	overflow: hidden;
+}
+
+/* Parte vermelha da barra */
+.loader-progress-bar {
+	width: 0%;
+	height: 100%;
+	background: #ff0000;
+	border-radius: 10px;
+	box-shadow: 0 0 8px rgba(255, 0, 0, 0.8);
+	transition: width 0.2s ease;
+}
+
+/* =================================================
+               ANIMAÇÃO DA LOGO
+            ================================================= */
+@keyframes loaderLogoEntrada {
+	0% {
+		opacity: 0;
+		transform: scale(0.75);
+	}
+
+	60% {
+		opacity: 1;
+		transform: scale(1.05);
+	}
+
+	100% {
+		opacity: 1;
+		transform: scale(1);
+	}
+}
+
+/* =================================================
+               RESPONSIVIDADE DO LOADER
+            ================================================= */
+@media (max-width: 576px) {
+	.loader-content {
+		max-width: 280px;
+	}
+
+	.loader-logo {
+		width: 190px;
+	}
+
+	.loader-logo img {
+		width: 190px;
+	}
+
+	.loader-progress {
+		width: 210px;
+	}
+}
+
 .spacial-controls {
 	position: fixed;
 	width: 111px;
