@@ -24,16 +24,16 @@
     <link rel="stylesheet" href="/assets/css/style.css" type="text/css">
 
     <style>
-        /* Estilos Globais da HitBoxe (Padrão Dark/Red) */
-        body { background-color: #0a0a0a; color: #fff; }
-
         /* --- Seção Sobre Nós: intro curta --- */
         .about-text-center {
             text-align: center;
             max-width: 780px;
             margin: 0 auto 30px auto;
         }
-        .about-text-center .section-title span { color: #ff0000; }
+
+        .about-text-center .section-title span {
+            color: #ff0000;
+        }
 
         /* --- NOVA SEÇÃO: Nossa História (foto quadrada + texto) --- */
         .history-section {
@@ -44,22 +44,26 @@
             background-position: center;
             background-attachment: fixed;
         }
+
         .history-section::before {
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(180deg, rgba(10,10,10,0.94) 0%, rgba(10,10,10,0.9) 50%, rgba(10,10,10,0.96) 100%);
+            background: linear-gradient(180deg, rgba(10, 10, 10, 0.94) 0%, rgba(10, 10, 10, 0.9) 50%, rgba(10, 10, 10, 0.96) 100%);
             z-index: 1;
         }
+
         .history-section .container {
             position: relative;
             z-index: 2;
         }
+
         .history-photo-wrap {
             position: relative;
             max-width: 440px;
             margin: 0 auto;
         }
+
         .history-photo-frame {
             position: relative;
             width: 100%;
@@ -67,6 +71,7 @@
             overflow: hidden;
             background-color: #111;
         }
+
         .history-photo-frame img {
             width: 100%;
             height: 100%;
@@ -74,12 +79,14 @@
             display: block;
             filter: grayscale(35%) contrast(1.05);
             transform: scale(1.04);
-            transition: transform .8s cubic-bezier(.22,.61,.36,1), filter .8s ease;
+            transition: transform .8s cubic-bezier(.22, .61, .36, 1), filter .8s ease;
         }
+
         .history-photo-wrap:hover .history-photo-frame img {
             transform: scale(1.12);
             filter: grayscale(0%) contrast(1.1);
         }
+
         /* cantos estilo "ringue de boxe" nos vértices da foto */
         .history-frame-corner {
             position: absolute;
@@ -89,9 +96,26 @@
             z-index: 2;
             transition: width .5s ease, height .5s ease;
         }
-        .history-frame-corner.tl { top: -3px; left: -3px; border-right: none; border-bottom: none; }
-        .history-frame-corner.br { bottom: -3px; right: -3px; border-left: none; border-top: none; }
-        .history-photo-wrap:hover .history-frame-corner { width: 60px; height: 60px; }
+
+        .history-frame-corner.tl {
+            top: -3px;
+            left: -3px;
+            border-right: none;
+            border-bottom: none;
+        }
+
+        .history-frame-corner.br {
+            bottom: -3px;
+            right: -3px;
+            border-left: none;
+            border-top: none;
+        }
+
+        .history-photo-wrap:hover .history-frame-corner {
+            width: 60px;
+            height: 60px;
+        }
+
         .history-badge {
             position: absolute;
             bottom: -22px;
@@ -104,9 +128,10 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 10px 25px rgba(255,0,0,0.35);
+            box-shadow: 0 10px 25px rgba(255, 0, 0, 0.35);
             z-index: 3;
         }
+
         .history-badge .hb-number {
             font-family: 'Oswald', sans-serif;
             font-size: 22px;
@@ -114,25 +139,39 @@
             color: #fff;
             line-height: 1;
         }
+
         .history-badge .hb-label {
             font-size: 11px;
             color: #fff;
             margin-top: 4px;
         }
-        .history-text { padding-left: 10px; }
-        .history-text .section-title { margin-bottom: 20px; text-align: left; }
-        .history-text .section-title span { color: #ff0000; }
+
+        .history-text {
+            padding-left: 10px;
+        }
+
+        .history-text .section-title {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .history-text .section-title span {
+            color: #ff0000;
+        }
+
         .history-text p {
             color: #b8b8b8;
             font-size: 16px;
             line-height: 1.85;
             margin-bottom: 18px;
         }
+
         .history-stats {
             display: flex;
             gap: 40px;
             margin-top: 25px;
         }
+
         .history-stats .hs-item h3 {
             font-family: 'Oswald', sans-serif;
             color: #fff;
@@ -140,6 +179,7 @@
             font-weight: 700;
             margin-bottom: 2px;
         }
+
         .history-stats .hs-item p {
             color: #888;
             font-size: 13px;
@@ -147,21 +187,38 @@
         }
 
         /* --- Reveal ao rolar a página (um único momento orquestrado por seção) --- */
-        .reveal-left, .reveal-right, .reveal-up {
+        .reveal-left,
+        .reveal-right,
+        .reveal-up {
             opacity: 0;
-            transition: opacity .9s ease, transform .9s cubic-bezier(.22,.61,.36,1);
+            transition: opacity .9s ease, transform .9s cubic-bezier(.22, .61, .36, 1);
             will-change: transform, opacity;
         }
-        .reveal-left { transform: translateX(-40px); }
-        .reveal-right { transform: translateX(40px); }
-        .reveal-up { transform: translateY(30px); }
-        .reveal-left.in-view, .reveal-right.in-view, .reveal-up.in-view {
+
+        .reveal-left {
+            transform: translateX(-40px);
+        }
+
+        .reveal-right {
+            transform: translateX(40px);
+        }
+
+        .reveal-up {
+            transform: translateY(30px);
+        }
+
+        .reveal-left.in-view,
+        .reveal-right.in-view,
+        .reveal-up.in-view {
             opacity: 1;
             transform: translate(0, 0);
         }
 
         /* --- Cards Missão / Visão / Valores --- */
-        .about-cards-section { padding-top: 10px; }
+        .about-cards-section {
+            padding-top: 10px;
+        }
+
         .about-card {
             background-color: #111111;
             padding: 40px 30px;
@@ -170,13 +227,15 @@
             transition: transform 0.4s ease, border-color 0.4s ease, background-color 0.4s ease;
             height: 100%;
             border-bottom: 4px solid transparent;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
         }
+
         .about-card:hover {
             transform: translateY(-10px);
             border-bottom: 4px solid #ff0000;
             background-color: #151515;
         }
+
         .about-card i {
             font-size: 55px;
             color: #ff0000;
@@ -184,7 +243,11 @@
             display: inline-block;
             transition: transform .4s ease;
         }
-        .about-card:hover i { transform: scale(1.12) rotate(-4deg); }
+
+        .about-card:hover i {
+            transform: scale(1.12) rotate(-4deg);
+        }
+
         .about-card h4 {
             color: #ffffff;
             font-size: 24px;
@@ -192,6 +255,7 @@
             margin-bottom: 15px;
             text-transform: uppercase;
         }
+
         .about-card p {
             color: #999999;
             font-size: 15px;
@@ -210,6 +274,7 @@
             overflow: hidden;
             margin-bottom: 50px;
         }
+
         .tour-video-bg {
             position: absolute;
             top: 0;
@@ -219,6 +284,7 @@
             object-fit: cover;
             z-index: 1;
         }
+
         .gym-tour-overlay {
             position: absolute;
             top: 0;
@@ -228,11 +294,13 @@
             background: rgba(0, 0, 0, 0.6);
             z-index: 2;
         }
+
         .tour-content {
             position: relative;
             z-index: 3;
             text-align: center;
         }
+
         .tour-content h2 {
             font-size: 50px;
             color: #ffffff;
@@ -241,6 +309,7 @@
             letter-spacing: 2px;
             margin-bottom: 15px;
         }
+
         .tour-content span {
             color: #ff0000;
             font-size: 20px;
@@ -248,80 +317,14 @@
             text-transform: uppercase;
         }
 
-        /* Efeitos Hover no Rodapé */
-        .footer-section { position: relative; }
-        .footer-section .fa-logo img {
-            transition: filter .4s ease, transform .4s ease;
-        }
-        .footer-section .fa-logo a:hover img {
-            filter: drop-shadow(0 0 10px rgba(255,0,0,0.55));
-            transform: scale(1.04);
-        }
-        .footer-section .fs-widget h4 {
-            position: relative;
-            padding-bottom: 12px;
-            margin-bottom: 20px;
-        }
-        .footer-section .fs-widget h4::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 30px;
-            height: 2px;
-            background-color: #ff0000;
-            transition: width .35s ease;
-        }
-        .footer-section .fs-widget:hover h4::after { width: 55px; }
-        .footer-section .fs-widget ul li {
-            position: relative;
-            margin-bottom: 4px;
-        }
-        .footer-section .fs-widget ul li a {
-            position: relative;
-            display: inline-block;
-            color: #999;
-            transition: color 0.3s ease, padding-left 0.3s ease;
-        }
-        .footer-section .fs-widget ul li a::before {
-            content: '\f105';
-            font-family: 'FontAwesome';
-            position: absolute;
-            left: -14px;
-            top: 0;
-            opacity: 0;
-            color: #ff0000;
-            transition: opacity .3s ease, left .3s ease;
-        }
-        .footer-section .fs-widget ul li a:hover {
-            color: #ff0000 !important;
-            padding-left: 14px;
-        }
-        .footer-section .fs-widget ul li a:hover::before {
-            opacity: 1;
-            left: 0;
-        }
-        .footer-section .fa-social a {
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .footer-section .fa-social a:hover {
-            background-color: #ff0000 !important;
-            color: #ffffff !important;
-            border-color: #ff0000 !important;
-            transform: translateY(-4px) rotate(360deg);
-        }
-        .footer-section .copyright-text a {
-            transition: color .3s ease;
-        }
-        .footer-section .copyright-text a:hover {
-            color: #ff0000;
+        .breadcrumb-text h2 {
+            text-transform: uppercase;
+            font-weight: 700;
         }
 
-        .breadcrumb-text h2 { text-transform: uppercase; font-weight: 700; }
-        .breadcrumb-text .bt-option span { color: #ff0000; }
+        .breadcrumb-text .bt-option span {
+            color: #ff0000;
+        }
 
         /* Setas do carrossel de depoimentos: sem quadrado/fundo ao redor */
         .testimonial-section .owl-nav,
@@ -339,6 +342,7 @@
             color: #fff !important;
             font-size: 26px !important;
         }
+
         .testimonial-section .owl-nav button:hover,
         .ts_slider .owl-nav button:hover {
             background: transparent !important;
@@ -346,18 +350,33 @@
         }
 
         @media (max-width: 991px) {
-            .history-text { padding-left: 0; margin-top: 40px; }
-            .history-photo-wrap { max-width: 320px; }
-            .history-section { background-attachment: scroll; }
+            .history-text {
+                padding-left: 0;
+                margin-top: 40px;
+            }
+
+            .history-photo-wrap {
+                max-width: 320px;
+            }
+
+            .history-section {
+                background-attachment: scroll;
+            }
         }
 
         @media (prefers-reduced-motion: reduce) {
-            .reveal-left, .reveal-right, .reveal-up {
+
+            .reveal-left,
+            .reveal-right,
+            .reveal-up {
                 opacity: 1 !important;
                 transform: none !important;
                 transition: none !important;
             }
-            .history-photo-frame img { transition: none; }
+
+            .history-photo-frame img {
+                transition: none;
+            }
         }
     </style>
 </head>
@@ -368,7 +387,7 @@
         <div id="header-placeholder"></div>
     </header>
     <!-- Header End -->
-    
+
     <!-- Breadcrumb Section Begin -->
     <section class="breadcrumb-section set-bg" data-setbg="/assets/img/Teste.jpg">
         <div class="container">
@@ -397,7 +416,9 @@
                             <span>A HitBoxe</span>
                             <h2>Nascemos para forjar campeões</h2>
                         </div>
-                        <p style="color: #ccc; font-size: 16px; line-height: 1.8;">Localizada no coração de Presidente Prudente, a HitBoxe não é apenas uma academia, é uma família construída sobre disciplina, suor e superação.</p>
+                        <p style="color: #ccc; font-size: 16px; line-height: 1.8;">Localizada no coração de Presidente
+                            Prudente, a HitBoxe não é apenas uma academia, é uma família construída sobre disciplina,
+                            suor e superação.</p>
                     </div>
                 </div>
             </div>
@@ -416,7 +437,7 @@
                             <div class="history-frame-corner br"></div>
                         </div>
                         <div class="history-badge">
-                            <span class="hb-number">2026</span>
+                            <span class="hb-number">2016</span>
                             <span class="hb-label">desde</span>
                         </div>
                     </div>
@@ -427,8 +448,12 @@
                             <span>Nosso Começo</span>
                             <h2>Do primeiro saco de pancadas ao maior time da região</h2>
                         </div>
-                        <p>Tudo começou em uma garagem adaptada, com um único saco de pancadas e a vontade de fazer diferente. O fundador da HitBoxe queria um lugar onde qualquer pessoa pudesse aprender boxe de verdade, sem intimidação e sem fórmulas prontas — só técnica, suor e respeito.</p>
-                        <p>Com o boca a boca de Presidente Prudente, a garagem virou galpão, o galpão virou ringue oficial, e os primeiros alunos se tornaram professores. Hoje seguimos com a mesma essência do primeiro dia: cada faixa, cada luta e cada treino é conquistado, nunca dado.</p>
+                        <p>Tudo começou em uma garagem adaptada, com um único saco de pancadas e a vontade de fazer
+                            diferente. O fundador da HitBoxe queria um lugar onde qualquer pessoa pudesse aprender boxe
+                            de verdade, sem intimidação e sem fórmulas prontas — só técnica, suor e respeito.</p>
+                        <p>Com o boca a boca de Presidente Prudente, a garagem virou galpão, o galpão virou ringue
+                            oficial, e os primeiros alunos se tornaram professores. Hoje seguimos com a mesma essência
+                            do primeiro dia: cada faixa, cada luta e cada treino é conquistado, nunca dado.</p>
                         <div class="history-stats">
                             <div class="hs-item">
                                 <h3>9+</h3>
@@ -457,21 +482,24 @@
                     <div class="about-card reveal-up">
                         <i class="fa fa-bullseye"></i>
                         <h4>Nossa Missão</h4>
-                        <p>Transformar vidas através do boxe, promovendo saúde física, disciplina mental e autoconfiança em cada aluno que pisa no nosso tatame.</p>
+                        <p>Transformar vidas através do boxe, promovendo saúde física, disciplina mental e autoconfiança
+                            em cada aluno que pisa no nosso tatame.</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 mb-4">
                     <div class="about-card reveal-up" style="transition-delay:.12s">
                         <i class="fa fa-eye"></i>
                         <h4>Nossa Visão</h4>
-                        <p>Ser o maior e mais respeitado centro de treinamento de artes marciais de Presidente Prudente e região, reconhecido pela excelência dos nossos profissionais.</p>
+                        <p>Ser o maior e mais respeitado centro de treinamento de artes marciais de Presidente Prudente
+                            e região, reconhecido pela excelência dos nossos profissionais.</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 mb-4">
                     <div class="about-card reveal-up" style="transition-delay:.24s">
                         <i class="fa fa-diamond"></i>
                         <h4>Nossos Valores</h4>
-                        <p>Respeito, lealdade, superação e foco. Acreditamos que o verdadeiro campeão é aquele que vence a si mesmo e seus próprios limites todos os dias.</p>
+                        <p>Respeito, lealdade, superação e foco. Acreditamos que o verdadeiro campeão é aquele que vence
+                            a si mesmo e seus próprios limites todos os dias.</p>
                     </div>
                 </div>
             </div>
@@ -487,7 +515,9 @@
         <div class="tour-content container">
             <span>Infraestrutura de Primeiro Mundo</span>
             <h2>O Verdadeiro Ringue dos Campeões</h2>
-            <p style="color: #ccc; font-size: 18px; max-width: 600px; margin: 0 auto;">Equipamentos modernos, tatame de alta absorção, ringue oficial e o ambiente perfeito para você focar apenas em bater suas próprias metas.</p>
+            <p style="color: #ccc; font-size: 18px; max-width: 600px; margin: 0 auto;">Equipamentos modernos, tatame de
+                alta absorção, ringue oficial e o ambiente perfeito para você focar apenas em bater suas próprias metas.
+            </p>
         </div>
     </section>
 
@@ -510,7 +540,9 @@
                                 <img src="/assets/img/Marcos.png" alt="">
                             </div>
                             <div class="ti_text">
-                                <p>"A energia da HitBoxe é surreal. Os professores são muito atenciosos<br /> e a estrutura da academia faz você querer treinar todos os dias.<br /> Mudou completamente a minha disposição!"</p>
+                                <p>"A energia da HitBoxe é surreal. Os professores são muito atenciosos<br /> e a
+                                    estrutura da academia faz você querer treinar todos os dias.<br /> Mudou
+                                    completamente a minha disposição!"</p>
                                 <h5>Marcos Silva</h5>
                                 <div class="tt-rating">
                                     <i class="fa fa-star" style="color: #ff0000;"></i>
@@ -530,7 +562,9 @@
                                 <img src="/assets/img/testimonial/testimonial-2.jpg" alt="">
                             </div>
                             <div class="ti_text">
-                                <p>"Entrei para perder peso e acabei me apaixonando pelo esporte.<br /> A metodologia de ensino é progressiva e respeita os seus limites,<br /> ao mesmo tempo que te puxa para ser melhor."</p>
+                                <p>"Entrei para perder peso e acabei me apaixonando pelo esporte.<br /> A metodologia de
+                                    ensino é progressiva e respeita os seus limites,<br /> ao mesmo tempo que te puxa
+                                    para ser melhor."</p>
                                 <h5>Ana Carolina</h5>
                                 <div class="tt-rating">
                                     <i class="fa fa-star" style="color: #ff0000;"></i>
@@ -580,7 +614,7 @@
 
     <!-- Footer placeholder -->
     <div id="footer-placeholder"></div>
-    
+
     <!-- Search model Begin -->
     <div class="search-model">
         <div class="h-100 d-flex align-items-center justify-content-center">
