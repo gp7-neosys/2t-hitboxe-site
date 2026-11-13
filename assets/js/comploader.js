@@ -10,5 +10,11 @@ fetch('/components/footer.html')
     document.getElementById('footer-placeholder').innerHTML = html;
   });
 
+fetch('/components/acesso.html')
+  .then(res => res.text())
+  .then(html => {
+    document.getElementById('authModal').innerHTML = html;
+  });
+
 // fetch('/components/header.html').then(res => res.text()).then(html => { document.getElementById('navbar-placeholder').innerHTML = html; });
 // fetch('footer.html').then(res => res.text()).then(html => { document.getElementById('navbar-placeholder').innerHTML = html; });

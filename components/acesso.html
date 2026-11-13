@@ -1,0 +1,237 @@
+<div class="auth-box">
+    <button type="button" class="auth-close" id="authClose">
+        <i class="fa fa-close"></i>
+    </button>
+    <div class="auth-logo">
+        <img src="/assets/img/logo.png" alt="Hitbox">
+    </div>
+    <div class="auth-tabs">
+        <button type="button" id="tabLogin" class="auth-tab active">
+            Entrar
+        </button>
+        <button type="button" id="tabCadastro" class="auth-tab">
+            Criar conta
+        </button>
+    </div>
+    <div id="loginPanel" class="auth-panel active">
+        <div class="auth-heading">
+            <span>
+                Área do aluno e administrador
+            </span>
+            <h2>
+                Entrar
+            </h2>
+        </div>
+        <form id="loginForm">
+            <div class="auth-field">
+                <label>
+                    E-mail
+                </label>
+                <input id="loginEmail" type="email" autocomplete="email" required>
+                <small></small>
+            </div>
+            <div class="auth-field">
+                <label>
+                    Senha
+                </label>
+                <div class="password-field">
+                    <input id="loginSenha" type="password" autocomplete="current-password" required>
+                    <button type="button" id="toggleLoginSenha" class="password-toggle" aria-label="Mostrar senha">
+                        <i class="fa fa-eye"></i>
+                    </button>
+                </div>
+                <small></small>
+            </div>
+            <button class="auth-submit" type="submit">
+                ENTRAR
+            </button>
+            <div id="loginMessage" class="auth-message">
+            </div>
+        </form>
+    </div>
+    <div id="cadastroPanel" class="auth-panel">
+        <div class="auth-heading">
+            <span>
+                Crie seu acesso
+            </span>
+            <h2>
+                Cadastro
+            </h2>
+        </div>
+        <form id="cadastroForm" novalidate>
+            <div class="auth-grid">
+                <div class="auth-field">
+                    <label>
+                        Nome
+                    </label>
+                    <input id="cadNome" type="text">
+                    <small></small>
+                </div>
+                <div class="auth-field">
+                    <label>
+                        Sobrenome
+                    </label>
+                    <input id="cadSobrenome" type="text">
+                    <small></small>
+                </div>
+                <div class="auth-field">
+                    <label>
+                        CPF
+                    </label>
+                    <input id="cadCpf" type="text" maxlength="14">
+                    <small></small>
+                </div>
+                <div class="auth-field">
+                    <label>
+                        Data de nascimento
+                    </label>
+                    <input id="cadNascimento" type="date">
+                    <small></small>
+                </div>
+                <div class="auth-field">
+                    <label>
+                        Telefone
+                    </label>
+                    <input id="cadTelefone" type="text" maxlength="15">
+                    <small></small>
+                </div>
+                <div class="auth-field">
+                    <label>
+                        E-mail
+                    </label>
+                    <input id="cadEmail" type="email">
+                    <small></small>
+                </div>
+                <div class="auth-field">
+                    <label>
+                        Senha
+                    </label>
+                    <input id="cadSenha" type="password">
+                    <small></small>
+                </div>
+                <div class="auth-field">
+                    <label>
+                        Confirmar senha
+                    </label>
+                    <input id="cadConfirmarSenha" type="password">
+                    <small></small>
+                </div>
+                <div class="auth-field">
+                    <label>
+                        CEP
+                    </label>
+                    <input id="cadCep" type="text" maxlength="9">
+                    <small></small>
+                </div>
+                <div class="auth-field">
+                    <label>
+                        Rua
+                    </label>
+                    <input id="cadRua" type="text">
+                    <small></small>
+                </div>
+                <div class="auth-field">
+                    <label>
+                        Número
+                    </label>
+                    <input id="cadNumero" type="text">
+                    <small></small>
+                </div>
+                <div class="auth-field">
+                    <label>
+                        Cidade
+                    </label>
+                    <input id="cadCidade" type="text">
+                    <small></small>
+                </div>
+                <div class="auth-field">
+                    <label>
+                        Estado
+                    </label>
+                    <select id="cadEstado">
+                        <option value="">
+                            Selecione
+                        </option>
+                        <option>AC</option>
+                        <option>AL</option>
+                        <option>AP</option>
+                        <option>AM</option>
+                        <option>BA</option>
+                        <option>CE</option>
+                        <option>DF</option>
+                        <option>ES</option>
+                        <option>GO</option>
+                        <option>MA</option>
+                        <option>MT</option>
+                        <option>MS</option>
+                        <option>MG</option>
+                        <option>PA</option>
+                        <option>PB</option>
+                        <option>PR</option>
+                        <option>PE</option>
+                        <option>PI</option>
+                        <option>RJ</option>
+                        <option>RN</option>
+                        <option>RS</option>
+                        <option>RO</option>
+                        <option>RR</option>
+                        <option>SC</option>
+                        <option>SP</option>
+                        <option>SE</option>
+                        <option>TO</option>
+                    </select>
+                    <small></small>
+                </div>
+                <div class="auth-field">
+                    <label>
+                        Plano
+                    </label>
+                    <select id="cadPlano" required>
+                        <option value="">
+                            Selecione
+                        </option>
+                        <option value="Plano Round">
+                            Plano Round
+                        </option>
+                        <option value="Plano Nocaute">
+                            Plano Nocaute
+                        </option>
+                        <option value="Plano Campeão">
+                            Plano Campeão
+                        </option>
+                    </select>
+                    <small></small>
+                </div>
+                <div class="auth-field">
+                    <label>
+                        Forma de pagamento
+                    </label>
+                    <select id="cadPagamento" required>
+                        <option value="">
+                            Selecione
+                        </option>
+                        <option value="PIX">
+                            PIX
+                        </option>
+                        <option value="Boleto">
+                            Boleto
+                        </option>
+                        <option value="Cartão de crédito">
+                            Cartão de crédito
+                        </option>
+                        <option value="Cartão de débito">
+                            Cartão de débito
+                        </option>
+                    </select>
+                    <small></small>
+                </div>
+                <div id="paymentDetails"></div>
+            </div>
+            <button class="auth-submit" type="submit">
+                CRIAR CONTA
+            </button>
+            <div id="cadastroMessage" class="auth-message">
+            </div>
+        </form>
+    </div>
+</div>
