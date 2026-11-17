@@ -174,129 +174,138 @@ $(document).on('click', '.canvas-open', function() {
 })(jQuery);
 
 (function () {
-                /* =================================================
-                   ELEMENTOS
-                ================================================= */
-                const loader = document.getElementById("hitboxe-loader");
-                const progressBar = document.querySelector(".loader-progress-bar");
-                if (!loader || !progressBar) {
-                    return;
-                }
-                /* =================================================
-                   VARIÁVEIS
-                ================================================= */
-                let progress = 0;
-                /* =================================================
-                   CARREGAMENTO DA PÁGINA
-                ================================================= */
-                const progressInterval = setInterval(function () {
-                    /*
-                     * A barra vai lentamente até 90%.
-                     */
-                    if (progress < 90) {
-                        progress += 1;
-                        progressBar.style.width = progress + "%";
-                    }
-                }, 100);
-                /* =================================================
-                   PÁGINA TOTALMENTE CARREGADA
-                ================================================= */
-                window.addEventListener("load", function () {
-                    clearInterval(progressInterval);
-                    /*
-                     * Pequeno tempo antes
-                     * de completar a barra.
-                     */
-                    setTimeout(function () {
-                        progress = 100;
-                        progressBar.style.width = "100%";
-                        /*
-                         * Mantém 100% na tela
-                         * para o usuário visualizar.
-                         */
-                        setTimeout(function () {
-                            loader.classList.add("loader-hidden");
-                        }, 1200);
-                    }, 500);
-                });
-                /* =================================================
-                   LOADER AO TROCAR DE PÁGINA
-                ================================================= */
-                document.addEventListener("click", function (event) {
-                    const link = event.target.closest("a");
-                    if (!link) {
-                        return;
-                    }
-                    const href = link.getAttribute("href");
-                    if (!href) {
-                        return;
-                    }
-                    /*
-                     * Não faz loader para #.
-                     */
-                    if (href === "#") {
-                        return;
-                    }
-                    /*
-                     * Links externos não recebem
-                     * o loader de troca de página.
-                     */
-                    if (
-                        href.startsWith("http://") ||
-                        href.startsWith("https://") ||
-                        href.startsWith("//") ||
-                        href.startsWith("mailto:") ||
-                        href.startsWith("tel:")
-                    ) {
-                        return;
-                    }
-                    /*
-                     * Não interfere em abrir
-                     * link em nova aba.
-                     */
-                    if (
-                        link.target === "_blank" ||
-                        event.ctrlKey ||
-                        event.shiftKey ||
-                        event.metaKey ||
-                        event.button !== 0
-                    ) {
-                        return;
-                    }
-                    /*
-                     * Impede a troca imediata.
-                     */
-                    event.preventDefault();
-                    /*
-                     * Mostra o loader.
-                     */
-                    loader.classList.remove("loader-hidden");
-                    /*
-                     * Reinicia barra.
-                     */
-                    progress = 0;
-                    progressBar.style.width = "0%";
-                    /*
-                     * Carregamento visual
-                     * da troca de página.
-                     */
-                    let pageProgress = 0;
-                    const pageInterval = setInterval(function () {
-                        pageProgress += 2;
-                        if (pageProgress >= 100) {
-                            pageProgress = 100;
-                            progressBar.style.width = "100%";
-                            clearInterval(pageInterval);
-                            /*
-                             * Segura a tela
-                             * antes da navegação.
-                             */
-                            setTimeout(function () {
-                                window.location.href = href;
-                            }, 700);
-                        } else {
-                            progressBar.style.width = pageProgress + "%";
-                        }
-                    }, 40);
-                });
-            })();
+    "use strict";
+
+    var loader = document.getElementById("hitboxe-loader");
+    if (!loader) return;
+
+    var progress = 0;
+    var progressBar = null;
+    var progressInterval = null;
+    var navegando = false;
+
+    var componentesOk = false;
+    var paginaOk = document.readyState === "complete";
+    var finalizado = false;
+
+    /* =================================================
+       INICIALIZAÇÃO (depois que o loader.html existe)
+    ================================================= */
+    function iniciarLoader() {
+        progressBar = document.querySelector(".loader-progress-bar");
+        if (!progressBar) return;
+
+        // A barra sobe devagar até 90%
+        progressInterval = setInterval(function () {
+            if (progress < 90) {
+                progress += 1;
+                progressBar.style.width = progress + "%";
+            }
+        }, 100);
+
+        tentarFinalizar();
+    }
+
+    /* =================================================
+       FINALIZAÇÃO (precisa de página + componentes)
+    ================================================= */
+    function tentarFinalizar() {
+        if (finalizado || !progressBar) return;
+        if (!(paginaOk && componentesOk)) return;
+
+        finalizado = true;
+        clearInterval(progressInterval);
+
+        setTimeout(function () {
+            progress = 100;
+            progressBar.style.width = "100%";
+
+            // Mantém 100% na tela para o usuário ver
+            setTimeout(function () {
+                loader.classList.add("loader-hidden");
+            }, 1200);
+        }, 500);
+    }
+
+    document.addEventListener("loaderReady", iniciarLoader);
+
+    document.addEventListener("componentsLoaded", function () {
+        componentesOk = true;
+        tentarFinalizar();
+    });
+
+    window.addEventListener("load", function () {
+        paginaOk = true;
+        tentarFinalizar();
+    });
+
+    /* =================================================
+       LOADER AO TROCAR DE PÁGINA
+       (delegação de eventos: funciona com links injetados)
+    ================================================= */
+    document.addEventListener("click", function (event) {
+        var link = event.target.closest("a");
+        if (!link || navegando) return;
+
+        var href = link.getAttribute("href");
+        if (!href || href === "#" || href.charAt(0) === "#") return;
+
+        // Links externos
+        if (
+            href.indexOf("http://") === 0 ||
+            href.indexOf("https://") === 0 ||
+            href.indexOf("//") === 0 ||
+            href.indexOf("mailto:") === 0 ||
+            href.indexOf("tel:") === 0 ||
+            href.indexOf("javascript:") === 0
+        ) return;
+
+        // Nova aba, teclas modificadoras, botão que não é o esquerdo
+        if (
+            link.target === "_blank" ||
+            link.hasAttribute("download") ||
+            event.ctrlKey || event.shiftKey || event.metaKey ||
+            event.button !== 0
+        ) return;
+
+        // Sem barra para animar, navega normalmente
+        var bar = document.querySelector(".loader-progress-bar");
+        if (!bar) return;
+
+        event.preventDefault();
+        navegando = true;
+        clearInterval(progressInterval);
+
+        progressBar = bar;
+        loader.classList.remove("loader-hidden");
+
+        progress = 0;
+        progressBar.style.width = "0%";
+
+        var pageProgress = 0;
+        var pageInterval = setInterval(function () {
+            pageProgress += 2;
+
+            if (pageProgress >= 100) {
+                clearInterval(pageInterval);
+                progressBar.style.width = "100%";
+
+                setTimeout(function () {
+                    window.location.href = href;
+                }, 700);
+            } else {
+                progressBar.style.width = pageProgress + "%";
+            }
+        }, 40);
+    });
+
+    /* =================================================
+       VOLTAR PELO BOTÃO DO NAVEGADOR (cache bfcache)
+    ================================================= */
+    window.addEventListener("pageshow", function (event) {
+        if (event.persisted) {
+            navegando = false;
+            loader.classList.add("loader-hidden");
+        }
+    });
+})();
