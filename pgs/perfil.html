@@ -3,22 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HitBoxe | Meu Perfil</title>
+    <title>HitBoxe | Meu Perfil & Gestão Admin</title>
 
     <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Oswald:300,400,500,600,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="../assets/css/font-awesome.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <style>
+        :root {
+            --hb-red: #e30613;
+            --hb-red-bright: #ff1e2b;
+            --hb-red-dark: #99040d;
+            --hb-bg: #070709;
+            --hb-surface: #111216;
+            --hb-card: #16181e;
+            --hb-border: #262932;
+            --hb-text: #f3f4f6;
+            --hb-muted: #8b92a2;
+            --hb-green: #22c55e;
+            --hb-amber: #f59e0b;
+        }
+
         * {
             box-sizing: border-box;
         }
 
         body {
             margin: 0;
-            background: #080808;
-            color: #fff;
+            background: var(--hb-bg);
+            color: var(--hb-text);
             font-family: Muli, Arial, sans-serif;
         }
 
@@ -31,22 +46,29 @@
 
         .profile-page {
             min-height: 100vh;
-            padding: 35px 20px 60px;
-            background: linear-gradient(180deg, #101010, #070707);
+            padding: 35px 20px 70px;
+            background:
+                radial-gradient(circle at 85% 0%, rgba(227, 6, 19, 0.14), transparent 38%),
+                radial-gradient(circle at 10% 30%, rgba(227, 6, 19, 0.06), transparent 45%),
+                linear-gradient(180deg, #0d0e12, #060608);
         }
 
         .profile-container {
-            max-width: 1250px;
+            max-width: 1320px;
             margin: auto;
         }
 
+        /* TOP BAR */
         .profile-top {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-bottom: 25px;
-            margin-bottom: 25px;
-            border-bottom: 1px solid #292929;
+            padding: 20px 26px;
+            margin-bottom: 24px;
+            background: rgba(22, 24, 30, 0.85);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--hb-border);
+            border-radius: 16px;
         }
 
         .profile-identity {
@@ -56,12 +78,13 @@
         }
 
         .profile-photo-wrap {
-            width: 84px;
-            height: 84px;
+            width: 82px;
+            height: 82px;
             border-radius: 50%;
             position: relative;
             background: #181818;
-            border: 2px solid #e30613;
+            border: 2px solid var(--hb-red);
+            box-shadow: 0 0 20px rgba(227, 6, 19, 0.35);
         }
 
         .profile-photo,
@@ -86,17 +109,24 @@
 
         .photo-edit {
             position: absolute;
-            right: -5px;
-            bottom: -5px;
+            right: -4px;
+            bottom: -4px;
             width: 30px;
             height: 30px;
             border-radius: 50%;
-            background: #e30613;
+            background: var(--hb-red);
+            color: #fff;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             font-size: 12px;
+            border: 2px solid #111;
+            transition: .2s;
+        }
+
+        .photo-edit:hover {
+            transform: scale(1.1);
         }
 
         .profile-photo-wrap input {
@@ -104,8 +134,8 @@
         }
 
         .profile-kicker {
-            display: block;
-            color: #e30613;
+            display: inline-block;
+            color: var(--hb-red);
             font-size: 11px;
             text-transform: uppercase;
             letter-spacing: 2px;
@@ -113,24 +143,30 @@
         }
 
         .profile-top h1 {
-            margin: 4px 0;
+            margin: 3px 0;
             font-family: Oswald, sans-serif;
             font-size: 30px;
             text-transform: uppercase;
+            letter-spacing: .5px;
         }
 
         .profile-top p {
             margin: 0;
-            color: #888;
+            color: var(--hb-muted);
             font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
         }
 
         .logout {
-            border: 0;
-            background: #e30613;
+            border: 1px solid var(--hb-red);
+            background: var(--hb-red);
             color: #fff;
-            padding: 12px 20px;
+            padding: 12px 22px;
+            border-radius: 10px;
             font-weight: 800;
+            font-size: 12px;
+            letter-spacing: 1px;
             cursor: pointer;
             transition: .2s;
         }
@@ -139,23 +175,28 @@
         .red-button:hover,
         .outline-button:hover {
             background: #fff;
-            color: #e30613;
+            color: var(--hb-red);
+            border-color: #fff;
         }
 
+        /* HERO ADMIN & ALUNO */
         .admin-hero,
         .membership-hero {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: #171717;
-            border: 1px solid #292929;
-            padding: 28px 30px;
-            margin-bottom: 18px;
+            background: linear-gradient(135deg, #1a1c24 0%, #121318 100%);
+            border: 1px solid var(--hb-border);
+            border-left: 4px solid var(--hb-red);
+            border-radius: 16px;
+            padding: 28px 32px;
+            margin-bottom: 22px;
+            box-shadow: 0 14px 35px rgba(0, 0, 0, 0.45);
         }
 
         .admin-hero span,
         .membership-hero span {
-            color: #e30613;
+            color: var(--hb-red);
             font-size: 11px;
             text-transform: uppercase;
             letter-spacing: 2px;
@@ -173,62 +214,88 @@
         .admin-hero p,
         .membership-hero p {
             margin: 0;
-            color: #888;
+            color: var(--hb-muted);
             font-size: 13px;
         }
 
         .admin-badge {
-            border: 1px solid #e30613;
-            padding: 12px 18px;
+            background: rgba(227, 6, 19, 0.14);
+            border: 1px solid var(--hb-red);
+            color: #ff4d57;
+            padding: 12px 20px;
+            border-radius: 50px;
             font-weight: 800;
             font-size: 12px;
+            letter-spacing: 1.5px;
+            box-shadow: 0 0 20px rgba(227, 6, 19, 0.2);
         }
 
+        /* KPI STATS GRID */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
-            margin-bottom: 18px;
+            gap: 16px;
+            margin-bottom: 22px;
         }
 
         .stat {
-            background: #151515;
-            border: 1px solid #292929;
-            padding: 20px;
+            background: linear-gradient(160deg, #171920, #111217);
+            border: 1px solid var(--hb-border);
+            border-radius: 14px;
+            padding: 22px;
+            position: relative;
+            overflow: hidden;
+            transition: transform .2s, border-color .2s;
         }
 
-        .stat i {
-            color: #e30613;
+        .stat:hover {
+            transform: translateY(-3px);
+            border-color: rgba(227, 6, 19, 0.5);
+        }
+
+        .stat-icon-bg {
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            background: rgba(227, 6, 19, 0.12);
+            color: var(--hb-red);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-size: 18px;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
         }
 
         .stat span {
             display: block;
-            color: #777;
-            font-size: 10px;
+            color: var(--hb-muted);
+            font-size: 11px;
+            font-weight: 700;
             text-transform: uppercase;
-            margin-top: 10px;
+            letter-spacing: .8px;
         }
 
         .stat strong {
             display: block;
             font-family: Oswald, sans-serif;
-            font-size: 25px;
-            margin-top: 5px;
+            font-size: 30px;
+            margin-top: 4px;
+            color: #fff;
         }
 
+        /* AÇÕES RÁPIDAS */
         .admin-actions {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            margin-bottom: 18px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-bottom: 22px;
         }
 
         .action-button {
-            min-height: 85px;
-            border: 1px solid #303030;
-            background: #151515;
+            min-height: 86px;
+            border: 1px solid var(--hb-border);
+            border-radius: 14px;
+            background: linear-gradient(145deg, #161820, #111217);
             color: #fff;
             display: flex;
             align-items: center;
@@ -240,72 +307,462 @@
         }
 
         .action-button:hover {
-            border-color: #e30613;
-            transform: translateY(-2px);
+            border-color: var(--hb-red);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
         }
 
         .action-button i {
             width: 48px;
             height: 48px;
-            border-radius: 50%;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: #261012;
-            color: #e30613;
-            font-size: 18px;
+            background: rgba(227, 6, 19, 0.14);
+            color: var(--hb-red);
+            font-size: 19px;
+            flex-shrink: 0;
         }
 
         .action-button strong {
             display: block;
             font-size: 14px;
             text-transform: uppercase;
+            letter-spacing: .5px;
         }
 
         .action-button small {
             display: block;
-            color: #777;
-            margin-top: 5px;
-            font-size: 11px;
+            color: var(--hb-muted);
+            margin-top: 4px;
+            font-size: 12px;
         }
 
+        /* CARDS & GRIDS */
         .dashboard-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 18px;
-            margin-bottom: 18px;
+            gap: 20px;
+            margin-bottom: 22px;
         }
 
         .dashboard-card {
-            background: #151515;
-            border: 1px solid #292929;
-            padding: 24px;
+            background: var(--hb-card);
+            border: 1px solid var(--hb-border);
+            border-radius: 16px;
+            padding: 26px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
         }
 
         .dashboard-card.full {
-            margin-bottom: 18px;
+            margin-bottom: 22px;
         }
 
         .card-head {
             display: flex;
             align-items: center;
-            gap: 10px;
-            border-bottom: 1px solid #292929;
-            padding-bottom: 14px;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            border-bottom: 1px solid var(--hb-border);
+            padding-bottom: 16px;
             margin-bottom: 20px;
         }
 
-        .card-head i {
-            color: #e30613;
+        .card-head-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-head-title i {
+            color: var(--hb-red);
+            font-size: 18px;
         }
 
         .card-head h2 {
             margin: 0;
             font-family: Oswald, sans-serif;
-            font-size: 19px;
+            font-size: 21px;
             text-transform: uppercase;
+            letter-spacing: .5px;
         }
 
+        /* TABELA DINÂMICA DE CURRÍCULOS / CANDIDATURAS (ADMIN) */
+        .careers-admin-card {
+            border-top: 3px solid var(--hb-red);
+        }
+
+        .table-toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-bottom: 18px;
+        }
+
+        .filter-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .filter-pill {
+            background: #0e1015;
+            border: 1px solid var(--hb-border);
+            color: var(--hb-muted);
+            padding: 8px 14px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: .2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .filter-pill span.pill-count {
+            background: #1f222b;
+            color: #fff;
+            padding: 2px 7px;
+            border-radius: 20px;
+            font-size: 10px;
+        }
+
+        .filter-pill:hover,
+        .filter-pill.active {
+            background: var(--hb-red);
+            border-color: var(--hb-red);
+            color: #fff;
+        }
+
+        .filter-pill.active span.pill-count {
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .toolbar-inputs {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .admin-search-wrap {
+            position: relative;
+        }
+
+        .admin-search-wrap i {
+            position: absolute;
+            left: 13px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--hb-muted);
+            font-size: 13px;
+        }
+
+        .admin-input,
+        .admin-select {
+            height: 40px;
+            background: #0e1015;
+            border: 1px solid var(--hb-border);
+            border-radius: 10px;
+            color: #fff;
+            font-size: 13px;
+            padding: 0 14px;
+            outline: none;
+            transition: border-color .2s;
+        }
+
+        .admin-input {
+            padding-left: 36px;
+            min-width: 250px;
+        }
+
+        .admin-input:focus,
+        .admin-select:focus {
+            border-color: var(--hb-red);
+        }
+
+        /* BARRA DE EXCLUSÃO EM MASSA */
+        .bulk-action-bar {
+            display: none;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            background: rgba(227, 6, 19, 0.12);
+            border: 1px solid rgba(227, 6, 19, 0.45);
+            border-radius: 12px;
+            padding: 12px 18px;
+            margin-bottom: 16px;
+            animation: fadeInBar .2s ease;
+        }
+
+        .bulk-action-bar.visible {
+            display: flex;
+        }
+
+        @keyframes fadeInBar {
+            from { opacity: 0; transform: translateY(-6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .bulk-info {
+            font-size: 13px;
+            font-weight: 700;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .bulk-info strong {
+            color: #ff5c65;
+            font-size: 15px;
+        }
+
+        .bulk-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-bulk-clear {
+            background: transparent;
+            border: 1px solid #44495a;
+            color: #d1d5db;
+            border-radius: 8px;
+            padding: 8px 14px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .btn-bulk-clear:hover {
+            border-color: #fff;
+            color: #fff;
+        }
+
+        .btn-bulk-delete {
+            background: var(--hb-red);
+            border: 1px solid var(--hb-red);
+            color: #fff;
+            border-radius: 8px;
+            padding: 8px 16px;
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            transition: .2s;
+            box-shadow: 0 4px 14px rgba(227, 6, 19, 0.35);
+        }
+
+        .btn-bulk-delete:hover {
+            background: #ff1e2b;
+            transform: translateY(-1px);
+        }
+
+        /* CHECKBOX CUSTOMIZADO */
+        .hb-checkbox {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--hb-red);
+            cursor: pointer;
+            border-radius: 4px;
+            vertical-align: middle;
+        }
+
+        .dynamic-table-wrap {
+            overflow-x: auto;
+            border: 1px solid var(--hb-border);
+            border-radius: 12px;
+            background: #101217;
+        }
+
+        .dynamic-table {
+            width: 100%;
+            min-width: 1020px;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        .dynamic-table thead {
+            background: #171a22;
+            border-bottom: 1px solid var(--hb-border);
+        }
+
+        .dynamic-table th {
+            padding: 14px 16px;
+            color: var(--hb-muted);
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            white-space: nowrap;
+        }
+
+        .dynamic-table td {
+            padding: 16px;
+            border-bottom: 1px solid #1e212b;
+            font-size: 13px;
+            vertical-align: middle;
+        }
+
+        .dynamic-table tbody tr {
+            transition: background .18s ease;
+        }
+
+        .dynamic-table tbody tr:hover {
+            background: rgba(227, 6, 19, 0.05);
+        }
+
+        .dynamic-table tbody tr.row-selected {
+            background: rgba(227, 6, 19, 0.11);
+        }
+
+        .dynamic-table tbody tr:last-child td {
+            border-bottom: 0;
+        }
+
+        .cand-cell-name {
+            font-weight: 800;
+            font-size: 14px;
+            color: #fff;
+            display: block;
+        }
+
+        .cand-cell-sub {
+            color: var(--hb-muted);
+            font-size: 11px;
+            display: block;
+            margin-top: 3px;
+        }
+
+        .vaga-tag {
+            display: inline-block;
+            background: rgba(227, 6, 19, 0.14);
+            color: #ff5c65;
+            border: 1px solid rgba(227, 6, 19, 0.35);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 5px 11px;
+            border-radius: 50px;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: .5px;
+            white-space: nowrap;
+        }
+
+        .status-badge.pendente {
+            background: rgba(245, 158, 11, 0.14);
+            color: #fbbf24;
+            border: 1px solid rgba(245, 158, 11, 0.4);
+        }
+
+        .status-badge.aprovado {
+            background: rgba(34, 197, 94, 0.14);
+            color: #4ade80;
+            border: 1px solid rgba(34, 197, 94, 0.4);
+        }
+
+        .status-badge.recusado {
+            background: rgba(239, 68, 68, 0.14);
+            color: #f87171;
+            border: 1px solid rgba(239, 68, 68, 0.4);
+        }
+
+        .table-actions {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+        }
+
+        .btn-tbl {
+            border: 1px solid transparent;
+            border-radius: 8px;
+            padding: 7px 11px;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: .2s;
+            text-decoration: none;
+        }
+
+        .btn-tbl-accept {
+            background: rgba(34, 197, 94, 0.16);
+            color: #4ade80;
+            border-color: rgba(34, 197, 94, 0.4);
+        }
+
+        .btn-tbl-accept:hover {
+            background: #22c55e;
+            color: #fff;
+        }
+
+        .btn-tbl-reject {
+            background: rgba(245, 158, 11, 0.14);
+            color: #fbbf24;
+            border-color: rgba(245, 158, 11, 0.35);
+        }
+
+        .btn-tbl-reject:hover {
+            background: #f59e0b;
+            color: #111;
+        }
+
+        .btn-tbl-view {
+            background: #1d2029;
+            color: #e5e7eb;
+            border-color: #323746;
+        }
+
+        .btn-tbl-view:hover {
+            border-color: #fff;
+            color: #fff;
+        }
+
+        .btn-tbl-whats {
+            background: rgba(37, 211, 102, 0.16);
+            color: #25d366;
+            border-color: rgba(37, 211, 102, 0.4);
+        }
+
+        .btn-tbl-whats:hover {
+            background: #25d366;
+            color: #fff;
+        }
+
+        .btn-tbl-trash {
+            background: rgba(239, 68, 68, 0.16);
+            color: #f87171;
+            border-color: rgba(239, 68, 68, 0.4);
+        }
+
+        .btn-tbl-trash:hover {
+            background: #ef4444;
+            color: #fff;
+        }
+
+        /* OUTROS ELEMENTOS DO DASHBOARD */
         .chart-wrap {
             height: 270px;
         }
@@ -319,8 +776,8 @@
             align-items: center;
             gap: 15px;
             padding: 14px 0;
-            border-bottom: 1px solid #282828;
-            font-size: 12px;
+            border-bottom: 1px solid #252832;
+            font-size: 13px;
         }
 
         .sales-list > div:last-child,
@@ -334,96 +791,25 @@
         .training-list span,
         .student-list span,
         .instructor-list span {
-            color: #aaa;
+            color: #b4bac6;
         }
 
         .sales-list strong {
             color: #fff;
         }
 
-        .training-list b {
-            color: #e30613;
-        }
-
-        .training-list em {
-            color: #777;
-            font-style: normal;
-        }
-
         .student-status,
         .status-aprovado {
             color: #22c55e !important;
-            font-size: 10px;
+            font-size: 11px;
             font-weight: 800;
         }
 
         .empty-state {
-            color: #777;
-            font-size: 12px;
-            padding: 10px 0;
-        }
-
-        .candidate-list {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .candidate {
-            background: #111;
-            border: 1px solid #292929;
-            padding: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 15px;
-            cursor: pointer;
-            transition: .2s;
-        }
-
-        .candidate:hover {
-            border-color: #e30613;
-        }
-
-        .candidate-main {
-            min-width: 0;
-        }
-
-        .candidate-main strong {
-            display: block;
-            font-size: 14px;
-            color: #fff;
-        }
-
-        .candidate-main span {
-            display: block;
-            color: #888;
-            font-size: 11px;
-            margin-top: 4px;
-        }
-
-        .candidate-status {
-            padding: 6px 9px;
-            border: 1px solid #d99700;
-            color: #d99700;
-            font-size: 9px;
-            font-weight: 800;
-            white-space: nowrap;
-        }
-
-        .candidate-status.aprovado {
-            border-color: #22c55e;
-            color: #22c55e;
-        }
-
-        .candidate-status.recusado {
-            border-color: #777;
-            color: #777;
-        }
-
-        .candidate-status.analise {
-            border-color: #e30613;
-            color: #e30613;
+            color: var(--hb-muted);
+            font-size: 13px;
+            padding: 24px 12px;
+            text-align: center;
         }
 
         .calendar-scroll {
@@ -438,28 +824,31 @@
 
         .calendar th,
         .calendar td {
-            border: 1px solid #292929;
+            border: 1px solid var(--hb-border);
             padding: 13px;
             text-align: center;
-            font-size: 11px;
+            font-size: 12px;
         }
 
         .calendar th {
-            color: #777;
+            color: var(--hb-muted);
+            background: #111318;
         }
 
         .calendar .training {
-            background: #2a1011;
-            color: #e30613;
+            background: rgba(227, 6, 19, 0.16);
+            color: #ff4d57;
             font-weight: 800;
         }
 
+        /* MODAL DETALHES DO CANDIDATO */
         .modal {
             display: none;
             position: fixed;
             inset: 0;
             z-index: 9999;
-            background: rgba(0, 0, 0, .82);
+            background: rgba(0, 0, 0, .85);
+            backdrop-filter: blur(6px);
             align-items: center;
             justify-content: center;
             padding: 20px;
@@ -471,41 +860,48 @@
 
         .modal-box {
             width: 100%;
-            max-width: 700px;
+            max-width: 780px;
             max-height: 90vh;
             overflow-y: auto;
-            background: #111;
-            border: 1px solid #333;
-            padding: 30px;
+            background: #14161c;
+            border: 1px solid #323644;
+            border-top: 4px solid var(--hb-red);
+            border-radius: 16px;
+            padding: 32px;
             position: relative;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.75);
         }
 
         .modal-close {
             position: absolute;
-            right: 15px;
-            top: 15px;
-            width: 35px;
-            height: 35px;
-            border: 0;
-            background: transparent;
+            right: 18px;
+            top: 18px;
+            width: 36px;
+            height: 36px;
+            border: 1px solid #2d313e;
+            border-radius: 10px;
+            background: #1c1f28;
             color: #fff;
-            font-size: 20px;
+            font-size: 18px;
             cursor: pointer;
+            transition: .2s;
         }
 
         .modal-close:hover {
-            color: #e30613;
+            background: var(--hb-red);
+            border-color: var(--hb-red);
         }
 
         .modal-title {
-            margin-bottom: 25px;
-            padding-right: 40px;
+            margin-bottom: 24px;
+            padding-right: 45px;
         }
 
         .modal-title span {
-            color: #e30613;
+            color: var(--hb-red);
             font-size: 11px;
             text-transform: uppercase;
+            letter-spacing: 1.5px;
             font-weight: 800;
         }
 
@@ -513,19 +909,20 @@
             margin: 5px 0 0;
             font-family: Oswald, sans-serif;
             text-transform: uppercase;
-            font-size: 28px;
+            font-size: 30px;
         }
 
         .candidate-info {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 18px;
+            gap: 14px;
         }
 
         .candidate-info div {
-            background: #181818;
-            border: 1px solid #292929;
-            padding: 14px;
+            background: #0e1015;
+            border: 1px solid #262a36;
+            border-radius: 10px;
+            padding: 14px 16px;
         }
 
         .candidate-info .full {
@@ -534,9 +931,11 @@
 
         .candidate-info small {
             display: block;
-            color: #777;
-            font-size: 9px;
+            color: var(--hb-muted);
+            font-size: 10px;
+            font-weight: 700;
             text-transform: uppercase;
+            letter-spacing: .8px;
             margin-bottom: 6px;
         }
 
@@ -556,22 +955,25 @@
         }
 
         .curriculo-box i {
-            color: #e30613;
-            font-size: 25px;
+            color: var(--hb-red);
+            font-size: 24px;
         }
 
         .modal-actions {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr 1fr 1fr;
             gap: 12px;
-            margin-top: 20px;
+            margin-top: 24px;
         }
 
         .modal-button {
             border: 0;
-            padding: 14px;
+            border-radius: 10px;
+            padding: 15px;
             cursor: pointer;
             font-weight: 800;
+            font-size: 12px;
+            letter-spacing: 1px;
             text-transform: uppercase;
             transition: .2s;
         }
@@ -582,36 +984,179 @@
         }
 
         .approve:hover {
-            background: #fff;
-            color: #22c55e;
+            background: #16a34a;
         }
 
         .reject {
-            background: #292929;
+            background: #262934;
             color: #fff;
+            border: 1px solid #3a3f4f;
         }
 
         .reject:hover {
-            background: #e30613;
+            background: #f59e0b;
+            border-color: #f59e0b;
+            color: #111;
         }
 
-        .red-button,
-        .outline-button {
-            border: 0;
-            padding: 12px 18px;
+        .delete-modal-btn {
+            background: rgba(239, 68, 68, 0.16);
+            color: #f87171;
+            border: 1px solid rgba(239, 68, 68, 0.45);
+        }
+
+        .delete-modal-btn:hover {
+            background: #ef4444;
+            color: #fff;
+        }
+
+        /* =========================================================
+           MODAL CUSTOMIZADO DE CONFIRMAÇÃO (SUBSTITUI CONFIRM NATIVO)
+           ========================================================= */
+        .hb-confirm-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 10050;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(6px);
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .hb-confirm-modal.show {
+            display: flex;
+            animation: fadeInConfirm .2s ease;
+        }
+
+        @keyframes fadeInConfirm {
+            from { opacity: 0; transform: scale(0.96); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .hb-confirm-box {
+            width: 100%;
+            max-width: 430px;
+            background: #15171e;
+            border: 1px solid #2e3240;
+            border-top: 4px solid var(--hb-red);
+            border-radius: 16px;
+            padding: 28px;
+            text-align: center;
+            box-shadow: 0 25px 65px rgba(0, 0, 0, 0.85);
+        }
+
+        .hb-confirm-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 16px;
+            border-radius: 50%;
+            background: rgba(227, 6, 19, 0.15);
+            border: 1px solid rgba(227, 6, 19, 0.4);
+            color: #ff4d57;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .hb-confirm-box h3 {
+            margin: 0 0 8px;
+            font-family: Oswald, sans-serif;
+            font-size: 23px;
+            text-transform: uppercase;
+            color: #fff;
+        }
+
+        .hb-confirm-box p {
+            margin: 0 0 24px;
+            color: var(--hb-muted);
+            font-size: 13px;
+            line-height: 1.55;
+        }
+
+        .hb-confirm-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .hb-confirm-cancel {
+            background: #1f222c;
+            border: 1px solid #353948;
+            color: #d1d5db;
+            border-radius: 10px;
+            padding: 13px;
+            font-size: 12px;
             font-weight: 800;
+            text-transform: uppercase;
             cursor: pointer;
             transition: .2s;
         }
 
-        .red-button {
-            background: #e30613;
+        .hb-confirm-cancel:hover {
+            border-color: #fff;
             color: #fff;
         }
 
+        .hb-confirm-ok {
+            background: var(--hb-red);
+            border: 1px solid var(--hb-red);
+            color: #fff;
+            border-radius: 10px;
+            padding: 13px;
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: .2s;
+            box-shadow: 0 6px 20px rgba(227, 6, 19, 0.35);
+        }
+
+        .hb-confirm-ok:hover {
+            background: #ff1e2b;
+        }
+
+        /* TOAST NOTIFICATION */
+        #adminToast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 10100;
+            background: #161922;
+            border: 1px solid var(--hb-border);
+            border-left: 4px solid var(--hb-green);
+            color: #fff;
+            padding: 14px 20px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 700;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+            transform: translateY(120%);
+            opacity: 0;
+            transition: all .3s ease;
+        }
+
+        #adminToast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* ESTILOS ALUNO */
+        .red-button,
         .outline-button {
-            background: transparent;
-            border: 1px solid #444;
+            border: 0;
+            border-radius: 8px;
+            padding: 12px 18px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: .2s;
+            margin-top: 12px;
+        }
+
+        .red-button {
+            background: var(--hb-red);
             color: #fff;
         }
 
@@ -630,7 +1175,7 @@
         }
 
         .membership-count strong {
-            color: #e30613;
+            color: var(--hb-red);
             font-family: Oswald, sans-serif;
             font-size: 48px;
         }
@@ -667,41 +1212,42 @@
             height: 42px;
             background: #202020;
             border: 1px solid #333;
+            border-radius: 8px;
             color: #fff;
             padding: 0 12px;
         }
 
         .goal-box input[type=range] {
             width: 100%;
-            accent-color: #e30613;
+            accent-color: var(--hb-red);
         }
 
         .progress-line {
             height: 7px;
             background: #2b2b2b;
+            border-radius: 6px;
+            overflow: hidden;
             margin: 8px 0;
         }
 
         .progress-line div {
             height: 100%;
-            background: #e30613;
+            background: var(--hb-red);
         }
 
-        #studentDashboard {
-            display: none;
-        }
-
+        #studentDashboard,
         #adminDashboard {
             display: none;
         }
 
-        @media(max-width:850px) {
+        @media(max-width:950px) {
             .stats-grid {
                 grid-template-columns: 1fr 1fr;
             }
 
             .dashboard-grid,
-            .admin-actions {
+            .admin-actions,
+            .modal-actions {
                 grid-template-columns: 1fr;
             }
         }
@@ -712,49 +1258,9 @@
             }
 
             .profile-top {
+                flex-direction: column;
                 align-items: flex-start;
-            }
-
-            .profile-photo-wrap {
-                width: 68px;
-                height: 68px;
-            }
-
-            .profile-top h1 {
-                font-size: 23px;
-            }
-
-            .logout {
-                padding: 9px 12px;
-                font-size: 11px;
-            }
-
-            .admin-hero,
-            .membership-hero {
-                padding: 20px;
                 gap: 15px;
-            }
-
-            .admin-hero h2,
-            .membership-hero h2 {
-                font-size: 27px;
-            }
-
-            .membership-count {
-                padding-left: 15px;
-            }
-
-            .membership-count strong {
-                font-size: 36px;
-            }
-
-            .stats-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 10px;
-            }
-
-            .dashboard-card {
-                padding: 18px;
             }
 
             .candidate-info {
@@ -767,6 +1273,10 @@
 
             .modal-box {
                 padding: 22px;
+            }
+
+            .admin-input {
+                min-width: 100%;
             }
         }
     </style>
@@ -785,7 +1295,7 @@
                         <i class="fa fa-user"></i>
                     </div>
 
-                    <label class="photo-edit" for="photoInput">
+                    <label class="photo-edit" for="photoInput" title="Alterar foto">
                         <i class="fa fa-camera"></i>
                     </label>
 
@@ -804,50 +1314,52 @@
             </button>
         </header>
 
+        <!-- =========================================================
+             PAINEL ADMINISTRATIVO
+             ========================================================= -->
         <section id="adminDashboard">
 
             <div class="admin-hero">
                 <div>
                     <span>Painel administrativo</span>
                     <h2>Gestão da HitBoxe</h2>
-                    <p>Gerencie alunos, instrutores e candidaturas da academia.</p>
+                    <p>Controle completo de alunos, instrutores e currículos enviados pelo Trabalhe Conosco.</p>
                 </div>
 
                 <div class="admin-badge">
-                    <i class="fa fa-shield"></i> ADMIN
+                    <i class="fa fa-shield"></i> ADMIN MASTER
                 </div>
             </div>
 
+            <!-- KPIs -->
             <div class="stats-grid">
-
                 <div class="stat">
-                    <i class="fa fa-users"></i>
+                    <div class="stat-icon-bg"><i class="fa fa-users"></i></div>
                     <span>Alunos ativos</span>
                     <strong id="adminStudents">0</strong>
                 </div>
 
                 <div class="stat">
-                    <i class="fa fa-user"></i>
+                    <div class="stat-icon-bg"><i class="fa fa-id-badge"></i></div>
                     <span>Instrutores</span>
                     <strong id="adminInstructors">0</strong>
                 </div>
 
                 <div class="stat">
-                    <i class="fa fa-file-text"></i>
-                    <span>Candidaturas pendentes</span>
+                    <div class="stat-icon-bg"><i class="fa fa-file-text"></i></div>
+                    <span>Currículos pendentes</span>
                     <strong id="adminCandidates">0</strong>
                 </div>
 
                 <div class="stat">
-                    <i class="fa fa-line-chart"></i>
-                    <span>Desempenho</span>
-                    <strong>+18%</strong>
+                    <div class="stat-icon-bg"><i class="fa fa-check-circle"></i></div>
+                    <span>Candidatos aprovados</span>
+                    <strong id="adminApprovedCount" style="color: #22c55e;">0</strong>
                 </div>
-
             </div>
 
+            <!-- AÇÕES RÁPIDAS -->
             <div class="admin-actions">
-
                 <button class="action-button" id="openInstructor">
                     <i class="fa fa-user-plus"></i>
                     <div>
@@ -859,19 +1371,110 @@
                 <button class="action-button" id="openCandidates">
                     <i class="fa fa-file-text-o"></i>
                     <div>
-                        <strong>Ver candidaturas</strong>
+                        <strong>Próxima candidatura pendente</strong>
                         <small><span id="candidateActionText">Nenhuma pendente</span></small>
                     </div>
                 </button>
 
+                <button class="action-button" onclick="window.open('/pgs/trabalhe.html', '_blank')">
+                    <i class="fa fa-external-link"></i>
+                    <div>
+                        <strong>Abrir Trabalhe Conosco</strong>
+                        <small>Testar envio de novo currículo no formulário</small>
+                    </div>
+                </button>
             </div>
 
-            <div class="dashboard-grid">
+            <!-- TABELA DINÂMICA DE CURRÍCULOS / CANDIDATURAS -->
+            <section class="dashboard-card full careers-admin-card" id="secao-tabela-curriculos">
+                <div class="card-head">
+                    <div class="card-head-title">
+                        <i class="fa fa-briefcase"></i>
+                        <h2>Banco de Currículos & Candidaturas (Trabalhe Conosco)</h2>
+                    </div>
+                    <span style="font-size: 12px; color: var(--hb-muted);">
+                        Marque as caixas para exclusão em lote ou use a lixeira individual em cada item
+                    </span>
+                </div>
 
+                <!-- BARRA DE EXCLUSÃO EM MASSA -->
+                <div class="bulk-action-bar" id="bulkActionBar">
+                    <div class="bulk-info">
+                        <i class="fa fa-check-square-o" style="color: #ff5c65; font-size: 18px;"></i>
+                        <span><strong id="selectedCountText">0</strong> currículo(s) selecionado(s)</span>
+                    </div>
+                    <div class="bulk-buttons">
+                        <button type="button" class="btn-bulk-clear" id="btnClearSelection">Desmarcar todos</button>
+                        <button type="button" class="btn-bulk-delete" id="btnDeleteSelected">
+                            <i class="fa fa-trash"></i> Excluir Selecionados
+                        </button>
+                    </div>
+                </div>
+
+                <!-- BARRA DE FILTROS E BUSCA DINÂMICA -->
+                <div class="table-toolbar">
+                    <div class="filter-pills" id="statusFilterPills">
+                        <button type="button" class="filter-pill active" data-status="todos">
+                            Todos <span class="pill-count" id="cnt-todos">0</span>
+                        </button>
+                        <button type="button" class="filter-pill" data-status="Pendente">
+                            Pendentes <span class="pill-count" id="cnt-pendente">0</span>
+                        </button>
+                        <button type="button" class="filter-pill" data-status="Aprovado">
+                            Aprovados <span class="pill-count" id="cnt-aprovado">0</span>
+                        </button>
+                        <button type="button" class="filter-pill" data-status="Recusado">
+                            Recusados <span class="pill-count" id="cnt-recusado">0</span>
+                        </button>
+                    </div>
+
+                    <div class="toolbar-inputs">
+                        <select id="filterVagaSelect" class="admin-select">
+                            <option value="todas">Todas as vagas</option>
+                            <option value="Instrutor(a) de Boxe">Instrutor(a) de Boxe</option>
+                            <option value="Recepcionista / Atendimento">Recepcionista / Atendimento</option>
+                            <option value="Consultor(a) de Vendas">Consultor(a) de Vendas</option>
+                            <option value="Estágio em Educação Física">Estágio em Educação Física</option>
+                            <option value="Banco de Talentos">Banco de Talentos</option>
+                        </select>
+
+                        <div class="admin-search-wrap">
+                            <i class="fa fa-search"></i>
+                            <input type="text" id="searchCandidateInput" class="admin-input" placeholder="Buscar por nome, CPF, e-mail ou cidade...">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TABELA DINÂMICA -->
+                <div class="dynamic-table-wrap">
+                    <table class="dynamic-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 44px; text-align: center;">
+                                    <input type="checkbox" id="selectAllCheckbox" class="hb-checkbox" title="Selecionar todos visíveis">
+                                </th>
+                                <th>Candidato / CPF</th>
+                                <th>Vaga & Turno</th>
+                                <th>Pretensão</th>
+                                <th>Contato & Cidade</th>
+                                <th>Data</th>
+                                <th>Status</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="dynamicCandidatesTbody"></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- GRÁFICO E RESUMO DE VENDAS -->
+            <div class="dashboard-grid">
                 <section class="dashboard-card">
                     <div class="card-head">
-                        <i class="fa fa-bar-chart"></i>
-                        <h2>Desempenho mensal</h2>
+                        <div class="card-head-title">
+                            <i class="fa fa-bar-chart"></i>
+                            <h2>Desempenho mensal</h2>
+                        </div>
                     </div>
 
                     <div class="chart-wrap">
@@ -881,8 +1484,10 @@
 
                 <section class="dashboard-card">
                     <div class="card-head">
-                        <i class="fa fa-shopping-cart"></i>
-                        <h2>Resumo de vendas</h2>
+                        <div class="card-head-title">
+                            <i class="fa fa-shopping-cart"></i>
+                            <h2>Resumo de vendas</h2>
+                        </div>
                     </div>
 
                     <div class="sales-list">
@@ -890,61 +1495,52 @@
                             <span>Luvas</span>
                             <strong>18 unidades</strong>
                         </div>
-
                         <div>
                             <span>Camisetas</span>
                             <strong>13 unidades</strong>
                         </div>
-
                         <div>
                             <span>Bandagens</span>
                             <strong>11 unidades</strong>
                         </div>
-
                         <div>
                             <span>Total no mês</span>
-                            <strong>R$ 3.280</strong>
+                            <strong style="color: #22c55e;">R$ 3.280</strong>
                         </div>
                     </div>
                 </section>
-
             </div>
 
+            <!-- INSTRUTORES E ALUNOS -->
             <div class="dashboard-grid">
-
                 <section class="dashboard-card">
                     <div class="card-head">
-                        <i class="fa fa-users"></i>
-                        <h2>Instrutores da equipe</h2>
+                        <div class="card-head-title">
+                            <i class="fa fa-users"></i>
+                            <h2>Instrutores da equipe</h2>
+                        </div>
                     </div>
-
                     <div id="adminInstructorList" class="instructor-list"></div>
                 </section>
 
                 <section class="dashboard-card">
                     <div class="card-head">
-                        <i class="fa fa-file-text"></i>
-                        <h2>Candidaturas recentes</h2>
+                        <div class="card-head-title">
+                            <i class="fa fa-users"></i>
+                            <h2>Alunos cadastrados</h2>
+                        </div>
                     </div>
-
-                    <div id="candidateList" class="candidate-list"></div>
+                    <div id="adminStudentList" class="student-list"></div>
                 </section>
-
             </div>
 
+            <!-- AGENDA SEMANAL -->
             <section class="dashboard-card full">
                 <div class="card-head">
-                    <i class="fa fa-users"></i>
-                    <h2>Alunos cadastrados</h2>
-                </div>
-
-                <div id="adminStudentList" class="student-list"></div>
-            </section>
-
-            <section class="dashboard-card full">
-                <div class="card-head">
-                    <i class="fa fa-calendar"></i>
-                    <h2>Agenda semanal</h2>
+                    <div class="card-head-title">
+                        <i class="fa fa-calendar"></i>
+                        <h2>Agenda semanal</h2>
+                    </div>
                 </div>
 
                 <div class="calendar-scroll">
@@ -971,7 +1567,6 @@
                             <td class="training">INICIANTE</td>
                             <td></td>
                         </tr>
-
                         <tr>
                             <td>18:00</td>
                             <td></td>
@@ -981,7 +1576,6 @@
                             <td></td>
                             <td></td>
                         </tr>
-
                         <tr>
                             <td>19:00</td>
                             <td class="training">AVANÇADO</td>
@@ -998,6 +1592,9 @@
 
         </section>
 
+        <!-- =========================================================
+             PAINEL DO ALUNO
+             ========================================================= -->
         <section id="studentDashboard">
 
             <div class="membership-hero">
@@ -1015,39 +1612,35 @@
             </div>
 
             <div class="stats-grid">
-
                 <div class="stat">
-                    <i class="fa fa-calendar"></i>
+                    <div class="stat-icon-bg"><i class="fa fa-calendar"></i></div>
                     <span>Próximo treino</span>
                     <strong>Hoje</strong>
                 </div>
-
                 <div class="stat">
-                    <i class="fa fa-clock-o"></i>
+                    <div class="stat-icon-bg"><i class="fa fa-clock-o"></i></div>
                     <span>Horário</span>
                     <strong>18:00</strong>
                 </div>
-
                 <div class="stat">
-                    <i class="fa fa-bolt"></i>
+                    <div class="stat-icon-bg"><i class="fa fa-bolt"></i></div>
                     <span>Modalidade</span>
                     <strong>Boxe</strong>
                 </div>
-
                 <div class="stat">
-                    <i class="fa fa-check-circle"></i>
+                    <div class="stat-icon-bg"><i class="fa fa-check-circle"></i></div>
                     <span>Status</span>
                     <strong style="color:#22c55e">ATIVO</strong>
                 </div>
-
             </div>
 
             <div class="dashboard-grid">
-
                 <section class="dashboard-card">
                     <div class="card-head">
-                        <i class="fa fa-user"></i>
-                        <h2>Meus dados</h2>
+                        <div class="card-head-title">
+                            <i class="fa fa-user"></i>
+                            <h2>Meus dados</h2>
+                        </div>
                     </div>
 
                     <div class="info-grid">
@@ -1055,27 +1648,22 @@
                             <span>Nome completo</span>
                             <strong id="studentFullName"></strong>
                         </div>
-
                         <div>
                             <span>E-mail</span>
                             <strong id="studentEmail"></strong>
                         </div>
-
                         <div>
                             <span>Telefone</span>
                             <strong id="studentPhone"></strong>
                         </div>
-
                         <div>
                             <span>CPF</span>
                             <strong id="studentCpf"></strong>
                         </div>
-
                         <div>
                             <span>Plano</span>
                             <strong id="studentPlanData"></strong>
                         </div>
-
                         <div>
                             <span>Pagamento</span>
                             <strong id="studentPayment"></strong>
@@ -1085,8 +1673,10 @@
 
                 <section class="dashboard-card">
                     <div class="card-head">
-                        <i class="fa fa-bullseye"></i>
-                        <h2>Minha meta</h2>
+                        <div class="card-head-title">
+                            <i class="fa fa-bullseye"></i>
+                            <h2>Minha meta</h2>
+                        </div>
                     </div>
 
                     <div class="goal-box">
@@ -1094,27 +1684,24 @@
                         <input id="studentGoal" type="text">
 
                         <label>Progresso</label>
-
                         <div class="progress-line">
                             <div id="studentProgressBar"></div>
                         </div>
 
                         <input id="studentProgress" type="range" min="0" max="100" value="35">
-
                         <strong id="studentProgressValue">35%</strong>
 
-                        <button id="saveGoal" class="red-button">
-                            SALVAR
-                        </button>
+                        <button id="saveGoal" class="red-button">SALVAR</button>
                     </div>
                 </section>
-
             </div>
 
             <section class="dashboard-card">
                 <div class="card-head">
-                    <i class="fa fa-calendar"></i>
-                    <h2>Meu calendário de treinos</h2>
+                    <div class="card-head-title">
+                        <i class="fa fa-calendar"></i>
+                        <h2>Meu calendário de treinos</h2>
+                    </div>
                 </div>
 
                 <div class="calendar-scroll">
@@ -1130,7 +1717,6 @@
                             <th>SÁB</th>
                         </tr>
                         </thead>
-
                         <tbody>
                         <tr>
                             <td>07:00</td>
@@ -1141,7 +1727,6 @@
                             <td></td>
                             <td></td>
                         </tr>
-
                         <tr>
                             <td>18:00</td>
                             <td class="training">BOXE</td>
@@ -1161,6 +1746,9 @@
     </div>
 </main>
 
+<!-- =========================================================
+     MODAL FICHA COMPLETA DO CANDIDATO
+     ========================================================= -->
 <div class="modal" id="candidateModal">
     <div class="modal-box">
 
@@ -1169,7 +1757,7 @@
         </button>
 
         <div class="modal-title">
-            <span>Detalhes da candidatura</span>
+            <span>Ficha completa da candidatura</span>
             <h2 id="candidateModalName">Candidato</h2>
         </div>
 
@@ -1181,8 +1769,18 @@
             </div>
 
             <div>
-                <small>Área</small>
-                <strong id="detailArea"></strong>
+                <small>CPF</small>
+                <strong id="detailCpf"></strong>
+            </div>
+
+            <div>
+                <small>Data de nascimento</small>
+                <strong id="detailBirth"></strong>
+            </div>
+
+            <div>
+                <small>Vaga / Área pretendida</small>
+                <strong id="detailArea" style="color: #ff5c65;"></strong>
             </div>
 
             <div>
@@ -1191,8 +1789,18 @@
             </div>
 
             <div>
-                <small>Telefone</small>
+                <small>WhatsApp / Telefone</small>
                 <strong id="detailPhone"></strong>
+            </div>
+
+            <div>
+                <small>Disponibilidade de turno</small>
+                <strong id="detailShift"></strong>
+            </div>
+
+            <div>
+                <small>Pretensão salarial</small>
+                <strong id="detailSalary" style="color: #22c55e;"></strong>
             </div>
 
             <div>
@@ -1201,20 +1809,24 @@
             </div>
 
             <div>
-                <small>Status</small>
+                <small>Status atual</small>
                 <strong id="detailStatus"></strong>
             </div>
 
             <div class="full">
-                <small>Apresentação</small>
+                <small>Endereço completo (ViaCEP)</small>
+                <strong id="detailAddress"></strong>
+            </div>
+
+            <div class="full">
+                <small>Apresentação & Experiência Profissional</small>
                 <p id="detailMessage"></p>
             </div>
 
             <div class="full">
-                <small>Currículo</small>
-
+                <small>CREF / Currículo / LinkedIn</small>
                 <div class="curriculo-box">
-                    <i class="fa fa-file-pdf-o"></i>
+                    <i class="fa fa-file-text-o"></i>
                     <strong id="detailCurriculo"></strong>
                 </div>
             </div>
@@ -1223,45 +1835,130 @@
 
         <div class="modal-actions" id="candidateActions">
             <button class="modal-button approve" id="approveCandidate">
-                <i class="fa fa-check"></i> APROVAR
+                <i class="fa fa-check"></i> ACEITAR
             </button>
 
             <button class="modal-button reject" id="rejectCandidate">
                 <i class="fa fa-times"></i> RECUSAR
+            </button>
+
+            <button class="modal-button delete-modal-btn" id="deleteCandidateModalBtn">
+                <i class="fa fa-trash"></i> EXCLUIR
             </button>
         </div>
 
     </div>
 </div>
 
+<!-- =========================================================
+     MODAL CUSTOMIZADO DE CONFIRMAÇÃO (SEM ALERT/CONFIRM NATIVO)
+     ========================================================= -->
+<div class="hb-confirm-modal" id="hbConfirmModal" role="dialog" aria-modal="true" aria-labelledby="hbConfirmTitle">
+    <div class="hb-confirm-box">
+        <div class="hb-confirm-icon">
+            <i class="fa fa-trash"></i>
+        </div>
+        <h3 id="hbConfirmTitle">Confirmar exclusão</h3>
+        <p id="hbConfirmMessage">Deseja realmente excluir este item permanentemente?</p>
+        <div class="hb-confirm-actions">
+            <button type="button" class="hb-confirm-cancel" id="hbConfirmCancelBtn">Cancelar</button>
+            <button type="button" class="hb-confirm-ok" id="hbConfirmOkBtn">Sim, excluir</button>
+        </div>
+    </div>
+</div>
+
+<div id="adminToast"></div>
+
 <script>
 (function () {
+    "use strict";
+
+    // Bloqueia qualquer alert/confirm nativo residual nesta página
+    window.alert = function (msg) {
+        showToast(String(msg || ""), false);
+    };
 
     const SESSION_KEY = "hitboxSessao";
     const USERS_KEY = "hitboxUsuarios";
     const CANDIDATES_KEY = "hitboxCandidaturas";
+    const LEGACY_CANDIDATES_KEY = "hitboxe_candidaturas";
 
     const session = JSON.parse(localStorage.getItem(SESSION_KEY) || "null");
 
     if (!session) {
-        window.location.href = "Contato.html";
+        window.location.href = "/pgs/Contato.html";
         return;
     }
 
     const getUsers = () => JSON.parse(localStorage.getItem(USERS_KEY) || "[]");
 
-    const getCandidates = () => JSON.parse(localStorage.getItem(CANDIDATES_KEY) || "[]");
+    function getCandidates() {
+        const mainList = JSON.parse(localStorage.getItem(CANDIDATES_KEY) || "[]");
+        const altList = JSON.parse(localStorage.getItem(LEGACY_CANDIDATES_KEY) || "[]");
 
-    const saveCandidates = list => {
+        const map = new Map();
+        [...mainList, ...altList].forEach(item => {
+            if (item && item.id) {
+                map.set(String(item.id), {
+                    ...item,
+                    area: item.area || item.vaga || "Não informada",
+                    curriculo: item.curriculo || item.link || "Não informado",
+                    status: item.status || "Pendente"
+                });
+            }
+        });
+        return Array.from(map.values());
+    }
+
+    function saveCandidates(list) {
         localStorage.setItem(CANDIDATES_KEY, JSON.stringify(list));
-    };
+        localStorage.setItem(LEGACY_CANDIDATES_KEY, JSON.stringify(list));
+    }
+
+    function showToast(msg, isAlert = false) {
+        const toast = document.getElementById("adminToast");
+        if (!toast) return;
+        toast.textContent = msg;
+        toast.style.borderLeftColor = isAlert ? "#ef4444" : "#22c55e";
+        toast.classList.add("show");
+        clearTimeout(toast._timer);
+        toast._timer = setTimeout(() => toast.classList.remove("show"), 3200);
+    }
+
+    // Modal de confirmação visual próprio (substitui window.confirm)
+    let pendingConfirmCallback = null;
+
+    function openCustomConfirm(title, message, onConfirm) {
+        const modal = document.getElementById("hbConfirmModal");
+        document.getElementById("hbConfirmTitle").textContent = title;
+        document.getElementById("hbConfirmMessage").textContent = message;
+        pendingConfirmCallback = onConfirm;
+        modal.classList.add("show");
+    }
+
+    function closeCustomConfirm() {
+        const modal = document.getElementById("hbConfirmModal");
+        modal.classList.remove("show");
+        pendingConfirmCallback = null;
+    }
+
+    document.getElementById("hbConfirmCancelBtn").addEventListener("click", closeCustomConfirm);
+
+    document.getElementById("hbConfirmOkBtn").addEventListener("click", function () {
+        if (typeof pendingConfirmCallback === "function") {
+            pendingConfirmCallback();
+        }
+        closeCustomConfirm();
+    });
+
+    document.getElementById("hbConfirmModal").addEventListener("click", function (e) {
+        if (e.target === this) closeCustomConfirm();
+    });
 
     const profileName = document.getElementById("profileName");
     const profileRole = document.getElementById("profileRole");
-
     const profilePhoto = document.getElementById("profilePhoto");
     const profileFallback = document.getElementById("profileFallback");
-
     const studentDashboard = document.getElementById("studentDashboard");
     const adminDashboard = document.getElementById("adminDashboard");
 
@@ -1278,7 +1975,7 @@
     }
 
     profileName.textContent = session.tipo === "admin"
-        ? "Administrador Hitbox"
+        ? "Administrador HitBoxe"
         : (session.nome || "Usuário");
 
     profileRole.textContent = session.tipo === "admin"
@@ -1286,14 +1983,71 @@
         : String(session.tipo || "USUÁRIO").toUpperCase();
 
     let currentCandidateId = null;
+    let activeStatusFilter = "todos";
+    let activeVagaFilter = "todas";
+    let activeSearchQuery = "";
+    let selectedCandidateIds = new Set();
+
+    function updateBulkUI(visibleIds = []) {
+        const bulkBar = document.getElementById("bulkActionBar");
+        const countText = document.getElementById("selectedCountText");
+        const selectAllCb = document.getElementById("selectAllCheckbox");
+
+        const totalSelected = selectedCandidateIds.size;
+        countText.textContent = totalSelected;
+
+        if (totalSelected > 0) {
+            bulkBar.classList.add("visible");
+        } else {
+            bulkBar.classList.remove("visible");
+        }
+
+        if (visibleIds.length > 0) {
+            const allVisibleChecked = visibleIds.every(id => selectedCandidateIds.has(String(id)));
+            const someVisibleChecked = visibleIds.some(id => selectedCandidateIds.has(String(id)));
+            selectAllCb.checked = allVisibleChecked;
+            selectAllCb.indeterminate = !allVisibleChecked && someVisibleChecked;
+        } else {
+            selectAllCb.checked = false;
+            selectAllCb.indeterminate = false;
+        }
+    }
+
+    function deleteCandidatesByIds(idsArray) {
+        const idsToRemove = new Set(idsArray.map(String));
+        if (!idsToRemove.size) return;
+
+        const candidates = getCandidates();
+        const remaining = candidates.filter(c => !idsToRemove.has(String(c.id)));
+
+        saveCandidates(remaining);
+        idsToRemove.forEach(id => selectedCandidateIds.delete(id));
+        renderCandidates();
+
+        showToast(`${idsToRemove.size} currículo(s) excluído(s) permanentemente.`, true);
+    }
+
+    function updateCandidateStatus(id, newStatus) {
+        const candidates = getCandidates();
+        const index = candidates.findIndex(c => String(c.id) === String(id));
+        if (index < 0) return;
+
+        candidates[index].status = newStatus;
+        saveCandidates(candidates);
+        renderCandidates();
+
+        if (newStatus === "Aprovado") {
+            showToast(`Candidatura de ${candidates[index].nome} ACEITA com sucesso!`);
+        } else {
+            showToast(`Candidatura de ${candidates[index].nome} RECUSADA.`, true);
+        }
+    }
 
     function renderAdmin() {
-
         studentDashboard.style.display = "none";
         adminDashboard.style.display = "block";
 
         const users = getUsers();
-
         const students = users.filter(u => u.tipo === "aluno");
         const instructors = users.filter(u => u.tipo === "instrutor");
 
@@ -1301,24 +2055,18 @@
         document.getElementById("adminInstructors").textContent = instructors.length;
 
         const instructorList = document.getElementById("adminInstructorList");
-
         if (!instructors.length) {
             instructorList.innerHTML = '<div class="empty-state">Nenhum instrutor cadastrado.</div>';
         } else {
             instructorList.innerHTML = instructors.map(u => `
                 <div>
-                    <span>
-                        ${u.nome || ""} ${u.sobrenome || ""}
-                    </span>
-                    <span class="student-status">
-                        INSTRUTOR
-                    </span>
+                    <span>${u.nome || ""} ${u.sobrenome || ""}</span>
+                    <span class="student-status">INSTRUTOR</span>
                 </div>
             `).join("");
         }
 
         const studentList = document.getElementById("adminStudentList");
-
         if (!students.length) {
             studentList.innerHTML = '<div class="empty-state">Nenhum aluno cadastrado ainda.</div>';
         } else {
@@ -1333,7 +2081,6 @@
         renderCandidates();
 
         const chart = document.getElementById("performanceChart");
-
         if (chart && window.Chart) {
             new Chart(chart, {
                 type: "line",
@@ -1342,40 +2089,22 @@
                     datasets: [{
                         label: "Desempenho",
                         data: [62, 67, 65, 74, 71, 79, 76, 86, 91],
+                        borderColor: "#e30613",
+                        backgroundColor: "rgba(227, 6, 19, 0.15)",
                         borderWidth: 3,
                         tension: .35,
-                        fill: false
+                        fill: true
                     }]
                 },
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
                     plugins: {
-                        legend: {
-                            labels: {
-                                color: "#aaa"
-                            }
-                        }
+                        legend: { labels: { color: "#aaa" } }
                     },
                     scales: {
-                        x: {
-                            ticks: {
-                                color: "#777"
-                            },
-                            grid: {
-                                color: "#292929"
-                            }
-                        },
-                        y: {
-                            beginAtZero: true,
-                            max: 100,
-                            ticks: {
-                                color: "#777"
-                            },
-                            grid: {
-                                color: "#292929"
-                            }
-                        }
+                        x: { ticks: { color: "#777" }, grid: { color: "#262932" } },
+                        y: { beginAtZero: true, max: 100, ticks: { color: "#777" }, grid: { color: "#262932" } }
                     }
                 }
             });
@@ -1383,88 +2112,235 @@
     }
 
     function renderCandidates() {
-
         const candidates = getCandidates();
 
-        const pending = candidates.filter(c => c.status === "Pendente");
+        const existingIds = new Set(candidates.map(c => String(c.id)));
+        selectedCandidateIds.forEach(id => {
+            if (!existingIds.has(id)) selectedCandidateIds.delete(id);
+        });
 
-        document.getElementById("adminCandidates").textContent = pending.length;
+        const pendingList = candidates.filter(c => c.status === "Pendente");
+        const approvedList = candidates.filter(c => c.status === "Aprovado");
+        const rejectedList = candidates.filter(c => c.status === "Recusado");
 
-        document.getElementById("candidateActionText").textContent =
-            pending.length
-                ? pending.length + " candidatura(s) pendente(s)"
-                : "Nenhuma pendente";
+        document.getElementById("adminCandidates").textContent = pendingList.length;
+        document.getElementById("adminApprovedCount").textContent = approvedList.length;
+        document.getElementById("cnt-todos").textContent = candidates.length;
+        document.getElementById("cnt-pendente").textContent = pendingList.length;
+        document.getElementById("cnt-aprovado").textContent = approvedList.length;
+        document.getElementById("cnt-recusado").textContent = rejectedList.length;
 
-        const list = document.getElementById("candidateList");
+        document.getElementById("candidateActionText").textContent = pendingList.length
+            ? pendingList.length + " candidatura(s) aguardando análise"
+            : "Nenhuma pendente";
 
-        if (!candidates.length) {
-            list.innerHTML = '<div class="empty-state">Nenhuma candidatura recebida ainda.</div>';
+        const filtered = candidates.filter(c => {
+            const matchStatus = activeStatusFilter === "todos" || c.status === activeStatusFilter;
+            const vagaNome = c.area || c.vaga || "";
+            const matchVaga = activeVagaFilter === "todas" || vagaNome === activeVagaFilter;
+
+            const q = activeSearchQuery.toLowerCase();
+            const matchSearch = !q || [
+                c.nome,
+                c.cpf,
+                c.email,
+                vagaNome,
+                c.endereco,
+                c.telefone
+            ].some(val => String(val || "").toLowerCase().includes(q));
+
+            return matchStatus && matchVaga && matchSearch;
+        });
+
+        filtered.sort((a, b) => {
+            if (a.status === "Pendente" && b.status !== "Pendente") return -1;
+            if (a.status !== "Pendente" && b.status === "Pendente") return 1;
+            return Number(b.id) - Number(a.id);
+        });
+
+        const tbody = document.getElementById("dynamicCandidatesTbody");
+        const visibleIds = filtered.map(c => String(c.id));
+
+        if (!filtered.length) {
+            tbody.innerHTML = `
+                <tr>
+                    <td colspan="8" class="empty-state">
+                        <i class="fa fa-folder-open-o" style="font-size: 22px; display: block; margin-bottom: 8px; color: #e30613;"></i>
+                        Nenhum currículo encontrado para os filtros selecionados.
+                    </td>
+                </tr>
+            `;
+            updateBulkUI([]);
             return;
         }
 
-        const ordered = [...candidates].sort((a, b) => {
-            if (a.status === "Pendente" && b.status !== "Pendente") return -1;
-            if (a.status !== "Pendente" && b.status === "Pendente") return 1;
-            return 0;
-        });
+        tbody.innerHTML = filtered.map(c => {
+            const idStr = String(c.id);
+            const isChecked = selectedCandidateIds.has(idStr);
+            const statusLower = String(c.status || "Pendente").toLowerCase();
+            const badgeClass = statusLower === "aprovado"
+                ? "aprovado"
+                : statusLower === "recusado"
+                    ? "recusado"
+                    : "pendente";
 
-        list.innerHTML = ordered.slice(0, 8).map(c => {
+            const statusIcon = badgeClass === "aprovado"
+                ? "fa-check-circle"
+                : badgeClass === "recusado"
+                    ? "fa-times-circle"
+                    : "fa-clock-o";
 
-            let statusClass = "";
-
-            if (c.status === "Aprovado") statusClass = "aprovado";
-            if (c.status === "Recusado") statusClass = "recusado";
-            if (c.status === "Em análise") statusClass = "analise";
+            const cleanPhone = String(c.telefone || "").replace(/\D/g, "");
+            const whatsBtn = cleanPhone
+                ? `<a href="https://wa.me/55${cleanPhone}" target="_blank" class="btn-tbl btn-tbl-whats" title="Chamar no WhatsApp"><i class="fa fa-whatsapp"></i></a>`
+                : "";
 
             return `
-                <div class="candidate" data-id="${c.id}">
-                    <div class="candidate-main">
-                        <strong>${c.nome || "Candidato"}</strong>
-                        <span>${c.area || "Área não informada"}</span>
-                    </div>
-
-                    <span class="candidate-status ${statusClass}">
-                        ${c.status || "Pendente"}
-                    </span>
-                </div>
+                <tr class="${isChecked ? "row-selected" : ""}">
+                    <td style="text-align: center;">
+                        <input type="checkbox" class="hb-checkbox row-checkbox" data-id="${idStr}" ${isChecked ? "checked" : ""} aria-label="Selecionar ${c.nome || "candidato"}">
+                    </td>
+                    <td>
+                        <span class="cand-cell-name">${c.nome || "Candidato"}</span>
+                        <span class="cand-cell-sub">CPF: ${c.cpf || "Não informado"}</span>
+                    </td>
+                    <td>
+                        <span class="vaga-tag">${c.area || c.vaga || "Geral"}</span>
+                        <span class="cand-cell-sub"><i class="fa fa-clock-o"></i> ${c.turno || "Turno flexível"}</span>
+                    </td>
+                    <td>
+                        <strong style="color: #fff;">${c.salario || "A combinar"}</strong>
+                    </td>
+                    <td>
+                        <span>${c.telefone || "-"}</span>
+                        <span class="cand-cell-sub">${c.email || ""}</span>
+                        <span class="cand-cell-sub" style="max-width: 210px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${c.endereco || ""}">${c.endereco || ""}</span>
+                    </td>
+                    <td style="color: var(--hb-muted); white-space: nowrap;">${c.data || "-"}</td>
+                    <td>
+                        <span class="status-badge ${badgeClass}">
+                            <i class="fa ${statusIcon}"></i> ${c.status || "Pendente"}
+                        </span>
+                    </td>
+                    <td>
+                        <div class="table-actions">
+                            <button type="button" class="btn-tbl btn-tbl-accept" data-action="accept" data-id="${idStr}" title="Aceitar currículo">
+                                <i class="fa fa-check"></i> Aceitar
+                            </button>
+                            <button type="button" class="btn-tbl btn-tbl-reject" data-action="reject" data-id="${idStr}" title="Recusar currículo">
+                                <i class="fa fa-times"></i> Recusar
+                            </button>
+                            <button type="button" class="btn-tbl btn-tbl-view" data-action="view" data-id="${idStr}" title="Ver ficha completa">
+                                <i class="fa fa-eye"></i>
+                            </button>
+                            ${whatsBtn}
+                            <button type="button" class="btn-tbl btn-tbl-trash" data-action="delete" data-id="${idStr}" title="Excluir currículo">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
             `;
         }).join("");
 
-        list.querySelectorAll(".candidate").forEach(item => {
-            item.addEventListener("click", function () {
-                openCandidate(this.dataset.id);
+        tbody.querySelectorAll(".row-checkbox").forEach(cb => {
+            cb.addEventListener("change", function () {
+                const id = String(this.dataset.id);
+                const tr = this.closest("tr");
+                if (this.checked) {
+                    selectedCandidateIds.add(id);
+                    if (tr) tr.classList.add("row-selected");
+                } else {
+                    selectedCandidateIds.delete(id);
+                    if (tr) tr.classList.remove("row-selected");
+                }
+                updateBulkUI(visibleIds);
             });
         });
+
+        tbody.querySelectorAll("[data-action]").forEach(btn => {
+            btn.addEventListener("click", function (e) {
+                e.stopPropagation();
+                const id = this.dataset.id;
+                const action = this.dataset.action;
+
+                if (action === "accept") {
+                    updateCandidateStatus(id, "Aprovado");
+                } else if (action === "reject") {
+                    updateCandidateStatus(id, "Recusado");
+                } else if (action === "view") {
+                    openCandidate(id);
+                } else if (action === "delete") {
+                    openCustomConfirm(
+                        "Excluir currículo",
+                        "Deseja realmente excluir este currículo permanentemente do sistema?",
+                        () => deleteCandidatesByIds([id])
+                    );
+                }
+            });
+        });
+
+        updateBulkUI(visibleIds);
     }
 
+    document.getElementById("selectAllCheckbox").addEventListener("change", function () {
+        const rowCbs = document.querySelectorAll("#dynamicCandidatesTbody .row-checkbox");
+        rowCbs.forEach(cb => {
+            const id = String(cb.dataset.id);
+            cb.checked = this.checked;
+            const tr = cb.closest("tr");
+            if (this.checked) {
+                selectedCandidateIds.add(id);
+                if (tr) tr.classList.add("row-selected");
+            } else {
+                selectedCandidateIds.delete(id);
+                if (tr) tr.classList.remove("row-selected");
+            }
+        });
+        const visibleIds = Array.from(rowCbs).map(cb => String(cb.dataset.id));
+        updateBulkUI(visibleIds);
+    });
+
+    document.getElementById("btnClearSelection").addEventListener("click", function () {
+        selectedCandidateIds.clear();
+        renderCandidates();
+    });
+
+    document.getElementById("btnDeleteSelected").addEventListener("click", function () {
+        const count = selectedCandidateIds.size;
+        if (!count) return;
+        openCustomConfirm(
+            "Excluir selecionados",
+            `Tem certeza que deseja excluir ${count} currículo(s) selecionado(s)? Esta ação não pode ser desfeita.`,
+            () => deleteCandidatesByIds(Array.from(selectedCandidateIds))
+        );
+    });
+
     function openCandidate(id) {
-
         const candidates = getCandidates();
-
         const candidate = candidates.find(c => String(c.id) === String(id));
-
         if (!candidate) return;
 
         currentCandidateId = candidate.id;
 
         document.getElementById("candidateModalName").textContent = candidate.nome || "Candidato";
         document.getElementById("detailName").textContent = candidate.nome || "Não informado";
-        document.getElementById("detailArea").textContent = candidate.area || "Não informado";
+        document.getElementById("detailCpf").textContent = candidate.cpf || "Não informado";
+        document.getElementById("detailBirth").textContent = candidate.nascimento
+            ? candidate.nascimento.split("-").reverse().join("/")
+            : "Não informado";
+        document.getElementById("detailArea").textContent = candidate.area || candidate.vaga || "Não informado";
         document.getElementById("detailEmail").textContent = candidate.email || "Não informado";
         document.getElementById("detailPhone").textContent = candidate.telefone || "Não informado";
+        document.getElementById("detailShift").textContent = candidate.turno || "Não informado";
+        document.getElementById("detailSalary").textContent = candidate.salario || "Não informado";
         document.getElementById("detailDate").textContent = candidate.data || "Não informado";
         document.getElementById("detailStatus").textContent = candidate.status || "Pendente";
+        document.getElementById("detailAddress").textContent = candidate.endereco || "Não informado";
         document.getElementById("detailMessage").textContent = candidate.mensagem || "Não informado";
-        document.getElementById("detailCurriculo").textContent = candidate.curriculo || "Currículo não informado";
+        document.getElementById("detailCurriculo").textContent = candidate.curriculo || candidate.link || "Currículo não informado";
 
-        const actions = document.getElementById("candidateActions");
-
-        if (candidate.status === "Pendente" || candidate.status === "Em análise") {
-            actions.style.display = "grid";
-        } else {
-            actions.style.display = "none";
-        }
-
+        document.getElementById("candidateActions").style.display = "grid";
         document.getElementById("candidateModal").classList.add("show");
     }
 
@@ -1473,111 +2349,100 @@
         currentCandidateId = null;
     }
 
-    document.getElementById("candidateModalClose").addEventListener("click", closeCandidate);
+    document.querySelectorAll("#statusFilterPills .filter-pill").forEach(pill => {
+        pill.addEventListener("click", function () {
+            document.querySelectorAll("#statusFilterPills .filter-pill").forEach(p => p.classList.remove("active"));
+            this.classList.add("active");
+            activeStatusFilter = this.dataset.status;
+            renderCandidates();
+        });
+    });
 
-    document.getElementById("candidateModal").addEventListener("click", function (event) {
-        if (event.target === this) {
-            closeCandidate();
+    document.getElementById("filterVagaSelect").addEventListener("change", function () {
+        activeVagaFilter = this.value;
+        renderCandidates();
+    });
+
+    document.getElementById("searchCandidateInput").addEventListener("input", function () {
+        activeSearchQuery = this.value.trim();
+        renderCandidates();
+    });
+
+    window.addEventListener("storage", function (e) {
+        if (e.key === CANDIDATES_KEY || e.key === LEGACY_CANDIDATES_KEY) {
+            if (session.tipo === "admin") renderCandidates();
         }
     });
 
-    document.getElementById("openCandidates").addEventListener("click", function () {
+    document.getElementById("candidateModalClose").addEventListener("click", closeCandidate);
 
+    document.getElementById("candidateModal").addEventListener("click", function (event) {
+        if (event.target === this) closeCandidate();
+    });
+
+    document.getElementById("openCandidates").addEventListener("click", function () {
         const candidates = getCandidates();
         const pending = candidates.find(c => c.status === "Pendente");
-
         if (pending) {
             openCandidate(pending.id);
         } else if (candidates.length) {
             openCandidate(candidates[0].id);
         } else {
-            alert("Ainda não existem candidaturas recebidas.");
+            showToast("Nenhuma candidatura cadastrada ainda.", true);
         }
     });
 
     document.getElementById("approveCandidate").addEventListener("click", function () {
-
         if (!currentCandidateId) return;
-
-        const candidates = getCandidates();
-
-        const index = candidates.findIndex(c =>
-            String(c.id) === String(currentCandidateId)
-        );
-
-        if (index < 0) return;
-
-        candidates[index].status = "Aprovado";
-
-        saveCandidates(candidates);
-
+        updateCandidateStatus(currentCandidateId, "Aprovado");
         closeCandidate();
-        renderCandidates();
-
-        alert("Candidatura aprovada com sucesso.");
     });
 
     document.getElementById("rejectCandidate").addEventListener("click", function () {
-
         if (!currentCandidateId) return;
-
-        const candidates = getCandidates();
-
-        const index = candidates.findIndex(c =>
-            String(c.id) === String(currentCandidateId)
-        );
-
-        if (index < 0) return;
-
-        candidates[index].status = "Recusado";
-
-        saveCandidates(candidates);
-
+        updateCandidateStatus(currentCandidateId, "Recusado");
         closeCandidate();
-        renderCandidates();
+    });
 
-        alert("Candidatura recusada.");
+    document.getElementById("deleteCandidateModalBtn").addEventListener("click", function () {
+        if (!currentCandidateId) return;
+        const idToDelete = currentCandidateId;
+        closeCandidate();
+        openCustomConfirm(
+            "Excluir currículo",
+            "Deseja realmente excluir este currículo permanentemente do sistema?",
+            () => deleteCandidatesByIds([idToDelete])
+        );
     });
 
     document.getElementById("openInstructor").addEventListener("click", function () {
-        window.location.href = "cadastro-instrutor.html";
+        window.location.href = "/pgs/cadastro-instrutor.html";
     });
 
     document.getElementById("logout").addEventListener("click", function () {
         localStorage.removeItem(SESSION_KEY);
-        window.location.href = "index.html";
+        window.location.href = "/index.html";
     });
 
     document.getElementById("photoInput").addEventListener("change", function (event) {
-
         const file = event.target.files[0];
-
         if (!file) return;
-
         const reader = new FileReader();
-
         reader.onload = function () {
-
             if (session.tipo === "admin") {
                 localStorage.setItem("hitboxAdminFoto", reader.result);
             }
-
             setPhoto(reader.result);
+            showToast("Foto de perfil atualizada!");
         };
-
         reader.readAsDataURL(file);
     });
 
     if (session.tipo === "admin") {
-
         setPhoto(localStorage.getItem("hitboxAdminFoto") || "");
-
         renderAdmin();
-
     } else {
-
         const users = getUsers();
-
         const user = users.find(u =>
             u.email &&
             session.email &&
@@ -1586,7 +2451,7 @@
 
         if (!user) {
             localStorage.removeItem(SESSION_KEY);
-            window.location.href = "Contato.html";
+            window.location.href = "/pgs/Contato.html";
             return;
         }
 
@@ -1595,38 +2460,19 @@
 
         setPhoto(user.foto || "");
 
-        profileName.textContent =
-            ((user.nome || "") + " " + (user.sobrenome || "")).trim();
+        profileName.textContent = ((user.nome || "") + " " + (user.sobrenome || "")).trim();
+        profileRole.textContent = String(user.tipo || "ALUNO").toUpperCase();
 
-        profileRole.textContent =
-            String(user.tipo || "ALUNO").toUpperCase();
-
-        document.getElementById("studentFullName").textContent =
-            ((user.nome || "") + " " + (user.sobrenome || "")).trim();
-
-        document.getElementById("studentEmail").textContent =
-            user.email || "Não informado";
-
-        document.getElementById("studentPhone").textContent =
-            user.telefone || "Não informado";
-
-        document.getElementById("studentCpf").textContent =
-            user.cpf || "Não informado";
-
-        document.getElementById("studentPlan").textContent =
-            user.plano || "Plano não informado";
-
-        document.getElementById("studentPlanData").textContent =
-            user.plano || "Plano não informado";
-
-        document.getElementById("studentPayment").textContent =
-            user.pagamento || "Não informado";
-
-        document.getElementById("studentGoal").value =
-            user.meta || "Melhorar condicionamento";
+        document.getElementById("studentFullName").textContent = ((user.nome || "") + " " + (user.sobrenome || "")).trim();
+        document.getElementById("studentEmail").textContent = user.email || "Não informado";
+        document.getElementById("studentPhone").textContent = user.telefone || "Não informado";
+        document.getElementById("studentCpf").textContent = user.cpf || "Não informado";
+        document.getElementById("studentPlan").textContent = user.plano || "Plano não informado";
+        document.getElementById("studentPlanData").textContent = user.plano || "Plano não informado";
+        document.getElementById("studentPayment").textContent = user.pagamento || "Não informado";
+        document.getElementById("studentGoal").value = user.meta || "Melhorar condicionamento";
 
         let progress = Number(user.progresso ?? 35);
-
         progress = Math.max(0, Math.min(100, progress));
 
         document.getElementById("studentProgress").value = progress;
@@ -1634,73 +2480,41 @@
         document.getElementById("studentProgressValue").textContent = progress + "%";
 
         const end = new Date(user.vencimento || Date.now());
-
-        const days = Math.max(
-            0,
-            Math.ceil((end - new Date()) / 86400000)
-        );
-
+        const days = Math.max(0, Math.ceil((end - new Date()) / 86400000));
         document.getElementById("daysLeft").textContent = days;
 
         document.getElementById("photoInput").addEventListener("change", function (event) {
-
             const file = event.target.files[0];
-
             if (!file) return;
-
             const reader = new FileReader();
-
             reader.onload = function () {
-
                 user.foto = reader.result;
-
                 const all = getUsers();
-
                 const index = all.findIndex(u => u.id === user.id);
-
                 if (index >= 0) {
                     all[index] = user;
                     localStorage.setItem(USERS_KEY, JSON.stringify(all));
                 }
-
                 setPhoto(reader.result);
             };
-
             reader.readAsDataURL(file);
         });
 
         document.getElementById("studentProgress").addEventListener("input", function () {
-
-            document.getElementById("studentProgressValue").textContent =
-                this.value + "%";
-
-            document.getElementById("studentProgressBar").style.width =
-                this.value + "%";
+            document.getElementById("studentProgressValue").textContent = this.value + "%";
+            document.getElementById("studentProgressBar").style.width = this.value + "%";
         });
 
         document.getElementById("saveGoal").addEventListener("click", function () {
-
-            user.meta =
-                document.getElementById("studentGoal").value.trim() ||
-                "Melhorar condicionamento";
-
-            user.progresso =
-                Number(document.getElementById("studentProgress").value);
-
+            user.meta = document.getElementById("studentGoal").value.trim() || "Melhorar condicionamento";
+            user.progresso = Number(document.getElementById("studentProgress").value);
             const all = getUsers();
-
             const index = all.findIndex(u => u.id === user.id);
-
             if (index >= 0) {
                 all[index] = user;
                 localStorage.setItem(USERS_KEY, JSON.stringify(all));
             }
-
-            this.textContent = "SALVO";
-
-            setTimeout(() => {
-                this.textContent = "SALVAR";
-            }, 1200);
+            showToast("Meta e progresso salvos com sucesso!");
         });
     }
 

@@ -1,10 +1,12 @@
 <div class="auth-box">
-    <button type="button" class="auth-close" id="authClose">
+    <button type="button" class="auth-close" id="authClose" aria-label="Fechar modal">
         <i class="fa fa-close"></i>
     </button>
+
     <div class="auth-logo">
         <img src="/assets/img/logo.png" alt="Hitbox">
     </div>
+
     <div class="auth-tabs">
         <button type="button" id="tabLogin" class="auth-tab active">
             Entrar
@@ -13,145 +15,159 @@
             Criar conta
         </button>
     </div>
+
+    <!-- =========================================================
+         PAINEL DE LOGIN
+         ========================================================= -->
     <div id="loginPanel" class="auth-panel active">
         <div class="auth-heading">
-            <span>
-                Área do aluno e administrador
-            </span>
-            <h2>
-                Entrar
-            </h2>
+            <span>Área do aluno e administrador</span>
+            <h2>Entrar</h2>
         </div>
-        <form id="loginForm">
+
+        <form id="loginForm" novalidate>
             <div class="auth-field">
-                <label>
-                    E-mail
-                </label>
-                <input id="loginEmail" type="email" autocomplete="email" required>
+                <label for="loginEmail">E-mail</label>
+                <div class="input-icon-wrap">
+                    <i class="fa fa-envelope field-icon"></i>
+                    <input id="loginEmail" type="email" autocomplete="email" placeholder="seuemail@exemplo.com" required>
+                </div>
                 <small></small>
             </div>
+
             <div class="auth-field">
-                <label>
-                    Senha
-                </label>
-                <div class="password-field">
-                    <input id="loginSenha" type="password" autocomplete="current-password" required>
+                <label for="loginSenha">Senha</label>
+                <div class="password-field input-icon-wrap">
+                    <i class="fa fa-lock field-icon"></i>
+                    <input id="loginSenha" type="password" autocomplete="current-password" placeholder="Digite sua senha" required>
                     <button type="button" id="toggleLoginSenha" class="password-toggle" aria-label="Mostrar senha">
                         <i class="fa fa-eye"></i>
                     </button>
                 </div>
                 <small></small>
             </div>
+
             <button class="auth-submit" type="submit">
-                ENTRAR
+                <i class="fa fa-sign-in" style="margin-right: 6px;"></i> ENTRAR
             </button>
-            <div id="loginMessage" class="auth-message">
-            </div>
+
+            <div id="loginMessage" class="auth-message"></div>
         </form>
     </div>
+
+    <!-- =========================================================
+         PAINEL DE CADASTRO COMPLETO + OBSERVAÇÕES DE SAÚDE
+         ========================================================= -->
     <div id="cadastroPanel" class="auth-panel">
         <div class="auth-heading">
-            <span>
-                Crie seu acesso
-            </span>
-            <h2>
-                Cadastro
-            </h2>
+            <span>Crie seu acesso</span>
+            <h2>Cadastro de Aluno</h2>
         </div>
+
         <form id="cadastroForm" novalidate>
+            <div class="auth-section-divider">
+                <i class="fa fa-user"></i> Dados Pessoais
+            </div>
+
             <div class="auth-grid">
                 <div class="auth-field">
-                    <label>
-                        Nome
-                    </label>
-                    <input id="cadNome" type="text">
+                    <label for="cadNome">Nome *</label>
+                    <input id="cadNome" type="text" placeholder="Ex: João" required>
                     <small></small>
                 </div>
+
                 <div class="auth-field">
-                    <label>
-                        Sobrenome
-                    </label>
-                    <input id="cadSobrenome" type="text">
+                    <label for="cadSobrenome">Sobrenome *</label>
+                    <input id="cadSobrenome" type="text" placeholder="Ex: Silva" required>
                     <small></small>
                 </div>
+
                 <div class="auth-field">
-                    <label>
-                        CPF
-                    </label>
-                    <input id="cadCpf" type="text" maxlength="14">
+                    <label for="cadCpf">CPF *</label>
+                    <input id="cadCpf" type="text" inputmode="numeric" maxlength="14" placeholder="000.000.000-00" required>
                     <small></small>
                 </div>
+
                 <div class="auth-field">
-                    <label>
-                        Data de nascimento
-                    </label>
-                    <input id="cadNascimento" type="date">
+                    <label for="cadNascimento">Data de nascimento *</label>
+                    <input id="cadNascimento" type="date" required>
                     <small></small>
                 </div>
+
                 <div class="auth-field">
-                    <label>
-                        Telefone
-                    </label>
-                    <input id="cadTelefone" type="text" maxlength="15">
+                    <label for="cadTelefone">Telefone / WhatsApp *</label>
+                    <input id="cadTelefone" type="tel" inputmode="numeric" maxlength="15" placeholder="(18) 99999-9999" required>
                     <small></small>
                 </div>
+
                 <div class="auth-field">
-                    <label>
-                        E-mail
-                    </label>
-                    <input id="cadEmail" type="email">
+                    <label for="cadEmail">E-mail *</label>
+                    <input id="cadEmail" type="email" placeholder="seuemail@exemplo.com" required>
                     <small></small>
                 </div>
+
                 <div class="auth-field">
-                    <label>
-                        Senha
-                    </label>
-                    <input id="cadSenha" type="password">
+                    <label for="cadSenha">Senha *</label>
+                    <div class="password-field">
+                        <input id="cadSenha" type="password" placeholder="Mínimo 6 caracteres" required>
+                        <button type="button" id="toggleCadSenha" class="password-toggle" aria-label="Mostrar senha">
+                            <i class="fa fa-eye"></i>
+                        </button>
+                    </div>
+                    <div class="password-strength" id="passwordStrength">
+                        <div class="strength-bar"><span id="strengthFill"></span></div>
+                        <span id="strengthText">Força da senha</span>
+                    </div>
                     <small></small>
                 </div>
+
                 <div class="auth-field">
-                    <label>
-                        Confirmar senha
-                    </label>
-                    <input id="cadConfirmarSenha" type="password">
+                    <label for="cadConfirmarSenha">Confirmar senha *</label>
+                    <div class="password-field">
+                        <input id="cadConfirmarSenha" type="password" placeholder="Repita a senha" required>
+                        <button type="button" id="toggleCadConfirmarSenha" class="password-toggle" aria-label="Mostrar confirmação de senha">
+                            <i class="fa fa-eye"></i>
+                        </button>
+                    </div>
                     <small></small>
                 </div>
+            </div>
+
+            <div class="auth-section-divider">
+                <i class="fa fa-map-marker"></i> Endereço (Busca automática por CEP)
+            </div>
+
+            <div class="auth-grid">
                 <div class="auth-field">
-                    <label>
-                        CEP
+                    <label for="cadCep">
+                        CEP * <span id="cadCepStatus" class="cep-badge"></span>
                     </label>
-                    <input id="cadCep" type="text" maxlength="9">
+                    <input id="cadCep" type="text" inputmode="numeric" maxlength="9" placeholder="00000-000" required>
                     <small></small>
                 </div>
+
                 <div class="auth-field">
-                    <label>
-                        Rua
-                    </label>
-                    <input id="cadRua" type="text">
+                    <label for="cadRua">Rua / Logradouro *</label>
+                    <input id="cadRua" type="text" placeholder="Preenchido pelo CEP" required>
                     <small></small>
                 </div>
+
                 <div class="auth-field">
-                    <label>
-                        Número
-                    </label>
-                    <input id="cadNumero" type="text">
+                    <label for="cadNumero">Número *</label>
+                    <input id="cadNumero" type="text" placeholder="Ex: 120" required>
                     <small></small>
                 </div>
+
                 <div class="auth-field">
-                    <label>
-                        Cidade
-                    </label>
-                    <input id="cadCidade" type="text">
+                    <label for="cadCidade">Cidade *</label>
+                    <input id="cadCidade" type="text" placeholder="Sua cidade" required>
                     <small></small>
                 </div>
+
                 <div class="auth-field">
-                    <label>
-                        Estado
-                    </label>
-                    <select id="cadEstado">
-                        <option value="">
-                            Selecione
-                        </option>
+                    <label for="cadEstado">Estado *</label>
+                    <select id="cadEstado" required>
+                        <option value="">Selecione</option>
                         <option>AC</option>
                         <option>AL</option>
                         <option>AP</option>
@@ -182,56 +198,79 @@
                     </select>
                     <small></small>
                 </div>
-                <div class="auth-field">
-                    <label>
-                        Plano
+            </div>
+
+            <!-- =========================================================
+                 NOVO BLOCO: SAÚDE & OBSERVAÇÕES PARA O TREINO
+                 ========================================================= -->
+            <div class="auth-section-divider">
+                <i class="fa fa-heartbeat"></i> Saúde & Observações Físicas
+            </div>
+
+            <div class="auth-grid">
+                <div class="auth-field full-span">
+                    <label for="cadPossuiSaude">Possui alguma condição médica, lesão ou restrição física?</label>
+                    <select id="cadPossuiSaude">
+                        <option value="Nenhuma restrição informada">Não possuo restrições físicas ou problemas de saúde</option>
+                        <option value="Possui observação de saúde">Sim, desejo informar uma condição / restrição</option>
+                    </select>
+                    <small></small>
+                </div>
+
+                <div class="auth-field full-span" id="saudeObsWrapper">
+                    <label for="cadObservacaoSaude">
+                        Observações de saúde, lesões, alergias ou medicamentos
+                        <span class="optional-tag">(Opcional — importante para sua segurança no ringue)</span>
                     </label>
+                    <textarea
+                        id="cadObservacaoSaude"
+                        rows="3"
+                        maxlength="400"
+                        placeholder="Ex: Asma leve, lesão anterior no ombro direito, hipertensão controlada, uso de medicamento contínuo ou nenhuma observação..."
+                    ></textarea>
+                    <div class="textarea-footer">
+                        <small></small>
+                        <span class="char-counter"><span id="saudeCharCount">0</span>/400</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="auth-section-divider">
+                <i class="fa fa-credit-card"></i> Plano & Pagamento
+            </div>
+
+            <div class="auth-grid">
+                <div class="auth-field">
+                    <label for="cadPlano">Plano *</label>
                     <select id="cadPlano" required>
-                        <option value="">
-                            Selecione
-                        </option>
-                        <option value="Plano Round">
-                            Plano Round
-                        </option>
-                        <option value="Plano Nocaute">
-                            Plano Nocaute
-                        </option>
-                        <option value="Plano Campeão">
-                            Plano Campeão
-                        </option>
+                        <option value="">Selecione</option>
+                        <option value="Plano Round">Plano Round — R$ 99,90/mês</option>
+                        <option value="Plano Nocaute">Plano Nocaute — R$ 149,90/mês</option>
+                        <option value="Plano Campeão">Plano Campeão — R$ 199,90/mês</option>
                     </select>
                     <small></small>
                 </div>
+
                 <div class="auth-field">
-                    <label>
-                        Forma de pagamento
-                    </label>
+                    <label for="cadPagamento">Forma de pagamento *</label>
                     <select id="cadPagamento" required>
-                        <option value="">
-                            Selecione
-                        </option>
-                        <option value="PIX">
-                            PIX
-                        </option>
-                        <option value="Boleto">
-                            Boleto
-                        </option>
-                        <option value="Cartão de crédito">
-                            Cartão de crédito
-                        </option>
-                        <option value="Cartão de débito">
-                            Cartão de débito
-                        </option>
+                        <option value="">Selecione</option>
+                        <option value="PIX">PIX</option>
+                        <option value="Boleto">Boleto</option>
+                        <option value="Cartão de crédito">Cartão de crédito</option>
+                        <option value="Cartão de débito">Cartão de débito</option>
                     </select>
                     <small></small>
                 </div>
+
                 <div id="paymentDetails"></div>
             </div>
+
             <button class="auth-submit" type="submit">
-                CRIAR CONTA
+                <i class="fa fa-check-circle" style="margin-right: 6px;"></i> CRIAR CONTA E FINALIZAR
             </button>
-            <div id="cadastroMessage" class="auth-message">
-            </div>
+
+            <div id="cadastroMessage" class="auth-message"></div>
         </form>
     </div>
 </div>

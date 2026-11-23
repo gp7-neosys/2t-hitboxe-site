@@ -1,0 +1,2113 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="HitBoxe - Trabalhe Conosco">
+    <title>HitBoxe - Trabalhe Conosco</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Muli:400,600,700,800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Oswald:400,500,600,700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="../assets/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="../assets/css/flaticon.css" type="text/css">
+    <link rel="stylesheet" href="../assets/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="../assets/css/barfiller.css" type="text/css">
+    <link rel="stylesheet" href="../assets/css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="../assets/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="../assets/css/style.css" type="text/css">
+    <link rel="stylesheet" href="../assets/css/acesso.css" type="text/css">
+    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css">
+
+    <style>
+        :root {
+            --hb-red: #ee262b;
+            --hb-red-glow: rgba(238, 38, 43, 0.35);
+            --hb-red-dark: #b71820;
+            --hb-bg: #111216;
+            --hb-surface: #16181f;
+            --hb-card: #202127;
+            --hb-border: #373840;
+            --hb-white: #ffffff;
+            --hb-text: #f3f4f6;
+            --hb-muted: #9ca3af;
+            --hb-success: #10b981;
+            --hb-error: #ef4444;
+        }
+
+        #hitboxe-loader,
+        #preloder {
+            display: none !important;
+        }
+
+        body {
+            background-color: #0c0d10;
+            color: var(--hb-text);
+            font-family: 'Muli', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* HERO BANNER */
+        .careers-hero {
+            position: relative;
+            padding: 190px 0 110px;
+            background:
+                radial-gradient(circle at 80% 20%, rgba(238, 38, 43, 0.25), transparent 45%),
+                linear-gradient(180deg, rgba(12, 13, 16, 0.78) 0%, rgba(12, 13, 16, 0.98) 100%),
+                url('../assets/img/faixahitboxe.png') center/cover no-repeat;
+            border-bottom: 1px solid #2e3240;
+            text-align: center;
+        }
+
+        .hero-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(238, 38, 43, 0.14);
+            border: 1px solid rgba(238, 38, 43, 0.45);
+            color: #ff5c61;
+            padding: 6px 18px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 18px;
+        }
+
+        .careers-hero h1 {
+            font-family: 'Oswald', sans-serif;
+            font-size: clamp(38px, 5vw, 62px);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #fff;
+            margin-bottom: 16px;
+        }
+
+        .careers-hero h1 span {
+            color: var(--hb-red);
+            text-shadow: 0 0 28px var(--hb-red-glow);
+        }
+
+        .careers-hero p {
+            max-width: 640px;
+            margin: 0 auto 24px;
+            color: var(--hb-muted);
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .bt-option a {
+            color: #fff;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .bt-option span {
+            color: var(--hb-red);
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        /* SEÇÃO PRINCIPAL */
+        .careers-section {
+            padding: 80px 0 100px;
+            background: radial-gradient(circle at 10% 40%, rgba(238, 38, 43, 0.06), transparent 40%), #0c0d10;
+        }
+
+        .section-heading {
+            margin-bottom: 32px;
+        }
+
+        .section-heading span {
+            color: var(--hb-red);
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .section-heading h2 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 34px;
+            text-transform: uppercase;
+            color: #fff;
+            margin-top: 4px;
+        }
+
+        /* CARDS DE VAGAS */
+        .job-card {
+            background: linear-gradient(145deg, #1d2029, var(--hb-surface));
+            border: 1px solid #2e3240;
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: all 0.28s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .job-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--hb-red);
+            opacity: 0;
+            transition: opacity 0.25s;
+        }
+
+        .job-card:hover,
+        .job-card.selected {
+            transform: translateY(-4px);
+            border-color: var(--hb-red);
+            box-shadow: 0 14px 32px rgba(0, 0, 0, 0.45), 0 0 20px rgba(238, 38, 43, 0.15);
+        }
+
+        .job-card:hover::before,
+        .job-card.selected::before {
+            opacity: 1;
+        }
+
+        .job-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .job-badge {
+            background: rgba(238, 38, 43, 0.14);
+            color: #ff5c61;
+            border: 1px solid rgba(238, 38, 43, 0.4);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .job-select-hint {
+            font-size: 12px;
+            color: var(--hb-muted);
+            font-weight: 600;
+        }
+
+        .job-card.selected .job-select-hint {
+            color: var(--hb-success);
+        }
+
+        .job-card h4 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 22px;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        .job-card p {
+            color: var(--hb-muted);
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 14px;
+        }
+
+        .job-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .job-tags span {
+            background: #111318;
+            border: 1px solid #2a2e3b;
+            color: #d1d5db;
+            font-size: 11px;
+            padding: 4px 10px;
+            border-radius: 6px;
+        }
+
+        /* FORMULÁRIO */
+        .form-wrapper {
+            background: linear-gradient(160deg, #1b1e27 0%, #13151b 100%);
+            border: 1px solid #2e3240;
+            border-radius: 20px;
+            padding: 36px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+            position: relative;
+        }
+
+        .form-wrapper::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 36px;
+            right: 36px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--hb-red), transparent);
+        }
+
+        .form-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            padding-bottom: 20px;
+            margin-bottom: 26px;
+            border-bottom: 1px solid #2e3240;
+        }
+
+        .form-header h3 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 28px;
+            text-transform: uppercase;
+            color: #fff;
+            margin: 0;
+        }
+
+        .fields-counter {
+            background: #101217;
+            border: 1px solid #2e3240;
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 700;
+            color: #d1d5db;
+        }
+
+        .fields-counter strong {
+            color: var(--hb-red);
+        }
+
+        .form-step-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Oswald', sans-serif;
+            font-size: 16px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #fff;
+            margin: 26px 0 16px;
+        }
+
+        .form-step-title:first-of-type {
+            margin-top: 0;
+        }
+
+        .step-num {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: var(--hb-red);
+            color: #fff;
+            font-size: 13px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* INPUTS & VALIDAÇÕES */
+        .hb-group {
+            margin-bottom: 18px;
+            position: relative;
+        }
+
+        .hb-group label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #e5e7eb;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 7px;
+        }
+
+        .hb-group label span.req {
+            color: var(--hb-red);
+        }
+
+        .input-icon-wrap {
+            position: relative;
+        }
+
+        .input-icon-wrap > i.field-ico {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #6b7280;
+            font-size: 15px;
+            pointer-events: none;
+            transition: color 0.2s;
+        }
+
+        .input-icon-wrap > i.status-ico {
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 15px;
+            pointer-events: none;
+            display: none;
+        }
+
+        .hb-input {
+            width: 100%;
+            height: 48px;
+            background: #0e1015;
+            border: 1.5px solid #2b303d;
+            border-radius: 10px;
+            padding: 0 38px 0 40px;
+            color: #fff;
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+
+        .hb-input.no-icon {
+            padding-left: 14px;
+            padding-right: 14px;
+        }
+
+        textarea.hb-input {
+            height: auto;
+            min-height: 110px;
+            padding: 12px 14px;
+            resize: vertical;
+        }
+
+        .hb-input:focus {
+            outline: none;
+            border-color: var(--hb-red);
+            background: #12151c;
+            box-shadow: 0 0 0 4px rgba(238, 38, 43, 0.14);
+        }
+
+        .input-icon-wrap:focus-within > i.field-ico {
+            color: var(--hb-red);
+        }
+
+        .hb-group.is-valid .hb-input {
+            border-color: var(--hb-success);
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.12);
+        }
+
+        .hb-group.is-valid .status-ico.ok {
+            display: block;
+            color: var(--hb-success);
+        }
+
+        .hb-group.is-invalid .hb-input {
+            border-color: var(--hb-error);
+            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15);
+        }
+
+        .hb-group.is-invalid .status-ico.err {
+            display: block;
+            color: var(--hb-error);
+        }
+
+        .error-text {
+            display: none;
+            color: #f87171;
+            font-size: 12px;
+            font-weight: 600;
+            margin-top: 5px;
+        }
+
+        .valid-text {
+            display: none;
+            color: #34d399;
+            font-size: 12px;
+            font-weight: 600;
+            margin-top: 5px;
+        }
+
+        .hb-group.is-invalid .error-text {
+            display: block;
+        }
+
+        .hb-group.is-valid .valid-text {
+            display: block;
+        }
+
+        .cep-status {
+            font-size: 11px;
+            font-weight: 700;
+            color: #60a5fa;
+        }
+
+        .char-counter {
+            text-align: right;
+            font-size: 11px;
+            color: var(--hb-muted);
+            margin-top: 4px;
+        }
+
+        .btn-hb-submit {
+            background: linear-gradient(90deg, var(--hb-red) 0%, #c8191e 100%);
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            padding: 16px 32px;
+            font-family: 'Oswald', sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            width: 100%;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            box-shadow: 0 10px 25px rgba(238, 38, 43, 0.35);
+            margin-top: 12px;
+        }
+
+        .btn-hb-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 32px rgba(238, 38, 43, 0.55);
+            background: linear-gradient(90deg, #ff2e33 0%, var(--hb-red) 100%);
+        }
+
+        #feedback-msg {
+            display: none;
+            margin-top: 20px;
+            padding: 16px 20px;
+            border-radius: 12px;
+            background: rgba(16, 185, 129, 0.14);
+            border: 1px solid var(--hb-success);
+            color: #ecfdf5;
+            font-size: 14px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        /* =========================================================
+           PAINEL DE ACESSIBILIDADE COMPLETO (ORIGINAL DO PROJETO)
+           ========================================================= */
+        #hb-accessibility,
+        #hb-accessibility * {
+            box-sizing: border-box;
+        }
+
+        #hb-accessibility {
+            font-family: 'Muli', Arial, sans-serif;
+        }
+
+        [vw-access-button] {
+            position: fixed !important;
+            top: 45% !important;
+            right: 0 !important;
+            left: auto !important;
+            bottom: auto !important;
+            width: 44px !important;
+            height: 44px !important;
+            border-radius: 10px 0 0 10px !important;
+            box-shadow: -3px 5px 14px #0006;
+        }
+
+        #hb-access-button {
+            position: fixed;
+            top: calc(40%);
+            right: 0;
+            z-index: 2147483000;
+            width: 44px;
+            height: 44px;
+            padding: 0;
+            border: 0;
+            border-radius: 10px 0 0 10px;
+            background: var(--hb-red);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: -3px 5px 14px #0006;
+            transition: background .2s ease;
+        }
+
+        #hb-access-button:hover {
+            background: var(--hb-red-dark);
+        }
+
+        #hb-access-button .hb-access-icon,
+        #hb-access-button .hb-access-icon i {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 25px;
+            color: #fff;
+            line-height: 1;
+        }
+
+        #hb-access-panel {
+            position: fixed;
+            z-index: 2147483001;
+            top: 50%;
+            right: 60px;
+            transform: translateY(-50%);
+            display: none;
+            width: min(400px, calc(100vw - 75px));
+            max-height: 76vh;
+            overflow-y: auto;
+            overscroll-behavior: contain;
+            background: var(--hb-bg);
+            color: #fff;
+            border: 1px solid var(--hb-border);
+            border-radius: 15px;
+            box-shadow: 0 15px 45px #000a;
+        }
+
+        #hb-access-panel[aria-hidden="false"] {
+            display: block;
+        }
+
+        #hb-access-panel::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        #hb-access-panel::-webkit-scrollbar-thumb {
+            background: #555;
+            border-radius: 10px;
+        }
+
+        #hb-access-panel .hb-head {
+            position: sticky;
+            top: 0;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            padding: 15px 17px;
+            background: #17181c;
+            border-bottom: 1px solid #33343a;
+        }
+
+        #hb-access-panel .hb-head-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            background: var(--hb-red);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        #hb-access-panel .hb-head-icon i {
+            font-size: 19px;
+            color: white;
+        }
+
+        #hb-access-panel .hb-head h2 {
+            margin: 0 !important;
+            font: 600 22px 'Oswald', Arial, sans-serif !important;
+            color: #fff !important;
+            line-height: 1.2 !important;
+        }
+
+        #hb-access-panel .hb-head small {
+            color: #aaa;
+            font-size: 10px;
+            letter-spacing: .6px;
+        }
+
+        #hb-access-panel .hb-close {
+            margin-left: auto;
+            width: 34px;
+            height: 34px;
+            flex-shrink: 0;
+            border: 1px solid #45464e;
+            border-radius: 8px;
+            background: #282930;
+            color: #fff;
+            font-size: 21px;
+            cursor: pointer;
+        }
+
+        #hb-access-panel .hb-body {
+            padding: 16px;
+        }
+
+        #hb-access-panel .hb-section-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 0 0 12px !important;
+            font: 600 14px 'Oswald', Arial, sans-serif !important;
+            color: white !important;
+            letter-spacing: .4px;
+            text-transform: uppercase;
+        }
+
+        #hb-access-panel .hb-section-label i {
+            color: var(--hb-red);
+            font-size: 15px;
+        }
+
+        #hb-access-panel .hb-grid,
+        #hb-access-panel .hb-cvd {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 8px;
+        }
+
+        #hb-access-panel .hb-action {
+            min-height: 48px;
+            padding: 9px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 9px;
+            text-align: left;
+            border: 1px solid var(--hb-border);
+            border-radius: 9px;
+            background: var(--hb-card);
+            color: #eee;
+            font: 600 11px/1.4 'Muli', Arial, sans-serif;
+            cursor: pointer;
+            transition: border-color .2s, background .2s;
+        }
+
+        #hb-access-panel .hb-action i {
+            width: 17px;
+            flex-shrink: 0;
+            text-align: center;
+            color: #ff4850;
+            font-size: 15px;
+        }
+
+        #hb-access-panel .hb-action:hover {
+            background: #2c2d34;
+            border-color: var(--hb-red);
+        }
+
+        #hb-access-panel .hb-action[aria-pressed="true"] {
+            background: #4a1c23;
+            border-color: var(--hb-red);
+            color: white;
+        }
+
+        #hb-access-panel .hb-action[aria-pressed="true"] i {
+            color: white;
+        }
+
+        #hb-access-panel .hb-divider {
+            height: 1px;
+            background: #34353b;
+            margin: 18px 0;
+        }
+
+        #hb-access-panel .hb-cvd-btn {
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+            padding: 8px;
+            border: 1px solid #3b3c43;
+            border-radius: 9px;
+            background: #202127;
+            color: #eee;
+            font: 600 11px 'Muli', Arial, sans-serif;
+            cursor: pointer;
+        }
+
+        #hb-access-panel .hb-cvd-btn[aria-pressed="true"] {
+            background: var(--hb-red);
+            border-color: var(--hb-red);
+            color: #fff;
+        }
+
+        #hb-access-panel .hb-dot {
+            width: 12px;
+            height: 12px;
+            flex-shrink: 0;
+            border-radius: 50%;
+            border: 1px solid #ffffff66;
+            background: linear-gradient(90deg, #e35a5a 50%, #53c6bc 50%);
+        }
+
+        #hb-access-panel [data-cvd="none"] .hb-dot {
+            background: #aaa;
+        }
+
+        #hb-access-panel [data-cvd="strong"] .hb-dot {
+            background: linear-gradient(90deg, white 50%, black 50%);
+        }
+
+        #hb-access-panel [data-cvd="tritan"] .hb-dot {
+            background: linear-gradient(90deg, #f5cb4d 50%, #577ae8 50%);
+        }
+
+        #hb-access-panel .hb-help {
+            margin: 12px 0 0 !important;
+            color: #b5b5b9 !important;
+            font: 12px/1.5 'Muli', Arial, sans-serif !important;
+        }
+
+        #hb-access-panel .hb-tools {
+            display: flex;
+            gap: 8px;
+        }
+
+        #hb-access-panel .hb-tool {
+            flex: 1;
+            min-height: 42px;
+            padding: 8px;
+            border: 1px solid #45464c;
+            border-radius: 8px;
+            background: #27282e;
+            color: #fff;
+            font: 600 11px 'Muli', Arial, sans-serif;
+            cursor: pointer;
+        }
+
+        #hb-access-panel .hb-tool i {
+            margin-right: 4px;
+        }
+
+        #hb-access-panel .hb-reset {
+            background: var(--hb-red);
+            border-color: var(--hb-red);
+        }
+
+        #hb-access-panel .hb-status {
+            margin: 12px 0 0 !important;
+            color: #bbb !important;
+            font: 11px/1.5 'Muli', Arial, sans-serif !important;
+        }
+
+        #hb-accessibility button:focus-visible,
+        #hb-whatsapp:focus-visible {
+            outline: 3px solid #ffd43b !important;
+            outline-offset: 3px !important;
+        }
+
+        /* WHATSAPP */
+        #hb-whatsapp {
+            position: fixed;
+            right: 18px;
+            bottom: 24px;
+            z-index: 2147483002;
+            width: 56px;
+            height: 56px;
+            border: 3px solid #fff;
+            border-radius: 50%;
+            background: #25d366;
+            color: white !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none !important;
+            box-shadow: 0 5px 18px #0007;
+            animation: hbPulse 2s infinite;
+        }
+
+        #hb-whatsapp i {
+            font-size: 29px;
+            color: white !important;
+        }
+
+        @keyframes hbPulse {
+            0% { box-shadow: 0 0 0 0 #25d36688; }
+            70% { box-shadow: 0 0 0 12px #25d36600; }
+            100% { box-shadow: 0 0 0 0 #25d36600; }
+        }
+
+        /* CLASSES DE ACESSIBILIDADE */
+        html.hb-text-large body :is(p, li, a, span, label):not(#hb-accessibility *) {
+            font-size: 1.17em !important;
+        }
+
+        html.hb-text-xlarge body :is(p, li, a, span, label):not(#hb-accessibility *) {
+            font-size: 1.33em !important;
+        }
+
+        html.hb-readable body :is(p, li, a, span, h1, h2, h3, h4):not(#hb-accessibility *) {
+            font-family: Verdana, Arial, sans-serif !important;
+        }
+
+        html.hb-spacing body :is(p, li, a, span):not(#hb-accessibility *) {
+            letter-spacing: .09em !important;
+            word-spacing: .15em !important;
+        }
+
+        html.hb-lines body :is(p, li):not(#hb-accessibility *) {
+            line-height: 1.85 !important;
+        }
+
+        html.hb-links body a:not(#hb-whatsapp) {
+            text-decoration: underline !important;
+            text-decoration-thickness: 3px !important;
+        }
+
+        html.hb-targets body a,
+        html.hb-targets body button {
+            min-height: 44px;
+            min-width: 44px;
+        }
+
+        html.hb-focus body :focus-visible {
+            outline: 4px solid #ffcf00 !important;
+            outline-offset: 3px !important;
+        }
+
+        html.hb-contrast body {
+            background: #000 !important;
+            color: #fff !important;
+        }
+
+        html.hb-contrast body :is(header, section, footer, article, nav):not(#hb-access-panel) {
+            background-color: #000 !important;
+            color: #fff !important;
+        }
+
+        html.hb-contrast body :is(p, h1, h2, h3, h4, li, span):not(#hb-accessibility *) {
+            color: #fff !important;
+        }
+
+        html.hb-contrast body a:not(#hb-whatsapp) {
+            color: #ffeb3b !important;
+        }
+
+        html.hb-gray body > :is(header, section, .gettouch-section, #footer-placeholder) {
+            filter: grayscale(1);
+        }
+
+        html.hb-motion body *,
+        html.hb-motion body *::before,
+        html.hb-motion body *::after {
+            animation-duration: .001ms !important;
+            transition-duration: .001ms !important;
+            scroll-behavior: auto !important;
+        }
+
+        html.hb-motion #hb-whatsapp {
+            animation: none !important;
+        }
+
+        html.hb-cvd-protan body > :is(header, section, .gettouch-section, #footer-placeholder) {
+            filter: url(#hb-protan-filter);
+        }
+
+        html.hb-cvd-deutan body > :is(header, section, .gettouch-section, #footer-placeholder) {
+            filter: url(#hb-deutan-filter);
+        }
+
+        html.hb-cvd-tritan body > :is(header, section, .gettouch-section, #footer-placeholder) {
+            filter: url(#hb-tritan-filter);
+        }
+
+        html.hb-cvd-strong body > :is(header, section, .gettouch-section, #footer-placeholder) {
+            filter: contrast(1.25) saturate(.85);
+        }
+
+        html:is(.hb-cvd-protan, .hb-cvd-deutan, .hb-cvd-tritan, .hb-cvd-strong) body a {
+            text-decoration: underline !important;
+        }
+
+        #hb-cvd-filters {
+            position: absolute;
+            width: 0;
+            height: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        #hb-reading-guide {
+            position: fixed;
+            left: 0;
+            right: 0;
+            top: 30%;
+            z-index: 2147482990;
+            height: 40px;
+            display: none;
+            pointer-events: none;
+            background: #ffdb5130;
+            border-top: 2px solid #f9bd26;
+            border-bottom: 2px solid #f9bd26;
+        }
+
+        html.hb-guide #hb-reading-guide {
+            display: block;
+        }
+
+        @media (max-width: 480px) {
+            #hb-access-panel {
+                right: 52px;
+                width: calc(100vw - 62px);
+                max-height: 72vh;
+            }
+
+            #hb-access-panel .hb-body {
+                padding: 12px;
+            }
+
+            #hb-access-panel .hb-head {
+                padding: 12px;
+            }
+
+            #hb-whatsapp {
+                right: 12px;
+                bottom: 18px;
+                width: 52px;
+                height: 52px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="header-section">
+        <div id="header-placeholder"></div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="careers-hero">
+        <div class="container">
+            <div class="hero-pill">
+                <i class="fa fa-bolt"></i> Carreiras & Talentos HitBoxe
+            </div>
+            <h1>Entre no ringue com a <span>nossa equipe</span></h1>
+            <p>Buscamos profissionais apaixonados por alta performance, disciplina e atendimento de excelência em Presidente Prudente.</p>
+            <div class="bt-option">
+                <a href="../index.html">Início</a>
+                <span> • Trabalhe Conosco</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <section class="careers-section">
+        <div class="container">
+            <div class="row">
+                <!-- COLUNA ESQUERDA: VAGAS CLICÁVEIS -->
+                <div class="col-lg-4">
+                    <div class="section-heading">
+                        <span>Oportunidades</span>
+                        <h2>Vagas Disponíveis</h2>
+                    </div>
+
+                    <div class="job-card" onclick="selecionarVaga('Instrutor(a) de Boxe', this)">
+                        <div class="job-top">
+                            <span class="job-badge">CLT / PJ</span>
+                            <span class="job-select-hint"><i class="fa fa-hand-pointer-o"></i> Clique para aplicar</span>
+                        </div>
+                        <h4>Instrutor(a) de Boxe</h4>
+                        <p>Treinamento técnico, funcional e acompanhamento individualizado de alunos iniciantes a competidores.</p>
+                        <div class="job-tags">
+                            <span>CREF Ativo</span>
+                            <span>Presidente Prudente</span>
+                        </div>
+                    </div>
+
+                    <div class="job-card" onclick="selecionarVaga('Recepcionista / Atendimento', this)">
+                        <div class="job-top">
+                            <span class="job-badge">Presencial • 6h</span>
+                            <span class="job-select-hint"><i class="fa fa-hand-pointer-o"></i> Clique para aplicar</span>
+                        </div>
+                        <h4>Recepcionista / Atendimento</h4>
+                        <p>Acolhimento dos alunos, controle de catraca/agendamentos e suporte diário na unidade.</p>
+                        <div class="job-tags">
+                            <span>Comunicação</span>
+                            <span>Organização</span>
+                        </div>
+                    </div>
+
+                    <div class="job-card" onclick="selecionarVaga('Consultor(a) de Vendas', this)">
+                        <div class="job-top">
+                            <span class="job-badge">Fixo + Comissão</span>
+                            <span class="job-select-hint"><i class="fa fa-hand-pointer-o"></i> Clique para aplicar</span>
+                        </div>
+                        <h4>Consultor(a) de Vendas</h4>
+                        <p>Apresentação da estrutura, planos Round, Professional e Nocaute e conversão de aulas experimentais.</p>
+                        <div class="job-tags">
+                            <span>Metas</span>
+                            <span>Vendas Consultivas</span>
+                        </div>
+                    </div>
+
+                    <div class="job-card" onclick="selecionarVaga('Estágio em Educação Física', this)">
+                        <div class="job-top">
+                            <span class="job-badge">Bolsa + Auxílio</span>
+                            <span class="job-select-hint"><i class="fa fa-hand-pointer-o"></i> Clique para aplicar</span>
+                        </div>
+                        <h4>Estágio em Educação Física</h4>
+                        <p>Auxílio aos treinadores na montagem de rounds, preparação física e avaliação funcional.</p>
+                        <div class="job-tags">
+                            <span>Cursando Ed. Física</span>
+                            <span>4h a 6h/dia</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- COLUNA DIREITA: FORMULÁRIO COM 15 CAMPOS -->
+                <div class="col-lg-8">
+                    <div class="form-wrapper">
+                        <div class="form-header">
+                            <div>
+                                <h3>Ficha de Candidatura</h3>
+                                <small style="color: var(--hb-muted);">Preencha todos os dados para análise do RH no painel Admin</small>
+                            </div>
+                            <div class="fields-counter">
+                                Preenchidos: <strong id="progresso-campos">0 / 15</strong>
+                            </div>
+                        </div>
+
+                        <form id="form-trabalhe-conosco" novalidate>
+
+                            <!-- ETAPA 1: DADOS PESSOAIS -->
+                            <div class="form-step-title">
+                                <span class="step-num">1</span> Dados Pessoais & Contato
+                            </div>
+
+                            <div class="row">
+                                <!-- CAMPO 1: NOME -->
+                                <div class="col-md-12 hb-group" id="grp-nome">
+                                    <label for="cand-nome">1. Nome Completo <span class="req">*</span></label>
+                                    <div class="input-icon-wrap">
+                                        <i class="fa fa-user field-ico"></i>
+                                        <input type="text" id="cand-nome" class="hb-input" placeholder="Ex: Carlos Eduardo Mendes" required>
+                                        <i class="fa fa-check-circle status-ico ok"></i>
+                                        <i class="fa fa-times-circle status-ico err"></i>
+                                    </div>
+                                    <div class="error-text">Digite seu nome e sobrenome completos.</div>
+                                </div>
+
+                                <!-- CAMPO 2: CPF COM MÁSCARA E VALIDAÇÃO EM TEMPO REAL -->
+                                <div class="col-md-6 hb-group" id="grp-cpf">
+                                    <label for="cand-cpf">2. CPF <span class="req">*</span></label>
+                                    <div class="input-icon-wrap">
+                                        <i class="fa fa-id-card field-ico"></i>
+                                        <input type="text" id="cand-cpf" class="hb-input" inputmode="numeric" maxlength="14" placeholder="000.000.000-00" required>
+                                        <i class="fa fa-check-circle status-ico ok"></i>
+                                        <i class="fa fa-times-circle status-ico err"></i>
+                                    </div>
+                                    <div class="valid-text">CPF válido!</div>
+                                    <div class="error-text" id="cpf-error-msg">CPF inválido — verifique os 11 dígitos.</div>
+                                </div>
+
+                                <!-- CAMPO 3: DATA DE NASCIMENTO -->
+                                <div class="col-md-6 hb-group" id="grp-nascimento">
+                                    <label for="cand-nascimento">3. Data de Nascimento <span class="req">*</span></label>
+                                    <div class="input-icon-wrap">
+                                        <i class="fa fa-calendar field-ico"></i>
+                                        <input type="date" id="cand-nascimento" class="hb-input" required>
+                                    </div>
+                                    <div class="error-text">É necessário ter pelo menos 18 anos completos.</div>
+                                </div>
+
+                                <!-- CAMPO 4: E-MAIL -->
+                                <div class="col-md-6 hb-group" id="grp-email">
+                                    <label for="cand-email">4. E-mail Principal <span class="req">*</span></label>
+                                    <div class="input-icon-wrap">
+                                        <i class="fa fa-envelope field-ico"></i>
+                                        <input type="email" id="cand-email" class="hb-input" placeholder="seuemail@dominio.com" required>
+                                        <i class="fa fa-check-circle status-ico ok"></i>
+                                        <i class="fa fa-times-circle status-ico err"></i>
+                                    </div>
+                                    <div class="error-text">Digite um endereço de e-mail válido.</div>
+                                </div>
+
+                                <!-- CAMPO 5: WHATSAPP -->
+                                <div class="col-md-6 hb-group" id="grp-telefone">
+                                    <label for="cand-telefone">5. WhatsApp / Celular <span class="req">*</span></label>
+                                    <div class="input-icon-wrap">
+                                        <i class="fa fa-whatsapp field-ico"></i>
+                                        <input type="tel" id="cand-telefone" class="hb-input" inputmode="numeric" maxlength="15" placeholder="(18) 99999-9999" required>
+                                        <i class="fa fa-check-circle status-ico ok"></i>
+                                        <i class="fa fa-times-circle status-ico err"></i>
+                                    </div>
+                                    <div class="error-text">Informe DDD + 9 dígitos do celular.</div>
+                                </div>
+                            </div>
+
+                            <!-- ETAPA 2: ENDEREÇO COM VIACEP -->
+                            <div class="form-step-title">
+                                <span class="step-num">2</span> Endereço (Busca Automática ViaCEP)
+                            </div>
+
+                            <div class="row">
+                                <!-- CAMPO 6: CEP -->
+                                <div class="col-md-4 hb-group" id="grp-cep">
+                                    <label for="cand-cep">
+                                        <span>6. CEP <span class="req">*</span></span>
+                                        <span id="cep-status" class="cep-status"></span>
+                                    </label>
+                                    <div class="input-icon-wrap">
+                                        <i class="fa fa-map-pin field-ico"></i>
+                                        <input type="text" id="cand-cep" class="hb-input" inputmode="numeric" maxlength="9" placeholder="19050-920" required>
+                                    </div>
+                                    <div class="error-text">CEP inválido ou não encontrado.</div>
+                                </div>
+
+                                <!-- CAMPO 7: RUA -->
+                                <div class="col-md-8 hb-group" id="grp-rua">
+                                    <label for="cand-rua">7. Logradouro / Rua <span class="req">*</span></label>
+                                    <div class="input-icon-wrap">
+                                        <i class="fa fa-road field-ico"></i>
+                                        <input type="text" id="cand-rua" class="hb-input" placeholder="Preenchido automaticamente pelo CEP" required>
+                                    </div>
+                                    <div class="error-text">Informe o nome da rua/avenida.</div>
+                                </div>
+
+                                <!-- CAMPO 8: NÚMERO -->
+                                <div class="col-md-3 hb-group" id="grp-numero">
+                                    <label for="cand-numero">8. Número <span class="req">*</span></label>
+                                    <input type="text" id="cand-numero" class="hb-input no-icon" placeholder="Ex: 700" required>
+                                    <div class="error-text">Obrigatório.</div>
+                                </div>
+
+                                <!-- CAMPO 9: BAIRRO -->
+                                <div class="col-md-4 hb-group" id="grp-bairro">
+                                    <label for="cand-bairro">9. Bairro <span class="req">*</span></label>
+                                    <input type="text" id="cand-bairro" class="hb-input no-icon" placeholder="Bairro" required>
+                                    <div class="error-text">Informe o bairro.</div>
+                                </div>
+
+                                <!-- CAMPO 10: CIDADE / UF -->
+                                <div class="col-md-5 hb-group" id="grp-cidade">
+                                    <label for="cand-cidade">10. Cidade / UF <span class="req">*</span></label>
+                                    <input type="text" id="cand-cidade" class="hb-input no-icon" placeholder="Presidente Prudente - SP" required>
+                                    <div class="error-text">Informe a cidade e estado.</div>
+                                </div>
+                            </div>
+
+                            <!-- ETAPA 3: PERFIL PROFISSIONAL -->
+                            <div class="form-step-title">
+                                <span class="step-num">3</span> Vaga & Qualificações
+                            </div>
+
+                            <div class="row">
+                                <!-- CAMPO 11: VAGA -->
+                                <div class="col-md-6 hb-group" id="grp-vaga">
+                                    <label for="cand-vaga">11. Vaga Pretendida <span class="req">*</span></label>
+                                    <div class="input-icon-wrap">
+                                        <i class="fa fa-briefcase field-ico"></i>
+                                        <select id="cand-vaga" class="hb-input" required>
+                                            <option value="">Selecione a vaga...</option>
+                                            <option value="Instrutor(a) de Boxe">Instrutor(a) de Boxe</option>
+                                            <option value="Recepcionista / Atendimento">Recepcionista / Atendimento</option>
+                                            <option value="Consultor(a) de Vendas">Consultor(a) de Vendas</option>
+                                            <option value="Estágio em Educação Física">Estágio em Educação Física</option>
+                                            <option value="Banco de Talentos">Banco de Talentos</option>
+                                        </select>
+                                    </div>
+                                    <div class="error-text">Selecione uma vaga.</div>
+                                </div>
+
+                                <!-- CAMPO 12: TURNO -->
+                                <div class="col-md-6 hb-group" id="grp-turno">
+                                    <label for="cand-turno">12. Disponibilidade de Turno <span class="req">*</span></label>
+                                    <div class="input-icon-wrap">
+                                        <i class="fa fa-clock-o field-ico"></i>
+                                        <select id="cand-turno" class="hb-input" required>
+                                            <option value="">Selecione o turno...</option>
+                                            <option value="Manhã (06h às 12h)">Manhã (06h às 12h)</option>
+                                            <option value="Tarde (12h às 18h)">Tarde (12h às 18h)</option>
+                                            <option value="Noite (18h às 22h)">Noite (18h às 22h)</option>
+                                            <option value="Integral / Flexível">Integral / Flexível</option>
+                                        </select>
+                                    </div>
+                                    <div class="error-text">Escolha sua disponibilidade.</div>
+                                </div>
+
+                                <!-- CAMPO 13: PRETENSÃO SALARIAL -->
+                                <div class="col-md-6 hb-group" id="grp-salario">
+                                    <label for="cand-salario">13. Pretensão Salarial <span class="req">*</span></label>
+                                    <div class="input-icon-wrap">
+                                        <i class="fa fa-money field-ico"></i>
+                                        <input type="text" id="cand-salario" class="hb-input" inputmode="numeric" placeholder="R$ 0.000,00" required>
+                                    </div>
+                                    <div class="error-text">Informe um valor válido.</div>
+                                </div>
+
+                                <!-- CAMPO 14: CREF / LINKEDIN -->
+                                <div class="col-md-6 hb-group" id="grp-link">
+                                    <label for="cand-link">14. CREF ou Link do LinkedIn/Currículo <span class="req">*</span></label>
+                                    <div class="input-icon-wrap">
+                                        <i class="fa fa-link field-ico"></i>
+                                        <input type="text" id="cand-link" class="hb-input" placeholder="CREF 000000-G/SP ou https://linkedin.com/..." required>
+                                    </div>
+                                    <div class="error-text">Informe seu registro CREF ou link válido.</div>
+                                </div>
+
+                                <!-- CAMPO 15: RESUMO PROFISSIONAL -->
+                                <div class="col-md-12 hb-group" id="grp-mensagem">
+                                    <label for="cand-mensagem">15. Experiência Profissional & Diferenciais <span class="req">*</span></label>
+                                    <textarea id="cand-mensagem" class="hb-input" maxlength="500" placeholder="Conte sobre sua experiência anterior, cursos, vivência em lutas/academias e por que deseja fazer parte da HitBoxe (mínimo 30 caracteres)..." required></textarea>
+                                    <div style="display:flex; justify-content:space-between;">
+                                        <div class="error-text">Escreva pelo menos 30 caracteres sobre sua experiência.</div>
+                                        <div class="char-counter" style="margin-left:auto;"><span id="char-count">0</span>/500</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn-hb-submit">
+                                <i class="fa fa-paper-plane" style="margin-right: 8px;"></i> Finalizar & Enviar Candidatura
+                            </button>
+
+                            <div id="feedback-msg">
+                                <i class="fa fa-check-circle" style="font-size: 18px; margin-right: 6px;"></i>
+                                Candidatura registrada com sucesso! Seus 15 dados já estão disponíveis no painel Admin.
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INFORMAÇÕES DE CONTATO -->
+    <div class="gettouch-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="gt-text">
+                        <i class="fa fa-map-marker"></i>
+                        <p>R. José Bongiovani, 700 - Cidade Universitária, Pres. Prudente<br>SP, 19050-920</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="gt-text">
+                        <i class="fa fa-mobile"></i>
+                        <ul>
+                            <li>(18) 12345-6789</li>
+                            <li>(18) 98765-4321</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="gt-text email">
+                        <i class="fa fa-envelope"></i>
+                        <p>suportehitboxe@gmail.com.br</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer-placeholder"></div>
+    <div id="authModal" class="auth-modal"></div>
+
+    <!-- =========================================================
+         PAINEL DE ACESSIBILIDADE COMPLETO (ORIGINAL HITBOXE)
+         ========================================================= -->
+    <div id="hb-accessibility">
+
+        <button
+            id="hb-access-button"
+            type="button"
+            aria-label="Abrir opções de acessibilidade"
+            aria-controls="hb-access-panel"
+            aria-expanded="false"
+            title="Acessibilidade"
+        >
+            <span class="hb-access-icon" aria-hidden="true">
+                <i class="fi fi-rr-universal-access"></i>
+            </span>
+        </button>
+
+        <section
+            id="hb-access-panel"
+            role="dialog"
+            aria-label="Opções de acessibilidade"
+            aria-hidden="true"
+        >
+
+            <div class="hb-head">
+                <div class="hb-head-icon">
+                    <i class="fa fa-universal-access" aria-hidden="true"></i>
+                </div>
+
+                <div>
+                    <h2>Acessibilidade</h2>
+                    <small>HITBOXE • ACESSIBILIDADE DIGITAL</small>
+                </div>
+
+                <button
+                    id="hb-close"
+                    class="hb-close"
+                    type="button"
+                    aria-label="Fechar painel"
+                >×</button>
+            </div>
+
+            <div class="hb-body">
+
+                <h3 class="hb-section-label">
+                    <i class="fa fa-sliders" aria-hidden="true"></i>
+                    Personalize sua experiência
+                </h3>
+
+                <div class="hb-grid">
+
+                    <button class="hb-action" data-option="text-large" aria-pressed="false" type="button">
+                        <i class="fa fa-font" aria-hidden="true"></i>
+                        <span>Aumentar texto</span>
+                    </button>
+
+                    <button class="hb-action" data-option="text-xlarge" aria-pressed="false" type="button">
+                        <i class="fa fa-text-height" aria-hidden="true"></i>
+                        <span>Texto extra grande</span>
+                    </button>
+
+                    <button class="hb-action" data-option="contrast" aria-pressed="false" type="button">
+                        <i class="fa fa-adjust" aria-hidden="true"></i>
+                        <span>Alto contraste</span>
+                    </button>
+
+                    <button class="hb-action" data-option="gray" aria-pressed="false" type="button">
+                        <i class="fa fa-tint" aria-hidden="true"></i>
+                        <span>Escala de cinza</span>
+                    </button>
+
+                    <button class="hb-action" data-option="readable" aria-pressed="false" type="button">
+                        <i class="fa fa-book" aria-hidden="true"></i>
+                        <span>Fonte legível</span>
+                    </button>
+
+                    <button class="hb-action" data-option="spacing" aria-pressed="false" type="button">
+                        <i class="fa fa-arrows-h" aria-hidden="true"></i>
+                        <span>Espaçar letras</span>
+                    </button>
+
+                    <button class="hb-action" data-option="lines" aria-pressed="false" type="button">
+                        <i class="fa fa-align-left" aria-hidden="true"></i>
+                        <span>Espaçar linhas</span>
+                    </button>
+
+                    <button class="hb-action" data-option="links" aria-pressed="false" type="button">
+                        <i class="fa fa-link" aria-hidden="true"></i>
+                        <span>Destacar links</span>
+                    </button>
+
+                    <button class="hb-action" data-option="targets" aria-pressed="false" type="button">
+                        <i class="fa fa-hand-pointer-o" aria-hidden="true"></i>
+                        <span>Cliques maiores</span>
+                    </button>
+
+                    <button class="hb-action" data-option="focus" aria-pressed="false" type="button">
+                        <i class="fa fa-crosshairs" aria-hidden="true"></i>
+                        <span>Destacar foco</span>
+                    </button>
+
+                    <button class="hb-action" data-option="motion" aria-pressed="false" type="button">
+                        <i class="fa fa-pause-circle" aria-hidden="true"></i>
+                        <span>Reduzir movimento</span>
+                    </button>
+
+                    <button class="hb-action" data-option="guide" aria-pressed="false" type="button">
+                        <i class="fa fa-eye" aria-hidden="true"></i>
+                        <span>Guia de leitura</span>
+                    </button>
+
+                </div>
+
+                <div class="hb-divider"></div>
+
+                <h3 class="hb-section-label">
+                    <i class="fa fa-eye" aria-hidden="true"></i>
+                    Percepção de cores
+                </h3>
+
+                <div class="hb-cvd" role="group" aria-label="Ajustes de cores">
+
+                    <button class="hb-cvd-btn" data-cvd="none" aria-pressed="true" type="button">
+                        <span class="hb-dot"></span>
+                        Original
+                    </button>
+
+                    <button class="hb-cvd-btn" data-cvd="strong" aria-pressed="false" type="button">
+                        <span class="hb-dot"></span>
+                        Mais contraste
+                    </button>
+
+                    <button class="hb-cvd-btn" data-cvd="protan" aria-pressed="false" type="button">
+                        <span class="hb-dot"></span>
+                        Protanopia
+                    </button>
+
+                    <button class="hb-cvd-btn" data-cvd="deutan" aria-pressed="false" type="button">
+                        <span class="hb-dot"></span>
+                        Deuteranopia
+                    </button>
+
+                    <button class="hb-cvd-btn" data-cvd="tritan" aria-pressed="false" type="button">
+                        <span class="hb-dot"></span>
+                        Tritanopia
+                    </button>
+
+                </div>
+
+                <p class="hb-help">
+                    Ajustes experimentais de cores. A eficácia varia entre pessoas
+                    e não substitui informações identificadas por texto ou símbolos.
+                </p>
+
+                <div class="hb-divider"></div>
+
+                <h3 class="hb-section-label">
+                    <i class="fa fa-volume-up" aria-hidden="true"></i>
+                    Leitura por voz
+                </h3>
+
+                <div class="hb-tools">
+
+                    <button id="hb-speech" class="hb-tool" type="button">
+                        <i class="fa fa-play"></i>
+                        Ler
+                    </button>
+
+                    <button id="hb-stop-speech" class="hb-tool" type="button">
+                        <i class="fa fa-stop"></i>
+                        Parar
+                    </button>
+
+                    <button id="hb-reset" class="hb-tool hb-reset" type="button">
+                        <i class="fa fa-refresh"></i>
+                        Restaurar
+                    </button>
+
+                </div>
+
+                <p id="hb-status" class="hb-status" role="status" aria-live="polite">
+                    Use Tab para navegar e Esc para fechar.
+                </p>
+
+            </div>
+        </section>
+    </div>
+
+    <div id="hb-reading-guide" aria-hidden="true"></div>
+
+    <svg id="hb-cvd-filters" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+            <filter id="hb-protan-filter" color-interpolation-filters="sRGB">
+                <feColorMatrix type="matrix"
+                    values="
+                        0.7 0.3 0 0 0
+                        0.3 0.7 0 0 0
+                        0 0.15 0.85 0 0
+                        0 0 0 1 0
+                    "
+                />
+            </filter>
+
+            <filter id="hb-deutan-filter" color-interpolation-filters="sRGB">
+                <feColorMatrix type="matrix"
+                    values="
+                        0.85 0.15 0 0 0
+                        0.25 0.75 0 0 0
+                        0 0.12 0.88 0 0
+                        0 0 0 1 0
+                    "
+                />
+            </filter>
+
+            <filter id="hb-tritan-filter" color-interpolation-filters="sRGB">
+                <feColorMatrix type="matrix"
+                    values="
+                        0.95 0.05 0 0 0
+                        0 0.75 0.25 0 0
+                        0 0.3 0.7 0 0
+                        0 0 0 1 0
+                    "
+                />
+            </filter>
+        </defs>
+    </svg>
+
+    <a
+        id="hb-whatsapp"
+        href="https://wa.me/5518999999999"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Conversar com a HitBoxe pelo WhatsApp"
+    >
+        <i class="fa fa-whatsapp" aria-hidden="true"></i>
+    </a>
+
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script src="../assets/js/jquery-3.3.1.min.js"></script>
+    <script src="../assets/js/bootstrap.min.js"></script>
+    <script src="../assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="../assets/js/masonry.pkgd.min.js"></script>
+    <script src="../assets/js/jquery.barfiller.js"></script>
+    <script src="../assets/js/jquery.slicknav.js"></script>
+    <script src="../assets/js/owl.carousel.min.js"></script>
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/acesso.js"></script>
+    <script src="../assets/js/comploader.js"></script>
+
+    <script>
+        // 1. SELECIONAR VAGA PELO CARD
+        function selecionarVaga(nomeVaga, cardEl) {
+            document.querySelectorAll('.job-card').forEach(c => c.classList.remove('selected'));
+            cardEl.classList.add('selected');
+            const select = document.getElementById('cand-vaga');
+            select.value = nomeVaga;
+            validarCampo('cand-vaga');
+            atualizarProgresso();
+            select.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        // 2. ALGORITMO DE VALIDAÇÃO REAL DE CPF
+        function testarCPF(cpf) {
+            cpf = cpf.replace(/\D/g, '');
+            if (cpf.length !== 11 || /^(\d)\1+$/.test(cpf)) return false;
+
+            let soma = 0, resto;
+            for (let i = 1; i <= 9; i++) {
+                soma += parseInt(cpf.substring(i - 1, i), 10) * (11 - i);
+            }
+            resto = (soma * 10) % 11;
+            if (resto === 10 || resto === 11) resto = 0;
+            if (resto !== parseInt(cpf.substring(9, 10), 10)) return false;
+
+            soma = 0;
+            for (let i = 1; i <= 10; i++) {
+                soma += parseInt(cpf.substring(i - 1, i), 10) * (12 - i);
+            }
+            resto = (soma * 10) % 11;
+            if (resto === 10 || resto === 11) resto = 0;
+
+            return resto === parseInt(cpf.substring(10, 11), 10);
+        }
+
+        // 3. MÁSCARA + VALIDAÇÃO EM TEMPO REAL DO CPF
+        const elCpf = document.getElementById('cand-cpf');
+        elCpf.addEventListener('input', e => {
+            let digitos = e.target.value.replace(/\D/g, '').slice(0, 11);
+
+            let formatado = digitos;
+            if (digitos.length > 9) {
+                formatado = `${digitos.slice(0, 3)}.${digitos.slice(3, 6)}.${digitos.slice(6, 9)}-${digitos.slice(9)}`;
+            } else if (digitos.length > 6) {
+                formatado = `${digitos.slice(0, 3)}.${digitos.slice(3, 6)}.${digitos.slice(6)}`;
+            } else if (digitos.length > 3) {
+                formatado = `${digitos.slice(0, 3)}.${digitos.slice(3)}`;
+            }
+            e.target.value = formatado;
+
+            const grpCpf = document.getElementById('grp-cpf');
+            const msgErro = document.getElementById('cpf-error-msg');
+
+            if (digitos.length === 11) {
+                const valido = testarCPF(digitos);
+                if (!valido) {
+                    msgErro.textContent = /^(\d)\1+$/.test(digitos)
+                        ? 'CPF inválido (números repetidos não são aceitos).'
+                        : 'CPF inválido — dígito verificador incorreto.';
+                }
+                setEstadoCampo('grp-cpf', valido);
+            } else {
+                grpCpf.classList.remove('is-valid', 'is-invalid');
+            }
+
+            atualizarProgresso();
+        });
+
+        // 4. DEMAIS MÁSCARAS DE INPUT
+        const elTel = document.getElementById('cand-telefone');
+        elTel.addEventListener('input', e => {
+            let v = e.target.value.replace(/\D/g, '').slice(0, 11);
+            if (v.length > 2) v = `(${v.slice(0, 2)}) ${v.slice(2)}`;
+            if (v.length > 10) v = `${v.slice(0, 10)}-${v.slice(10)}`;
+            e.target.value = v;
+            if (v.replace(/\D/g, '').length === 11) validarCampo('cand-telefone');
+        });
+
+        const elCep = document.getElementById('cand-cep');
+        elCep.addEventListener('input', e => {
+            let v = e.target.value.replace(/\D/g, '').slice(0, 8);
+            if (v.length > 5) v = `${v.slice(0, 5)}-${v.slice(5)}`;
+            e.target.value = v;
+            if (v.replace(/\D/g, '').length === 8) {
+                buscarViaCEP(v.replace(/\D/g, ''));
+            }
+        });
+
+        const elSalario = document.getElementById('cand-salario');
+        elSalario.addEventListener('input', e => {
+            let v = e.target.value.replace(/\D/g, '');
+            if (!v) { e.target.value = ''; return; }
+            v = (parseInt(v, 10) / 100).toFixed(2) + '';
+            v = v.replace('.', ',');
+            v = v.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+            e.target.value = 'R$ ' + v;
+        });
+
+        // 5. INTEGRAÇÃO VIACEP
+        let cepValidoApi = false;
+        async function buscarViaCEP(cepLimpo) {
+            const statusEl = document.getElementById('cep-status');
+            statusEl.textContent = 'Buscando...';
+            statusEl.style.color = '#60a5fa';
+
+            try {
+                const res = await fetch(`https://viacep.com.br/ws/${cepLimpo}/json/`);
+                const data = await res.json();
+
+                if (data.erro) {
+                    cepValidoApi = false;
+                    statusEl.textContent = 'CEP não encontrado';
+                    statusEl.style.color = '#f87171';
+                    setEstadoCampo('grp-cep', false);
+                    return;
+                }
+
+                cepValidoApi = true;
+                statusEl.textContent = '✓ Localizado';
+                statusEl.style.color = '#10b981';
+
+                document.getElementById('cand-rua').value = data.logradouro || '';
+                document.getElementById('cand-bairro').value = data.bairro || '';
+                document.getElementById('cand-cidade').value = `${data.localidade} - ${data.uf}`;
+
+                ['cand-cep', 'cand-rua', 'cand-bairro', 'cand-cidade'].forEach(id => validarCampo(id));
+                atualizarProgresso();
+                document.getElementById('cand-numero').focus();
+            } catch (err) {
+                statusEl.textContent = 'Erro na consulta';
+                statusEl.style.color = '#f87171';
+            }
+        }
+
+        // 6. REGRAS DE VALIDAÇÃO DOS 15 CAMPOS
+        const validadores = {
+            'cand-nome': v => v.trim().split(/\s+/).length >= 2 && v.trim().length >= 5,
+            'cand-cpf': v => testarCPF(v),
+            'cand-nascimento': v => {
+                if (!v) return false;
+                const nasc = new Date(v);
+                const hoje = new Date();
+                let idade = hoje.getFullYear() - nasc.getFullYear();
+                const m = hoje.getMonth() - nasc.getMonth();
+                if (m < 0 || (m === 0 && hoje.getDate() < nasc.getDate())) idade--;
+                return idade >= 18 && idade <= 90;
+            },
+            'cand-email': v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()),
+            'cand-telefone': v => v.replace(/\D/g, '').length === 11,
+            'cand-cep': v => v.replace(/\D/g, '').length === 8 && cepValidoApi,
+            'cand-rua': v => v.trim().length >= 3,
+            'cand-numero': v => v.trim().length >= 1,
+            'cand-bairro': v => v.trim().length >= 2,
+            'cand-cidade': v => v.trim().length >= 4,
+            'cand-vaga': v => v !== '',
+            'cand-turno': v => v !== '',
+            'cand-salario': v => {
+                const num = parseFloat(v.replace(/[R$\s.]/g, '').replace(',', '.'));
+                return !isNaN(num) && num >= 500;
+            },
+            'cand-link': v => v.trim().length >= 5,
+            'cand-mensagem': v => v.trim().length >= 30
+        };
+
+        function setEstadoCampo(grpId, valido) {
+            const grp = document.getElementById(grpId);
+            if (!grp) return;
+            grp.classList.remove('is-valid', 'is-invalid');
+            grp.classList.add(valido ? 'is-valid' : 'is-invalid');
+        }
+
+        function validarCampo(id) {
+            const el = document.getElementById(id);
+            const grpId = id.replace('cand-', 'grp-');
+            const ok = validadores[id](el.value);
+            if (id === 'cand-cpf' && !ok) {
+                const digitos = el.value.replace(/\D/g, '');
+                document.getElementById('cpf-error-msg').textContent = digitos.length < 11
+                    ? 'CPF incompleto — digite todos os 11 dígitos.'
+                    : 'CPF inválido — dígito verificador incorreto.';
+            }
+            setEstadoCampo(grpId, ok);
+            return ok;
+        }
+
+        function atualizarProgresso() {
+            const ids = Object.keys(validadores);
+            let validos = 0;
+            ids.forEach(id => {
+                const el = document.getElementById(id);
+                if (validadores[id](el.value)) validos++;
+            });
+            document.getElementById('progresso-campos').textContent = `${validos} / ${ids.length}`;
+        }
+
+        Object.keys(validadores).forEach(id => {
+            const el = document.getElementById(id);
+            el.addEventListener('blur', () => { validarCampo(id); atualizarProgresso(); });
+            el.addEventListener('input', () => {
+                if (id === 'cand-mensagem') {
+                    document.getElementById('char-count').textContent = el.value.length;
+                }
+                if (id !== 'cand-cpf' && document.getElementById(id.replace('cand-', 'grp-')).classList.contains('is-invalid')) {
+                    validarCampo(id);
+                }
+                atualizarProgresso();
+            });
+        });
+
+        // 7. ENVIO FINAL PARA O ADMIN
+        document.getElementById('form-trabalhe-conosco').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            let tudoValido = true;
+            let primeiroInvalido = null;
+
+            Object.keys(validadores).forEach(id => {
+                const ok = validarCampo(id);
+                if (!ok) {
+                    tudoValido = false;
+                    if (!primeiroInvalido) primeiroInvalido = document.getElementById(id);
+                }
+            });
+
+            if (!tudoValido) {
+                primeiroInvalido.focus();
+                return;
+            }
+
+            const candidatura = {
+                id: Date.now(),
+                nome: document.getElementById('cand-nome').value.trim(),
+                cpf: document.getElementById('cand-cpf').value.trim(),
+                nascimento: document.getElementById('cand-nascimento').value,
+                email: document.getElementById('cand-email').value.trim(),
+                telefone: document.getElementById('cand-telefone').value.trim(),
+                cep: document.getElementById('cand-cep').value.trim(),
+                endereco: `${document.getElementById('cand-rua').value.trim()}, ${document.getElementById('cand-numero').value.trim()} - ${document.getElementById('cand-bairro').value.trim()} (${document.getElementById('cand-cidade').value.trim()})`,
+                vaga: document.getElementById('cand-vaga').value,
+                turno: document.getElementById('cand-turno').value,
+                salario: document.getElementById('cand-salario').value.trim(),
+                link: document.getElementById('cand-link').value.trim(),
+                mensagem: document.getElementById('cand-mensagem').value.trim(),
+                data: new Date().toLocaleDateString('pt-BR'),
+                status: 'Pendente'
+            };
+
+            const lista = JSON.parse(localStorage.getItem('hitboxe_candidaturas') || '[]');
+            lista.unshift(candidatura);
+            localStorage.setItem('hitboxe_candidaturas', JSON.stringify(lista));
+
+            this.reset();
+            cepValidoApi = false;
+            document.getElementById('cep-status').textContent = '';
+            document.getElementById('char-count').textContent = '0';
+            document.querySelectorAll('.hb-group').forEach(g => g.classList.remove('is-valid', 'is-invalid'));
+            document.querySelectorAll('.job-card').forEach(c => c.classList.remove('selected'));
+            atualizarProgresso();
+
+            const feedback = document.getElementById('feedback-msg');
+            feedback.style.display = 'block';
+            setTimeout(() => feedback.style.display = 'none', 6000);
+        });
+
+        // 8. LÓGICA COMPLETA DE ACESSIBILIDADE + LEITURA POR VOZ + VLIBRAS
+        (function () {
+            'use strict';
+
+            const root = document.getElementById('hb-accessibility');
+            const panel = document.getElementById('hb-access-panel');
+            const opener = document.getElementById('hb-access-button');
+            const closeButton = document.getElementById('hb-close');
+            const status = document.getElementById('hb-status');
+            const guide = document.getElementById('hb-reading-guide');
+
+            const options = [
+                'text-large',
+                'text-xlarge',
+                'contrast',
+                'gray',
+                'readable',
+                'spacing',
+                'lines',
+                'links',
+                'targets',
+                'focus',
+                'motion',
+                'guide'
+            ];
+
+            const modes = [
+                'none',
+                'strong',
+                'protan',
+                'deutan',
+                'tritan'
+            ];
+
+            let preferences = {};
+
+            try {
+                preferences = JSON.parse(
+                    localStorage.getItem('hitboxe-a11y-v6') || '{}'
+                ) || {};
+            } catch (error) {
+                preferences = {};
+            }
+
+            if (!modes.includes(preferences.cvd)) {
+                preferences.cvd = 'none';
+            }
+
+            if (
+                preferences.motion === undefined &&
+                window.matchMedia &&
+                window.matchMedia('(prefers-reduced-motion: reduce)').matches
+            ) {
+                preferences.motion = true;
+            }
+
+            function applyPreferences() {
+                options.forEach(function (option) {
+                    const active = !!preferences[option];
+
+                    document.documentElement.classList.toggle(
+                        'hb-' + option,
+                        active
+                    );
+
+                    const button = root.querySelector(
+                        '[data-option="' + option + '"]'
+                    );
+
+                    if (button) {
+                        button.setAttribute('aria-pressed', String(active));
+                    }
+                });
+
+                modes.filter(function (mode) {
+                    return mode !== 'none';
+                }).forEach(function (mode) {
+                    document.documentElement.classList.toggle(
+                        'hb-cvd-' + mode,
+                        preferences.cvd === mode
+                    );
+                });
+
+                root.querySelectorAll('[data-cvd]').forEach(function (button) {
+                    button.setAttribute(
+                        'aria-pressed',
+                        String(button.dataset.cvd === preferences.cvd)
+                    );
+                });
+
+                try {
+                    localStorage.setItem(
+                        'hitboxe-a11y-v6',
+                        JSON.stringify(preferences)
+                    );
+                } catch (error) {}
+            }
+
+            function togglePanel(open) {
+                panel.setAttribute('aria-hidden', String(!open));
+                opener.setAttribute('aria-expanded', String(open));
+
+                if (open) {
+                    closeButton.focus();
+                } else {
+                    opener.focus();
+                }
+            }
+
+            opener.addEventListener('click', function () {
+                togglePanel(
+                    panel.getAttribute('aria-hidden') === 'true'
+                );
+            });
+
+            closeButton.addEventListener('click', function () {
+                togglePanel(false);
+            });
+
+            document.addEventListener('keydown', function (event) {
+                if (
+                    event.key === 'Escape' &&
+                    panel.getAttribute('aria-hidden') === 'false'
+                ) {
+                    togglePanel(false);
+                }
+            });
+
+            root.querySelectorAll('[data-option]').forEach(function (button) {
+                button.addEventListener('click', function () {
+                    const option = button.dataset.option;
+
+                    preferences[option] = !preferences[option];
+
+                    if (option === 'text-large' && preferences[option]) {
+                        preferences['text-xlarge'] = false;
+                    }
+
+                    if (option === 'text-xlarge' && preferences[option]) {
+                        preferences['text-large'] = false;
+                    }
+
+                    if (option === 'gray' && preferences[option]) {
+                        preferences.cvd = 'none';
+                    }
+
+                    applyPreferences();
+
+                    status.textContent =
+                        button.textContent.trim() +
+                        (preferences[option] ? ' ativado.' : ' desativado.');
+                });
+            });
+
+            root.querySelectorAll('[data-cvd]').forEach(function (button) {
+                button.addEventListener('click', function () {
+                    preferences.cvd = button.dataset.cvd;
+
+                    if (preferences.cvd !== 'none') {
+                        preferences.gray = false;
+                    }
+
+                    applyPreferences();
+
+                    status.textContent =
+                        'Modo de cores: ' + button.textContent.trim();
+                });
+            });
+
+            let speechVersion = 0;
+
+            function stopSpeech() {
+                speechVersion++;
+
+                if ('speechSynthesis' in window) {
+                    window.speechSynthesis.cancel();
+                }
+            }
+
+            function getPageText() {
+                const elements = document.querySelectorAll(
+                    '.careers-hero, ' +
+                    '.careers-section, ' +
+                    '.gettouch-section'
+                );
+
+                return Array.from(elements)
+                    .map(function (element) {
+                        return element.innerText || '';
+                    })
+                    .join(' ')
+                    .replace(/\s+/g, ' ')
+                    .trim();
+            }
+
+            document.getElementById('hb-speech').addEventListener('click', function () {
+                if (!('speechSynthesis' in window)) {
+                    status.textContent = 'Leitura por voz indisponível.';
+                    return;
+                }
+
+                const selection = window.getSelection().toString().trim();
+                const content = selection || getPageText();
+
+                if (!content) {
+                    status.textContent = 'Não há texto para ler.';
+                    return;
+                }
+
+                stopSpeech();
+
+                const currentVersion = speechVersion;
+                const chunks = content.match(/.{1,180}(?:\s|$)/g) || [content];
+
+                let index = 0;
+
+                function next() {
+                    if (currentVersion !== speechVersion) {
+                        return;
+                    }
+
+                    if (index >= chunks.length) {
+                        status.textContent = 'Leitura concluída.';
+                        return;
+                    }
+
+                    const utterance = new SpeechSynthesisUtterance(
+                        chunks[index++]
+                    );
+
+                    utterance.lang = 'pt-BR';
+                    utterance.rate = 0.9;
+                    utterance.onend = next;
+
+                    utterance.onerror = function (event) {
+                        if (event.error !== 'canceled') {
+                            status.textContent = 'Erro na leitura.';
+                        }
+                    };
+
+                    window.speechSynthesis.speak(utterance);
+                }
+
+                next();
+                status.textContent = 'Leitura iniciada.';
+            });
+
+            document.getElementById('hb-stop-speech').addEventListener('click', function () {
+                stopSpeech();
+                status.textContent = 'Leitura interrompida.';
+            });
+
+            document.getElementById('hb-reset').addEventListener('click', function () {
+                stopSpeech();
+
+                preferences = {
+                    cvd: 'none'
+                };
+
+                applyPreferences();
+                status.textContent = 'Preferências restauradas.';
+            });
+
+            document.addEventListener('pointermove', function (event) {
+                if (preferences.guide) {
+                    guide.style.top =
+                        Math.max(0, event.clientY - 20) + 'px';
+                }
+            }, { passive: true });
+
+            const script = document.createElement('script');
+            script.src = 'https://vlibras.gov.br/app/vlibras-plugin.js';
+            script.onload = function () {
+                if (
+                    window.VLibras &&
+                    typeof window.VLibras.Widget === 'function'
+                ) {
+                    new window.VLibras.Widget(
+                        'https://vlibras.gov.br/app'
+                    );
+                }
+            };
+            document.head.appendChild(script);
+
+            applyPreferences();
+        })();
+    </script>
+
+</body>
+</html>
