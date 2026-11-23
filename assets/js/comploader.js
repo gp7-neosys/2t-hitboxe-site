@@ -22,7 +22,8 @@ carregar("/components/loader.html", "hitboxe-loader").then(function () {
 Promise.all([
     carregar("/components/header.html", "header-placeholder"),
     carregar("/components/footer.html", "footer-placeholder"),
-    carregar("/components/acesso.html", "authModal")
+    carregar("/components/acesso.html", "authModal"),
+    carregar("/components/acessibilidade.html", "acessibilidade-placeholder")
 ]).then(function () {
     document.dispatchEvent(new Event("componentsLoaded"));
 });
